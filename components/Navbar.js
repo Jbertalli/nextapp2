@@ -7,7 +7,7 @@ const Navbar = () => {
             <div className="logo">
                 <Image src="/N&J-logo.png" width={128} height={128} />
             </div>
-            <Link href="/calorie"><a>Calorie</a></Link>
+            <Link href="/calorie"><a>Calorie Calculator</a></Link>
             <Link href="/"><a>Home</a></Link>
             <Link href="/about"><a>About</a></Link>
             <Link href="/ninjas"><a>Ninja Listing</a></Link>
