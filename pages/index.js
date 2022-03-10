@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
