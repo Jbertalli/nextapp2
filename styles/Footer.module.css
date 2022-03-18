@@ -1,0 +1,39 @@
+.countries {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid black;
+  } 
+
+.privacy {
+    text-align: center;
+  }
+
+.siteMap {
+    text-align: center;
+  }
+
+.siteMap div {
+    padding: 50px 0;
+}
+
+.siteMap div div h4 a {
+    color: #3978f5;
+}
+
+.siteMap div div h4 {
+    color: #3978f5;
+}
+
+.siteMap div div h4 a:hover {
+    color: darkblue;
+    text-decoration: underline;
+  }
+
+.siteMap div div h4:hover {
+    color: darkblue;
+    text-decoration: underline;
+  }
+
+.terms {
+    text-align: center;
+  }

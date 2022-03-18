@@ -25,7 +25,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid black;
 }
 
 /* anchor tags inside nav */
@@ -44,7 +44,17 @@ footer {
   padding: 30px 0;
   margin-top: 60px;
   color: #777;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid black;
+}
+
+footer a {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+footer a:hover {
+  color: darkblue;
+  text-decoration: underline;
 }
 
 .not-found {

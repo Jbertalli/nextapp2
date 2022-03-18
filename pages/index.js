@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Ninja List | Home</title>
-        <meta name="keywords" content="ninjas" />
+        <title>HealthStat | Home</title>
+        <meta name="keywords" content="healthstat, calorie calculator" />
       </Head>
       <div>
         <h1 className={styles.title}>Homepage</h1>
