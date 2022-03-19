@@ -21,7 +21,7 @@ const Navbar = () => {
         <Menu fluid stackable id="nav" inverted>
             <Container text>
                 <Link href="/">
-                    <Menu.Item header active={isActive("/placeholder")}>
+                    <Menu.Item as="h3" header active={isActive("/placeholder")}>
                         <Icon 
                             name="calculator"
                             size="large"
@@ -30,7 +30,7 @@ const Navbar = () => {
                     </Menu.Item>
                 </Link>
                 <Link href="/">
-                    <Menu.Item header active={isActive("/")}>
+                    <Menu.Item as="h3" header active={isActive("/")}>
                         <Icon
                             name="home"
                             size="large"
@@ -39,7 +39,7 @@ const Navbar = () => {
                     </Menu.Item>
                 </Link>
                 <Link href="/TrackProgress">
-                    <Menu.Item header active={isActive("/TrackProgress")}>
+                    <Menu.Item as="h3" header active={isActive("/TrackProgress")}>
                         <Icon
                             name="chart line"
                             size="large"
@@ -49,7 +49,7 @@ const Navbar = () => {
                 </Link>
                 {user ? (<> 
                 <Link href="/">
-                    <Menu.Item header active={isActive("/placeholder")}>
+                    <Menu.Item as="h3" header active={isActive("/placeholder")}>
                         <Icon
                             name="user outline"
                             size="large"
@@ -58,7 +58,7 @@ const Navbar = () => {
                     </Menu.Item>
                 </Link>
                 <Link href="/">
-                    <Menu.Item header active={isActive("/placeholder")}>
+                    <Menu.Item as="h3" header active={isActive("/placeholder")}>
                         <Icon
                             name="sign out"
                             size="large"
@@ -70,7 +70,7 @@ const Navbar = () => {
                 ):(
                 <>
                 <Link href="/">
-                    <Menu.Item header active={isActive("/placeholder")}>
+                    <Menu.Item as="h3" header active={isActive("/placeholder")}>
                         <Icon
                             name="sign in"
                             size="large"
@@ -79,7 +79,7 @@ const Navbar = () => {
                     </Menu.Item>
                 </Link>
                 <Link href="/">
-                    <Menu.Item header active={isActive("/placeholder")}>
+                    <Menu.Item as="h3" header active={isActive("/placeholder")}>
                         <Icon
                             name="signup"
                             size="large"
