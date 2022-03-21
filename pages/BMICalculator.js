@@ -127,7 +127,7 @@ const BMICalculator = () => {
                         size="large"
                     />
                     <Link href="/Login">
-                        <a>Login</a>
+                        <a style={{ color: '#3978f5' }}>Login</a>
                     </Link>{" "}
                     To Track Progress
                 </Message>
