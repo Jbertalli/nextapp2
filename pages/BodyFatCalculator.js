@@ -41,7 +41,7 @@ class BodyFatPercent extends Component {
             />
             {/* ternary to switch from imperial to metric button*/}
             {imperial ? (<>
-            <Button 
+            <Button
                 attached
                 compact
                 icon="globe"
@@ -192,10 +192,6 @@ class BodyFatPercent extends Component {
                     color="blue"
                 />
                 <Segment color="blue" textAlign="center" size="massive">
-                    
-                    
-                    
-
                     {imperial ? (<>
                         {/* male/female ternary */}
                         {/* Men Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}

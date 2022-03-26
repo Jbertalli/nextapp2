@@ -1,10 +1,26 @@
 [
-    {
+  {
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
-    "name": "Ada Lovelace",
-    "email": "ada@geemail.com",
-    "bio": "First programmer. No big deal.",
-    "age": 198,
-    "avatar": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "name": "Calorie Intake Calculator",
+    "description": "Calculate Your Recommended Daily Caloric Intake",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+  }, 
+  {
+    "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
+    "name": "BMI Calculator",
+    "description": "Calculate Your Body Mass Index",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+  }, 
+  {
+    "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
+    "name": "Body Fat Calculator",
+    "description": "Calculate Your Body Fat Percentage",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+  }, 
+  {
+    "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
+    "name": "Track Progress",
+    "description": "View Your Progression",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
   }
 ]
