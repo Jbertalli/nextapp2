@@ -14,15 +14,15 @@
 
 .siteMap div {
     padding: 50px 0;
-}
+  }
 
 .siteMap div div h4 a {
     color: #3978f5;
-}
+  }
 
 .siteMap div div h4 {
     color: #3978f5;
-}
+  }
 
 .siteMap div div h4 a:hover {
     color: darkblue;
@@ -36,4 +36,15 @@
 
 .terms {
     text-align: center;
+  }
+
+/* keep footer formatted on bottom */
+.container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 2.5rem;
+  }
+
+.hover:hover {
+    cursor: pointer;
   }

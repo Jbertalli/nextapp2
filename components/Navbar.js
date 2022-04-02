@@ -3,6 +3,7 @@ import Link from 'next/link';
 // import Image from 'next/image';
 import Router, { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Sticky } from 'semantic-ui-react';
+import styles from '../styles/Footer.module.css';
 
 const Navbar = () => {
     const router = useRouter();
@@ -32,7 +33,7 @@ const Navbar = () => {
                         </Dropdown>
                     </Menu.Item> 
                     <Link href="/">
-                        <Menu.Item as="h3" header active={isActive("/")}>
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
                             <Icon
                                 name="home"
                                 size="large"
@@ -41,7 +42,7 @@ const Navbar = () => {
                         </Menu.Item>
                     </Link>
                     <Link href="/TrackProgress">
-                        <Menu.Item as="h3" header active={isActive("/TrackProgress")}>
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/TrackProgress")}>
                             <Icon
                                 name="chart line"
                                 size="large"
@@ -51,7 +52,7 @@ const Navbar = () => {
                     </Link>
                     {user ? (<> 
                     <Link href="/">
-                        <Menu.Item as="h3" header active={isActive("/placeholder")}>
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/placeholder")}>
                             <Icon
                                 name="user outline"
                                 size="large"
@@ -60,7 +61,7 @@ const Navbar = () => {
                         </Menu.Item>
                     </Link>
                     <Link href="/">
-                        <Menu.Item as="h3" header>
+                        <Menu.Item className={styles.hover} as="h3" header>
                             <Icon
                                 name="sign out"
                                 size="large"
@@ -71,8 +72,8 @@ const Navbar = () => {
                     </>
                     ):(
                     <>
-                    <Link href="/">
-                        <Menu.Item as="h3" header active={isActive("/placeholder")}>
+                    <Link href="/Login">
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/Login")}>
                             <Icon
                                 name="sign in"
                                 size="large"
@@ -80,8 +81,8 @@ const Navbar = () => {
                             Login
                         </Menu.Item>
                     </Link>
-                    <Link href="/">
-                        <Menu.Item as="h3" header active={isActive("/placeholder")}>
+                    <Link href="/Signup">
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/Signup")}>
                             <Icon
                                 name="signup"
                                 size="large"
@@ -90,6 +91,14 @@ const Navbar = () => {
                         </Menu.Item>
                     </Link>
                     </>)}
+                    <Link href="/CrochetApp/Crochet">
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/CrochetApp/Crochet")}>
+                            <Icon
+                                name="map pin"
+                            />
+                            Crochet App
+                        </Menu.Item>
+                    </Link>
                 </Container>
             </Menu>
         </Sticky>

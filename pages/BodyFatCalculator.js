@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import { Container, Button, Form, Icon, Message, Segment, Grid } from 'semantic-ui-react';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 import Link from 'next/link';
 class BodyFatPercent extends Component {
 
@@ -16,10 +16,10 @@ class BodyFatPercent extends Component {
     console.log(this.state)
   }
 
-  //show state of input on screen
+  //class component ---> render()
   render() {
     const { age, feet, inches, weight, sex, centimeters, kilograms, submittedAge, submittedFeet, submittedInches, submittedWeight, submittedSex, submittedCentimeters, submittedKilograms } = this.state
-
+    
     let imperial=true;
     let male=true;
     // let output=true;
@@ -190,7 +190,22 @@ class BodyFatPercent extends Component {
                     type="submit"
                     content="Calculate"
                     color="blue"
+                    // onClick={() => setModal(true)}
                 />
+                <Modal open={false} dimmer="blurring" size="tiny">
+                    <Modal.Header>Confirm Upload</Modal.Header>
+                    <p>Are you sure you want to update your progress?</p>
+                    <Modal.Actions>
+                        <Button content="Cancel" />
+                        <Button
+                            icon="upload"
+                            labelPosition="right"
+                            content="Upload"
+                            color="blue"
+                            // onClick={() => setModal(false)}
+                        />
+                    </Modal.Actions>
+                </Modal>
                 <Segment color="blue" textAlign="center" size="massive">
                     {imperial ? (<>
                         {/* male/female ternary */}
