@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 import Link from 'next/link';
-class BodyFatPercent extends Component {
+import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 
-  state = { age: '', feet: '', inches: '', weight: '', sex: '', centimeters: '', kilograms: '', submittedAge: '', submittedFeet: '', submittedInches: '', submittedWeight: '', submittedSex: '', submittedCentimeters: '', submittedKilograms: '' }
+const BodyFatPercent = () => {
+    const [age, setAge] = useState('');
+    const [feet, setFeet] = useState('');
+    const [inches, setInches] = useState('');
+    const [weight, setWeight] = useState('');
+    const [centimeters, setCentimeters] = useState('');
+    const [kilograms, setKilograms] = useState('');
+    const [imperial, setImperial] = useState(true);
+    const [male, setMale] = useState(true);
+    const [modal, setModal] = useState(false);
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleSubmit = () => {
-    const { age, feet, inches, weight, sex, centimeters, kilograms } = this.state;
-    
-    this.setState({ submittedAge: age, submittedFeet: feet, submittedInches: inches, submittedWeight: weight, submittedSex: sex, submittedCentimeters: centimeters, submittedKilograms: kilograms });
-    //console result object
-    console.log(this.state)
-  }
-
-  //class component ---> render()
-  render() {
-    const { age, feet, inches, weight, sex, centimeters, kilograms, submittedAge, submittedFeet, submittedInches, submittedWeight, submittedSex, submittedCentimeters, submittedKilograms } = this.state
-    
-    let imperial=true;
-    let male=true;
-    // let output=true;
+    const handleInput = () => {
+        if (imperial) {
+            console.log("imperial", { age, feet, inches, weight, male });
+        } else {
+            console.log("metric", { age, centimeters, kilograms, male });
+        }
+    };
 
     return (
-      <>
+        <>
         <Head>
             <title>HealthStat | Body Fat Percent Calculator</title>
             <meta name="keywords" content="body fat, calculator" />
@@ -47,6 +45,7 @@ class BodyFatPercent extends Component {
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
+                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight('')}}
             />
             </>
             ) : (
@@ -57,11 +56,11 @@ class BodyFatPercent extends Component {
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
+                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms('')}}
             />
             </>)}
-        <Form onSubmit={this.handleSubmit}>
+        <Form onClick={() => handleInput()}>
             <Segment size="huge" textAlign="left">
-            {/* imperial to metric ternary */}
                     <Form.Input
                         fluid
                         icon="calendar"
@@ -75,8 +74,9 @@ class BodyFatPercent extends Component {
                         max="120"
                         required
                         value={age}
-                        onChange={this.handleChange}
+                        onChange={e => setAge(e.target.value)}
                     />
+                {/* imperial to metric ternary */}
                 {imperial ? (<>
                     <Grid>
                         <Grid.Row>
@@ -94,7 +94,7 @@ class BodyFatPercent extends Component {
                                     max="8"
                                     required
                                     value={feet}
-                                    onChange={this.handleChange}
+                                    onChange={e => setFeet(e.target.value)}
                                 />
                             </Grid.Column>
                             <Grid.Column width={6}>
@@ -111,7 +111,7 @@ class BodyFatPercent extends Component {
                                     max="12"
                                     required
                                     value={inches}
-                                    onChange={this.handleChange}
+                                    onChange={e => setInches(e.target.value)}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -132,7 +132,7 @@ class BodyFatPercent extends Component {
                         max="800"
                         required
                         value={weight}
-                        onChange={this.handleChange}
+                        onChange={e => setWeight(e.target.value)}
                     />
                 </>
                 ) : (
@@ -154,7 +154,7 @@ class BodyFatPercent extends Component {
                                     max="270"
                                     required
                                     value={centimeters}
-                                    onChange={this.handleChange}
+                                    onChange={e => setCentimeters(e.target.value)}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -175,37 +175,25 @@ class BodyFatPercent extends Component {
                         max="360"
                         required
                         value={kilograms}
-                        onChange={this.handleChange}
+                        onChange={e => setKilograms(e.target.value)}
                     />
                 </>)}
-                    <Form.Input
-                            label="Sex"
-                            placeholder='sex'
-                            name='sex'
-                            //required
-                            value={sex}
-                            onChange={this.handleChange}
-                        />
-                <Button
-                    type="submit"
-                    content="Calculate"
-                    color="blue"
-                    // onClick={() => setModal(true)}
-                />
-                <Modal open={false} dimmer="blurring" size="tiny">
-                    <Modal.Header>Confirm Upload</Modal.Header>
-                    <p>Are you sure you want to update your progress?</p>
-                    <Modal.Actions>
-                        <Button content="Cancel" />
-                        <Button
-                            icon="upload"
-                            labelPosition="right"
-                            content="Upload"
-                            color="blue"
-                            // onClick={() => setModal(false)}
-                        />
-                    </Modal.Actions>
-                </Modal>
+                    &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
+                    <input
+                        type="radio"
+                        name="rad"
+                        required
+                        style={{ width: '30px' }}
+                        onClick={() => setMale(true)}
+                    />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
+                    <input
+                        type="radio"
+                        name="rad"
+                        required
+                        style={{ width: '30px' }}
+                        onClick={() => setMale(false)}
+                    />
                 <Segment color="blue" textAlign="center" size="massive">
                     {imperial ? (<>
                         {/* male/female ternary */}
@@ -278,6 +266,28 @@ class BodyFatPercent extends Component {
                         </>)}
                     </>)}
                 </Segment>
+                <Button
+                    size="large"
+                    type="submit"
+                    content="Update Progress"
+                    color="blue"
+                    onClick={() => setModal(true)}
+                />
+                <Modal open={modal} dimmer="blurring" size="small">
+                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
+                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
+                    <Modal.Actions>
+                        <Button 
+                            content="Cancel" 
+                            onClick={() => setModal(false)}
+                        />
+                        <Button
+                            content="Update Progress"
+                            color="blue"
+                            //onClick={() => }
+                        />
+                    </Modal.Actions>
+                </Modal>
             </Segment>
         </Form>
         <Message attached="bottom">
@@ -291,13 +301,10 @@ class BodyFatPercent extends Component {
             To Track Progress
         </Message>
         {/* <strong>onChange:</strong>
-        <pre>{JSON.stringify({ age, feet, inches, weight, sex, centimeters, kilograms }, null, 2)}</pre>
-        <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedAge, submittedFeet, submittedInches, submittedWeight, submittedSex, submittedCentimeters, submittedKilograms }, null, 2)}</pre> */}
+        <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
       </>
     );
-  }
 }
 
 export default BodyFatPercent;

@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { Container, Button, Form, Icon, Message, Segment, Radio, Grid } from 'semantic-ui-react';
 import Link from 'next/link';
-class CalorieCalculator extends Component {
+import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 
-  state = { age: '', feet: '', inches: '', weight: '', sex: '', lifestyle: '', centimeters: '', kilograms: '', submittedAge: '', submittedFeet: '', submittedInches: '', submittedWeight: '', submittedSex: '', submittedLifestyle: '', submittedCentimeters: '', submittedKilograms: '' }
+const CalorieCalculator = () => {
+    const [age, setAge] = useState('');
+    const [feet, setFeet] = useState('');
+    const [inches, setInches] = useState('');
+    const [weight, setWeight] = useState('');
+    const [centimeters, setCentimeters] = useState('');
+    const [kilograms, setKilograms] = useState('');
+    const [lifestyle, setLifestyle] = useState('');
+    const [imperial, setImperial] = useState(true);
+    const [male, setMale] = useState(true);
+    const [modal, setModal] = useState(false);
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleSubmit = () => {
-    const { age, feet, inches, weight, sex, lifestyle, centimeters, kilograms } = this.state;
-    
-    this.setState({ submittedAge: age, submittedFeet: feet, submittedInches: inches, submittedWeight: weight, submittedSex: sex, submittedLifestyle: lifestyle, submittedCentimeters: centimeters, submittedKilograms: kilograms });
-    //console result object
-    console.log(this.state)
-  }
-
-  //show state of input on screen
-  render() {
-    const { age, feet, inches, weight, sex, lifestyle, centimeters, kilograms, submittedAge, submittedFeet, submittedInches, submittedWeight, submittedSex, submittedLifestyle, submittedCentimeters, submittedKilograms } = this.state
-
-    let imperial=true;
-    let male=true;
-    // let output=true;
+    const handleInput = () => {
+        if (imperial) {
+            console.log("imperial", { age, feet, inches, weight, male, lifestyle });
+        } else {
+            console.log("metric", { age, centimeters, kilograms, male, lifestyle });
+        }
+    };
 
     return (
       <>
@@ -47,6 +46,7 @@ class CalorieCalculator extends Component {
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
+                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight('')}}
             />
             </>
             ) : (
@@ -57,9 +57,10 @@ class CalorieCalculator extends Component {
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
+                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms('')}}
             />
             </>)}
-        <Form onSubmit={this.handleSubmit}>
+        <Form onClick={() => handleInput()}>
             <Segment size="huge" textAlign="left">
                     <Form.Input
                         fluid
@@ -74,7 +75,7 @@ class CalorieCalculator extends Component {
                         max="120"
                         required
                         value={age}
-                        onChange={this.handleChange}
+                        onChange={e => setAge(e.target.value)}
                     />
                 {/* ternary to switch from imperial to metric heigh and weight input */}
                 {imperial ? (<>
@@ -94,7 +95,7 @@ class CalorieCalculator extends Component {
                                     max="8"
                                     required
                                     value={feet}
-                                    onChange={this.handleChange}
+                                    onChange={e => setFeet(e.target.value)}
                                 />
                             </Grid.Column>
                             <Grid.Column width={6}>
@@ -111,7 +112,7 @@ class CalorieCalculator extends Component {
                                     max="12"
                                     required
                                     value={inches}
-                                    onChange={this.handleChange}
+                                    onChange={e => setInches(e.target.value)}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -132,7 +133,7 @@ class CalorieCalculator extends Component {
                         max="800"
                         required
                         value={weight}
-                        onChange={this.handleChange}
+                        onChange={e => setWeight(e.target.value)}
                     />
                 </>
                 ) : (
@@ -154,7 +155,7 @@ class CalorieCalculator extends Component {
                                     max="270"
                                     required
                                     value={centimeters}
-                                    onChange={this.handleChange}
+                                    onChange={e => setCentimeters(e.target.value)}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -175,78 +176,80 @@ class CalorieCalculator extends Component {
                         max="360"
                         required
                         value={kilograms}
-                        onChange={this.handleChange}
+                        onChange={e => setKilograms(e.target.value)}
                     />
                 </>)}
-                    <Form.Input
-                        label="Sex"
-                        placeholder='sex'
-                        name='sex'
-                        //required
-                        value={sex}
-                        onChange={this.handleChange}
-                    />
-                    {/* <Form.Field>
-                        <div />
-                        Male&nbsp;&nbsp;
-                        <Radio
-                            style={{ width: '35px' }}
-                            name='male'
-                        />
-                        Female&nbsp;&nbsp;
-                        <Radio
-                            style={{ width: '50px' }}
-                            name='female'
-                        />
-                    </Form.Field>     */}
-                    <Form.Input
-                        label="Lifestyle"
-                        placeholder='lifestyle'
-                        name='lifestyle'
-                        type="number"
-                        min="1"
-                        max="5"
+                    &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
+                    <input
+                        type="radio"
+                        name="rad"
                         required
-                        value={lifestyle}
-                        onChange={this.handleChange}
+                        style={{ width: '30px' }}
+                        onClick={() => setMale(true)}
                     />
-                    {/* <Form.Field>
-                            <span>
-                            Lifestyle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
-                            1&nbsp;&nbsp;
-                            <Radio
-                                style={{ width: '50px' }}
-                                name='1'
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
+                    <input
+                        type="radio"
+                        name="rad"
+                        required
+                        style={{ width: '30px' }}
+                        onClick={() => setMale(false)}
+                    />
+                    <div>
+                        &nbsp;
+                    </div>
+                    <span>
+                        <div>
+                            &nbsp;Lifestyle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+                            <input
+                                type="radio"
+                                name="lifestyle"
+                                required
+                                style={{ width: '30px' }}
+                                value={lifestyle}
+                                onClick={() => setLifestyle(1)}
                             />
-                            2&nbsp;&nbsp;
-                            <Radio
-                                style={{ width: '50px' }}
-                                name='2'
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+                            <input
+                                type="radio"
+                                name="lifestyle"
+                                required
+                                style={{ width: '30px' }}
+                                value={lifestyle}
+                                onClick={() => setLifestyle(2)}
                             />
-                            3&nbsp;&nbsp;
-                            <Radio
-                                style={{ width: '50px' }}
-                                name='3'
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
+                            <input
+                                type="radio"
+                                name="lifestyle"
+                                required
+                                style={{ width: '30px' }}
+                                value={lifestyle}
+                                onClick={() => setLifestyle(3)}
                             />
-                            4&nbsp;&nbsp;
-                            <Radio
-                                style={{ width: '50px' }}
-                                name='4'
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
+                            <input
+                                type="radio"
+                                name="lifestyle"
+                                required
+                                style={{ width: '30px' }}
+                                value={lifestyle}
+                                onClick={() => setLifestyle(4)}
                             />
-                            5&nbsp;&nbsp;
-                            <Radio
-                                name='5'
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
+                            <input
+                                type="radio"
+                                name="lifestyle"
+                                required
+                                style={{ width: '30px' }}
+                                value={lifestyle}
+                                onClick={() => setLifestyle(5)}
                             />
-                            <div style={{ color: 'grey' }}>
-                                1 = Low Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 = High Activity
+                            <div style={{ color: 'grey', fontSize: '15px' }}>
+                                &nbsp;1 = Low Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 = High Activity
                             </div>
-                        </Form.Field>  */}
-                <Button
-                    type="submit"
-                    content="Calculate"
-                    color="blue"
-                />
+                        </div>
+                    </span>
                 <Segment color="blue" textAlign="center" size="massive">
                     {/* imperial to metric ternary */}
                     {/* Male (imperial) */}
@@ -315,6 +318,28 @@ class CalorieCalculator extends Component {
                         </>)}
                     </>)}
                 </Segment>
+                <Button
+                    size="large"
+                    type="submit"
+                    content="Update Progress"
+                    color="blue"
+                    onClick={() => setModal(true)}
+                />
+                <Modal open={modal} dimmer="blurring" size="small">
+                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
+                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
+                    <Modal.Actions>
+                        <Button 
+                            content="Cancel" 
+                            onClick={() => setModal(false)}
+                        />
+                        <Button
+                            content="Update Progress"
+                            color="blue"
+                            //onClick={() => }
+                        />
+                    </Modal.Actions>
+                </Modal>
             </Segment>
         </Form>
         <Message attached="bottom">
@@ -328,13 +353,10 @@ class CalorieCalculator extends Component {
             To Track Progress
         </Message>
         {/* <strong>onChange:</strong>
-        <pre>{JSON.stringify({ age, feet, inches, weight, sex, lifestyle, centimeters, kilograms }, null, 2)}</pre>
-        <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedAge, submittedFeet, submittedInches, submittedWeight, submittedSex, submittedLifestyle, submittedCentimeters, submittedKilograms }, null, 2)}</pre> */}
+        <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms, lifestyle }, null, 2)}</pre> */}
         </Container>
       </>
     );
   }
-}
 
 export default CalorieCalculator;

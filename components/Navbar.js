@@ -14,7 +14,7 @@ const Navbar = () => {
     }
 
     return (
-        <Sticky>
+        <Sticky style={{ position: 'relative' }}>
             <Menu fluid stackable id="nav" inverted>
                 <Container text>
                     <Menu.Item as="h3" header active={isActive("/CalorieIntakeCalculator")}>

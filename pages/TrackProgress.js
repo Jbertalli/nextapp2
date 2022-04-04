@@ -70,3 +70,11 @@ const TrackProgress = () => {
 }
 
 export default TrackProgress;
+
+
+//let date = new Date()
+//console.log(date)
+
+// let date = new Date();
+// let year = date.getFullYear();
+// console.log(year);

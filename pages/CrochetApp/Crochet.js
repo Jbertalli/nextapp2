@@ -55,7 +55,7 @@ async function handleShare() {
                     <Message
                         color="violet"
                         icon="gift"
-                        header="Crochet Calculator"
+                        header="Crochet Counter"
                         content="Count Your Stitches!"
                     />
                     <Segment>
