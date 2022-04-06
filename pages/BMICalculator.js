@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
@@ -14,11 +14,14 @@ const BMICalculator = () => {
 
     const handleInput = () => {
         if (imperial) {
-            console.log("imperial", { feet, inches, weight });
+            console.log("imperial", { feet, inches, weight, BMI });
         } else {
-            console.log("metric", { centimeters, kilograms });
+            console.log("metric", { centimeters, kilograms, BMI });
         }
     };
+    
+    const BMI = useRef();
+    console.log(BMI.current?.innerText);
 
     return (
       <>
@@ -165,7 +168,7 @@ const BMICalculator = () => {
                     {/* imperial to metric ternary */}
                         {imperial ? (<>
                         {/* BMI (imperial): US units: BMI = (weight (lb) ÷ height^2 (in)) * 703 */}
-                            <div>
+                            <span ref={BMI}>
                                 {
                                     (
                                         ((parseFloat(weight)) 
@@ -173,21 +176,19 @@ const BMICalculator = () => {
                                         * 703
                                     ).toFixed(1)
                                 }
-                                <span> BMI</span>
-                            </div>
+                            </span> BMI
                         </>
                         ) : (
                         <>
                         {/* BMI (metric): Metric units: BMI = weight (kg) ÷ height^2 (m) */}
-                            <div>
+                            <span ref={BMI}>
                                 {
                                     (
                                         ((parseFloat(kilograms)) 
                                         / Math.pow((parseFloat(centimeters) / 100), 2))
                                     ).toFixed(1)
                                 }
-                                <span> BMI</span>
-                            </div>
+                            </span> BMI
                         </>)}
                 </Segment>
                 <Button

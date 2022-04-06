@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
@@ -12,16 +12,32 @@ const BodyFatPercent = () => {
     const [kilograms, setKilograms] = useState('');
     const [imperial, setImperial] = useState(true);
     const [male, setMale] = useState(true);
+    const [sex, setSex] = useState('male');
     const [modal, setModal] = useState(false);
 
     const handleInput = () => {
         if (imperial) {
-            console.log("imperial", { age, feet, inches, weight, male });
+            console.log("imperial", { age, feet, inches, weight, male, BodyFatPercentage });
         } else {
-            console.log("metric", { age, centimeters, kilograms, male });
+            console.log("metric", { age, centimeters, kilograms, male, BodyFatPercentage });
         }
     };
 
+    const BodyFatPercentage = useRef();
+    console.log(BodyFatPercentage.current?.innerText);
+    
+    useEffect(() => {
+        setSex('')
+    }, [])
+
+    const handleChange = (event) => {
+        setSex(event.target.value)
+    }
+
+    const handleRadio = () => {
+        setSex('')
+    }
+    
     return (
         <>
         <Head>
@@ -45,7 +61,7 @@ const BodyFatPercent = () => {
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
-                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight('')}}
+                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight(''), handleRadio()}}
             />
             </>
             ) : (
@@ -56,7 +72,7 @@ const BodyFatPercent = () => {
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
-                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms('')}}
+                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms(''), handleRadio()}}
             />
             </>)}
         <Form onClick={() => handleInput()}>
@@ -182,6 +198,9 @@ const BodyFatPercent = () => {
                     <input
                         type="radio"
                         name="rad"
+                        value="male"
+                        checked={sex === 'male'}
+                        onChange={handleChange}
                         required
                         style={{ width: '30px' }}
                         onClick={() => setMale(true)}
@@ -190,6 +209,9 @@ const BodyFatPercent = () => {
                     <input
                         type="radio"
                         name="rad"
+                        value="female"
+                        checked={sex === 'female'}
+                        onChange={handleChange}
                         required
                         style={{ width: '30px' }}
                         onClick={() => setMale(false)}
@@ -199,7 +221,7 @@ const BodyFatPercent = () => {
                         {/* male/female ternary */}
                         {/* Men Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
                         {male ? (<>
-                            <div>
+                            <span ref={BodyFatPercentage}>
                                 {  
                                     (
                                         ((((parseFloat(weight)) 
@@ -209,14 +231,17 @@ const BodyFatPercent = () => {
                                         - 16.2
                                     ).toFixed(1)
                                 }
-                                <span> %</span>
-                            </div>
+                            </span> %
+                            {/* Math manipulation with output value */}
+                            {/* <div>
+                                {(BodyFatPercentage.current?.innerText) * 2}
+                            </div> */}
                         </>
                         ) : (
                         <>
                         {/* Female (imperial) */}
                         {/* Female Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 5.4 = Body Fat Percentage */}
-                            <div>
+                            <span ref={BodyFatPercentage}>
                                 {
                                     (
                                         ((((parseFloat(weight)) 
@@ -226,8 +251,7 @@ const BodyFatPercent = () => {
                                         - 5.4
                                     ).toFixed(1)
                                 }
-                                <span> %</span>
-                            </div>
+                            </span> %
                         </>)}
                     </>
                     ) : (
@@ -235,7 +259,7 @@ const BodyFatPercent = () => {
                         {/* Male Body Fat % (metric): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
                         {/* male/female ternary */}
                         {male ? (<>
-                            <div>
+                            <span ref={BodyFatPercentage}>
                                 {  
                                     (
                                         (((parseFloat(kilograms)) 
@@ -245,13 +269,12 @@ const BodyFatPercent = () => {
                                         - 16.2
                                     ).toFixed(1)
                                 }
-                                <span> %</span>
-                            </div>
+                            </span> %
                         </>
                         ) : (
                         <>
                         {/* Female Body Fat % (metric): (1.20 x BMI) + (0.23 x Age) - 5.4 = Body Fat Percentage */}
-                            <div>
+                            <span ref={BodyFatPercentage}>
                                 {  
                                     (
                                         (((parseFloat(kilograms)) 
@@ -261,8 +284,7 @@ const BodyFatPercent = () => {
                                         - 5.4
                                     ).toFixed(1)
                                 }
-                                <span> %</span>
-                            </div>
+                            </span> %
                         </>)}
                     </>)}
                 </Segment>

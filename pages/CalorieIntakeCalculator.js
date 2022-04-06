@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
@@ -13,15 +13,40 @@ const CalorieCalculator = () => {
     const [lifestyle, setLifestyle] = useState('');
     const [imperial, setImperial] = useState(true);
     const [male, setMale] = useState(true);
+    const [sex, setSex] = useState('male');
     const [modal, setModal] = useState(false);
+    const [radio, setRadio] = useState('')
 
     const handleInput = () => {
         if (imperial) {
-            console.log("imperial", { age, feet, inches, weight, male, lifestyle });
+            console.log("imperial", { age, feet, inches, weight, male, lifestyle, intake });
         } else {
-            console.log("metric", { age, centimeters, kilograms, male, lifestyle });
+            console.log("metric", { age, centimeters, kilograms, male, lifestyle, intake });
         }
     };
+    
+    const intake = useRef();
+    console.log(intake.current?.innerText);
+    
+    useEffect(() => {
+        setSex('')
+    }, [])
+
+    const handleChange = (event) => {
+        setSex(event.target.value)
+    }
+
+    const handleRadio = () => {
+        setSex('')
+    }
+
+    const handleLifeChange = (event) => {
+        setRadio(event.target.value)
+    }
+
+    const handleLife = () => {
+        setRadio('')
+    }
 
     return (
       <>
@@ -46,7 +71,7 @@ const CalorieCalculator = () => {
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
-                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight('')}}
+                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight(''), handleRadio(), handleLife()}}
             />
             </>
             ) : (
@@ -57,7 +82,7 @@ const CalorieCalculator = () => {
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
-                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms('')}}
+                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife()}}
             />
             </>)}
         <Form onClick={() => handleInput()}>
@@ -183,6 +208,9 @@ const CalorieCalculator = () => {
                     <input
                         type="radio"
                         name="rad"
+                        value="male"
+                        checked={sex === 'male'}
+                        onChange={handleChange}
                         required
                         style={{ width: '30px' }}
                         onClick={() => setMale(true)}
@@ -191,6 +219,9 @@ const CalorieCalculator = () => {
                     <input
                         type="radio"
                         name="rad"
+                        value="female"
+                        checked={sex === 'female'}
+                        onChange={handleChange}
                         required
                         style={{ width: '30px' }}
                         onClick={() => setMale(false)}
@@ -207,6 +238,8 @@ const CalorieCalculator = () => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
+                                checked={radio === '1'}
+                                onChange={handleLifeChange}
                                 onClick={() => setLifestyle(1)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
@@ -216,6 +249,8 @@ const CalorieCalculator = () => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
+                                checked={radio === '2'}
+                                onChange={handleLifeChange}
                                 onClick={() => setLifestyle(2)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
@@ -225,6 +260,8 @@ const CalorieCalculator = () => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
+                                checked={radio === '3'}
+                                onChange={handleLifeChange}
                                 onClick={() => setLifestyle(3)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
@@ -234,6 +271,8 @@ const CalorieCalculator = () => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
+                                checked={radio === '4'}
+                                onChange={handleLifeChange}
                                 onClick={() => setLifestyle(4)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
@@ -243,6 +282,8 @@ const CalorieCalculator = () => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
+                                checked={radio === '5'}
+                                onChange={handleLifeChange}
                                 onClick={() => setLifestyle(5)}
                             />
                             <div style={{ color: 'grey', fontSize: '15px' }}>
@@ -256,7 +297,7 @@ const CalorieCalculator = () => {
                     {imperial ? (<>
                         {/* male/female ternary */}
                         {male ? (<>
-                            <div>
+                            <span ref={intake}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -265,13 +306,12 @@ const CalorieCalculator = () => {
                                         - (6.76 * parseFloat(age)))
                                     ).toFixed(0)
                                 }
-                                <span> Calories Per Day</span>
-                            </div>
+                            </span> Calories Per Day
                         </>
                         ) : (
                         <>
                         {/* Female (imperial) */}
-                            <div>
+                            <span ref={intake}>
                                 {
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -280,8 +320,7 @@ const CalorieCalculator = () => {
                                         - (4.7 * parseFloat(age)))
                                     ).toFixed(0)
                                 }
-                                <span> Calories Per Day</span>
-                            </div>
+                            </span> Calories Per Day
                         </>)}
                     </>
                     ) : (
@@ -289,7 +328,7 @@ const CalorieCalculator = () => {
                         {/* Male (metric): BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) */}
                         {/* male/female ternary */}
                         {male ? (<>
-                            <div>
+                            <span ref={intake}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -298,13 +337,12 @@ const CalorieCalculator = () => {
                                         - (6.76 * parseFloat(age)))
                                     ).toFixed(0)
                                 }
-                                <span> Calories Per Day</span>
-                            </div>
+                            </span> Calories Per Day
                         </>
                         ) : (
                         <>
                         {/* Female (metric): BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years) */}
-                            <div>
+                            <span ref={intake}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -313,8 +351,7 @@ const CalorieCalculator = () => {
                                         - (4.7 * parseFloat(age)))
                                     ).toFixed(0)
                                 }
-                                <span> Calories Per Day</span>
-                            </div>
+                            </span> Calories Per Day
                         </>)}
                     </>)}
                 </Segment>

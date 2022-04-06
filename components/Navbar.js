@@ -17,21 +17,6 @@ const Navbar = () => {
         <Sticky style={{ position: 'relative' }}>
             <Menu fluid stackable id="nav" inverted>
                 <Container text>
-                    <Menu.Item as="h3" header active={isActive("/CalorieIntakeCalculator")}>
-                            <Icon 
-                                name="calculator"
-                                size="large"
-                            />
-                        <Dropdown text='Calculators' simple>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href='/CalorieIntakeCalculator'><strong>Calorie Intake Calculator</strong></Dropdown.Item>
-                                <Dropdown.Divider />
-                                <Dropdown.Item href='/BMICalculator'><strong>BMI Calculator</strong></Dropdown.Item>
-                                <Dropdown.Divider />
-                                <Dropdown.Item href='/BodyFatCalculator'><strong>Body Fat Calculator</strong></Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </Menu.Item> 
                     <Link href="/">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
                             <Icon
@@ -41,6 +26,34 @@ const Navbar = () => {
                             Home
                         </Menu.Item>
                     </Link>
+                    <Menu.Item as="h3" header active={isActive("/CalorieIntakeCalculator")}>
+                            <Icon 
+                                name="calculator"
+                                size="large"
+                            />
+                        <Dropdown text='Health Calculators' simple>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href='/CalorieIntakeCalculator'><strong>Calorie Intake Calculator</strong></Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href='/BMICalculator'><strong>BMI Calculator</strong></Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href='/BodyFatCalculator'><strong>Body Fat Calculator</strong></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Item> 
+                    <Menu.Item as="h3" header active={isActive("/CompoundInterestCalculator")}>
+                            <Icon 
+                                name="dollar sign"
+                                size="large"
+                            />
+                        <Dropdown text='Financial Calculators' simple>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href='/LoanCalculator'><strong>Loan Calculator</strong></Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href='/CompoundInterestCalculator'><strong>Compound Interest Calculator</strong></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Item>
                     <Link href="/TrackProgress">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/TrackProgress")}>
                             <Icon

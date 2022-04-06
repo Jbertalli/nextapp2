@@ -28,6 +28,12 @@ const siteMap = () => {
                             <h4>
                                 <Link href="/BodyFatCalculator"><a>Body Fat % Calculator</a></Link>
                             </h4>
+                            <h4>
+                                <Link href="/LoanCalculator"><a>Loan Calculator</a></Link>
+                            </h4>
+                            <h4>
+                                <Link href="/CompoundInterestCalculator"><a>Compound Interest Calculator</a></Link>
+                            </h4>
                         </div>
                         {/* dynamic view based on user status */}
                         <div className="four wide column">

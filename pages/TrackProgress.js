@@ -17,10 +17,10 @@ const state = {
       borderColor: 'black',
       borderWidth: 4,
       pointHoverBorderWidth: 10,
-      data: [65, 59, 80, 81, 56, 11, 3, 23, 54, 10, 22, 32]
+      data: [100, 200, 300]
     }, 
     {
-        label: 'Body Fat %',
+        label: 'Body Fat Percentage',
         fill: false,
         lineTension: 0.5,
         backgroundColor: 'blue',
