@@ -24,12 +24,12 @@ export default function Home({ examples }) {
     <>
       <Head>
         <title>HealthStat | Home</title>
-        <meta name="keywords" content="healthstat, calorie calculator" />
+        <meta name="description" content="healthstat, calorie calculator" />
       </Head>
       <div>
         <h1 className={styles.title}>Homepage</h1>
-        <p className={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p className={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
+        <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
           <CalculatorList examples={examples} />
         <Link href='/ninjas'>
           <a className={styles.btn}>See Ninja Listing</a>

@@ -5,7 +5,7 @@ const Languages = () => {
         <>
             <Head>
                 <title>HealthStat | Languages</title>
-                <meta name="keywords" content="languages" />
+                <meta name="description" content="languages" />
             </Head>
             Languages
         </>

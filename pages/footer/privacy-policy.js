@@ -6,7 +6,7 @@ const privacy = () => {
         <>
         <Head>
             <title> HealthStat | Privacy Policy</title>
-            <meta name="keywords" content="privacy policy" />
+            <meta name="description" content="privacy policy" />
         </Head>
             <div className={styles.privacy}>
                 <h1>

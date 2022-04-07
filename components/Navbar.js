@@ -15,8 +15,8 @@ const Navbar = () => {
 
     return (
         <Sticky style={{ position: 'relative' }}>
-            <Menu fluid stackable id="nav" inverted>
-                <Container text>
+            <Menu className={styles.nav} fluid stackable inverted>
+                <Container>
                     <Link href="/">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
                             <Icon

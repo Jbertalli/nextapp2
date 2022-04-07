@@ -27,7 +27,7 @@ const BMICalculator = () => {
       <>
         <Head>
             <title>HealthStat | BMI Calculator</title>
-            <meta name="keywords" content="BMI, calculator, body mass index" />
+            <meta name="description" content="BMI, calculator, body mass index" />
         </Head>
         <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message

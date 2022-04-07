@@ -39,7 +39,7 @@ const Signup = () => {
         <>
         <Head>
             <title>HealthStat | Signup</title>
-            <meta name="keywords" content="signup" />
+            <meta name="description" content="signup" />
         </Head>
         <Container textAlign="left" as="h3" style={{ margin: '2em' }}>
             <Message 

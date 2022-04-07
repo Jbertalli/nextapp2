@@ -6,7 +6,7 @@ const terms = () => {
         <>
             <Head>
                 <title>HealthStat | Terms of Use</title>
-                <meta name="keywords" content="terms, conditions" />
+                <meta name="description" content="terms, conditions" />
             </Head>
             <div className={styles.terms}>
                 <h1>

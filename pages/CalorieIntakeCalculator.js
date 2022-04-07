@@ -52,7 +52,7 @@ const CalorieCalculator = () => {
       <>
         <Head>
             <title>HealthStat | Calorie Intake Calculator</title>
-            <meta name="keywords" content="calories, calorie, caloric, calculator" />
+            <meta name="description" content="calories, calorie, caloric, calculator" />
         </Head>
         <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message

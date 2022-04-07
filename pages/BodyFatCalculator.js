@@ -42,7 +42,7 @@ const BodyFatPercent = () => {
         <>
         <Head>
             <title>HealthStat | Body Fat Percent Calculator</title>
-            <meta name="keywords" content="body fat, calculator" />
+            <meta name="description" content="body fat, calculator" />
         </Head>
         <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message

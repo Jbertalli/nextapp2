@@ -18,7 +18,7 @@ const CompoundInterestCalculator = () => {
       <>
         <Head>
             <title>HealthStat | Compound Interest Calculator</title>
-            <meta name="keywords" content="compound, interest, calculator, rate" />
+            <meta name="description" content="compound, interest, calculator, rate" />
         </Head>
         <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message
@@ -55,7 +55,7 @@ const CompoundInterestCalculator = () => {
                     size="large"
                     iconPosition="left"
                     label="Interest Rate"
-                    placeholder="%"
+                    placeholder="percent"
                     name="rate"
                     type="number"
                     min="0"
@@ -86,14 +86,13 @@ const CompoundInterestCalculator = () => {
                     {/* Compound Interest Logic */}
                         <span ref={CompoundInterest}>
                             {
-                            `After ${years} years, your initial investment will be $${
+                            `After ${years} years, your initial investment will be ${
                                     (
                                         (parseFloat((initialInvestment))
                                         * Math.pow(
                                         (1 + (interestRate / 100)),
                                         ((years) * (1)))
-                                    ).toFixed(2)
-                                    )
+                                    ).toLocaleString('en-US', {style: 'currency', currency: 'USD'}))
                                 }`
                             }
                         </span>

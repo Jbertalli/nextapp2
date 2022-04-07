@@ -19,26 +19,6 @@ a {
   margin: 0 auto;
 }
 
-/* inside Layout.js > Navbar component <nav>, which wraps component */
-nav {
-  margin: 10px auto 80px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  border-bottom: 1px solid black;
-}
-
-/* anchor tags inside nav */
-nav a {
-  margin-left: 12px;
-}
-
-/* Navbar.js <div content="logo"> */
-nav .logo {
-  margin-right: auto;
-}
-
 footer {
   display: block;
   text-align: center;

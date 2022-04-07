@@ -49,7 +49,7 @@ async function handleShare() {
         <>
             <Head>
                 <title>Crochet Counter</title>
-                <meta name="keywords" content="crochet, knitting, counter" />
+                <meta name="description" content="crochet, knitting, counter" />
             </Head>
             <Container textAlign="center" as="h2" style={ { margin: '3em', border: '1px solid black' } }>                                   {/* *background: "linear-gradient(#e66465, #9198e5);", */}
                     <Message

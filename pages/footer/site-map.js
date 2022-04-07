@@ -9,7 +9,7 @@ const siteMap = () => {
         <>
             <Head>
                 <title>HealthStat | Site Map</title>
-                <meta name="keywords" content="site map, directory" />
+                <meta name="description" content="site map, directory" />
             </Head>
             <h1 className={styles.siteMap}>
                 HealthStat Site Map

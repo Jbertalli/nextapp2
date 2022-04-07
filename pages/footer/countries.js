@@ -6,7 +6,7 @@ const countries = () => {
         <>
             <Head>
                 <title>HealthStat | Countries</title>
-                <meta name="keywords" content="countries, languages, regions" />
+                <meta name="description" content="countries, languages, regions" />
             </Head>
             <h1 className={styles.countries}>
             Choose Your Country or Region
