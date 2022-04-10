@@ -86,14 +86,14 @@ const CompoundInterestCalculator = () => {
                     {/* Compound Interest Logic */}
                         <span ref={CompoundInterest}>
                             {
-                            `After ${years} years, your initial investment will be ${
+                            `After ${years} years, your initial investment of $${initialInvestment} will be ${
                                     (
                                         (parseFloat((initialInvestment))
                                         * Math.pow(
                                         (1 + (interestRate / 100)),
                                         ((years) * (1)))
                                     ).toLocaleString('en-US', {style: 'currency', currency: 'USD'}))
-                                }`
+                                }` 
                             }
                         </span>
                         {/* <div>

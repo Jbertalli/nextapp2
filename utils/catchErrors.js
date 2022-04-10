@@ -3,13 +3,15 @@ function catchErrors(error, displayError) {
 
     if (error.response) {
         errorMessage = error.response.data;
-        console.log("Error response", errorMessage)
+        console.log("Error response", errorMessage);
     } else if (error.request) {
         errorMessage = error.request;
-        console.log("Error request")
+        console.log("Error request", errorMessage);
     } else {
-        errorMessage = error.errorMessage;
-        console.log("Error message", errorMessage)
+        errorMessage = error.message;
+        console.log("Error message", errorMessage);
     }
-    displayError(ErrorMessage);
+    displayError(errorMessage);
 }
+
+export default catchErrors;

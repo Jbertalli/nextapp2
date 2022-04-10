@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Message, Segment, Container } from "semantic-ui-react";
 import Head from 'next/head';
 import Link from 'next/link';
+import catchErrors from '../utils/catchErrors';
 
 const INITIAL_USER = {
     email: "",
@@ -12,6 +13,7 @@ const Login = () => {
     const [user, setUser] = React.useState(INITIAL_USER);
     const [disabled, setDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState('');
 
     React.useEffect(() => {
         const isUser = Object.values(user).every(el => Boolean(el))
@@ -27,10 +29,12 @@ const Login = () => {
         event.preventDefault();
         try {
             setLoading(true);
+            setError('');
+            console.log(user);
         } catch(error) {
-
+            catchErrors(error, setError);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
@@ -48,7 +52,12 @@ const Login = () => {
                 content="Log into your account"
                 color="black"
             />
-            <Form loading={loading} onSubmit={handleSubmit}>
+            <Form error={Boolean(error)} loading={loading} onSubmit={handleSubmit}>
+                <Message
+                    error
+                    header="Error"
+                    content={error}
+                />
                 <Segment>
                     <Form.Input
                         fluid
