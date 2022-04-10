@@ -20,6 +20,6 @@ export default async (req, res) => {
             return res.status(422).send("Weight must be between 0 and 360 kilograms");
         }
     }
-} 
+
                         
 validator.isInt(Age,{ min: 0, max: 120 });

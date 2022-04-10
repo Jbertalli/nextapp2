@@ -3,6 +3,9 @@ import { Button, Form, Message, Segment, Container } from "semantic-ui-react";
 import Head from 'next/head';
 import Link from 'next/link';
 import catchErrors from '../utils/catchErrors';
+import axios from 'axios';
+import baseUrl from '../utils/baseUrl';
+import { handleLogin } from '../utils/auth';
 
 const INITIAL_USER = {
     name: "",
@@ -31,7 +34,11 @@ const Signup = () => {
         try {
             setLoading(true);
             setError('');
-            console.log(user);
+            //console.log(user);
+            const url = `${baseUrl}/api/Signup`;                //request to corresponding api
+            const payload = { ...user };                        //payload to send over form data to endpoint ---> spread in captured user data (fields needed to create new user)
+            const response = await axios.post(url, payload);
+            handleLogin(response.data);                         //from utils > auth.js
         } catch(error) {
             catchErrors(error, setError);
         } finally {

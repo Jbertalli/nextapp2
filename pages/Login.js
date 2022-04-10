@@ -3,6 +3,9 @@ import { Button, Form, Message, Segment, Container } from "semantic-ui-react";
 import Head from 'next/head';
 import Link from 'next/link';
 import catchErrors from '../utils/catchErrors';
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
+import { handleLogin } from '../utils/auth';
 
 const INITIAL_USER = {
     email: "",
@@ -30,7 +33,11 @@ const Login = () => {
         try {
             setLoading(true);
             setError('');
-            console.log(user);
+            const url = `${baseUrl}/api/Login`;
+            const payload = { ...user };
+            const response = await axios.post(url, payload);
+            handleLogin(response.data);
+            //console.log(user);
         } catch(error) {
             catchErrors(error, setError);
         } finally {
