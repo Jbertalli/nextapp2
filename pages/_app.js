@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import '../styles/globals.css';
 import Head from 'next/head';
 import NextNProgress from "nextjs-progressbar";
-import { parseCookies } from 'nookies';
+import { parseCookies, destroyCookie } from 'nookies';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
@@ -34,6 +34,10 @@ class MyApp extends App {
         pageProps.user = user;
       } catch(error) {
         console.error("Error retrieving current user", error);
+        // 1) Throw out invalid token
+        destroyCookie(ctx, "token")
+        // 2) redirect to login page
+        redirectUser(ctx, "/Login")
       }
     }
 

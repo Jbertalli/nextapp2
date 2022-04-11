@@ -64,7 +64,7 @@ const Navbar = ({ user }) => {
                         </Menu.Item>
                     </Link>
                     {user ? (<> 
-                    <Link href="/">
+                    <Link href="/account">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/placeholder")}>
                             <Icon
                                 name="user outline"
