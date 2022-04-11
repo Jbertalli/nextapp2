@@ -31,6 +31,13 @@ class MyApp extends App {
         const url = `${baseUrl}/api/account`;
         const response = await axios.get(url, payload);
         const user = response.data;
+        // const isRoot = user.role === 'root';
+        // const isAdmin = user.role === 'admin';
+        // root/admin privileges 
+        // const isNotPermitted = !(isRoot || isAdmin) && ctx.pathname === '/';
+        // if (isNotPermitted) {
+        //   redirectUser(ctx, '/');
+        // }
         pageProps.user = user;
       } catch(error) {
         console.error("Error retrieving current user", error);

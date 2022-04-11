@@ -4,10 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Sticky } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
+import { handleLogout } from '../utils/auth';
 
 const Navbar = ({ user }) => {
     console.log(user);
     const router = useRouter();
+    // const isRoot = user && user.role === 'root';
+    // const isAdmin = user && user.role === 'admin';
+    // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 
 
     function isActive(route) {
         return route === router.pathname;
@@ -74,7 +78,7 @@ const Navbar = ({ user }) => {
                         </Menu.Item>
                     </Link>
                     <Link href="/">
-                        <Menu.Item className={styles.hover} as="h3" header>
+                        <Menu.Item onClick={handleLogout} className={styles.hover} as="h3" header>
                             <Icon
                                 name="sign out"
                                 size="large"
