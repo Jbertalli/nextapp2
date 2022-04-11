@@ -77,7 +77,7 @@ const Navbar = ({ user }) => {
                             Account
                         </Menu.Item>
                     </Link>
-                    <Link href="/">
+                    <Link href="/Login">
                         <Menu.Item onClick={handleLogout} className={styles.hover} as="h3" header>
                             <Icon
                                 name="sign out"

@@ -7,6 +7,7 @@ import { parseCookies, destroyCookie } from 'nookies';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
+import Router from 'next/router';
 
 //function MyApp({ Component, pageProps }) {
 class MyApp extends App {
@@ -49,6 +50,18 @@ class MyApp extends App {
     }
 
     return { pageProps };
+  }
+
+  //universal logout (auth.js) ---> detect whenever localStorage changes
+  componentDidMount() {
+    window.addEventListener('storage', this.syncLogout)
+  }
+
+  syncLogout = event => {
+    if (event.key === 'logout') {
+      console.log('Logged out from storage');
+      Router.push('/Login');
+    }
   }
 
   //server-side rendering
