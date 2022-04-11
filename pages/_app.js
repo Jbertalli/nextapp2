@@ -3,14 +3,38 @@ import Layout from '../components/Layout';
 import '../styles/globals.css';
 import Head from 'next/head';
 import NextNProgress from "nextjs-progressbar";
+import { parseCookies } from 'nookies';
+import { redirectUser } from '../utils/auth';
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
 
 //function MyApp({ Component, pageProps }) {
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
+    const { token } = parseCookies(ctx);
+
     let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
+    }
+
+    if (!token) {
+      const isProtectedRoute =
+        ctx.pathname === "/account";
+      if (isProtectedRoute) {
+        redirectUser(ctx, "/Login");
+      }
+    } else {
+      try {
+        const payload = { headers: { Authorization: token } };
+        const url = `${baseUrl}/api/account`;
+        const response = await axios.get(url, payload);
+        const user = response.data;
+        pageProps.user = user;
+      } catch(error) {
+        console.error("Error retrieving current user", error);
+      }
     }
 
     return { pageProps };
@@ -29,7 +53,7 @@ class MyApp extends App {
             <link rel="icon" type="image/png" sizes="16x16" href="/images/N_J-logo-black.png" />
         </Head>
           <NextNProgress height={4} color="white" startPosition={0.3} stopDelayMs={200} />
-        <Layout>
+        <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </>

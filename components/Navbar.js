@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Sticky } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
+    console.log(user);
     const router = useRouter();
-    const user = false;
 
     function isActive(route) {
         return route === router.pathname;
