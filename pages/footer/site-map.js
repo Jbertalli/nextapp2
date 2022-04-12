@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import styles from '../../styles/Footer.module.css';
 import Link from 'next/link';
+import { handleLogout } from '../../utils/auth';
 
-const siteMap = () => {
-    // make user dynamic
-    let user = true;
+const siteMap = ({ user }) => {
     return (
         <>
             <Head>
@@ -42,22 +41,19 @@ const siteMap = () => {
                                 </h2>
                             {user ? (<>
                                 <h4>
-                                    <Link href="/"><a>Profile</a></Link>
+                                    <Link href="/account"><a>Profile</a></Link>
                                 </h4>
                                 <h4>
                                     <Link href="/TrackProgress"><a>Track Progress</a></Link>
                                 </h4>
-                                <h4>
-                                    <Link href="/SignOut"><a>Sign Out</a></Link>
+                                <h4 onClick={handleLogout}>
+                                    Sign Out
                                 </h4>
                             </>
                             ) : (
                             <>
                                 <h4>
-                                    <Link href="/Login"><a>Login to View Profile</a></Link>
-                                </h4>
-                                <h4>
-                                    <Link href="/Login"><a>Login to Track Progress</a></Link>
+                                    <Link href="/Login"><a>Login to View Account</a></Link>
                                 </h4>
                             </>)}
                         </div>
