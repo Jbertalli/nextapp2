@@ -3,7 +3,7 @@ import formatDate from '../utils/formatDate';
 
 function AccountHeader({ role, email, name, createdAt }) {
     return (
-        <Segment secondary inverted>
+        <Segment secondary inverted color="grey">
             <Label
                 color="blue"
                 size="large"
@@ -12,7 +12,7 @@ function AccountHeader({ role, email, name, createdAt }) {
                 style={{ textTransform: 'capitalize' }}
                 content={role}
             />
-            <Header inverted textAlign="center" as="h1" icon>
+            <Header inverted textAlign="center" as="h1" icon >
                 <Icon name="user" />
                 {name}
                 <Header.Subheader>{email}</Header.Subheader>

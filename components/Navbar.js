@@ -8,6 +8,7 @@ import { handleLogout } from '../utils/auth';
 
 const Navbar = ({ user }) => {
     console.log(user);
+    // console.log(user.role);
     const router = useRouter();
     // const isRoot = user && user.role === 'root';
     // const isAdmin = user && user.role === 'admin';
@@ -69,7 +70,7 @@ const Navbar = ({ user }) => {
                     </Link>
                     {user ? (<> 
                     <Link href="/account">
-                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/placeholder")}>
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/account")}>
                             <Icon
                                 name="user outline"
                                 size="large"

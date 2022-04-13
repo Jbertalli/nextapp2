@@ -3,7 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 
-const CalorieCalculator = () => {
+const CalorieCalculator = ({ user }) => {
+    //console.log(user);
     const [age, setAge] = useState('');
     const [feet, setFeet] = useState('');
     const [inches, setInches] = useState('');
@@ -29,23 +30,23 @@ const CalorieCalculator = () => {
     console.log(intake.current?.innerText);
     
     useEffect(() => {
-        setSex('')
+        setSex('');
     }, [])
 
     const handleChange = (event) => {
-        setSex(event.target.value)
+        setSex(event.target.value);
     }
 
     const handleRadio = () => {
-        setSex('')
+        setSex('');
     }
 
     const handleLifeChange = (event) => {
-        setRadio(event.target.value)
+        setRadio(event.target.value);
     }
 
     const handleLife = () => {
-        setRadio('')
+        setRadio('');
     }
 
     return (
@@ -213,7 +214,7 @@ const CalorieCalculator = () => {
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onClick={() => setMale(true)}
+                        onMouseUp={() => setMale(true)}
                     />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                     <input
@@ -224,7 +225,7 @@ const CalorieCalculator = () => {
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onClick={() => setMale(false)}
+                        onMouseUp={() => setMale(false)}
                     />
                     <div>
                         &nbsp;
@@ -240,7 +241,7 @@ const CalorieCalculator = () => {
                                 value={lifestyle}
                                 checked={radio === '1'}
                                 onChange={handleLifeChange}
-                                onClick={() => setLifestyle(1)}
+                                onMouseUp={() => setLifestyle(1)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
                             <input
@@ -251,7 +252,7 @@ const CalorieCalculator = () => {
                                 value={lifestyle}
                                 checked={radio === '2'}
                                 onChange={handleLifeChange}
-                                onClick={() => setLifestyle(2)}
+                                onMouseUp={() => setLifestyle(2)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
                             <input
@@ -262,7 +263,7 @@ const CalorieCalculator = () => {
                                 value={lifestyle}
                                 checked={radio === '3'}
                                 onChange={handleLifeChange}
-                                onClick={() => setLifestyle(3)}
+                                onMouseUp={() => setLifestyle(3)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
                             <input
@@ -273,7 +274,7 @@ const CalorieCalculator = () => {
                                 value={lifestyle}
                                 checked={radio === '4'}
                                 onChange={handleLifeChange}
-                                onClick={() => setLifestyle(4)}
+                                onMouseUp={() => setLifestyle(4)}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
                             <input
@@ -284,7 +285,7 @@ const CalorieCalculator = () => {
                                 value={lifestyle}
                                 checked={radio === '5'}
                                 onChange={handleLifeChange}
-                                onClick={() => setLifestyle(5)}
+                                onMouseUp={() => setLifestyle(5)}
                             />
                             <div style={{ color: 'grey', fontSize: '15px' }}>
                                 &nbsp;1 = Low Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 = High Activity
@@ -355,6 +356,10 @@ const CalorieCalculator = () => {
                         </>)}
                     </>)}
                 </Segment>
+            </Segment>
+        </Form>
+        {user ? (<>
+            <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
                 <Button
                     size="large"
                     type="submit"
@@ -362,33 +367,36 @@ const CalorieCalculator = () => {
                     color="blue"
                     onClick={() => setModal(true)}
                 />
-                <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal>
             </Segment>
-        </Form>
-        <Message attached="bottom">
-            <Icon
-                name="sign in"
-                size="large"
-            />
-            <Link href="/Login">
-                <a style={{ color: '#3978f5' }}>Login</a>
-            </Link>{" "}
-            To Track Progress
-        </Message>
+            <Modal open={modal} dimmer="blurring" size="small">
+                <Modal.Header><h1>Update Progress</h1></Modal.Header>
+                <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
+                <Modal.Actions>
+                    <Button 
+                        content="Cancel" 
+                        onClick={() => setModal(false)}
+                    />
+                    <Button
+                        content="Update Progress"
+                        color="blue"
+                        //onClick={() => }
+                    />
+                </Modal.Actions>
+            </Modal>
+        </>
+        ) : (
+        <>
+            <Message style={{ textAlign: 'center', margin: '0 0 0' }}>
+                <Icon
+                    name="sign in"
+                    size="large"
+                />
+                <Link href="/Login">
+                    <a style={{ color: '#3978f5' }}>Login</a>
+                </Link>{" "}
+                To Track Progress
+            </Message>
+        </>)}
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms, lifestyle }, null, 2)}</pre> */}
         </Container>

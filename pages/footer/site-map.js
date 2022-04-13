@@ -47,7 +47,7 @@ const siteMap = ({ user }) => {
                                     <Link href="/TrackProgress"><a>Track Progress</a></Link>
                                 </h4>
                                 <h4 onClick={handleLogout}>
-                                    Sign Out
+                                    Logout
                                 </h4>
                             </>
                             ) : (

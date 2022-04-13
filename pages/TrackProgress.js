@@ -87,7 +87,7 @@ const TrackProgress = () => {
                 <title>HealthStat | Track Progress</title>
                 <meta name="description" content="track progress, history, improvement" /> 
             </Head>
-            <Container textAlign="center" as="h3" style={{ margin: '2em' }}>
+            <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message
                 attached
                 compact

@@ -3,7 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 
-const BMICalculator = () => {
+const BMICalculator = ({ user }) => {
+    //console.log(user);
     const [feet, setFeet] = useState('');
     const [inches, setInches] = useState('');
     const [weight, setWeight] = useState('');
@@ -191,6 +192,10 @@ const BMICalculator = () => {
                             </span> BMI
                         </>)}
                 </Segment>
+            </Segment>
+        </Form>
+        {user ? (<>
+            <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
                 <Button
                     size="large"
                     type="submit"
@@ -198,33 +203,36 @@ const BMICalculator = () => {
                     color="blue"
                     onClick={() => setModal(true)}
                 />
-                <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal>
             </Segment>
-        </Form>
-        <Message attached="bottom">
-            <Icon
-                name="sign in"
-                size="large"
-            />
-            <Link href="/Login">
-                <a style={{ color: '#3978f5' }}>Login</a>
-            </Link>{" "}
-            To Track Progress
-        </Message>
+            <Modal open={modal} dimmer="blurring" size="small">
+                <Modal.Header><h1>Update Progress</h1></Modal.Header>
+                <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
+                <Modal.Actions>
+                    <Button 
+                        content="Cancel" 
+                        onClick={() => setModal(false)}
+                    />
+                    <Button
+                        content="Update Progress"
+                        color="blue"
+                        //onClick={() => }
+                    />
+                </Modal.Actions>
+            </Modal>
+        </>
+        ) : (
+        <>
+            <Message style={{ textAlign: 'center', margin: '0 0 0' }}>
+                <Icon
+                    name="sign in"
+                    size="large"
+                />
+                <Link href="/Login">
+                    <a style={{ color: '#3978f5' }}>Login</a>
+                </Link>{" "}
+                To Track Progress
+            </Message>
+        </>)}
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ feet, inches, weight, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>

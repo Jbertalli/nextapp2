@@ -14,8 +14,7 @@ function account({ user, progress }) {
                 <title>HealthStat | Account</title>
                 <meta name="description" content="account" />
             </Head>
-            <Container>
-                <div />
+            <Container style={{ margin: '4em' }}>
                 <AccountHeader {...user} />
                 <AccountProgress progress={progress} />
                 {user.role === 'root' && <AccountPermissions currentUserId={user._id} />}

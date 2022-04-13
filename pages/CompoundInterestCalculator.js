@@ -110,7 +110,7 @@ const CompoundInterestCalculator = () => {
             </Segment>
         </Form>
         {/* <strong>onChange:</strong>
-        <pre>{JSON.stringify({ feet, inches, weight, centimeters, kilograms }, null, 2)}</pre> */}
+        <pre>{JSON.stringify({ initialInvestment, interestRate, years }, null, 2)}</pre> */}
         </Container>
       </>
     );

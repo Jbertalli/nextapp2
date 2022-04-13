@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
 
-const BodyFatPercent = () => {
+const BodyFatPercent = ({ user }) => {
     const [age, setAge] = useState('');
     const [feet, setFeet] = useState('');
     const [inches, setInches] = useState('');
@@ -203,7 +203,7 @@ const BodyFatPercent = () => {
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onClick={() => setMale(true)}
+                        onMouseUp={() => setMale(true)}
                     />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                     <input
@@ -214,7 +214,7 @@ const BodyFatPercent = () => {
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onClick={() => setMale(false)}
+                        onMouseUp={() => setMale(false)}
                     />
                 <Segment color="blue" textAlign="center" size="massive">
                     {imperial ? (<>
@@ -288,6 +288,10 @@ const BodyFatPercent = () => {
                         </>)}
                     </>)}
                 </Segment>
+            </Segment>
+        </Form>
+        {user ? (<>
+            <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
                 <Button
                     size="large"
                     type="submit"
@@ -295,33 +299,36 @@ const BodyFatPercent = () => {
                     color="blue"
                     onClick={() => setModal(true)}
                 />
-                <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal>
             </Segment>
-        </Form>
-        <Message attached="bottom">
-            <Icon
-                name="sign in"
-                size="large"
-            />
-            <Link href="/Login">
-                <a style={{ color: '#3978f5' }}>Login</a>
-            </Link>{" "}
-            To Track Progress
-        </Message>
+            <Modal open={modal} dimmer="blurring" size="small">
+                <Modal.Header><h1>Update Progress</h1></Modal.Header>
+                <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
+                <Modal.Actions>
+                    <Button 
+                        content="Cancel" 
+                        onClick={() => setModal(false)}
+                    />
+                    <Button
+                        content="Update Progress"
+                        color="blue"
+                        //onClick={() => }
+                    />
+                </Modal.Actions>
+            </Modal>
+        </>
+        ) : (
+        <>
+            <Message style={{ textAlign: 'center', margin: '0 0 0' }}>
+                <Icon
+                    name="sign in"
+                    size="large"
+                />
+                <Link href="/Login">
+                    <a style={{ color: '#3978f5' }}>Login</a>
+                </Link>{" "}
+                To Track Progress
+            </Message>
+        </>)}
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
