@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Head from 'next/head';
-import { Container, Button, Form, Message, Segment } from 'semantic-ui-react';
+import { Container, Button, Form, Message, Segment, Divider } from 'semantic-ui-react';
 
 const LoanCalculator = () => {
     const [principal, setPrincipal] = useState('');
@@ -97,6 +97,7 @@ const LoanCalculator = () => {
                                 ).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
                             }
                         </span>
+                        <Divider />
                         <div ref={LoanAmount}>
                             {
                             `After ${years} years with a ${interestRate}% interest rate, your total interest paid will be ${
