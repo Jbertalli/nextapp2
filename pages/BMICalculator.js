@@ -175,7 +175,7 @@ const BMICalculator = ({ user }) => {
                                         ((parseFloat(weight)) 
                                         / Math.pow((parseFloat(feet * 12) + parseFloat(inches)), 2))
                                         * 703
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> BMI
                         </>
@@ -187,7 +187,7 @@ const BMICalculator = ({ user }) => {
                                     (
                                         ((parseFloat(kilograms)) 
                                         / Math.pow((parseFloat(centimeters) / 100), 2))
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> BMI
                         </>)}

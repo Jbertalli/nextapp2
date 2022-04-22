@@ -305,7 +305,7 @@ const CalorieCalculator = ({ user }) => {
                                         * ((66 + (parseFloat(weight) * 6.2))
                                         + (12.7 * (parseFloat(feet * 12) + parseFloat(inches)))
                                         - (6.76 * parseFloat(age)))
-                                    ).toFixed(0)
+                                    ).toFixed(0).replace('NaN', '')
                                 }
                             </span> Calories Per Day
                         </>
@@ -319,7 +319,7 @@ const CalorieCalculator = ({ user }) => {
                                         * ((655.1 + (parseFloat(weight) * 4.35))
                                         + (4.7 * (parseFloat(feet * 12) + parseFloat(inches)))
                                         - (4.7 * parseFloat(age)))
-                                    ).toFixed(0)
+                                    ).toFixed(0).replace('NaN', '')
                                 }
                             </span> Calories Per Day
                         </>)}
@@ -336,7 +336,7 @@ const CalorieCalculator = ({ user }) => {
                                         * ((66 + (parseFloat(kilograms) * 13.7))
                                         + (5 * (parseFloat(centimeters)))
                                         - (6.76 * parseFloat(age)))
-                                    ).toFixed(0)
+                                    ).toFixed(0).replace('NaN', '')
                                 }
                             </span> Calories Per Day
                         </>
@@ -350,7 +350,7 @@ const CalorieCalculator = ({ user }) => {
                                         * ((655 + (parseFloat(kilograms) * 9.6))
                                         + (1.8 * (parseFloat(centimeters)))
                                         - (4.7 * parseFloat(age)))
-                                    ).toFixed(0)
+                                    ).toFixed(0).replace('NaN', '')
                                 }
                             </span> Calories Per Day
                         </>)}

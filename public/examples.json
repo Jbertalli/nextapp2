@@ -3,36 +3,42 @@
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
     "name": "Calorie Intake Calculator",
     "description": "Calculate Your Recommended Daily Caloric Intake",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg",
+    "link": "/CalorieIntakeCalculator"
   }, 
   {
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
     "name": "BMI Calculator",
     "description": "Calculate Your Body Mass Index",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg",
+    "link": "/BMICalculator"
   }, 
   {
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
     "name": "Body Fat Calculator",
     "description": "Calculate Your Body Fat Percentage",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
-  }, 
-  {
-    "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
-    "name": "Track Progress",
-    "description": "View Your Progression",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg",
+    "link": "/BodyFatCalculator"
   },
   {
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
     "name": "Loan Calculator",
-    "description": "Calculate Your Loan",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "description": "Calculate Monthly Payment",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg",
+    "link": "/LoanCalculator"
   }, 
   {
     "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
     "name": "Compound Interest Calculator",
     "description": "Calculate Compound Interest",
-    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg"
+    "mediaUrl": "/Users/julianbertalli/Downloads/CompoundInterest.png",
+    "link": "/CompoundInterestCalculator"
+  }, 
+  {
+    "id": "1a8b8863-a859-4d68-b63a-c466e554fd13",
+    "name": "Track Progress",
+    "description": "View Your Progression",
+    "mediaUrl": "http://en.wikipedia.org/wiki/File:Ada_lovelace.jpg",
+    "link": "/TrackProgress"
   }
 ]

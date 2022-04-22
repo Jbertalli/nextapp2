@@ -94,7 +94,7 @@ const LoanCalculator = () => {
                                     (rate * (Math.pow((1 + rate), term)))
                                     /
                                     (Math.pow((1 + rate), term) - 1)
-                                ).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
+                                ).toLocaleString('en-US', {style: 'currency', currency: 'USD'}).replace('NaN', '')
                             }
                         </span>
                         <Divider />
@@ -109,7 +109,7 @@ const LoanCalculator = () => {
                                         (Math.pow((1 + rate), term) - 1))
                                         * term)
                                         - principal
-                                    ).toLocaleString('en-US', {style: 'currency', currency: 'USD'})
+                                    ).toLocaleString('en-US', {style: 'currency', currency: 'USD'}).replace('$NaN', '')
                                 }`
                             }
                         </div>

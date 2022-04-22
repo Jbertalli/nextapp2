@@ -229,7 +229,7 @@ const BodyFatPercent = ({ user }) => {
                                         * 703) * 1.20)
                                         + (0.23 * (parseFloat(age)))
                                         - 16.2
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> %
                             {/* Math manipulation with output value */}
@@ -249,7 +249,7 @@ const BodyFatPercent = ({ user }) => {
                                         * 703) * 1.20)
                                         + (0.23 * (parseFloat(age)))
                                         - 5.4
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> %
                         </>)}
@@ -267,7 +267,7 @@ const BodyFatPercent = ({ user }) => {
                                         * 1.20)
                                         + (0.23 * (parseFloat(age)))
                                         - 16.2
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> %
                         </>
@@ -282,7 +282,7 @@ const BodyFatPercent = ({ user }) => {
                                         * 1.20)
                                         + (0.23 * (parseFloat(age)))
                                         - 5.4
-                                    ).toFixed(1)
+                                    ).toFixed(1).replace('NaN', '')
                                 }
                             </span> %
                         </>)}

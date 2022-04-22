@@ -92,7 +92,7 @@ const CompoundInterestCalculator = () => {
                                         * Math.pow(
                                         (1 + (interestRate / 100)),
                                         ((years) * (1)))
-                                    ).toLocaleString('en-US', {style: 'currency', currency: 'USD'}))
+                                    ).toLocaleString('en-US', {style: 'currency', currency: 'USD'})).replace('NaN', '')
                                 }` 
                             }
                         </span>

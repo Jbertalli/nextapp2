@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Flag } from 'semantic-ui-react';
 
 const footer = () => {
     return (
@@ -32,7 +33,7 @@ const footer = () => {
                     <Link href="/footer/terms"><a>Terms of Use</a></Link> |
                     <Link href="/footer/privacy-policy"><a>Privacy Policy</a></Link> | 
                     <Link href="/footer/site-map"><a>Site Map</a></Link> |
-                    <Link href="/footer/countries"><a>United States</a></Link>
+                    <Link href="/Languages"><a>United States&nbsp;&nbsp;<Flag name="us" /></a></Link>
                 </div>
             </footer>
         </>

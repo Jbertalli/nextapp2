@@ -7,6 +7,30 @@ body {
   font-family: "Nunito";
 }
 
+/* change blinking caret
+input {
+  caret-color: blue;
+} 
+*/
+
+/* change highlight color
+h1::selection {
+  background: blue;
+  color: white;
+} 
+*/
+
+/* outline text
+h1 {
+  -webkit-text-stroke: 1px blue;
+} 
+*/
+ 
+/* Optimize Performance - Provides a rendering hint to the user agent, stating what kinds of changes the author expects to perform on the element. */
+.class-name {
+  will-change: transform;
+}
+
 /* color for every anchor tag */
 a {
   color: #333;

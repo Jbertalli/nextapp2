@@ -30,7 +30,7 @@ const terms = () => {
                 <div>
                     <p>Welcome to HealthStat.com!</p>
 
-                    <p>These terms and conditions outline the rules and regulations for the use of HealthStat's Website, located at <Link href='/'><a>https://healthstat.com.</a></Link></p>
+                    <p>These terms and conditions outline the rules and regulations for the use of HealthStat's Website, located at <Link href='/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link></p>
 
                     <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use HealthStat.com if you do not agree to take all of the terms and conditions stated on this page.</p>
 
@@ -53,8 +53,6 @@ const terms = () => {
                         <p><li>Reproduce, duplicate or copy material from HealthStat.com</li></p>
                         <p><li>Redistribute content from HealthStat.com</li></p>
                     </ul>
-
-                    <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the <a href="https://www.privacypolicies.com/blog/sample-terms-conditions-template/">Terms And Conditions Template</a>.</p>
 
                     <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. HealthStat does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of HealthStat,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, HealthStat shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
 

@@ -35,7 +35,7 @@ const privacy = () => {
 
                         <p>This privacy notice for HealthStat ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"), such as when you:</p>
                         <ul>
-                            <p><li>Visit our website at <Link href='/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link>, or any website of ours that links to this privacy notice</li></p>
+                            <p><li>Visit our website at <Link href='/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link> or any website of ours that links to this privacy notice</li></p>
                             <p><li>Engage with us in other related ways, including any sales, marketing, or events</li></p>
                         </ul>
 
@@ -61,21 +61,21 @@ const privacy = () => {
                     <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information.</p>
                     
                     <h2><strong>TABLE OF CONTENTS</strong></h2>
-                        <ul><strong>1. WHAT INFORMATION DO WE COLLECT?</strong></ul>
-                        <ul><strong>2. HOW DO WE PROCESS YOUR INFORMATION?</strong></ul>
-                        <ul><strong>3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</strong></ul>
-                        <ul><strong>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</strong></ul>
-                        <ul><strong>5. HOW LONG DO WE KEEP YOUR INFORMATION?</strong></ul>
-                        <ul><strong>6. HOW DO WE KEEP YOUR INFORMATION SAFE?</strong></ul>
-                        <ul><strong>7. WHAT ARE YOUR PRIVACY RIGHTS?</strong></ul>
-                        <ul><strong>8. CONTROLS FOR DO-NOT-TRACK FEATURES</strong></ul>
-                        <ul><strong>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</strong></ul>
-                        <ul><strong>10. DO WE MAKE UPDATES TO THIS NOTICE?</strong></ul>
-                        <ul><strong>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</strong></ul>
-                        <ul><strong>12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</strong></ul>
+                        <ul><strong><u><a href="#1" style={{ color: '#3978f5' }}>1. WHAT INFORMATION DO WE COLLECT?</a></u></strong></ul>
+                        <ul><strong><u><a href="#2" style={{ color: '#3978f5' }}>2. HOW DO WE PROCESS YOUR INFORMATION?</a></u></strong></ul>
+                        <ul><strong><u><a href="#3" style={{ color: '#3978f5' }}>3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></u></strong></ul>
+                        <ul><strong><u><a href="#4" style={{ color: '#3978f5' }}>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></u></strong></ul>
+                        <ul><strong><u><a href="#5" style={{ color: '#3978f5' }}>5. HOW LONG DO WE KEEP YOUR INFORMATION?</a></u></strong></ul>
+                        <ul><strong><u><a href="#6" style={{ color: '#3978f5' }}>6. HOW DO WE KEEP YOUR INFORMATION SAFE?</a></u></strong></ul>
+                        <ul><strong><u><a href="#7" style={{ color: '#3978f5' }}>7. WHAT ARE YOUR PRIVACY RIGHTS?</a></u></strong></ul>
+                        <ul><strong><u><a href="#8" style={{ color: '#3978f5' }}>8. CONTROLS FOR DO-NOT-TRACK FEATURES</a></u></strong></ul>
+                        <ul><strong><u><a href="#9" style={{ color: '#3978f5' }}>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></u></strong></ul>
+                        <ul><strong><u><a href="#10" style={{ color: '#3978f5' }}>10. DO WE MAKE UPDATES TO THIS NOTICE?</a></u></strong></ul>
+                        <ul><strong><u><a href="#11" style={{ color: '#3978f5' }}>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></u></strong></ul>
+                        <ul><strong><u><a href="#12" style={{ color: '#3978f5' }}>12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></u></strong></ul>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>1. WHAT INFORMATION DO WE COLLECT?</strong></h2>
+                    <h2><strong><a id="1">1. WHAT INFORMATION DO WE COLLECT?</a></strong></h2>
                     <p><strong>Personal information you disclose to us</strong></p>
                     
                     <p>In Short: We collect personal information that you provide to us.</p>
@@ -111,7 +111,7 @@ const privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>2. HOW DO WE PROCESS YOUR INFORMATION?</strong></h2>
+                    <h2><strong><a id="2">2. HOW DO WE PROCESS YOUR INFORMATION?</a></strong></h2>
                     
                     <p>In Short: We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</p>
                 
@@ -123,7 +123,7 @@ const privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</strong></h2>
+                    <h2><strong><a id="3">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></strong></h2>
                     
                     <p>In Short: We may share information in specific situations described in this section and/or with the following third parties.</p>
                     
@@ -135,14 +135,14 @@ const privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</strong></h2>
+                    <h2><strong><a id="4">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></strong></h2>
                     
                     <p>In Short: We may use cookies and other tracking technologies to collect and store your information.</p>
                     
                     <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>5. HOW LONG DO WE KEEP YOUR INFORMATION?</strong></h2>
+                    <h2><strong><a id="5">5. HOW LONG DO WE KEEP YOUR INFORMATION?</a></strong></h2>
                     
                     <p>In Short: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law.</p>
                     
@@ -151,14 +151,14 @@ const privacy = () => {
                     <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>6. HOW DO WE KEEP YOUR INFORMATION SAFE?</strong></h2>
+                    <h2><strong><a id="6">6. HOW DO WE KEEP YOUR INFORMATION SAFE?</a></strong></h2>
                     
                     <p>In Short: We aim to protect your personal information through a system of organizational and technical security measures.</p>
                     
                     <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>7. WHAT ARE YOUR PRIVACY RIGHTS?</strong></h2>
+                    <h2><strong><a id="7">7. WHAT ARE YOUR PRIVACY RIGHTS?</a></strong></h2>
                     
                     <p>In Short: You may review, change, or terminate your account at any time.</p>
                     
@@ -185,12 +185,12 @@ const privacy = () => {
                     <p>If you have questions or comments about your privacy rights, you may email us at jjbertalli@berkeley.edu.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>8. CONTROLS FOR DO-NOT-TRACK FEATURES</strong></h2>
+                    <h2><strong><a id="8">8. CONTROLS FOR DO-NOT-TRACK FEATURES</a></strong></h2>
                     
                     <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</strong></h2>
+                    <h2><strong><a id="9">9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></strong></h2>
                     
                     <p>In Short: Yes, if you are a resident of California, you are granted specific rights regarding access to your personal information.</p>
                     
@@ -350,21 +350,21 @@ const privacy = () => {
                     <p>To exercise these rights, you can contact us by email at jjbertalli@berkeley.edu, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>10. DO WE MAKE UPDATES TO THIS NOTICE?</strong></h2>
+                    <h2><strong><a id="10">10. DO WE MAKE UPDATES TO THIS NOTICE?</a></strong></h2>
                     
                     <p>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
                     
                     <p>We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</strong></h2>
+                    <h2><strong><a id="11">11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></strong></h2>
                     
                     <p>If you have questions or comments about this notice, you may email us at jjbertalli@berkeley.edu or by post to:</p>
                     <ul>Santa Clarita, CA 91351</ul>
                     <ul>United States</ul>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong>12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</strong></h2>
+                    <h2><strong><a id="12">12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></strong></h2>
                     
                     <p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances.</p>
                 </div>

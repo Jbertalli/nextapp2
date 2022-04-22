@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Link from 'next/link';
+// import styles from '../styles/Home.module.css';
+// import Link from 'next/link';
 import React from 'react';
 import axios from 'axios';
 import CalculatorList from '../components/CalculatorList';
+import { Container, Icon } from 'semantic-ui-react';
 
 // export default function Home() {
 export default function Home({ examples }) {
@@ -25,16 +26,24 @@ export default function Home({ examples }) {
       <Head>
         <title>HealthStat | Home</title>
         <meta name="description" content="healthstat, calorie calculator" />
-      </Head>
-      <div>
-        <h1 className={styles.title}>Homepage</h1>
-        <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
-        <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
-          <CalculatorList examples={examples} />
-        <Link href='/ninjas'>
-          <a className={styles.btn}>See Ninja Listing</a>
-        </Link>
-      </div>
+      </Head>'
+      <h1 style={{ textAlign: 'center', fontSize: '50px'  }}>HealthStat</h1>
+      <Container>
+
+
+
+      
+      </Container>
+      <Container style={{ margin: '3em 0 6em' }}>
+        <div>
+          {/* <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
+          <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
+          <Link href='/ninjas'>
+            <a className={styles.btn}>See Ninja Listing</a>
+          </Link> */}
+            <CalculatorList examples={examples} />
+        </div>
+      </Container>
     </>
   );
 }
