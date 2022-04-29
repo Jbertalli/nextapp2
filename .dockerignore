@@ -1,0 +1,3 @@
+#files to ignore while copying to the image filesystem
+.next
+node_modules

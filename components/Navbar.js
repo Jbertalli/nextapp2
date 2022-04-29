@@ -68,6 +68,15 @@ const Navbar = ({ user }) => {
                             Track Progress
                         </Menu.Item>
                     </Link>
+                    <Link href="/goals">
+                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/goals")}>
+                            <Icon
+                                name="target"
+                                size="large"
+                            />
+                            Goals
+                        </Menu.Item>
+                    </Link>
                     {user ? (<> 
                     <Link href="/account">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/account")}>
@@ -109,14 +118,14 @@ const Navbar = ({ user }) => {
                         </Menu.Item>
                     </Link>
                     </>)}
-                    <Link href="/CrochetApp/Crochet">
+                    {/* <Link href="/CrochetApp/Crochet">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/CrochetApp/Crochet")}>
                             <Icon
                                 name="map pin"
                             />
                             Crochet App
                         </Menu.Item>
-                    </Link>
+                    </Link> */}
                 </Container>
             </Menu>
         </Sticky>
