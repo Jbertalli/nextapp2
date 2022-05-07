@@ -118,3 +118,19 @@ nav .logo {
   50% {bottom: -145vh; left: -190vw;}
   100% {bottom: 0px; left: 0px;}
 }
+
+.chart {
+  background: linear-gradient(to top, #313e4c, #313e4c);
+}
+
+.underline:hover:active {
+  text-decoration: underline 2px solid white;
+}
+
+.input {
+  width: 50%;
+  height: 61px; 
+  padding: 15px 23px 15px 23px;
+  font-weight: 150;
+  color: black;
+}

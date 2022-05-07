@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { Container, Message } from 'semantic-ui-react';
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
 import axios from 'axios';
+import Chart from '../components/Chart';
+// import { Line } from 'react-chartjs-2';
+
 // import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
   
 //   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -34,52 +36,51 @@ import axios from 'axios';
 // }
 
 const TrackProgress = () => {
+    // //empty object
+    // const [chartData, setChartData] = useState({})
+    // //empty array
+    // const [employeeSalary, setEmployeeSalary] = useState([]);
+    // //empty array
+    // const [employeeAge, setEmployeeAge] = useState([]);
 
-    //empty object
-    const [chartData, setChartData] = useState({})
-    //empty array
-    const [employeeSalary, setEmployeeSalary] = useState([]);
-    //empty array
-    const [employeeAge, setEmployeeAge] = useState([]);
+    // const chart = () => {
+    //     //empty arrays
+    //     let empSal = [];
+    //     let empAge = [];
+    //     axios.get('http://dummy.restapiexample.com/api/v1/employees')
+    //     .then(res => {
+    //         console.log(res);
+    //         for(const dataObj of res.data.data) {
+    //             //push to empty arrays
+    //             empSal.push(parseInt(dataObj.employee_salary))
+    //             empAge.push(parseInt(dataObj.employee_age))
+    //         }
+    //         setChartData({
+    //             labels: empAge,
+    //             datasets: [
+    //                 {
+    //                     label: 'BMI',
+    //                     fill: false,
+    //                     lineTension: 0.5,
+    //                     backgroundColor: 'black',
+    //                     borderColor: 'black',
+    //                     borderWidth: 4,
+    //                     pointHoverBorderWidth: 10,
+    //                     data: empSal
+    //                 }
+    //             ]
+    //         });
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
 
-    const chart = () => {
-        //empty arrays
-        let empSal = [];
-        let empAge = [];
-        axios.get('http://dummy.restapiexample.com/api/v1/employees')
-        .then(res => {
-            console.log(res);
-            for(const dataObj of res.data.data) {
-                //push to empty arrays
-                empSal.push(parseInt(dataObj.employee_salary))
-                empAge.push(parseInt(dataObj.employee_age))
-            }
-            setChartData({
-                labels: empAge,
-                datasets: [
-                    {
-                        label: 'BMI',
-                        fill: false,
-                        lineTension: 0.5,
-                        backgroundColor: 'black',
-                        borderColor: 'black',
-                        borderWidth: 4,
-                        pointHoverBorderWidth: 10,
-                        data: empSal
-                    }
-                ]
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    //     console.log(empSal, empAge);
+    // }
 
-        console.log(empSal, empAge);
-    }
-
-    useEffect(() => {
-        chart()
-    }, [])
+    // useEffect(() => {
+    //     chart()
+    // }, [])
 
     return (
         <>
@@ -87,7 +88,7 @@ const TrackProgress = () => {
                 <title>HealthStat | Track Progress</title>
                 <meta name="description" content="track progress, history, improvement" /> 
             </Head>
-            <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+            {/* <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message
                 attached
                 compact
@@ -97,7 +98,7 @@ const TrackProgress = () => {
                 color="black"
             />
             <div>
-                {/* <Line
+                <Line
                     data={chartData}
                     options={{
                         responsive: true,
@@ -107,9 +108,9 @@ const TrackProgress = () => {
                             fontSize: 20
                         }
                     }}
-                /> */}
+                />
             </div>
-            {/* <div>
+            <div>
                 <Line
                     data={state}
                     options={{
@@ -124,13 +125,14 @@ const TrackProgress = () => {
                         }
                     }}
                 />
-            </div> */}
-            </Container>
+            </div>
+            </Container> */}
         </>
     );
 }
 
 export default TrackProgress;
+
 
 
 // let date = new Date()

@@ -82,7 +82,12 @@ const CompoundInterestCalculator = () => {
                     value={years}
                     onChange={e => setYears(e.target.value)}
                 />
-                <Segment color="blue" textAlign="center" size="massive">
+                <Segment 
+                    color="blue" 
+                    textAlign="center" 
+                    size="massive"
+                    style={{ display: initialInvestment && interestRate && years ? 'block' : 'none' }}
+                >
                     {/* Compound Interest Logic */}
                         <span ref={CompoundInterest}>
                             {
@@ -105,6 +110,7 @@ const CompoundInterestCalculator = () => {
                     type="submit"
                     content="Calculate"
                     color="blue"
+                    style={{ margin: '1em 0em .3em 0em' }}
                     //onClick={() => }
                 />
             </Segment>

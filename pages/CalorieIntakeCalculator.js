@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal } from 'semantic-ui-react';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item } from 'semantic-ui-react';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend } from 'recharts';
+import { format, parseISO, subDays } from 'date-fns';
+import styles from '../styles/Footer.module.css';
+
+const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
 const CalorieCalculator = ({ user }) => {
     //console.log(user);
@@ -15,19 +20,32 @@ const CalorieCalculator = ({ user }) => {
     const [imperial, setImperial] = useState(true);
     const [male, setMale] = useState(true);
     const [sex, setSex] = useState('male');
-    const [modal, setModal] = useState(false);
-    const [radio, setRadio] = useState('')
+    const [radio, setRadio] = useState(''); 
+    // const [modal, setModal] = useState(false);
+    const [goals, setGoals ] = useState([]);                                              
+    const [count, setCount] = useState(0);
+    const [data, setData] = useState([]);
+    const [numb, setNumb] = useState(30);
+    const [average, setAverage] = useState('');
+    const Calories = useRef();
+
+    useEffect(() => {
+        const storedCalories = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))           //parse to turn into array
+        if (storedCalories) setGoals(storedCalories)
+        setData([]);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(goals))
+    }, [goals]);
 
     const handleInput = () => {
         if (imperial) {
-            console.log("imperial", { age, feet, inches, weight, male, lifestyle, intake });
+            console.log("imperial", { age, feet, inches, weight, male, lifestyle, Calories });
         } else {
-            console.log("metric", { age, centimeters, kilograms, male, lifestyle, intake });
+            console.log("metric", { age, centimeters, kilograms, male, lifestyle, Calories });
         }
     };
-    
-    const intake = useRef();
-    console.log(intake.current?.innerText);
     
     useEffect(() => {
         setSex('');
@@ -48,6 +66,73 @@ const CalorieCalculator = ({ user }) => {
     const handleLife = () => {
         setRadio('');
     }
+
+    if (goals.length > 0) {
+        for(let i = 0; i < goals.length; i++) {
+
+        }
+        console.log((goals.length <= 1) ? '1 caloric intake calculation' : `%c ${goals.length} caloric intake calculations`, 'color: green');
+    } else {
+        console.log('%c caloric intake calculations', "color: red");
+    }
+
+    let counting = []                                                                   //IMPORTANT
+    let avg = []
+
+    for (let i = 0; i < goals.length; i++) {
+        counting.push([goals[i].Calories]);
+        // console.log("%c Array", "color: blue", counting[i]);
+        console.table(counting);
+        // console.log(counting);
+            const flattened = counting.flat();
+            // console.log(flattened);
+            const reduced = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
+            // console.log(reduced);
+            // const average = (reduced / goals.length).toFixed(0);
+            avg = (reduced / goals.length).toFixed(0);
+            console.log("%c average calories:", 'color: blue', avg);
+    }
+
+    console.log(avg);
+
+    function handleAddGoal(e) {
+        const name = Calories.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
+        if (name === '') return 
+        setGoals(prevGoals => {
+            return [...prevGoals, { Calories: name }]                                        //previous value and return new goals by spreading over array, then adding new goal to list
+        })
+
+        setCount(count + 1);
+        console.log(count);
+        setData([]);
+
+        Calories.current?.innerText = null;                                                  //clear out input after clicking Add Goal Button
+    }
+
+    function clearAll() {
+        setCount(0);
+        setGoals([]);
+        setData([]);
+        console.clear();
+        console.log('%c cleared all goals', 'color: red');
+    }
+
+    let fruits = []
+
+    for (let i = 0; i < goals.length; i++) {
+        fruits.push(counting.flat()[i]);
+    }
+    
+    for (let num = numb; num >= 0; num--) {
+        data.push({
+            date: subDays(new Date(), num).toISOString().substr(0, 10), 
+            value: fruits.shift(),
+            average: average,
+        });
+    }
+
+    console.log(counting.flat());                                          //flatten out array
+    console.log(data);
 
     return (
       <>
@@ -72,7 +157,7 @@ const CalorieCalculator = ({ user }) => {
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
-                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight(''), handleRadio(), handleLife()}}
+                onClick={() => {setImperial(false), setAge(''), setFeet(''), setInches(''), setWeight(''), handleRadio(), handleLife(), setData([])}}
             />
             </>
             ) : (
@@ -83,7 +168,7 @@ const CalorieCalculator = ({ user }) => {
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
-                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife()}}
+                onClick={() => {setImperial(true), setAge(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife(), setData([])}}
             />
             </>)}
         <Form onClick={() => handleInput()}>
@@ -101,7 +186,7 @@ const CalorieCalculator = ({ user }) => {
                         max="120"
                         required
                         value={age}
-                        onChange={e => setAge(e.target.value)}
+                        onChange={e => {setAge(e.target.value), setData([])}}
                     />
                 {/* ternary to switch from imperial to metric heigh and weight input */}
                 {imperial ? (<>
@@ -121,7 +206,7 @@ const CalorieCalculator = ({ user }) => {
                                     max="8"
                                     required
                                     value={feet}
-                                    onChange={e => setFeet(e.target.value)}
+                                    onChange={e => {setFeet(e.target.value), setData([])}}
                                 />
                             </Grid.Column>
                             <Grid.Column width={6}>
@@ -138,7 +223,7 @@ const CalorieCalculator = ({ user }) => {
                                     max="12"
                                     required
                                     value={inches}
-                                    onChange={e => setInches(e.target.value)}
+                                    onChange={e => {setInches(e.target.value), setData([])}}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -159,7 +244,7 @@ const CalorieCalculator = ({ user }) => {
                         max="800"
                         required
                         value={weight}
-                        onChange={e => setWeight(e.target.value)}
+                        onChange={e => {setWeight(e.target.value), setData([])}}
                     />
                 </>
                 ) : (
@@ -181,7 +266,7 @@ const CalorieCalculator = ({ user }) => {
                                     max="270"
                                     required
                                     value={centimeters}
-                                    onChange={e => setCentimeters(e.target.value)}
+                                    onChange={e => {setCentimeters(e.target.value), setData([])}}
                                 />
                             </Grid.Column>
                         </Grid.Row>
@@ -202,7 +287,7 @@ const CalorieCalculator = ({ user }) => {
                         max="360"
                         required
                         value={kilograms}
-                        onChange={e => setKilograms(e.target.value)}
+                        onChange={e => {setKilograms(e.target.value), setData([])}}
                     />
                 </>)}
                     &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
@@ -298,7 +383,7 @@ const CalorieCalculator = ({ user }) => {
                     {imperial ? (<>
                         {/* male/female ternary */}
                         {male ? (<>
-                            <span ref={intake}>
+                            <span ref={Calories}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -312,7 +397,7 @@ const CalorieCalculator = ({ user }) => {
                         ) : (
                         <>
                         {/* Female (imperial) */}
-                            <span ref={intake}>
+                            <span ref={Calories}>
                                 {
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -329,7 +414,7 @@ const CalorieCalculator = ({ user }) => {
                         {/* Male (metric): BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) */}
                         {/* male/female ternary */}
                         {male ? (<>
-                            <span ref={intake}>
+                            <span ref={Calories}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -343,7 +428,7 @@ const CalorieCalculator = ({ user }) => {
                         ) : (
                         <>
                         {/* Female (metric): BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years) */}
-                            <span ref={intake}>
+                            <span ref={Calories}>
                                 {  
                                     (
                                         ((parseFloat(lifestyle) * 0.2) + 1)
@@ -359,7 +444,7 @@ const CalorieCalculator = ({ user }) => {
             </Segment>
         </Form>
         {user ? (<>
-            <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
+            {/* <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
                 <Button
                     size="large"
                     type="submit"
@@ -367,8 +452,14 @@ const CalorieCalculator = ({ user }) => {
                     color="blue"
                     onClick={() => setModal(true)}
                 />
+            </Segment> */}
+            <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
+                <Button size="big" onClick={() => handleAddGoal()} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+                <Button size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button size="big" onClick={() => {clearAll(), setAge(''), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife(), setData([])}}>Clear All</Button>
             </Segment>
-            <Modal open={modal} dimmer="blurring" size="small">
+            {/* <Modal open={modal} dimmer="blurring" size="small">
                 <Modal.Header><h1>Update Progress</h1></Modal.Header>
                 <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
                 <Modal.Actions>
@@ -382,7 +473,7 @@ const CalorieCalculator = ({ user }) => {
                         //onClick={() => }
                     />
                 </Modal.Actions>
-            </Modal>
+            </Modal> */}
         </>
         ) : (
         <>
@@ -400,8 +491,137 @@ const CalorieCalculator = ({ user }) => {
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms, lifestyle }, null, 2)}</pre> */}
         </Container>
+        <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
+            <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+                <Message
+                    attached
+                    compact
+                    icon="chart line"
+                    header="Track Progress"
+                    content="View Your Recommended Daily Caloric Intake"
+                    color="black"
+                    style={{ background: '#26313c' }}
+                />
+                <Item attached style={{ background: '#313e4c', display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button
+                        content="1D"
+                        className={styles.underline}
+                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                        onClick={() => {setData([]), setNumb(1)}}
+                    />
+                    <Button 
+                        content="7D"
+                        className={styles.underline}
+                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                        onClick={() => {setData([]), setNumb(7)}}
+                    />
+                    <Button
+                        content="1M"
+                        className={styles.underline}
+                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                        onClick={() => {setData([]), setNumb(30)}}
+                    />
+                    <Button
+                        content="6M"
+                        className={styles.underline}
+                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                        onClick={() => {setData([]), setNumb(182)}}
+                    />
+                    <Button
+                        content="1Y"
+                        className={styles.underline}
+                        style={{ padding: '0', margin: '0em 2.5em 0em 1.2em', background: '#313e4c', color: 'white' }}
+                        onClick={() => {setData([]), setNumb(365)}}
+                    />
+                </Item>
+                <div className={styles.chart} style={{ padding: '3rem' }}>
+                    <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
+                        <AreaChart data={data} key={`ac_${data.length}`}>
+                            <defs>
+                                <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
+                                    <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
+                                    <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
+                                </linearGradient>
+                            </defs>
+                            <Area type="monotone" dataKey="value" stroke="#2451B7" fill="url(#color)" key={`a_${data.length}`} />
+                            <Area dataKey="average" stroke="#2451B7" fillOpacity={1} fill="url(#colorPv)" key={`avg_${data.length}`}/>              {/* goal line */}
+                            <XAxis
+                                dataKey="date"
+                                axisLine={false}
+                                tickLine={false}
+                                tickFormatter={(str) => {
+                                    const date = parseISO(str);
+                                    if (date.getDate() % 7 === 0) {
+                                        return format(date, "MMM, d");
+                                    }
+                                        return "";
+                                }}
+                            >
+                                {/* <Label
+                                    style={{
+                                        textAnchor: "end",
+                                        fontSize: "1em",
+                                        fill: "gray",
+                                        fillOpacity: ".7",
+                                        fontWeight: "700"
+                                    }}
+                                    angle={0} 
+                                    value={"Date"} 
+                                    position='insideRight'
+                                /> */}
+                            </XAxis>
+                            <YAxis
+                                dataKey="value"
+                                axisLine={false}
+                                tickLine={false}
+                                tickCount={8}
+                                tickFormatter={(number) => `${number}`}
+                            >
+                                {/* <Label
+                                    style={{
+                                        textAnchor: "middle",
+                                        fontSize: "1em",
+                                        fill: "gray",
+                                        fillOpacity: ".7",
+                                        fontWeight: "700"
+                                    }}
+                                    angle={0} 
+                                    value={"Calories"}
+                                    position='insideTop'
+                                /> */}
+                            </YAxis>
+                            <Tooltip content={<CustomTooltip />} />
+                            {/* <Legend verticalAlign="top" iconType="plainline" /> */}
+                            <CartesianGrid opacity={0.1} vertical={false} />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+            </Container>
+        </Container>
       </>
     );
+  }
+
+  function CustomTooltip({ active, payload, label }) {
+    // console.log(payload[0]);
+    // console.log(payload[0]?.payload?.value);               //hover over graph to see
+    // console.log(payload[0]?.payload?.line);                //goal line
+    // console.log(payload[0]?.payload?.average);             //average line
+
+    if(active) {
+        return (
+            <div style={{ color: '#fff', background: '#26313c', borderRadius: '.25rem', textAlign: 'center', padding: '1em 1.5em 1em 1.5em' }} >
+                <h3>{format(parseISO(label), "eeee, MMM d, yyy")}</h3>
+                <p style={{ display: payload[0]?.payload?.value ? 'block' : 'none' }}>
+                    Calories:&nbsp;&nbsp;{payload[0]?.payload?.value}
+                </p>
+                <p style={{ display: payload[0]?.payload?.average ? 'block' : 'none' }}>
+                    Average:&nbsp;&nbsp;{payload[0]?.payload?.average}
+                </p>
+            </div>
+        );
+    }
+    return null;
   }
 
 export default CalorieCalculator;
