@@ -24,6 +24,7 @@ const BodyFatPercent = ({ user }) => {
     const [data, setData] = useState([]);
     const [numb, setNumb] = useState(30);
     const [lined, setLined] = useState('');
+    const [checked, setChecked] = useState(false);
     const BF = useRef();
 
     useEffect(() => {
@@ -57,6 +58,10 @@ const BodyFatPercent = ({ user }) => {
 
     const handleRadio = () => {
         setSex('')
+    }
+
+    function handleUnclick() {
+        setChecked((c) => !c);
     }
 
     if (goals.length > 0) {
@@ -279,22 +284,22 @@ const BodyFatPercent = ({ user }) => {
                         type="radio"
                         name="rad"
                         value="male"
-                        checked={sex === 'male'}
+                        checked={sex === 'male' && checked}
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onMouseUp={() => setMale(true)}
+                        onMouseUp={() => {setMale(true), handleUnclick()}}
                     />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                     <input
                         type="radio"
                         name="rad"
                         value="female"
-                        checked={sex === 'female'}
+                        checked={sex === 'female' && checked}
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onMouseUp={() => setMale(false)}
+                        onMouseUp={() => {setMale(false), handleUnclick()}}
                     />
                     <Divider style={{ margin: '1.5em' }} />
                     <div attached size="large" textAlign="left">
@@ -435,113 +440,119 @@ const BodyFatPercent = ({ user }) => {
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
-        <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
-            <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
-                <Message
-                    attached
-                    compact
-                    icon="chart line"
-                    header="Track Progress"
-                    content="View Your Body Fat % Progression Over Time"
-                    color="black"
-                    style={{ background: '#26313c' }}
-                />
-                <Item attached style={{ background: '#313e4c', display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button
-                        content="1D"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(1)}}
+        {user ? (<>
+            <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
+                <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+                    <Message
+                        attached
+                        compact
+                        icon="chart line"
+                        header="Track Progress"
+                        content="View Your Body Fat % Progression Over Time"
+                        color="black"
+                        style={{ background: '#26313c' }}
                     />
-                    <Button 
-                        content="7D"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(7)}}
-                    />
-                    <Button
-                        content="1M"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(30)}}
-                    />
-                    <Button
-                        content="6M"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(182)}}
-                    />
-                    <Button
-                        content="1Y"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '0em 2.5em 0em 1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(365)}}
-                    />
-                </Item>
-                <div className={styles.chart} style={{ padding: '3rem' }}>
-                    <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
-                        <AreaChart data={data} key={`ac_${data.length}`}>
-                            <defs>
-                                <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
-                                    <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
-                                    <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
-                                </linearGradient>
-                            </defs>
-                            <Area type="monotone" dataKey="value" stroke="#2451B7" fill="url(#color)" key={`a_${data.length}`} />
-                            <Area dataKey="line" stroke="#2451B7" fillOpacity={1} fill="url(#colorPv)" key={`ac_${data.length}`}/>              {/* goal line */}
-                            <XAxis
-                                dataKey="date"
-                                axisLine={false}
-                                tickLine={false}
-                                tickFormatter={(str) => {
-                                    const date = parseISO(str);
-                                    if (date.getDate() % 7 === 0) {
-                                        return format(date, "MMM, d");
-                                    }
-                                        return "";
-                                }}
-                            >
-                                {/* <Label
-                                    style={{
-                                        textAnchor: "end",
-                                        fontSize: "1em",
-                                        fill: "gray",
-                                        fillOpacity: ".7",
-                                        fontWeight: "700"
+                    <Item attached style={{ background: '#313e4c', display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button
+                            content="1D"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(1)}}
+                        />
+                        <Button 
+                            content="7D"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(7)}}
+                        />
+                        <Button
+                            content="1M"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(30)}}
+                        />
+                        <Button
+                            content="6M"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(182)}}
+                        />
+                        <Button
+                            content="1Y"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '0em 2.5em 0em 1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(365)}}
+                        />
+                    </Item>
+                    <div className={styles.chart} style={{ padding: '3rem' }}>
+                        <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
+                            <AreaChart data={data} key={`ac_${data.length}`}>
+                                <defs>
+                                    <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
+                                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
+                                        <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
+                                    </linearGradient>
+                                </defs>
+                                <Area type="monotone" dataKey="value" stroke="#2451B7" fill="url(#color)" key={`a_${data.length}`} />
+                                <Area dataKey="line" stroke="#2451B7" fillOpacity={1} fill="url(#colorPv)" key={`ac_${data.length}`}/>              {/* goal line */}
+                                <XAxis
+                                    dataKey="date"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tickFormatter={(str) => {
+                                        const date = parseISO(str);
+                                        if (date.getDate() % 7 === 0) {
+                                            return format(date, "MMM, d");
+                                        }
+                                            return "";
                                     }}
-                                    angle={0} 
-                                    value={"Date"} 
-                                    position='insideRight'
-                                /> */}
-                            </XAxis>
-                            <YAxis
-                                dataKey="value"
-                                axisLine={false}
-                                tickLine={false}
-                                tickCount={8}
-                                tickFormatter={(number) => `${number}`}
-                            >
-                                {/* <Label
-                                    style={{
-                                        textAnchor: "middle",
-                                        fontSize: "1em",
-                                        fill: "gray",
-                                        fillOpacity: ".7",
-                                        fontWeight: "700"
-                                    }}
-                                    angle={0} 
-                                    value={"Body Fat %"}
-                                    position='insideTop'
-                                /> */}
-                            </YAxis>
-                            <Tooltip content={<CustomTooltip />} />
-                            {/* <Legend verticalAlign="top" iconType="plainline" /> */}
-                            <CartesianGrid opacity={0.1} vertical={false} />
-                        </AreaChart>
-                    </ResponsiveContainer>
-                </div>
+                                >
+                                    {/* <Label
+                                        style={{
+                                            textAnchor: "end",
+                                            fontSize: "1em",
+                                            fill: "gray",
+                                            fillOpacity: ".7",
+                                            fontWeight: "700"
+                                        }}
+                                        angle={0} 
+                                        value={"Date"} 
+                                        position='insideRight'
+                                    /> */}
+                                </XAxis>
+                                <YAxis
+                                    dataKey="value"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tickCount={8}
+                                    tickFormatter={(number) => `${number}`}
+                                >
+                                    {/* <Label
+                                        style={{
+                                            textAnchor: "middle",
+                                            fontSize: "1em",
+                                            fill: "gray",
+                                            fillOpacity: ".7",
+                                            fontWeight: "700"
+                                        }}
+                                        angle={0} 
+                                        value={"Body Fat %"}
+                                        position='insideTop'
+                                    /> */}
+                                </YAxis>
+                                <Tooltip content={<CustomTooltip />} />
+                                {/* <Legend verticalAlign="top" iconType="plainline" /> */}
+                                <CartesianGrid opacity={0.1} vertical={false} />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
+                </Container>
             </Container>
-        </Container>
+        </>
+        ) : (
+        <>
+            
+        </>)}
       </>
     );
   }

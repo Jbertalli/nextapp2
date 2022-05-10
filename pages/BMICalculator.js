@@ -363,7 +363,8 @@ const BMICalculator = ({ user }) => {
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ feet, inches, weight, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
-        <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
+        {user ? (<>
+            <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
                 <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
                     <Message
                         attached
@@ -469,6 +470,11 @@ const BMICalculator = ({ user }) => {
                     </div>
                 </Container>
             </Container>
+        </>
+        ) : (
+        <>
+            
+        </>)}
       </>
     );
   }

@@ -27,6 +27,8 @@ const CalorieCalculator = ({ user }) => {
     const [data, setData] = useState([]);
     const [numb, setNumb] = useState(30);
     const [average, setAverage] = useState('');
+    const [checked, setChecked] = useState(false);
+    const [checkedMale, setCheckedMale] = useState(false);
     const Calories = useRef();
 
     useEffect(() => {
@@ -38,6 +40,10 @@ const CalorieCalculator = ({ user }) => {
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(goals))
     }, [goals]);
+    
+    useEffect(() => {
+        setSex('');
+    }, []);
 
     const handleInput = () => {
         if (imperial) {
@@ -47,10 +53,6 @@ const CalorieCalculator = ({ user }) => {
         }
     };
     
-    useEffect(() => {
-        setSex('');
-    }, [])
-
     const handleChange = (event) => {
         setSex(event.target.value);
     }
@@ -65,6 +67,14 @@ const CalorieCalculator = ({ user }) => {
 
     const handleLife = () => {
         setRadio('');
+    }
+
+    function handleUnclick() {
+        setChecked((c) => !c);
+    }
+
+    function handleMaleUnclick() {
+        setCheckedMale((c) => !c);
     }
 
     if (goals.length > 0) {
@@ -295,22 +305,22 @@ const CalorieCalculator = ({ user }) => {
                         type="radio"
                         name="rad"
                         value="male"
-                        checked={sex === 'male'}
+                        checked={sex === 'male' && checkedMale}
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onMouseUp={() => setMale(true)}
+                        onMouseUp={() => {setMale(true), handleMaleUnclick()}}
                     />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                     <input
                         type="radio"
                         name="rad"
                         value="female"
-                        checked={sex === 'female'}
+                        checked={sex === 'female' && checkedMale}
                         onChange={handleChange}
                         required
                         style={{ width: '30px' }}
-                        onMouseUp={() => setMale(false)}
+                        onMouseUp={() => {setMale(false), handleMaleUnclick()}}
                     />
                     <div>
                         &nbsp;
@@ -324,9 +334,9 @@ const CalorieCalculator = ({ user }) => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
-                                checked={radio === '1'}
+                                checked={radio === '1' && checked}
                                 onChange={handleLifeChange}
-                                onMouseUp={() => setLifestyle(1)}
+                                onMouseUp={() => {setLifestyle(1), handleUnclick()}}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
                             <input
@@ -335,9 +345,9 @@ const CalorieCalculator = ({ user }) => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
-                                checked={radio === '2'}
+                                checked={radio === '2' && checked}
                                 onChange={handleLifeChange}
-                                onMouseUp={() => setLifestyle(2)}
+                                onMouseUp={() => {setLifestyle(2), handleUnclick()}}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
                             <input
@@ -346,9 +356,9 @@ const CalorieCalculator = ({ user }) => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
-                                checked={radio === '3'}
+                                checked={radio === '3' && checked}
                                 onChange={handleLifeChange}
-                                onMouseUp={() => setLifestyle(3)}
+                                onMouseUp={() => {setLifestyle(3), handleUnclick()}}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
                             <input
@@ -357,9 +367,9 @@ const CalorieCalculator = ({ user }) => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
-                                checked={radio === '4'}
+                                checked={radio === '4' && checked}
                                 onChange={handleLifeChange}
-                                onMouseUp={() => setLifestyle(4)}
+                                onMouseUp={() => {setLifestyle(4), handleUnclick()}}
                             />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
                             <input
@@ -368,9 +378,9 @@ const CalorieCalculator = ({ user }) => {
                                 required
                                 style={{ width: '30px' }}
                                 value={lifestyle}
-                                checked={radio === '5'}
+                                checked={radio === '5' && checked}
                                 onChange={handleLifeChange}
-                                onMouseUp={() => setLifestyle(5)}
+                                onMouseUp={() => {setLifestyle(5), handleUnclick()}}
                             />
                             <div style={{ color: 'grey', fontSize: '15px' }}>
                                 &nbsp;1 = Low Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 = High Activity
@@ -491,113 +501,119 @@ const CalorieCalculator = ({ user }) => {
         {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms, lifestyle }, null, 2)}</pre> */}
         </Container>
-        <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
-            <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
-                <Message
-                    attached
-                    compact
-                    icon="chart line"
-                    header="Track Progress"
-                    content="View Your Recommended Daily Caloric Intake"
-                    color="black"
-                    style={{ background: '#26313c' }}
-                />
-                <Item attached style={{ background: '#313e4c', display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button
-                        content="1D"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(1)}}
+        {user ? (<>
+            <Container textAlign="center" as="h3" style={{ margin: '3em', display: counting.length ? 'block' : 'none' }}>
+                <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+                    <Message
+                        attached
+                        compact
+                        icon="chart line"
+                        header="Track Progress"
+                        content="View Your Recommended Daily Caloric Intake"
+                        color="black"
+                        style={{ background: '#26313c' }}
                     />
-                    <Button 
-                        content="7D"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(7)}}
-                    />
-                    <Button
-                        content="1M"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(30)}}
-                    />
-                    <Button
-                        content="6M"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(182)}}
-                    />
-                    <Button
-                        content="1Y"
-                        className={styles.underline}
-                        style={{ padding: '0', margin: '0em 2.5em 0em 1.2em', background: '#313e4c', color: 'white' }}
-                        onClick={() => {setData([]), setNumb(365)}}
-                    />
-                </Item>
-                <div className={styles.chart} style={{ padding: '3rem' }}>
-                    <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
-                        <AreaChart data={data} key={`ac_${data.length}`}>
-                            <defs>
-                                <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
-                                    <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
-                                    <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
-                                </linearGradient>
-                            </defs>
-                            <Area type="monotone" dataKey="value" stroke="#2451B7" fill="url(#color)" key={`a_${data.length}`} />
-                            <Area dataKey="average" stroke="#2451B7" fillOpacity={1} fill="url(#colorPv)" key={`avg_${data.length}`}/>              {/* goal line */}
-                            <XAxis
-                                dataKey="date"
-                                axisLine={false}
-                                tickLine={false}
-                                tickFormatter={(str) => {
-                                    const date = parseISO(str);
-                                    if (date.getDate() % 7 === 0) {
-                                        return format(date, "MMM, d");
-                                    }
-                                        return "";
-                                }}
-                            >
-                                {/* <Label
-                                    style={{
-                                        textAnchor: "end",
-                                        fontSize: "1em",
-                                        fill: "gray",
-                                        fillOpacity: ".7",
-                                        fontWeight: "700"
+                    <Item attached style={{ background: '#313e4c', display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button
+                            content="1D"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(1)}}
+                        />
+                        <Button 
+                            content="7D"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(7)}}
+                        />
+                        <Button
+                            content="1M"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(30)}}
+                        />
+                        <Button
+                            content="6M"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(182)}}
+                        />
+                        <Button
+                            content="1Y"
+                            className={styles.underline}
+                            style={{ padding: '0', margin: '0em 2.5em 0em 1.2em', background: '#313e4c', color: 'white' }}
+                            onClick={() => {setData([]), setNumb(365)}}
+                        />
+                    </Item>
+                    <div className={styles.chart} style={{ padding: '3rem' }}>
+                        <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
+                            <AreaChart data={data} key={`ac_${data.length}`}>
+                                <defs>
+                                    <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
+                                        <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
+                                        <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
+                                    </linearGradient>
+                                </defs>
+                                <Area type="monotone" dataKey="value" stroke="#2451B7" fill="url(#color)" key={`a_${data.length}`} />
+                                <Area dataKey="average" stroke="#2451B7" fillOpacity={1} fill="url(#colorPv)" key={`avg_${data.length}`}/>              {/* goal line */}
+                                <XAxis
+                                    dataKey="date"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tickFormatter={(str) => {
+                                        const date = parseISO(str);
+                                        if (date.getDate() % 7 === 0) {
+                                            return format(date, "MMM, d");
+                                        }
+                                            return "";
                                     }}
-                                    angle={0} 
-                                    value={"Date"} 
-                                    position='insideRight'
-                                /> */}
-                            </XAxis>
-                            <YAxis
-                                dataKey="value"
-                                axisLine={false}
-                                tickLine={false}
-                                tickCount={8}
-                                tickFormatter={(number) => `${number}`}
-                            >
-                                {/* <Label
-                                    style={{
-                                        textAnchor: "middle",
-                                        fontSize: "1em",
-                                        fill: "gray",
-                                        fillOpacity: ".7",
-                                        fontWeight: "700"
-                                    }}
-                                    angle={0} 
-                                    value={"Calories"}
-                                    position='insideTop'
-                                /> */}
-                            </YAxis>
-                            <Tooltip content={<CustomTooltip />} />
-                            {/* <Legend verticalAlign="top" iconType="plainline" /> */}
-                            <CartesianGrid opacity={0.1} vertical={false} />
-                        </AreaChart>
-                    </ResponsiveContainer>
-                </div>
+                                >
+                                    {/* <Label
+                                        style={{
+                                            textAnchor: "end",
+                                            fontSize: "1em",
+                                            fill: "gray",
+                                            fillOpacity: ".7",
+                                            fontWeight: "700"
+                                        }}
+                                        angle={0} 
+                                        value={"Date"} 
+                                        position='insideRight'
+                                    /> */}
+                                </XAxis>
+                                <YAxis
+                                    dataKey="value"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tickCount={8}
+                                    tickFormatter={(number) => `${number}`}
+                                >
+                                    {/* <Label
+                                        style={{
+                                            textAnchor: "middle",
+                                            fontSize: "1em",
+                                            fill: "gray",
+                                            fillOpacity: ".7",
+                                            fontWeight: "700"
+                                        }}
+                                        angle={0} 
+                                        value={"Calories"}
+                                        position='insideTop'
+                                    /> */}
+                                </YAxis>
+                                <Tooltip content={<CustomTooltip />} />
+                                {/* <Legend verticalAlign="top" iconType="plainline" /> */}
+                                <CartesianGrid opacity={0.1} vertical={false} />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
+                </Container>
             </Container>
-        </Container>
+        </>
+        ) : (
+        <>
+            
+        </>)}
       </>
     );
   }

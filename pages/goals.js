@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import GoalList from '../components/GoalList';
 import { Button, Container, Message, Segment, Placeholder, Card, Icon, Item } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';                                                      //Universally Unique Identifiers, or UUIDS, are 128 bit numbers, composed of 16 octets and represented as 32 base-16 characters, that can be used to identify information across a computer system
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
+// import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 // import DatePicker from "react-datepicker";
@@ -12,7 +13,8 @@ import styles from '../styles/Footer.module.css';
 // const data = [];
 const LOCAL_STORAGE_KEY = 'goals';
 
-function Goals() {
+function Goals({ user }) {
+    // console.log(user);
     const [goals, setGoals] = useState([]);                                               //set array of goals when first loading
     const [count, setCount] = useState(0);
     const [data, setData] = useState([]);
@@ -93,6 +95,10 @@ function Goals() {
         // }
     }, [goals]);
 
+    useEffect(() => {
+        goalNameRef.current.focus();
+    }, [goals]);
+
     if (goals.length > 0) {
         for(let i = 0; i < goals.length; i++) {
 
@@ -135,7 +141,6 @@ function Goals() {
 
         goalNameRef.current.value = null;                                                  //clear out input after clicking Add Goal Button
     }
-
 
     function handleClear() {
         const newGoals = goals.filter(goal => !goal.complete);
@@ -196,50 +201,78 @@ function Goals() {
                     content="Set and Track Your Goals"
                     color="black"
                 />
-                <Segment>
-                    {/* ternary to show placeholder */}
-                    {(goals.length < 1) ? (<>
-                        <Placeholder>
-                            <Card.Group itemsPerRow={1} stackable>
-                                <Card>
-                                    <Card.Content>
-                                        <Placeholder style={{ fontSize: '2em', textAlign: 'center', padding: '5em 2em 5em 4em', margin: '0vw -7.2vw 0vw 0vw', background: 'linear-gradient(to bottom, silver, white)' }}>
-                                            <Icon
-                                                name="plus"
-                                            />
-                                            Add Some Goals
-                                        </Placeholder>
-                                    </Card.Content>
-                                </Card>
-                            </Card.Group>
-                        </Placeholder>
-                    </>
-                    ) : (
-                    <>
-                        <GoalList goals={goals} toggleGoal={toggleGoal} />                              {/* pass goals to <GoalList /> */}
-                    </>)}
-                    <Segment style={{ display: 'flex', justifyContent: 'flex-start', margin: '.5em' }}>
-                        <h2>{goals.filter(goal => !goal.complete).length} {(goals.length === 1) ? 'goal left to complete' : 'goals left to complete'}</h2>
-                    </Segment>
-                    <Segment style={{ border: 'none', padding: '2em 0em 3em 0em' }}>
-                        <div>
-                            <div style={{ textAlign: 'left', padding: '0em 1em 1em 1em', fontSize: '19px' }}>Add Goal to List</div>
-                            <h1 style={{ display: 'flex', justifyContent: 'flex-start', margin: '-.4em 0em 0em .7em', fontSize: '23px' }}>
-                                <input ref={goalNameRef} className={styles.input} type="number" autoFocus placeholder="+ add goals" />
-                            </h1>    {/* type="text" */}
-                        </div>
-                    </Segment>
-                    <Segment color="blue" style={{ textAlign: 'left', margin: '1em 1em 1em', padding: '2em 2em 2em 2em' }}>
-                        <Button size="big" onClick={handleAddGoal} color="blue">Add Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        <Button size="big" onClick={handleClear}>Clear Checked Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button size="big" onClick={clearAll}>Clear All</Button>
-                        {/* <pre>
-                            <DatePicker selected={startDate} onClick={(date) => setStartDate(date)} />
-                        </pre> */}
+                {user ? (<>
+                    <Segment>
+                        {/* ternary to show placeholder */}
+                        {(goals.length < 1) ? (<>
+                            <Placeholder>
+                                <Card.Group itemsPerRow={1} stackable>
+                                    <Card>
+                                        <Card.Content>
+                                            <Placeholder style={{ fontSize: '2em', textAlign: 'center', padding: '5em 2em 5em 4em', margin: '0vw -7.2vw 0vw 0vw', background: 'linear-gradient(to bottom, silver, white)' }}>
+                                                <Icon
+                                                    name="plus"
+                                                />
+                                                Add Some Goals
+                                            </Placeholder>
+                                        </Card.Content>
+                                    </Card>
+                                </Card.Group>
+                            </Placeholder>
+                        </>
+                        ) : (
+                        <>
+                            <GoalList goals={goals} toggleGoal={toggleGoal} count={count} />                              {/* pass goals to <GoalList /> */}
+                        </>)}
+                        <Segment style={{ display: 'flex', justifyContent: 'flex-start', margin: '.5em' }}>
+                            <h2>{goals.filter(goal => !goal.complete).length} {(goals.length === 1) ? 'goal left to complete' : 'goals left to complete'}</h2>
+                        </Segment>
+                        <Segment style={{ border: 'none', padding: '2em 0em 3em 0em' }}>
+                            <div>
+                                <div style={{ textAlign: 'left', padding: '0em 1em 1em 1em', fontSize: '19px' }}>Add Goal to List</div>
+                                <h1 style={{ display: 'flex', justifyContent: 'flex-start', margin: '-.4em 0em 0em .7em', fontSize: '23px' }}>
+                                    <input ref={goalNameRef} className={styles.input} type="text" autoFocus placeholder="+ add goals" />
+                                </h1>    {/* type="text" */}
+                            </div>
+                        </Segment>
+                        <Segment color="blue" style={{ textAlign: 'left', margin: '1em 1em 1em', padding: '2em 2em 2em 2em' }}>
+                            <Button size="big" onClick={handleAddGoal} color="blue">Add Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <Button size="big" onClick={handleClear}>Clear Checked Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button size="big" onClick={clearAll}>Clear All</Button>
+                            {/* <pre>
+                                <DatePicker selected={startDate} onClick={(date) => setStartDate(date)} />
+                            </pre> */}
+                        </Segment> 
                     </Segment> 
-                </Segment> 
-                
-                <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+                </>
+                ) : (
+                <>
+                    <Placeholder>
+                        <Card.Group itemsPerRow={1} stackable>
+                            <Card>
+                                <Card.Content>
+                                    <Placeholder style={{ fontSize: '2em', textAlign: 'center', padding: '5em 2em 5em 4em', margin: '0vw -7.2vw 0vw 0vw', background: 'linear-gradient(to bottom, silver, white)' }}>
+                                        <Icon
+                                            name="plus"
+                                        />
+                                        Add Some Goals
+                                    </Placeholder>
+                                </Card.Content>
+                            </Card>
+                        </Card.Group>
+                    </Placeholder>
+                    <Message style={{ textAlign: 'center', margin: '0 0 0' }}>
+                        <Icon
+                            name="sign in"
+                            size="large"
+                        />
+                        <Link href="/Login">
+                            <a style={{ color: '#3978f5' }}>Login</a>
+                        </Link>{" "}
+                        To Add Goals
+                    </Message>
+                </>)}
+                {/* <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
                     <Message
                         attached
                         compact
@@ -315,25 +348,25 @@ function Goals() {
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
-                </Container>
+                </Container> */}
             </Container>
         </>
     );
 }
 
-function CustomTooltip({ active, payload, label }) {
-    // console.log(payload[0]?.payload?.value);               //hover over graph to see
-    // console.log(payload[0]);
-    if(active) {
-        return (
-            <div style={{ color: '#fff', background: '#26313c', borderRadius: '.25rem', textAlign: 'center', padding: '1em 1.5em 1em 1.5em' }} >
-                <h3>{format(parseISO(label), "eeee, MMM d, yyy")}</h3>
-                {/* <p>{payload[0].value} lbs</p> */}
-                <p>{payload[0]?.payload?.value}</p>
-            </div>
-        );
-    }
-    return null;
-}
+// function CustomTooltip({ active, payload, label }) {
+//     // console.log(payload[0]?.payload?.value);               //hover over graph to see
+//     // console.log(payload[0]);
+//     if(active) {
+//         return (
+//             <div style={{ color: '#fff', background: '#26313c', borderRadius: '.25rem', textAlign: 'center', padding: '1em 1.5em 1em 1.5em' }} >
+//                 <h3>{format(parseISO(label), "eeee, MMM d, yyy")}</h3>
+//                 {/* <p>{payload[0].value} lbs</p> */}
+//                 <p>{payload[0]?.payload?.value}</p>
+//             </div>
+//         );
+//     }
+//     return null;
+// }
 
 export default Goals;

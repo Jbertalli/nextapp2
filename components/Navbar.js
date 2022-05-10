@@ -2,11 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Menu, Dropdown, Icon, Container, Sticky } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Container, Sticky, Image, Card, Feed } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
+import { mediaPreview } from '../components/AccountHeader';
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user,mediaPreview }) => {
     console.log(user);
     // console.log(user.role);
     const router = useRouter();
@@ -59,7 +60,7 @@ const Navbar = ({ user }) => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Item>
-                    <Link href="/TrackProgress">
+                    {/* <Link href="/TrackProgress">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/TrackProgress")}>
                             <Icon
                                 name="chart line"
@@ -67,14 +68,14 @@ const Navbar = ({ user }) => {
                             />
                             Track Progress
                         </Menu.Item>
-                    </Link>
+                    </Link> */}
                     <Link href="/goals">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/goals")}>
                             <Icon
                                 name="target"
                                 size="large"
                             />
-                            Goals
+                            Set Goals
                         </Menu.Item>
                     </Link>
                     {user ? (<> 
@@ -84,6 +85,12 @@ const Navbar = ({ user }) => {
                                 name="user outline"
                                 size="large"
                             />
+                            {/* <Image src={mediaPreview} centered size="small" style={{ borderRadius: '10%', width: '9vw' }} /> */}
+                            {/* <Feed style={{ margin: '0em 1em 0em 0em' }}>
+                                <Feed.Event>
+                                    <Feed.Label image={mediaPreview} />
+                                </Feed.Event>
+                            </Feed> */}
                             Account
                         </Menu.Item>
                     </Link>
