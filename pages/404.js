@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Router, useRouter } from 'next/router';
 import { Button, Container } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
+import Fishing from '../components/Fishing';
 
 const NotFound = () => {
     const router = useRouter();
@@ -40,6 +41,7 @@ const NotFound = () => {
                         onClick={() => router.push('/')}
                     />
                 </Container>
+                <Fishing />
                 {/* <Item 
                     style={{ width: '500px', height: '500px', background: 'blue', transform: 'rotate(45deg)', transform: 'translateX(100%)' }}
                 /> */}

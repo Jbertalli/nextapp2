@@ -5,6 +5,8 @@ import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item } fr
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
 
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
@@ -105,7 +107,7 @@ const CalorieCalculator = ({ user }) => {
 
     console.log(avg);
 
-    function handleAddGoal(e) {
+    async function handleAddGoal(e) {
         const name = Calories.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
@@ -117,14 +119,26 @@ const CalorieCalculator = ({ user }) => {
         setData([]);
 
         Calories.current?.innerText = null;                                                  //clear out input after clicking Add Goal Button
+
+        const url = `${baseUrl}/api/CalorieIntakeCalculator`;
+        const payload = [ caloric_intake ];
+        const response = await axios.post(url, payload);
+        console.log(response.data);
+        console.log(caloric_intake);
     }
 
-    function clearAll() {
+    async function clearAll() {
         setCount(0);
         setGoals([]);
         setData([]);
         console.clear();
         console.log('%c cleared all goals', 'color: red');
+
+        const url = `${baseUrl}/api/CalorieIntakeCalculator`;
+        const payload = [ caloric_intake ];
+        const response = axios.delete(url, payload);
+        console.log(response.data);
+        console.log(caloric_intake);
     }
 
     let fruits = []
@@ -141,7 +155,9 @@ const CalorieCalculator = ({ user }) => {
         });
     }
 
-    console.log(counting.flat());                                          //flatten out array
+    // console.log(counting.flat());                                          //flatten out array
+    const caloric_intake = counting.flat();
+    console.log(caloric_intake);
     console.log(data);
 
     return (

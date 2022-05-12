@@ -18,30 +18,29 @@ export default async (req, res) => {
             res.status(405).send(`Method ${req.method} not allowed`);
             break;
     }
-};
+}
 
 async function handlePostRequest(req, res) {
-    const [ caloric_intake ] = req.body;
+    const [ body_fat_percent ] = req.body;
     try {
-        const cal = await new Progress({
-            caloric_intake
+        const bf = await new Progress({
+            body_fat_percent
         }).save();
-        res.status(201).json(cal);
-        console.log({ cal });
+        res.status(201).json(bf);
+        console.log({ bf });
     } catch(error) {
         console.error(error);
-        res.status(500).send("Server updating caloric intake");
+        res.status(500).send("Sever error while updating Body Fat Percentage");
     }
-} 
+}
 
 async function handleDeleteRequest(req, res) {
-    const [ caloric_intake ] = req.body;
+    const [ body_fat_percent] = req.body;
     try {
-        await Progress.findOneAndDelete([ caloric_intake ]);
+        await Progress.findOneAndDelete([ body_fat_percent ]);
         res.status(204).end();
     } catch(error) {
         console.error(error);
-        return res.status(500).send("Error deleting calorie intake history");
+        res.status(500).send("Error deleting Body Fat % history");
     }
 }
-                        

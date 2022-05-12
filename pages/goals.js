@@ -7,8 +7,8 @@ import { v4 as uuidv4 } from 'uuid';                                            
 // import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
 
 // const data = [];
 const LOCAL_STORAGE_KEY = 'goals';
@@ -20,7 +20,6 @@ function Goals({ user }) {
     const [data, setData] = useState([]);
     const [numb, setNumb] = useState(30);
     const goalNameRef = useRef();                                                         //access to html element
-    // const [startDate, setStartDate] = useState(new Date());
 
     //SAVE GOALS
     //useEffect to load goals right when component mounts
@@ -96,7 +95,9 @@ function Goals({ user }) {
     }, [goals]);
 
     useEffect(() => {
-        goalNameRef.current.focus();
+        if (user) {
+            goalNameRef.current.focus();
+        }
     }, [goals]);
 
     if (goals.length > 0) {
@@ -127,7 +128,7 @@ function Goals({ user }) {
         setData([]);
     }
 
-    function handleAddGoal(e) {
+    async function handleAddGoal(e) {
         const name = goalNameRef.current.value;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
@@ -140,6 +141,14 @@ function Goals({ user }) {
         console.log(goalNameRef.current.value);
 
         goalNameRef.current.value = null;                                                  //clear out input after clicking Add Goal Button
+       
+        e.preventDefault();
+        const url = `${baseUrl}/api/goals`;
+        const payload = [ goal_list ];                                     //pass in ARRAY
+        // const payload = { goal_list }
+        const response = await axios.post(url, payload);
+        console.log(response.data);
+        console.log(goal_list);
     }
 
     function handleClear() {
@@ -152,12 +161,19 @@ function Goals({ user }) {
         console.log('%c cleared some goals', 'color: orange');
     }
 
-    function clearAll() {
+    async function clearAll(e) {
         setCount(0);
         setGoals([]);
         setData([]);
         console.clear();
         console.log('%c cleared all goals', 'color: red');
+
+        e.preventDefault();
+        const url = `${baseUrl}/api/goals`;
+        const payload = [ goal_list ];
+        const response = axios.delete(url, payload);
+        console.log(response.data);
+        console.log(goal_list);
     }
 
     // let fruits = [1, 2, 3, 2, 1, 3, 5, 3, 1, 5, 7, 5, 1, 9, 11, 9, 4, counting.flat()]
@@ -181,10 +197,11 @@ function Goals({ user }) {
         });
     }
 
-    console.log(counting.flat());                                          //flatten out array
+    //console.log(counting.flat());                                          //flatten out array
+    const goal_list = counting.flat();
+    console.log(goal_list);
     console.log(data);
     // console.log(data[0].date);
-    // console.log(startDate);
     
     return (
         <>
@@ -239,9 +256,6 @@ function Goals({ user }) {
                             <Button size="big" onClick={handleAddGoal} color="blue">Add Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             <Button size="big" onClick={handleClear}>Clear Checked Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <Button size="big" onClick={clearAll}>Clear All</Button>
-                            {/* <pre>
-                                <DatePicker selected={startDate} onClick={(date) => setStartDate(date)} />
-                            </pre> */}
                         </Segment> 
                     </Segment> 
                 </>

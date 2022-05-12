@@ -6,7 +6,9 @@ import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianG
 import { format, parseISO, subDays } from 'date-fns';
 // import GoalList from '../components/GoalList';
 import styles from '../styles/Footer.module.css';
-import Chart from '../components/Chart';
+// import Chart from '../components/Chart';
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
 
 const LOCAL_STORAGE_KEY = 'BMI_progress';
 
@@ -76,7 +78,7 @@ const BMICalculator = ({ user }) => {
     //     setData([]);
     // }
 
-    function handleAddGoal(e) {
+    async function handleAddGoal(e) {
         const name = BMI.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
@@ -88,6 +90,13 @@ const BMICalculator = ({ user }) => {
         setData([]);
 
         BMI.current?.innerText = null;                                                  //clear out input after clicking Add Goal Button
+
+        e.preventDefault();
+        const url = `${baseUrl}/api/BMICalculator`;
+        const payload = [ body_mass_index ];
+        const response = await axios.post(url, payload);
+        console.log(response.data);
+        console.log(body_mass_index);
     }
 
     // function handleClear() {
@@ -100,12 +109,18 @@ const BMICalculator = ({ user }) => {
     //     console.log('%c cleared some goals', 'color: orange');
     // }
 
-    function clearAll() {
+    async function clearAll(e) {
         setCount(0);
         setGoals([]);
         setData([]);
         console.clear();
         console.log('%c cleared all calculations', 'color: red');
+ 
+        const url = `${baseUrl}/api/BMICalculator`;
+        const payload = [ body_mass_index ];
+        const response = await axios.delete(url, payload);
+        console.log(response.data);
+        console.log(body_mass_index);
     }
 
     let fruits = []
@@ -124,7 +139,9 @@ const BMICalculator = ({ user }) => {
         });
     }
 
-    console.log(counting.flat());                                          //flatten out array
+    // console.log(counting.flat());                                          //flatten out array
+    const body_mass_index = counting.flat();
+    console.log(body_mass_index);
     console.log(data);
     console.log("target BMI line:", lined);
 

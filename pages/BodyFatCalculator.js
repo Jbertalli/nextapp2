@@ -5,6 +5,8 @@ import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Div
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
+import baseUrl from '../utils/baseUrl';
+import axios from 'axios';
 
 const LOCAL_STORAGE_KEY = 'BF%_progress';
 
@@ -82,7 +84,7 @@ const BodyFatPercent = ({ user }) => {
         // console.log(counting);
     }
 
-    function handleAddGoal(e) {
+    async function handleAddGoal(e) {
         const name = BF.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
@@ -94,14 +96,27 @@ const BodyFatPercent = ({ user }) => {
         setData([]);
 
         BF.current?.innerText = null;                                                  //clear out input after clicking Add Goal Button
+
+        e.preventDefault();
+        const url = `${baseUrl}/api/BodyFatCalculator`;
+        const payload = [ body_fat_percent ];
+        const response = await axios.post(url, payload);
+        console.log(response);
+        console.log(body_fat_percent);
     }
 
-    function clearAll() {
+    async function clearAll() {
         setCount(0);
         setGoals([]);
         setData([]);
         console.clear();
         console.log('%c cleared all calculations', 'color: red');
+
+        const url = `${baseUrl}/api/BodyFatCalculator`;
+        const payload = [ body_fat_percent ];
+        const response = await axios.delete(url, payload);
+        console.log(response.data);
+        console.log(body_fat_percent);
     }
 
     let fruits = []
@@ -119,7 +134,9 @@ const BodyFatPercent = ({ user }) => {
         });
     }
 
-    console.log(counting.flat());                                          //flatten out array
+    //console.log(counting.flat());                                          //flatten out array
+    const body_fat_percent = counting.flat();
+    console.log(body_fat_percent);
     console.log(data);
     console.log("target BF% line:", lined);
     

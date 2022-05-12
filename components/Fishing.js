@@ -1,16 +1,10 @@
-import Head from 'next/head';
 import styles from '../styles/Footer.module.css';
 
 const Languages = () => {
     return (
         <>
-            <Head>
-                <title>HealthStat | Languages</title>
-                <meta name="description" content="languages" />
-            </Head>
-            Languages
-            <div className={styles.rotating}>
-                <div className={styles.animate_pole} style={{ transform: 'rotate(-30deg)', background: 'red' }}>                                        {/* rotate whole rod here */}
+            <div className={styles.rotating} style={{ margin: '-65em 10em 10em 10em' }}>
+                <div className={styles.animate_pole} style={{ transform: 'rotate(-30deg)'}}>                                        {/* rotate whole rod here */}
                     <div style={{ margin: '40em', transform: 'translateY(0%)' }}>
                         <div style={{ transform: 'translateY(200%)'}}>
                             <div className={styles.reel1} style={{ margin: '20em 0em 0em 20em' }} />
@@ -37,7 +31,7 @@ const Languages = () => {
                             <div className={styles.fishingline} style={{ margin: '-26.7em 0em 0em -13.2em' }} />
                         </div>
                         <div style={{ transform: 'rotate(-3.5deg)' }}>
-                            <div className={styles.lined} style={{ margin: '-70em 0em 0em 21.8em' }} />
+                            <div className={styles.lined} style={{ margin: '-70em 0em 0em 21.8em' }}></div>
                         </div>
                         <div style={{ transform: 'rotate(50deg)', margin: '2.6em 0em 0em -38em' }}>
                             <div className={styles.hook1} />

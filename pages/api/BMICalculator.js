@@ -21,27 +21,26 @@ export default async (req, res) => {
 };
 
 async function handlePostRequest(req, res) {
-    const [ caloric_intake ] = req.body;
+    const [ body_mass_index ] = req.body;
     try {
-        const cal = await new Progress({
-            caloric_intake
+        const bmi = await new Progress({
+            body_mass_index
         }).save();
-        res.status(201).json(cal);
-        console.log({ cal });
+        res.status(201).json({ bmi });
+        console.log({ bmi });
     } catch(error) {
         console.error(error);
-        res.status(500).send("Server updating caloric intake");
+        res.status(500).send("Server error while updating BMI");
     }
-} 
+}
 
 async function handleDeleteRequest(req, res) {
-    const [ caloric_intake ] = req.body;
+    const [ body_mass_index ] = req.body;
     try {
-        await Progress.findOneAndDelete([ caloric_intake ]);
+        await Progress.findOneAndDelete([ body_mass_index ]);
         res.status(204).end();
     } catch(error) {
         console.error(error);
-        return res.status(500).send("Error deleting calorie intake history");
+        return res.status(500).send("Error deleting BMI history");
     }
 }
-                        
