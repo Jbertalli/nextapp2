@@ -30,7 +30,7 @@ const CompoundInterestCalculator = () => {
                 color="black"
             />
         <Form onClick={() => handleInput()}>
-            <Segment size="huge" textAlign="left">
+            <Segment size="huge" textAlign="left" autoFocus>
                 <Form.Input
                     fluid
                     icon="dollar sign"
@@ -43,6 +43,7 @@ const CompoundInterestCalculator = () => {
                     min="0"
                     max="1000000000"
                     required
+                    autoFocus
                     value={initialInvestment}
                     onChange={e => setInitialInvestment(e.target.value)}
                 />

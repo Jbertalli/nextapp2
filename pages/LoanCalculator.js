@@ -45,6 +45,7 @@ const LoanCalculator = () => {
                     min="0"
                     max="1000000000"
                     required
+                    autoFocus
                     value={principal}
                     onChange={e => setPrincipal(e.target.value)}
                 />

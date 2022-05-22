@@ -1,0 +1,33 @@
+.boxed {
+    border: 1px solid black;
+    background: black;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+.strike {
+    border: 2px solid #f2f2f2;
+    width: 120px;
+  }
+  
+.turning {
+    position: relative;
+    display: inline-block;
+    /* animation-name: turning;
+    animation-duration: 1s;
+    transform-origin: top; */
+    transform: scale(.3,.3) translateY(75px) translateX(-140px); 
+    height: 0vh;
+  }
+  
+.back {
+    border: 1px solid #f2f2f2;
+    background: #f2f2f2;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    position: relative;
+    z-index: -1;
+    transform: translateX(-5px) translateY(-50px);
+  }

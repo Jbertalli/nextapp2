@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Footer.module.css';
+import Icons from '../components/Icons';
+import Bubble from '../components/Bubble';
 
 const Languages = () => {
     return (
@@ -8,9 +10,8 @@ const Languages = () => {
                 <title>HealthStat | Languages</title>
                 <meta name="description" content="languages" />
             </Head>
-            Languages
-            <div className={styles.rotating}>
-                <div className={styles.animate_pole} style={{ transform: 'rotate(-30deg)', background: 'red' }}>                                        {/* rotate whole rod here */}
+            {/* <div className={styles.rotating}> */}
+                {/* <div className={styles.animate_pole} style={{ transform: 'rotate(-30deg)', background: 'red' }}>
                     <div style={{ margin: '40em', transform: 'translateY(0%)' }}>
                         <div style={{ transform: 'translateY(200%)'}}>
                             <div className={styles.reel1} style={{ margin: '20em 0em 0em 20em' }} />
@@ -48,8 +49,29 @@ const Languages = () => {
                             <div className={styles.hook6} style={{ margin: '-1.7em 0em 0em -.6em' }} />
                         </div>
                     </div>
+                </div> */}
+            {/* </div> */}
+            {/* <div style={{ transform: 'translateX(50%) translateY(50%)' }} className={styles.h} />
+            <div style={{ transform: 'translateX(50%) translateY(50%)' }} className={styles.h} />
+            <div style={{ transform: 'rotate(180deg) translateX(150%) translateY(-150%)' }} className={styles.h} />
+            <div style={{ transform: 'rotate(180deg) translateX(150%) translateY(-150%)' }} className={styles.h} /> */}
+
+            {/* <div style={{ transform: 'translateY(-30%)' }}>
+                <b><div style={{ fontSize: '3em', color: 'black', fontFamily: 'serif', transform: 'translateX(22%) translateY(1550%)' }} className={styles.stat}>Health</div></b>
+                <b><div style={{ fontSize: '3em', color: 'black', fontFamily: 'serif', transform: 'translateX(25%) translateY(1650%)' }} className={styles.stat}>Stat</div></b>
+                <div className={styles.drop} style={{ margin: '25em' }} />  
+            </div> */}
+
+            {/* <div className={styles.turning}>
+                <div className={styles.boxed} >
+                    <div style={{ fontSize: '4.5em', color: '#f2f2f2', fontFamily: 'serif', transform: 'translateX(15%) translateY(200%)' }}>H</div>
+                    <div style={{ fontSize: '4.5em', color: '#f2f2f2', fontFamily: 'serif', transform: 'translateX(62%) translateY(330%)' }}>S</div> 
+                    <div style={{ transform: 'translateX(.9vw) translateY(2.6vh) rotate(-45deg)' }} className={styles.strike}></div>
                 </div>
-            </div>
+            </div> */}
+
+            {/* <Icons />
+            <Bubble /> */}
         </>
     );
 }

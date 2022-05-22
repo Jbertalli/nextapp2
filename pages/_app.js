@@ -71,10 +71,10 @@ class MyApp extends App {
     return (
       <>
         <Head>
-            <link rel="shortcut icon" href="/images/N_J-logo-black.png" />
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/N_J-logo-black.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/images/N_J-logo-black.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/images/N_J-logo-black.png" />
+            <link rel="shortcut icon" sizes="32x32" href="/images/HealthStat_Logo.png" />
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/HealthStat_Logo.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/images/HealthStat_Logo.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/images/HealthStat_Logo.png" />
         </Head>
           <NextNProgress height={4} color="white" startPosition={0.3} stopDelayMs={200} />
         <Layout {...pageProps}>

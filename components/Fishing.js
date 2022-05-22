@@ -1,4 +1,4 @@
-import styles from '../styles/Footer.module.css';
+import styles from '../styles/Fishing.module.css';
 
 const Languages = () => {
     return (
@@ -14,11 +14,13 @@ const Languages = () => {
                         </div>
                         <div className={styles.rod} style={{ margin: '-54.2em 0em 0em 21.7em' }} />      
                         <div style={{ transform: 'rotate(-25deg)' }}>
-                            <div style={{ transform: 'translateY(220%)' }}>
-                                <div style={{ transform: 'translateX(64.5%)' }}>
-                                    <div className={styles.handle1} />
-                                    <div className={styles.handle2} style={{ transform: 'rotate(25deg)' }} />
-                                    <div className={styles.handle3} style={{ margin: '0em 0em 0em 2.1em' }} />
+                            <div style={{ transform: 'translateY(200%)' }}>
+                                <div style={{ transform: 'translateX(15%)' }}>
+                                    <div className={styles.spinning}>
+                                        <div className={styles.handle1} />
+                                        <div className={styles.handle2} style={{ transform: 'rotate(25deg)' }} />
+                                        <div className={styles.handle3} style={{ margin: '0em 0em 0em 2.1em' }} />
+                                    </div>
                                 </div>
                             </div>
                         </div>

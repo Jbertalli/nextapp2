@@ -2,12 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Menu, Dropdown, Icon, Container, Sticky, Image, Card, Feed } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Container, Sticky, Image, Card, Feed, Grid } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 import { mediaPreview } from '../components/AccountHeader';
+import Icons from '../components/Icons';
 
-const Navbar = ({ user,mediaPreview }) => {
+const Navbar = ({ user, mediaPreview }) => {
     console.log(user);
     // console.log(user.role);
     const router = useRouter();
@@ -20,8 +21,12 @@ const Navbar = ({ user,mediaPreview }) => {
     }
 
     return (
-        <Sticky style={{ position: 'relative' }}>
-            <Menu className={styles.nav} fluid stackable inverted>
+        // <Sticky style={{ position: 'relative' }}>
+        <div style={{ padding: '2.5vh' }}>
+            <Menu className={styles.nav} fixed='top' fluid stackable inverted>
+                <Grid>
+                    <Icons />
+                </Grid>
                 <Container>
                     <Link href="/">
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
@@ -32,7 +37,7 @@ const Navbar = ({ user,mediaPreview }) => {
                             Home
                         </Menu.Item>
                     </Link>
-                    <Menu.Item as="h3" header active={isActive("/CalorieIntakeCalculator")}>
+                    <Menu.Item as="h3" header active={isActive("/CalorieIntakeCalculator") || isActive("/BMICalculator") || isActive("/BodyFatCalculator")}>
                             <Icon 
                                 name="calculator"
                                 size="large"
@@ -47,7 +52,7 @@ const Navbar = ({ user,mediaPreview }) => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Item> 
-                    <Menu.Item as="h3" header active={isActive("/CompoundInterestCalculator")}>
+                    <Menu.Item as="h3" header active={isActive("/CompoundInterestCalculator") || isActive("/LoanCalculator")}>
                             <Icon 
                                 name="dollar sign"
                                 size="large"
@@ -135,7 +140,8 @@ const Navbar = ({ user,mediaPreview }) => {
                     </Link> */}
                 </Container>
             </Menu>
-        </Sticky>
+        {/* </Sticky> */}
+        </div>
     );
 }
 

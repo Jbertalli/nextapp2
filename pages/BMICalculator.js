@@ -201,6 +201,7 @@ const BMICalculator = ({ user }) => {
                                     min="0"
                                     max="8"
                                     required
+                                    autoFocus
                                     value={feet}
                                     onChange={e => {setFeet(e.target.value), setData([])}}
                                 />
@@ -261,6 +262,7 @@ const BMICalculator = ({ user }) => {
                                     min="0"
                                     max="270"
                                     required
+                                    autoFocus
                                     value={centimeters}
                                     onChange={e => {setCentimeters(e.target.value), setData([])}}
                                 />

@@ -5,6 +5,7 @@ import React from 'react';
 import axios from 'axios';
 import CalculatorList from '../components/CalculatorList';
 import { Container, Icon } from 'semantic-ui-react';
+import Icons from '../components/Icons';
 
 // export default function Home() {
 export default function Home({ examples }) {
@@ -26,13 +27,10 @@ export default function Home({ examples }) {
       <Head>
         <title>HealthStat | Home</title>
         <meta name="description" content="healthstat, calorie calculator" />
-      </Head>'
+      </Head>
       <h1 style={{ textAlign: 'center', fontSize: '50px'  }}>HealthStat</h1>
       <Container>
 
-
-
-      
       </Container>
       <Container style={{ margin: '3em 0 6em' }}>
         <div>

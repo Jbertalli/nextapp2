@@ -11,7 +11,7 @@ const siteMap = ({ user }) => {
                 <title>HealthStat | Site Map</title>
                 <meta name="description" content="site map, directory" />
             </Head>
-            <h1 style={{ fontSize: "50px", margin: '1em 0 6em' }} className={styles.siteMap}>
+            <h1 style={{ fontSize: "50px", margin: 'em 0 6em' }} className={styles.siteMap}>
                 HealthStat Site Map
                 <Container>
                 <Divider style={{ margin: '2em'}} />
@@ -50,7 +50,7 @@ const siteMap = ({ user }) => {
                                             <Link href="/account"><a>Profile</a></Link>
                                         </h3>
                                         <h3>
-                                            <Link href="/TrackProgress"><a>Track Progress</a></Link>
+                                            <Link href="/goals"><a>Set Goals</a></Link>
                                         </h3>
                                         <h3 onClick={handleLogout} style={{ cursor: 'pointer' }}>
                                             Logout

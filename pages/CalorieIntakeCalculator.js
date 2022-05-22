@@ -211,6 +211,7 @@ const CalorieCalculator = ({ user }) => {
                         min="0"
                         max="120"
                         required
+                        autoFocus
                         value={age}
                         onChange={e => {setAge(e.target.value), setData([])}}
                     />
