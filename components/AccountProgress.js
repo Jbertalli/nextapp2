@@ -46,16 +46,16 @@ function AccountProgress({ progress }) {
     return <>
         <Header as="h2">
             <Icon name="folder open"/>
-            Progress History
+            Goal History
         </Header>
             <Segment inverted tertiary color="grey" textAlign="center">
                 <Header icon>
                     <Icon name="copy outline"/>
-                    No progress history.
+                    No goal history.
                 </Header>
                 <div>
-                    <Button onClick={() => router.push('/TrackProgress')} color="blue">
-                        Track Progress
+                    <Button onClick={() => router.push('/goals')} color="blue">
+                        Set Goals
                     </Button>
                 </div>
             </Segment>

@@ -1,7 +1,8 @@
-import { Header, Icon, Segment, Label, Image } from 'semantic-ui-react';
+import { Header, Icon, Segment, Label } from 'semantic-ui-react';
 import formatDate from '../utils/formatDate';
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Footer.module.css';
+import Avatar from 'react-avatar';
 
 const LOCAL_STORAGE_KEY = 'profile_pic';
 
@@ -10,8 +11,8 @@ function AccountHeader({ role, email, name, createdAt }) {
     const [image, setImage] = useState({name: '', media: ''});
 
     useEffect(() => {
-        const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-        if (profilePic) setMediaPreview(profilePic)
+        const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+        if (profilePic) setMediaPreview(profilePic);
     }, []);
 
     useEffect(() => {
@@ -61,7 +62,12 @@ function AccountHeader({ role, email, name, createdAt }) {
                 ) : (
                 <>
                     <div>
-                       <Image src={mediaPreview} centered size="small" style={{ borderRadius: '10%', width: '9vw' }} /> 
+                        <Avatar 
+                            name="profile_pic"
+                            size="190"
+                            round={true}
+                            src={mediaPreview}
+                        />
                     </div>
                 </>)}
                 <input

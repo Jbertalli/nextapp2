@@ -5,10 +5,12 @@ import { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Sticky, Image, Card, Feed, Grid } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
-import { mediaPreview } from '../components/AccountHeader';
+// import AccountHeader from './AccountHeader';
+// import Avatar from 'react-avatar';
 import Icons from '../components/Icons';
 
 const Navbar = ({ user, mediaPreview }) => {
+    // console.log({mediaPreview});
     console.log(user);
     // console.log(user.role);
     const router = useRouter();
@@ -96,6 +98,14 @@ const Navbar = ({ user, mediaPreview }) => {
                                     <Feed.Label image={mediaPreview} />
                                 </Feed.Event>
                             </Feed> */}
+                            {/* <div>
+                                <Avatar 
+                                    name="profile_pic"
+                                    size="28"
+                                    round={true}
+                                    src={mediaPreview}
+                                />
+                            </div> */}
                             Account
                         </Menu.Item>
                     </Link>
@@ -130,14 +140,6 @@ const Navbar = ({ user, mediaPreview }) => {
                         </Menu.Item>
                     </Link>
                     </>)}
-                    {/* <Link href="/CrochetApp/Crochet">
-                        <Menu.Item className={styles.hover} as="h3" header active={isActive("/CrochetApp/Crochet")}>
-                            <Icon
-                                name="map pin"
-                            />
-                            Crochet App
-                        </Menu.Item>
-                    </Link> */}
                 </Container>
             </Menu>
         {/* </Sticky> */}
