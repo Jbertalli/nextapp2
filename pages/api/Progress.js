@@ -1,4 +1,4 @@
-import Progress from '../../components/Progress';
+import Progress from '../../models/Progress';
 import jwt from 'jsonwebtoken';
 import connectDb from '../../utils/connectDb';
 

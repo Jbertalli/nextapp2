@@ -33,9 +33,9 @@ const privacy = () => {
 
                         <p><strong>Last updated June 1, 2022</strong></p>
 
-                        <p>This privacy notice for HealthStat ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"), such as when you:</p>
+                        <p>{`This privacy notice for HealthStat ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"), such as when you:`}</p>
                         <ul>
-                            <p><li>Visit our website at <Link href='/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link> or any website of ours that links to this privacy notice</li></p>
+                            <p><li>Visit our website at <Link href='/' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link> or any website of ours that links to this privacy notice</li></p>
                             <p><li>Engage with us in other related ways, including any sales, marketing, or events</li></p>
                         </ul>
 
@@ -106,7 +106,7 @@ const privacy = () => {
                     
                     <p>The information we collect includes:</p>
                     <ul>
-                        <p><li>Log and Usage Data. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called "crash dumps"), and hardware settings).</li></p>
+                        <p><li>{`Log and Usage Data. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called "crash dumps"), and hardware settings).`}</li></p>
                         <p><li>Device Data. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.</li></p>
                     </ul>
 
@@ -162,11 +162,11 @@ const privacy = () => {
                     
                     <p>In Short: You may review, change, or terminate your account at any time.</p>
                     
-                    <p>If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your local data protection supervisory authority. You can find their contact details here: <Link href='https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm'><u><a style={{ color: '#3978f5' }} className={styles.hover}>ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm.</a></u></Link></p>
+                    <p>If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your local data protection supervisory authority. You can find their contact details here: <Link href='https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm.</a></u></Link></p>
                     
-                    <p>If you are located in Switzerland, the contact details for the data protection authorities are available here: <Link href='https://www.edoeb.admin.ch/edoeb/en/home.html'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://www.edoeb.admin.ch/edoeb/en/home.html.</a></u></Link></p>
+                    <p>If you are located in Switzerland, the contact details for the data protection authorities are available here: <Link href='https://www.edoeb.admin.ch/edoeb/en/home.html' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://www.edoeb.admin.ch/edoeb/en/home.html.</a></u></Link></p>
                     
-                    <p><strong><u>Withdrawing your consent:</u></strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "<u>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</u>" below.</p>
+                    <p><strong><u>Withdrawing your consent:</u></strong> {`If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "`}<u>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</u>{`" below.`}</p>
                     
                     <p>However, please note that this will not affect the lawfulness of the processing before its withdrawal, nor when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
                     
@@ -180,33 +180,33 @@ const privacy = () => {
 
                     <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
                     
-                    <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. To opt out of interest-based advertising by advertisers on our Services visit <Link href='http://www.aboutads.info/choices/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>http://www.aboutads.info/choices/.</a></u></Link></p>
+                    <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. To opt out of interest-based advertising by advertisers on our Services visit <Link href='http://www.aboutads.info/choices/' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>http://www.aboutads.info/choices/.</a></u></Link></p>
                     
                     <p>If you have questions or comments about your privacy rights, you may email us at jjbertalli@berkeley.edu.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
                     <h2><strong><a id="8">8. CONTROLS FOR DO-NOT-TRACK FEATURES</a></strong></h2>
                     
-                    <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
+                    <p>{`Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.`}</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
                     <h2><strong><a id="9">9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></strong></h2>
                     
                     <p>In Short: Yes, if you are a resident of California, you are granted specific rights regarding access to your personal information.</p>
                     
-                    <p>California Civil Code Section 1798.83, also known as the "Shine The Light" law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below.</p>
+                    <p>{`California Civil Code Section 1798.83, also known as the "Shine The Light" law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below.`}</p>
                     
                     <p>If you are under 18 years of age, reside in California, and have a registered account with Services, you have the right to request removal of unwanted data that you publicly post on the Services. To request removal of such data, please contact us using the contact information provided below and include the email address associated with your account and a statement that you reside in California. We will make sure the data is not publicly displayed on the Services, but please be aware that the data may not be completely or comprehensively removed from all our systems (e.g., backups, etc.).</p>
                     
                     <h3><strong>CCPA Privacy Notice</strong></h3>
                     
-                    <p>The California Code of Regulations defines a "resident" as:</p>
+                    <p>{`The California Code of Regulations defines a "resident" as:`}</p>
                     
                         <ul>(1) every individual who is in the State of California for other than a temporary or transitory purpose and</ul>
                         <ul>(2) every individual who is domiciled in the State of California who is outside the State of California for a temporary or transitory purpose</ul>
                     
-                    <p>All other individuals are defined as "non-residents.</p>
-                    <p>If this definition of "resident" applies to you, we must adhere to certain rights and obligations regarding your personal information.</p>
+                    <p>{`All other individuals are defined as "non-residents.`}</p>
+                    <p>{`If this definition of "resident" applies to you, we must adhere to certain rights and obligations regarding your personal information.`}</p>
                     
                     <p><strong>What categories of personal information do we collect?</strong></p>
                     
@@ -304,7 +304,7 @@ const privacy = () => {
                     
                     <p>We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Each service provider is a for-profit entity that processes the information on our behalf.</p>
                     
-                    <p>We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be "selling" of your personal information.</p>
+                    <p>{`We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be "selling" of your personal information.`}</p>
                     
                     <p>HealthStat has not disclosed or sold any personal information to third parties for a business or commercial purpose in the preceding twelve (12) months. HealthStat will not sell personal information in the future belonging to website visitors, users, and other consumers.</p>
                     
@@ -354,7 +354,7 @@ const privacy = () => {
                     
                     <p>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
                     
-                    <p>We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
+                    <p>{`We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.`}</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
                     <h2><strong><a id="11">11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></strong></h2>

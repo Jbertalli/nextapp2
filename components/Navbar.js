@@ -30,7 +30,7 @@ const Navbar = ({ user, mediaPreview }) => {
                     <Icons />
                 </Grid>
                 <Container>
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
                             <Icon
                                 name="home"
@@ -76,7 +76,7 @@ const Navbar = ({ user, mediaPreview }) => {
                             Track Progress
                         </Menu.Item>
                     </Link> */}
-                    <Link href="/goals">
+                    <Link href="/goals" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/goals")}>
                             <Icon
                                 name="target"
@@ -86,7 +86,7 @@ const Navbar = ({ user, mediaPreview }) => {
                         </Menu.Item>
                     </Link>
                     {user ? (<> 
-                    <Link href="/account">
+                    <Link href="/account" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/account")}>
                             <Icon
                                 name="user outline"
@@ -109,7 +109,7 @@ const Navbar = ({ user, mediaPreview }) => {
                             Account
                         </Menu.Item>
                     </Link>
-                    <Link href="/Login">
+                    <Link href="/Login" passHref>
                         <Menu.Item onClick={handleLogout} className={styles.hover} as="h3" header>
                             <Icon
                                 name="sign out"
@@ -121,7 +121,7 @@ const Navbar = ({ user, mediaPreview }) => {
                     </>
                     ):(
                     <>
-                    <Link href="/Login">
+                    <Link href="/Login" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/Login")}>
                             <Icon
                                 name="sign in"
@@ -130,7 +130,7 @@ const Navbar = ({ user, mediaPreview }) => {
                             Login
                         </Menu.Item>
                     </Link>
-                    <Link href="/Signup">
+                    <Link href="/Signup" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/Signup")}>
                             <Icon
                                 name="signup"

@@ -30,15 +30,15 @@ const terms = () => {
                 <div>
                     <p>Welcome to HealthStat.com!</p>
 
-                    <p>These terms and conditions outline the rules and regulations for the use of HealthStat's Website, located at <Link href='/'><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link></p>
+                    <p>{`These terms and conditions outline the rules and regulations for the use of HealthStat's Website, located at`} <Link href='/' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link></p>
 
                     <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use HealthStat.com if you do not agree to take all of the terms and conditions stated on this page.</p>
 
-                    <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+                    <p>{`The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.`}</p>
 
                     <h2><strong>Cookies</strong></h2>
 
-                    <p>We employ the use of cookies. By accessing HealthStat.com, you agreed to use cookies in agreement with the HealthStat's Privacy Policy. </p>
+                    <p>{`We employ the use of cookies. By accessing HealthStat.com, you agreed to use cookies in agreement with the HealthStat's Privacy Policy.`}</p>
 
                     <p>Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
 
@@ -109,7 +109,7 @@ const terms = () => {
                         <p><li>By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party’s site.</li></p>
                     </ul>
 
-                    <p>No use of HealthStat's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
+                    <p>{`No use of HealthStat's logo or other artwork will be allowed for linking absent a trademark license agreement.`}</p>
 
                     <h2><strong>iFrames</strong></h2>
 

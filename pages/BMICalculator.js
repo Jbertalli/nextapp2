@@ -90,7 +90,7 @@ const BMICalculator = ({ user }) => {
         console.log(count);
         setData([]);
 
-        BMI.current?.innerText = null;                                                  //clear out input after clicking Add Goal Button
+        BMI.current?.innerText == null;                                                 //clear out input after clicking Update BMI
 
         e.preventDefault();
         const url = `${baseUrl}/api/BMICalculator`;
@@ -432,7 +432,8 @@ const BMICalculator = ({ user }) => {
                             <ResponsiveContainer width="100%" height={500} key={`rc_${data.length}`}>
                                 <AreaChart data={data} key={`ac_${data.length}`}>
                                     <defs>
-                                        <linearGradient id="color" x1="0" y1="0" x2="0" y1="1">
+                                        {/* <linearGradient id="color" x1="0" y1="0" x2="0" y1="1"> */}
+                                        <linearGradient id="color" x1="0" y1="0" x2="0">
                                             <stop offset="0%" stopColor="#2451B7" stopOpacity={0.05} />
                                             <stop offset="75%" stopColor="#2451B7" stopOpacity={1} />
                                         </linearGradient>

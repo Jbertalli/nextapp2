@@ -29,7 +29,7 @@ const NotFound = () => {
                 <Container className={styles.numbers} style={{ backgroundColor: '#f2f2f2', padding: '0em 0em 7em 0em', borderRadius: '1%' }}>
                     <h1 className={styles.spin} style={{ fontSize: '2000%', color: '#3978f5', opacity: .9 }}>404</h1>
                     <h2 style={{ fontSize: '300%', color: 'black', opacity: .8 }}>Page Not Found</h2>
-                    <h3 style={{ fontSize: '200%', color: 'black', opacity: .8, padding: '1.2em' }}>Sorry, the webpage you're trying to reach doesn't exist</h3>
+                    <h3 style={{ fontSize: '200%', color: 'black', opacity: .8, padding: '1.2em' }}>{`Sorry, the webpage you're trying to reach doesn't exist`}</h3>
                     <Button
                         icon="home"
                         content="Return to Homepage"
