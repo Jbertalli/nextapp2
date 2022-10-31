@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Menu, Dropdown, Icon, Container, Sticky, Image, Card, Feed, Grid } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Container, Grid } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 // import AccountHeader from './AccountHeader';
