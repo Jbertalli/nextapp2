@@ -6,7 +6,7 @@ import styles from '../styles/404.module.css';
 import Fishing from '../components/Fishing';
 
 const NotFound = () => {
-    const router = useRouter();
+    const router: any = useRouter();
     console.error('Page Not Found');
 
     // useEffect(() => {
