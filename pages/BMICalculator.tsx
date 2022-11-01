@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Divider } from 'semantic-ui-react';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Divider } from "semantic-ui-react";
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 // import GoalList from '../components/GoalList';
