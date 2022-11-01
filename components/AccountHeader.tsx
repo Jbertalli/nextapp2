@@ -7,7 +7,7 @@ import Avatar from 'react-avatar';
 const LOCAL_STORAGE_KEY = 'profile_pic';
 
 function AccountHeader({ role, email, name, createdAt }) {
-    const [mediaPreview, setMediaPreview] = useState('');
+    const [mediaPreview, setMediaPreview] = useState<string>('');
     const [image, setImage] = useState({name: '', media: ''});
 
     useEffect(() => {
