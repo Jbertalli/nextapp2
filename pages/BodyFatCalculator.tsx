@@ -12,23 +12,23 @@ import FocusLock from 'react-focus-lock';
 const LOCAL_STORAGE_KEY = 'BF%_progress';
 
 const BodyFatPercent = ({ user }) => {
-    const [age, setAge] = useState('');
-    const [feet, setFeet] = useState('');
-    const [inches, setInches] = useState('');
-    const [weight, setWeight] = useState('');
-    const [centimeters, setCentimeters] = useState('');
-    const [kilograms, setKilograms] = useState('');
-    const [imperial, setImperial] = useState(true);
-    const [male, setMale] = useState(true);
-    const [sex, setSex] = useState('male');
+    const [age, setAge] = useState<any>('');
+    const [feet, setFeet] = useState<any>('');
+    const [inches, setInches] = useState<any>('');
+    const [weight, setWeight] = useState<any>('');
+    const [centimeters, setCentimeters] = useState<any>('');
+    const [kilograms, setKilograms] = useState<any>('');
+    const [imperial, setImperial] = useState<boolean>(true);
+    const [male, setMale] = useState<boolean>(true);
+    const [sex, setSex] = useState<string>('male');
     // const [modal, setModal] = useState(false);
-    const [goals, setGoals ] = useState([]);                                              
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState([]);
-    const [numb, setNumb] = useState(30);
-    const [lined, setLined] = useState('');
-    const [checked, setChecked] = useState(false);
-    const BF = useRef();
+    const [goals, setGoals] = useState<any>([]);                                              
+    const [count, setCount] = useState<number>(0);
+    const [data, setData] = useState<any>([]);
+    const [numb, setNumb] = useState<number>(30);
+    const [lined, setLined] = useState<any>('');
+    const [checked, setChecked] = useState<boolean>(false);
+    const BF = useRef<any>();
 
     useEffect(() => {
         const storedBF = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))           //parse to turn into array
@@ -69,14 +69,13 @@ const BodyFatPercent = ({ user }) => {
 
     if (goals.length > 0) {
         for(let i = 0; i < goals.length; i++) {
-
         }
         console.log((goals.length <= 1) ? '1 body fat % calculation' : `%c ${goals.length} body fat % calculations`, 'color: green');
     } else {
         console.log('%c no body fat % calculations', "color: red");
     }
 
-    let counting = []                                                                   //IMPORTANT
+    let counting: any = []                                                                   //IMPORTANT
 
     for (let i = 0; i < goals.length; i++) {
         counting.push([goals[i].BF]);
@@ -86,7 +85,7 @@ const BodyFatPercent = ({ user }) => {
     }
 
     async function handleAddGoal(e) {
-        const name = BF.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
+        const name: any = BF.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
             return [...prevGoals, { BF: name }]                                        //previous value and return new goals by spreading over array, then adding new goal to list
@@ -99,7 +98,7 @@ const BodyFatPercent = ({ user }) => {
         BF.current?.innerText == null;                                                 //clear out input after clicking Update Body Fat %
 
         e.preventDefault();
-        const url = `${baseUrl}/api/BodyFatCalculator`;
+        const url: string = `${baseUrl}/api/BodyFatCalculator`;
         const payload = [ body_fat_percent ];
         const response = await axios.post(url, payload);
         console.log(response);
@@ -113,14 +112,14 @@ const BodyFatPercent = ({ user }) => {
         console.clear();
         console.log('%c cleared all calculations', 'color: red');
 
-        const url = `${baseUrl}/api/BodyFatCalculator`;
+        const url: any = `${baseUrl}/api/BodyFatCalculator`;
         const payload = [ body_fat_percent ];
         const response = await axios.delete(url, payload);
         console.log(response.data);
         console.log(body_fat_percent);
     }
 
-    let fruits = []
+    let fruits: any = []
 
     for (let i = 0; i < goals.length; i++) {
         fruits.push(counting.flat()[i]); 
@@ -136,7 +135,7 @@ const BodyFatPercent = ({ user }) => {
     }
 
     //console.log(counting.flat());                                          //flatten out array
-    const body_fat_percent = counting.flat();
+    const body_fat_percent: any = counting.flat();
     console.log(body_fat_percent);
     console.log(data);
     console.log("target BF% line:", lined);
