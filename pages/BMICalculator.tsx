@@ -15,19 +15,19 @@ const LOCAL_STORAGE_KEY = 'BMI_progress';
 
 const BMICalculator = ({ user }) => {
     //console.log(user);
-    const [feet, setFeet] = useState('');
-    const [inches, setInches] = useState('');
-    const [weight, setWeight] = useState('');
-    const [centimeters, setCentimeters] = useState('');
-    const [kilograms, setKilograms] = useState('');
-    const [imperial, setImperial] = useState(true);
+    const [feet, setFeet] = useState<any>('');
+    const [inches, setInches] = useState<any>('');
+    const [weight, setWeight] = useState<any>('');
+    const [centimeters, setCentimeters] = useState<any>('');
+    const [kilograms, setKilograms] = useState<any>('');
+    const [imperial, setImperial] = useState<boolean>(true);
     // const [modal, setModal] = useState(false);
-    const [goals, setGoals ] = useState([]);                                              
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState([]);
-    const [numb, setNumb] = useState(30);
-    const [lined, setLined] = useState('');
-    const BMI = useRef();
+    const [goals, setGoals ] = useState<any>([]);                                              
+    const [count, setCount] = useState<number>(0);
+    const [data, setData] = useState<any>([]);
+    const [numb, setNumb] = useState<number>(30);
+    const [lined, setLined] = useState<any>('');
+    const BMI = useRef<any>();
 
     useEffect(() => {
         const storedBMI = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))           //parse to turn into array
@@ -60,7 +60,7 @@ const BMICalculator = ({ user }) => {
         console.log('%c no BMI calculations', "color: red");
     }
 
-    let counting = []                                                                   //IMPORTANT
+    let counting: any = []                                                                   //IMPORTANT
 
     for (let i = 0; i < goals.length; i++) {
         counting.push([goals[i].BMI]);
@@ -80,7 +80,7 @@ const BMICalculator = ({ user }) => {
     // }
 
     async function handleAddGoal(e) {
-        const name = BMI.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
+        const name: any = BMI.current?.innerText;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
             return [...prevGoals, { BMI: name }]                                        //previous value and return new goals by spreading over array, then adding new goal to list
@@ -93,8 +93,8 @@ const BMICalculator = ({ user }) => {
         BMI.current?.innerText == null;                                                 //clear out input after clicking Update BMI
 
         e.preventDefault();
-        const url = `${baseUrl}/api/BMICalculator`;
-        const payload = [ body_mass_index ];
+        const url: string = `${baseUrl}/api/BMICalculator`;
+        const payload: any = [ body_mass_index ];
         const response = await axios.post(url, payload);
         console.log(response.data);
         console.log(body_mass_index);
@@ -124,7 +124,7 @@ const BMICalculator = ({ user }) => {
         console.log(body_mass_index);
     }
 
-    let fruits = []
+    let fruits: any = []
 
     // for (let i = 0; i < BMI.current?.innerText.length; i++) {
     for (let i = 0; i < goals.length; i++) {
@@ -141,7 +141,7 @@ const BMICalculator = ({ user }) => {
     }
 
     // console.log(counting.flat());                                          //flatten out array
-    const body_mass_index = counting.flat();
+    const body_mass_index: any = counting.flat();
     console.log(body_mass_index);
     console.log(data);
     console.log("target BMI line:", lined);
@@ -291,7 +291,7 @@ const BMICalculator = ({ user }) => {
                         />
                     </>)}
                     <Divider style={{ margin: '1.5em' }} />
-                    <div attached size="large" textAlign="left">
+                    <div>
                         <Form.Input 
                             fluid
                             icon="target"
@@ -350,7 +350,7 @@ const BMICalculator = ({ user }) => {
                 <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
                     <Button size="big" onClick={handleAddGoal} color="blue">Update BMI</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     {/* <Button size="big" onClick={handleClear}>Clear Checked BMI</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-                    <Button size="big" onClick={() => {clearAll(), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), setLined(''), setData([])}}>Clear All</Button>
+                    <Button size="big" onClick={() => {clearAll(null), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), setLined(''), setData([])}}>Clear All</Button>
                 </Segment>        
                 {/* <Modal open={modal} dimmer="blurring" size="small">
                     <Modal.Header><h1>Update Progress</h1></Modal.Header>
