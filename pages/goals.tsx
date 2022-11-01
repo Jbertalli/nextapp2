@@ -217,6 +217,7 @@ function Goals({ user }) {
                     header="Goal Tracker"
                     content="Set and Track Your Goals"
                     color="black"
+                    style={{ transform: 'translateY(13px)' }}
                 />
                 {user ? (<>
                     <Segment>

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Divider } from "semantic-ui-react";
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 // import GoalList from '../components/GoalList';
 import styles from '../styles/Footer.module.css';
@@ -499,7 +499,7 @@ const BMICalculator = ({ user }) => {
     );
   }
 
-  function CustomTooltip({ active, payload, label }) {
+  function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
     // console.log(payload[0]);
     // console.log(payload[0]?.payload?.value);               //hover over graph to see
     // console.log(payload[0]?.payload?.line);                //goal line

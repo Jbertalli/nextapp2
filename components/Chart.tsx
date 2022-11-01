@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Container, Button,  Message, Segment, Item } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 
@@ -187,7 +187,7 @@ const Chart = () => {
     )
 }
 
-function CustomTooltip({ active, payload, label }) {
+function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
     // console.log(payload[0]?.payload?.value);               //hover over graph to see
     // console.log(payload[0]);
     if(active) {
