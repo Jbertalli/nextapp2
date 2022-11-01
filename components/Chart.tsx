@@ -5,22 +5,21 @@ import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 
 const Chart = () => {
-    const [goals, setGoals ] = useState([]);                                              
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState([]);
-    const [numb, setNumb] = useState(30);
-    const goalNameRef = useRef(); 
+    const [goals, setGoals] = useState<any>([]);                                              
+    const [count, setCount] = useState<number>(0);
+    const [data, setData] = useState<any>([]);
+    const [numb, setNumb] = useState<number>(30);
+    const goalNameRef = useRef<any>(); 
 
     if (goals.length > 0) {
         for(let i = 0; i < goals.length; i++) {
-
         }
         console.log((goals.length <= 1) ? '1 goal' : `%c ${goals.length} goals`, 'color: green');
     } else {
         console.log('%c no goals', "color: red");
     }
 
-    let counting = []
+    let counting: any = []
 
     for (let i = 0; i < goals.length; i++) {
         counting.push([goals[i].name]);
@@ -30,7 +29,7 @@ const Chart = () => {
     }
 
     function handleAddGoal(e) {
-        const name = goalNameRef.current.value;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
+        const name: any = goalNameRef.current.value;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
             return [...prevGoals, { name: name, complete: false }]                         //previous value and return new goals by spreading over array, then adding new goal to list
@@ -44,7 +43,7 @@ const Chart = () => {
     }
 
     function handleClear() {
-        const newGoals = goals.filter(goal => !goal.complete);
+        const newGoals: any = goals.filter(goal => !goal.complete);
         setGoals(newGoals);
         setCount(newGoals.length);  
         setData([]);                                                                       //fixed bug
@@ -61,7 +60,7 @@ const Chart = () => {
         console.log('%c cleared all goals', 'color: red');
     }
 
-    let fruits = []
+    let fruits: any = []
 
     for (let i = 0; i < goals.length; i++) {
         fruits.push(counting.flat()[i]);
