@@ -29,7 +29,7 @@ class MyApp extends App {
     } else {
       try {
         const payload = { headers: { Authorization: token } };
-        const url = `${baseUrl}/api/account`;
+        const url: string = `${baseUrl}/api/account`;
         const response = await axios.get(url, payload);
         const user = response.data;
         // const isRoot = user.role === 'root';
