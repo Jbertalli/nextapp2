@@ -15,11 +15,11 @@ const LOCAL_STORAGE_KEY = 'goals';
 
 function Goals({ user }) {
     // console.log(user);
-    const [goals, setGoals] = useState([]);                                               //set array of goals when first loading
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState([]);
-    const [numb, setNumb] = useState(30);
-    const goalNameRef = useRef();                                                         //access to html element
+    const [goals, setGoals] = useState<any>([]);                                               //set array of goals when first loading
+    const [count, setCount] = useState<number>(0);
+    const [data, setData] = useState<any>([]);
+    const [numb, setNumb] = useState<number>(30);
+    const goalNameRef = useRef<any>();                                                         //access to html element
 
     //SAVE GOALS
     //useEffect to load goals right when component mounts
@@ -109,7 +109,7 @@ function Goals({ user }) {
         console.log('%c no goals', "color: red");
     }
 
-    let counting = []
+    let counting: any = []
 
     for (let i = 0; i < goals.length; i++) {
         counting.push([goals[i].name]);
@@ -121,7 +121,7 @@ function Goals({ user }) {
     //toggle from complete to incomplete, then pass to <GoalList toggleGoal={toggleGoal} />
     function toggleGoal(id) {
         const newGoals = [...goals]                                                       //copy of goals array to modify
-        const goal = newGoals.find(goal => goal.id === id);
+        const goal: any = newGoals.find(goal => goal.id === id);
         goal.complete = !goal.complete;
         setGoals(newGoals);
         console.log(newGoals);
@@ -129,7 +129,7 @@ function Goals({ user }) {
     }
 
     async function handleAddGoal(e) {
-        const name = goalNameRef.current.value;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
+        const name: any = goalNameRef.current.value;                                            //append goal ---> get access to name with useRef hook (reference elements in html)
         if (name === '') return 
         setGoals(prevGoals => {
             return [...prevGoals, { id: uuidv4(), name: name, complete: false }]           //previous value and return new goals by spreading over array, then adding new goal to list
@@ -143,7 +143,7 @@ function Goals({ user }) {
         goalNameRef.current.value = null;                                                  //clear out input after clicking Add Goal Button
        
         e.preventDefault();
-        const url = `${baseUrl}/api/goals`;
+        const url: string = `${baseUrl}/api/goals`;
         const payload = [ goal_list ];                                     //pass in ARRAY
         // const payload = { goal_list }
         const response = await axios.post(url, payload);
@@ -152,7 +152,7 @@ function Goals({ user }) {
     }
 
     function handleClear() {
-        const newGoals = goals.filter(goal => !goal.complete);
+        const newGoals: any = goals.filter(goal => !goal.complete);
         setGoals(newGoals);
         setCount(newGoals.length);  
         setData([]);                                                       //fixed bug
@@ -169,7 +169,7 @@ function Goals({ user }) {
         console.log('%c cleared all goals', 'color: red');
 
         e.preventDefault();
-        const url = `${baseUrl}/api/goals`;
+        const url: string = `${baseUrl}/api/goals`;
         const payload = [ goal_list ];
         const response = axios.delete(url, payload);
         console.log(response.data);
@@ -184,7 +184,7 @@ function Goals({ user }) {
     // counting.flat()[23], counting.flat()[24], counting.flat()[25], counting.flat()[26], counting.flat()[27], counting.flat()[28], 
     // counting.flat()[29], counting.flat()[30]]
 
-    let fruits = []
+    let fruits: any = []
 
     for (let i = 0; i < goals.length; i++) {
         fruits.push(counting.flat()[i]);
@@ -198,7 +198,7 @@ function Goals({ user }) {
     }
 
     //console.log(counting.flat());                                          //flatten out array
-    const goal_list = counting.flat();
+    const goal_list: any = counting.flat();
     console.log(goal_list);
     console.log(data);
     // console.log(data[0].date);
