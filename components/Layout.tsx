@@ -1,10 +1,10 @@
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Footer from './Footer';
+import Navbar from './Navbar';
 import styles from '../styles/Footer.module.css';
 import { useRouter } from 'next/router';
 
 const Layout = ({ children, user }) => {
-    const router = useRouter();
+    const router: any = useRouter();
 
     return (
         <div className={styles.container}>
