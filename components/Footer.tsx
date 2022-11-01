@@ -29,7 +29,7 @@ const footer = () => {
                         </button>
                     </div> */}
                     <div>
-                        Copyright © 2022
+                        Copyright © 2023
                         <Link href="/"><a>HealthStat.com</a></Link> | 
                         <Link href="/footer/terms"><a>Terms of Use</a></Link> |
                         <Link href="/footer/privacy-policy"><a>Privacy Policy</a></Link> | 

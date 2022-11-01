@@ -17,7 +17,7 @@ import { Label, Divider, Grid } from 'semantic-ui-react';
     console.log(DTF.format(today));
 
 export default function Goal({ goal, toggleGoal, count }) {                //pass in goal from <GoalList> goals.map
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState<boolean>(false);
 
     function handleGoalClick() {
         toggleGoal(goal.id);
