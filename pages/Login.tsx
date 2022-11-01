@@ -14,12 +14,12 @@ const INITIAL_USER = {
 
 const Login = () => {
     const [user, setUser] = React.useState(INITIAL_USER);
-    const [disabled, setDisabled] = React.useState(true);
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState('');
+    const [disabled, setDisabled] = React.useState<boolean>(true);
+    const [loading, setLoading] = React.useState<boolean>(false);
+    const [error, setError] = React.useState<string>('');
 
     React.useEffect(() => {
-        const isUser = Object.values(user).every(el => Boolean(el))
+        const isUser: boolean = Object.values(user).every(el => Boolean(el))
         isUser ? setDisabled(false) : setDisabled(true);
     }, [user])
 
@@ -33,7 +33,7 @@ const Login = () => {
         try {
             setLoading(true);
             setError('');
-            const url = `${baseUrl}/api/Login`;
+            const url: string = `${baseUrl}/api/Login`;
             const payload = { ...user };
             const response = await axios.post(url, payload);
             handleLogin(response.data);
