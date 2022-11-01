@@ -4,17 +4,17 @@ import { Container, Button, Form, Message, Segment, Divider } from 'semantic-ui-
 import FocusLock from 'react-focus-lock';
 
 const LoanCalculator = () => {
-    const [principal, setPrincipal] = useState('');
-    const [interestRate, setInterestRate] = useState('');
-    const [years, setYears] = useState('');
-    const term = (years * 12);
-    const rate = ((interestRate / 100) / 12);
+    const [principal, setPrincipal] = useState<any>('');
+    const [interestRate, setInterestRate] = useState<any>('');
+    const [years, setYears] = useState<any>('');
+    const term: number = (years * 12);
+    const rate: number = ((interestRate / 100) / 12);
 
     const handleInput = () => {
             console.log("Loan Amount", { principal, interestRate, years, LoanAmount })
         };
     
-    const LoanAmount = useRef();
+    const LoanAmount = useRef<any>();
     console.log(LoanAmount.current?.innerText);
 
     return (
