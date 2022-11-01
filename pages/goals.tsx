@@ -170,8 +170,8 @@ function Goals({ user }) {
 
         e.preventDefault();
         const url: string = `${baseUrl}/api/goals`;
-        const payload = [ goal_list ];
-        const response = axios.delete(url, payload);
+        const payload: any = [ goal_list ];
+        const response: any = axios.delete(url, payload);
         console.log(response.data);
         console.log(goal_list);
     }

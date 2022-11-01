@@ -135,8 +135,8 @@ const CalorieCalculator = ({ user }) => {
         console.log('%c cleared all goals', 'color: red');
 
         const url: string = `${baseUrl}/api/CalorieIntakeCalculator`;
-        const payload = [ caloric_intake ];
-        const response = axios.delete(url, payload);
+        const payload: any = [ caloric_intake ];
+        const response: any = axios.delete(url, payload);
         console.log(response.data);
         console.log(caloric_intake);
     }
@@ -416,7 +416,7 @@ const CalorieCalculator = ({ user }) => {
                                         (
                                             ((parseFloat(lifestyle) * 0.2) + 1)
                                             * ((66 + (parseFloat(weight) * 6.2))
-                                            + (12.7 * (parseFloat(feet * 12) + parseFloat(inches)))
+                                            + (12.7 * ((parseFloat(feet)* 12) + parseFloat(inches)))
                                             - (6.76 * parseFloat(age)))
                                         ).toFixed(0).replace('NaN', '')
                                     }
@@ -430,7 +430,7 @@ const CalorieCalculator = ({ user }) => {
                                         (
                                             ((parseFloat(lifestyle) * 0.2) + 1)
                                             * ((655.1 + (parseFloat(weight) * 4.35))
-                                            + (4.7 * (parseFloat(feet * 12) + parseFloat(inches)))
+                                            + (4.7 * ((parseFloat(feet )* 12) + parseFloat(inches)))
                                             - (4.7 * parseFloat(age)))
                                         ).toFixed(0).replace('NaN', '')
                                     }
@@ -482,7 +482,7 @@ const CalorieCalculator = ({ user }) => {
                     />
                 </Segment> */}
                 <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
-                    <Button size="big" onClick={() => handleAddGoal()} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <Button size="big" onClick={handleAddGoal} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                     <Button size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Button size="big" onClick={() => {clearAll(), setAge(''), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife(), setData([])}}>Clear All</Button>

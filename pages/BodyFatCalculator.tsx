@@ -113,7 +113,7 @@ const BodyFatPercent = ({ user }) => {
         console.log('%c cleared all calculations', 'color: red');
 
         const url: any = `${baseUrl}/api/BodyFatCalculator`;
-        const payload = [ body_fat_percent ];
+        const payload: any = [ body_fat_percent ];
         const response = await axios.delete(url, payload);
         console.log(response.data);
         console.log(body_fat_percent);
@@ -321,7 +321,7 @@ const BodyFatPercent = ({ user }) => {
                             onMouseUp={() => {setMale(false), handleUnclick()}}
                         />
                         <Divider style={{ margin: '1.5em' }} />
-                        <div attached size="large" textAlign="left">
+                        <div>
                             <Form.Input
                                 fluid
                                 icon="target"
@@ -347,7 +347,7 @@ const BodyFatPercent = ({ user }) => {
                                     {  
                                         (
                                             ((((parseFloat(weight)) 
-                                            / Math.pow((parseFloat(feet * 12) + parseFloat(inches)), 2))
+                                            / Math.pow(((parseFloat(feet) * 12) + parseFloat(inches)), 2))
                                             * 703) * 1.20)
                                             + (0.23 * (parseFloat(age)))
                                             - 16.2
@@ -367,7 +367,7 @@ const BodyFatPercent = ({ user }) => {
                                     {
                                         (
                                             ((((parseFloat(weight)) 
-                                            / Math.pow((parseFloat(feet * 12) + parseFloat(inches)), 2))
+                                            / Math.pow(((parseFloat(feet) * 12) + parseFloat(inches)), 2))
                                             * 703) * 1.20)
                                             + (0.23 * (parseFloat(age)))
                                             - 5.4

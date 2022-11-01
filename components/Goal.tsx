@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Label, Divider, Grid } from 'semantic-ui-react';
 
     const today = new Date();
-    const config = { 
+    const config: any = { 
         year: 'numeric',
         month: 'short',
         day: '2-digit'

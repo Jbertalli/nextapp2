@@ -118,7 +118,7 @@ const BMICalculator = ({ user }) => {
         console.log('%c cleared all calculations', 'color: red');
  
         const url = `${baseUrl}/api/BMICalculator`;
-        const payload = [ body_mass_index ];
+        const payload: any = [ body_mass_index ];
         const response = await axios.delete(url, payload);
         console.log(response.data);
         console.log(body_mass_index);
@@ -316,7 +316,7 @@ const BMICalculator = ({ user }) => {
                                     {
                                         (
                                             ((parseFloat(weight)) 
-                                            / Math.pow((parseFloat(feet * 12) + parseFloat(inches)), 2))
+                                            / Math.pow(((parseFloat(feet) * 12) + parseFloat(inches)), 2))
                                             * 703
                                         ).toFixed(1).replace('NaN', '')
                                     }
@@ -493,10 +493,7 @@ const BMICalculator = ({ user }) => {
                     </Container>
                 </Container>
             </>
-            ) : (
-            <>
-                
-            </>)}
+            ) : null}
         </FocusLock>
       </>
     );

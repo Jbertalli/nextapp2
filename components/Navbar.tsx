@@ -9,7 +9,8 @@ import { handleLogout } from '../utils/auth';
 // import Avatar from 'react-avatar';
 import Icons from './Icons';
 
-const Navbar = ({ user, mediaPreview }) => {
+const Navbar = ({ user }): any => {
+// const Navbar = ({ user, mediaPreview }) => {
     // console.log({mediaPreview});
     console.log(user);
     // console.log(user.role);
