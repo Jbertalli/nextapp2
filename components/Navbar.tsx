@@ -7,13 +7,13 @@ import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 // import AccountHeader from './AccountHeader';
 // import Avatar from 'react-avatar';
-import Icons from '../components/Icons';
+import Icons from './Icons';
 
 const Navbar = ({ user, mediaPreview }) => {
     // console.log({mediaPreview});
     console.log(user);
     // console.log(user.role);
-    const router = useRouter();
+    const router: any = useRouter();
     // const isRoot = user && user.role === 'root';
     // const isAdmin = user && user.role === 'admin';
     // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 

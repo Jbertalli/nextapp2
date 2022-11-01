@@ -74,7 +74,7 @@ function AccountHeader({ role, email, name, createdAt }) {
                     name="media"
                     type="file"
                     accept="image/*"
-                    content="Select Image"
+                    // content="Select Image"
                     style={{ width: '10vw', margin: '1em' }}
                     className={styles.file}
                     onChange={handleChange}
