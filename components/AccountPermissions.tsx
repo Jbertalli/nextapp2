@@ -6,14 +6,14 @@ import cookie from 'js-cookie';
 import formatDate from '../utils/formatDate';
 
 function AccountPermissions() {
-    const [users, setUsers] = React.useState([]);
+    const [users, setUsers] = React.useState<any>([]);
 
     React.useEffect(() => {
         getUsers()
     }, []);
 
     async function getUsers() {
-        const url = `${baseUrl}/api/users`;
+        const url: string = `${baseUrl}/api/users`;
         const token = cookie.get('token');
         const payload = { headers: { Authorization: token }}
         const response = await axios.get(url, payload);
@@ -49,7 +49,7 @@ function AccountPermissions() {
 }
 
 function UserPermission({ user }) {
-    const [admin, setAdmin] = React.useState(user.role === 'admin');
+    const [admin, setAdmin] = React.useState<boolean>(user.role === 'admin');
 
     const isFirstRun = React.useRef(true);
 
@@ -67,7 +67,7 @@ function UserPermission({ user }) {
     }
 
     async function updatePermission() {
-        const url = `${baseUrl}/api/account`;
+        const url: string = `${baseUrl}/api/account`;
         const payload = { _id: user._id, role: admin ? "admin" : "user" }
         await axios.put(url, payload);
     }

@@ -3,7 +3,7 @@ import { Header, Accordion, Label, Segment, Icon, Button, List } from 'semantic-
 import formatDate from '../utils/formatDate';
 
 function AccountProgress({ progress }) {
-    const router = useRouter();
+    const router: any = useRouter();
 
     // function mapProgressToPanels(progress) {
     //     return progress.map(progress => ({
