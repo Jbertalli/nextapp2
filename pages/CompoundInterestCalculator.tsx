@@ -4,15 +4,15 @@ import { Container, Button, Form, Message, Segment } from 'semantic-ui-react';
 import FocusLock from 'react-focus-lock';
 
 const CompoundInterestCalculator = () => {
-    const [initialInvestment, setInitialInvestment] = useState('');
-    const [interestRate, setInterestRate] = useState('');
-    const [years, setYears] = useState('');
+    const [initialInvestment, setInitialInvestment] = useState<any>('');
+    const [interestRate, setInterestRate] = useState<any>('');
+    const [years, setYears] = useState<any>('');
 
     const handleInput = () => {
             console.log("Compound Interest", { initialInvestment, interestRate, years, CompoundInterest })
         };
     
-    const CompoundInterest = useRef();
+    const CompoundInterest = useRef<any>();
     console.log(CompoundInterest.current?.innerText);
 
     return (
