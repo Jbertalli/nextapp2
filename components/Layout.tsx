@@ -10,7 +10,11 @@ const Layout = ({ children, user }) => {
         <div className={styles.container}>
             <Navbar user={user} />
                 {children}
-            {router.pathname !== "/404" && <Footer />}
+            {router.pathname !== "/404" && 
+                <div style={{ marginTop: '80px' }}>
+                    <Footer />
+                </div>
+            }
         </div>
     );
 }
