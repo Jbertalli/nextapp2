@@ -28,17 +28,11 @@ export default function Home({ examples }) {
         <title>HealthStat | Home</title>
         <meta name="description" content="healthstat, calorie calculator" />
       </Head>
-      <h1 style={{ textAlign: 'center', fontSize: '50px'  }}>HealthStat</h1>
-      <Container>
-
-      </Container>
+      {/* <h1 style={{ textAlign: 'center', fontSize: '50px'  }}>
+        HealthStat
+      </h1> */}
       <Container style={{ margin: '3em 0 6em' }}>
-        <div>
-          {/* <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
-          <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
-          <Link href='/ninjas'>
-            <a className={styles.btn}>See Ninja Listing</a>
-          </Link> */}
+        <div style={{ transform: 'translateY(20px)' }}>
             <CalculatorList examples={examples} />
         </div>
       </Container>

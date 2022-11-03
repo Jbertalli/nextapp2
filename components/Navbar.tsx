@@ -49,9 +49,11 @@ const Navbar = ({ user }): any => {
                 fixed='top' 
                 inverted
             >
-                <Grid>
-                    <Icons />
-                </Grid>
+                <div style={{ position: 'absolute' }}>
+                    <Grid>
+                        <Icons />
+                    </Grid>
+                </div>
                 <Container>
                     <Link href="/" passHref>
                         <Menu.Item className={styles.hover} as="h3" header active={isActive("/")}>
