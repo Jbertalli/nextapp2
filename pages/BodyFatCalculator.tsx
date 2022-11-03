@@ -28,6 +28,8 @@ const BodyFatPercent = ({ user }) => {
     const [numb, setNumb] = useState<number>(30);
     const [lined, setLined] = useState<any>('');
     const [checked, setChecked] = useState<boolean>(false);
+    const [margin, setMargin] = useState<string>('0px');
+    const [targetWidth, setTargetWidth] = useState<string>('35%');
     const BF = useRef<any>();
 
     useEffect(() => {
@@ -139,7 +141,29 @@ const BodyFatPercent = ({ user }) => {
     console.log(body_fat_percent);
     console.log(data);
     console.log("target BF% line:", lined);
-    
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setMargin('0px');
+            setTargetWidth('35%');
+        } else {
+            setMargin('20px');
+            setTargetWidth('100%');
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setMargin('0px');
+                setTargetWidth('35%');
+            } else {
+                setMargin('20px');
+                setTargetWidth('100%');
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
+
     return (
       <>
         <Head>
@@ -200,7 +224,7 @@ const BodyFatPercent = ({ user }) => {
                     {imperial ? (<>
                         <Grid>
                             <Grid.Row>
-                                <Grid.Column width={10}>
+                                <Grid.Column width={8}>
                                     <Form.Input
                                         fluid
                                         icon="chart bar"
@@ -217,7 +241,7 @@ const BodyFatPercent = ({ user }) => {
                                         onChange={e => {setFeet(e.target.value), setData([])}}
                                     />
                                 </Grid.Column>
-                                <Grid.Column width={6}>
+                                <Grid.Column width={8}>
                                     <Form.Input
                                         fluid
                                         icon="chart bar"
@@ -298,7 +322,7 @@ const BodyFatPercent = ({ user }) => {
                             onChange={e => {setKilograms(e.target.value), setData([])}}
                         />
                     </>)}
-                        &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
+                        &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
                         <input
                             type="radio"
                             name="rad"
@@ -309,7 +333,7 @@ const BodyFatPercent = ({ user }) => {
                             style={{ width: '30px' }}
                             onMouseUp={() => {setMale(true), handleUnclick()}}
                         />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                         <input
                             type="radio"
                             name="rad"
@@ -334,7 +358,7 @@ const BodyFatPercent = ({ user }) => {
                                 min="0"
                                 max="100"
                                 value={lined}
-                                style={{ width: '35%', fontSize: '23px', margin: '0em 0em 1em 0em' }}
+                                style={{ width: `${targetWidth}`, fontSize: '23px', margin: '0em 0em 1em 0em' }}
                                 onChange={e => {setLined(e.target.value), setData([])}}
                             />
                         </div>
@@ -423,7 +447,7 @@ const BodyFatPercent = ({ user }) => {
                     />
                 </Segment> */}
                 <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
-                    <Button size="big" onClick={handleAddGoal} color="blue">Update Body Fat %</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <Button style={{ marginBottom: `${margin}`}} size="big" onClick={handleAddGoal} color="blue">Update Body Fat %</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                     <Button size="big" onClick={() => {clearAll(), setAge(''), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), handleRadio(), setLined(''), setData([])}}>Clear All</Button>
                 </Segment> 

@@ -33,6 +33,7 @@ const CalorieCalculator = ({ user }) => {
     const [checked, setChecked] = useState<boolean>(false);
     const [checkedMale, setCheckedMale] = useState<boolean>(false);
     const [desktop, setDesktop] = useState<boolean>(false);
+    const [margin, setMargin] = useState<string>('0px');
     const Calories = useRef<any>();
 
     useEffect(() => {
@@ -164,15 +165,19 @@ const CalorieCalculator = ({ user }) => {
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
+            setMargin('0px');
         } else {
             setDesktop(false);
+            setMargin('20px');
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
-                    setDesktop(true);
+                setDesktop(true);
+                setMargin('0px');
             } else {
-                    setDesktop(false);
+                setDesktop(false);
+                setMargin('20px');
             }
         };
           window.addEventListener('resize', updateMedia);
@@ -505,9 +510,9 @@ const CalorieCalculator = ({ user }) => {
                     />
                 </Segment> */}
                 <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
-                    <Button style={{ marginBottom: '10px'}} size="big" onClick={handleAddGoal} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <Button style={{ marginBottom: `${margin}`}} size="big" onClick={handleAddGoal} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-                    <Button style={{ marginBottom: '10px'}} size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Button style={{ marginBottom: `${margin}`}} size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Button size="big" onClick={() => {clearAll(), setAge(''), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife(), setData([])}}>Clear All</Button>
                 </Segment>
                 {/* <Modal open={modal} dimmer="blurring" size="small">
