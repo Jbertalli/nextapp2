@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Header, Checkbox, Table, Icon } from 'semantic-ui-react';
 import baseUrl from '../utils/baseUrl';
@@ -7,6 +7,7 @@ import formatDate from '../utils/formatDate';
 
 function AccountPermissions() {
     const [users, setUsers] = React.useState<any>([]);
+    const [desktop, setDesktop] = useState<boolean>(true);
 
     React.useEffect(() => {
         getUsers()
@@ -21,23 +22,45 @@ function AccountPermissions() {
         setUsers(response.data);
     }
 
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setDesktop(true);
+        } else {
+            setDesktop(false);
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setDesktop(true);
+            } else {
+                setDesktop(false);
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
+
     return (
-        <div style={{ margin: '2em 0'}}>
+        <div style={{ margin: '2em 0' }}>
             <Header as="h2">
                 <Icon name="settings" />
                     User Permissions
             </Header>
             <Table compact celled definition>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell />
-                        <Table.HeaderCell>Name</Table.HeaderCell>
-                        <Table.HeaderCell>Email</Table.HeaderCell>
-                        <Table.HeaderCell>Joined</Table.HeaderCell>
-                        <Table.HeaderCell>Updated</Table.HeaderCell>
-                        <Table.HeaderCell>Role</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+                {desktop ? (
+                <>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>Name</Table.HeaderCell>
+                            <Table.HeaderCell>Email</Table.HeaderCell>
+                            <Table.HeaderCell>Joined</Table.HeaderCell>
+                            <Table.HeaderCell>Updated</Table.HeaderCell>
+                            <Table.HeaderCell>Role</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                </>
+                ): null}
                 <Table.Body>
                     {users.map(user => (
                         <UserPermission key={user._id} user={user} />
