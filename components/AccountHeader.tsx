@@ -9,6 +9,7 @@ const LOCAL_STORAGE_KEY = 'profile_pic';
 function AccountHeader({ role, email, name, createdAt }) {
     const [mediaPreview, setMediaPreview] = useState<string>('');
     const [image, setImage] = useState({name: '', media: ''});
+    const [margin, setMargin] = useState<string>('1em 0em 1em 0em');
 
     useEffect(() => {
         const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -45,6 +46,24 @@ function AccountHeader({ role, email, name, createdAt }) {
     //     console.log({ mediaUrl });
     // }
 
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setMargin('1em 0em 1em 0em');
+        } else {
+            setMargin('0.5em 0em 0.2em 0em');
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setMargin('1em 0em 1em 0em');
+            } else {
+                setMargin('0.5em 0em 0.2em 0em');
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
+
     return (
         <Segment secondary inverted color="grey">
             <Label
@@ -70,15 +89,17 @@ function AccountHeader({ role, email, name, createdAt }) {
                         />
                     </div>
                 </>)}
-                <input
-                    name="media"
-                    type="file"
-                    accept="image/*"
-                    // content="Select Image"
-                    style={{ width: '10vw', margin: '1em' }}
-                    className={styles.file}
-                    onChange={handleChange}
-                />
+                <div style={{ transform: 'translate(10px)' }}>
+                    <input
+                        name="media"
+                        type="file"
+                        accept="image/*"
+                        // content="Select Image"
+                        style={{ width: '200px', margin: `${margin}` }}
+                        className={styles.file}
+                        onChange={handleChange}
+                    />
+                </div>
                 {/* <Feed size="large">
                     <Feed.Event style={{ display: 'flex', justifyContent: 'center' }}>
                         <Feed.Label style={{ width: '7vw' }} image={image} />
