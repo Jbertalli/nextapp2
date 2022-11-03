@@ -1,22 +1,45 @@
 import Head from 'next/head';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Footer.module.css';
 import Link from 'next/link';
 import { handleLogout } from '../../utils/auth';
 import { Divider, Grid, Container } from 'semantic-ui-react';
 
 const siteMap = ({ user }) => {
+    const [size, setSize] = useState<string>('50px');
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setSize('50px');
+        } else {
+            setSize('30px');
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setSize('50px');
+            } else {
+                setSize('30px');
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
+
     return (
         <>
             <Head>
                 <title>HealthStat | Site Map</title>
                 <meta name="description" content="site map, directory" />
             </Head>
-            <h1 style={{ fontSize: "50px", margin: 'em 0 6em' }} className={styles.siteMap}>
-                HealthStat Site Map
+            <h1 className={styles.siteMap} style={{ transform: 'translateY(20px)' }}>
+                <div style={{ marginTop: '30px', fontSize: `${size}` }}>
+                    HealthStat Site Map
+                </div>
                 <Container>
-                <Divider style={{ margin: '2em'}} />
+                    <Divider />
                     <div>
-                        <Grid columns={3} padded='horizontally' stackable >
+                        <Grid columns={3} padded='horizontally' stackable style={{ transform: 'translateY(-20px)' }}>
                             <Grid.Column style={{ margin: '0em 0em .8em' }}>
                                 <div>
                                     <h1>
