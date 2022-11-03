@@ -2,7 +2,7 @@
     /* background: linear-gradient(to top, red, orange, yellow, green, blue, violet); */
     /* background: linear-gradient(to bottom, silver, white); */
     background: linear-gradient(to top, violet, #3978f5);
-    transform: translateY(-1vh)
+    transform: translateY(-1vh);
   }
   
 /* text gradient */

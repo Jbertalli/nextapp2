@@ -211,79 +211,80 @@ const privacy = () => {
                     <p><strong>What categories of personal information do we collect?</strong></p>
                     
                     <p>We have collected the following categories of personal information in the past twelve (12) months:</p>
-                    
-                    <Table celled striped padded>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>
-                                    Category
-                                </Table.HeaderCell>
-                                <Table.HeaderCell>
-                                    Examples
-                                </Table.HeaderCell>
-                                <Table.HeaderCell>
-                                    Collected
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            <Table.Row>
-                                <Table.Cell>A. Identifiers</Table.Cell>
-                                <Table.Cell>Contact details, such as real name, alias, postal address, telephone or mobile contact number, unique personal identifier, online identifier, Internet Protocol address, email address, and account name</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>B. Personal information categories listed in the California Customer Records statute</Table.Cell>
-                                <Table.Cell>Name, contact information, education, employment, employment history, and financial information</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>C. Protected classification characteristics under California or federal law</Table.Cell>
-                                <Table.Cell>Gender and date of birth</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>D. Commercial information</Table.Cell>
-                                <Table.Cell>Transaction information, purchase history, financial details, and payment information</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>E. Biometric information</Table.Cell>
-                                <Table.Cell>Fingerprints and voiceprints</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>F. Internet or other similar network activity</Table.Cell>
-                                <Table.Cell>Browsing history, search history, online behavior, interest data, and interactions with our and other websites, applications, systems, and advertisements</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>G. Geolocation data</Table.Cell>
-                                <Table.Cell>Device location</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>H. Audio, electronic, visual, thermal, olfactory, or similar information</Table.Cell>
-                                <Table.Cell>Images and audio, video or call recordings created in connection with our business activities</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>I. Professional or employment-related information</Table.Cell>
-                                <Table.Cell>Business contact details in order to provide you our services at a business level or job title, work history, and professional qualifications if you apply for a job with us</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>J. Education Information</Table.Cell>
-                                <Table.Cell>Student records and directory information</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>K. Inferences drawn from other personal information</Table.Cell>
-                                <Table.Cell>Inferences drawn from any of the collected personal information listed above to create a profile or summary about, for example, an individual’s preferences and characteristics</Table.Cell>
-                                <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
-                            </Table.Row>
-                        </Table.Body>
-                    </Table>
+                    <div>
+                        <Table celled striped padded>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>
+                                        Category
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell>
+                                        Examples
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell>
+                                        Collected
+                                    </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body>
+                                <Table.Row>
+                                    <Table.Cell>A. Identifiers</Table.Cell>
+                                    <Table.Cell>Contact details, such as real name, alias, postal address, telephone or mobile contact number, unique personal identifier, online identifier, Internet Protocol address, email address, and account name</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>B. Personal information categories listed in the California Customer Records statute</Table.Cell>
+                                    <Table.Cell>Name, contact information, education, employment, employment history, and financial information</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>C. Protected classification characteristics under California or federal law</Table.Cell>
+                                    <Table.Cell>Gender and date of birth</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>YES</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>D. Commercial information</Table.Cell>
+                                    <Table.Cell>Transaction information, purchase history, financial details, and payment information</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>E. Biometric information</Table.Cell>
+                                    <Table.Cell>Fingerprints and voiceprints</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>F. Internet or other similar network activity</Table.Cell>
+                                    <Table.Cell>Browsing history, search history, online behavior, interest data, and interactions with our and other websites, applications, systems, and advertisements</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>G. Geolocation data</Table.Cell>
+                                    <Table.Cell>Device location</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>H. Audio, electronic, visual, thermal, olfactory, or similar information</Table.Cell>
+                                    <Table.Cell>Images and audio, video or call recordings created in connection with our business activities</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>I. Professional or employment-related information</Table.Cell>
+                                    <Table.Cell>Business contact details in order to provide you our services at a business level or job title, work history, and professional qualifications if you apply for a job with us</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>J. Education Information</Table.Cell>
+                                    <Table.Cell>Student records and directory information</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>K. Inferences drawn from other personal information</Table.Cell>
+                                    <Table.Cell>Inferences drawn from any of the collected personal information listed above to create a profile or summary about, for example, an individual’s preferences and characteristics</Table.Cell>
+                                    <Table.Cell style={{ textAlign: 'center' }}>NO</Table.Cell>
+                                </Table.Row>
+                            </Table.Body>
+                        </Table>
+                    </div>
                     
                     <p>We may also collect other personal information outside of these categories instances where you interact with us in person, online, or by phone or mail in the context of:</p>
                     <ul>   
