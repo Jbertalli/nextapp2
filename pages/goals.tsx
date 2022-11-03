@@ -19,6 +19,10 @@ function Goals({ user }) {
     const [count, setCount] = useState<number>(0);
     const [data, setData] = useState<any>([]);
     const [numb, setNumb] = useState<number>(30);
+    const [padding, setPadding] = useState<string>('2em 0em 3em 0em');
+    const [width, setWidth] = useState<string>('50%');
+    const [margin, setMargin] = useState<string>('0px');
+    const [bottom, setBottom] = useState<string>('0px');
     const goalNameRef = useRef<any>();                                                         //access to html element
 
     //SAVE GOALS
@@ -202,6 +206,36 @@ function Goals({ user }) {
     console.log(goal_list);
     console.log(data);
     // console.log(data[0].date);
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+           setPadding('2em 0em 3em 0em');
+           setWidth('50%');
+           setMargin('0px');
+           setBottom('0px');
+        } else {
+           setPadding('1em 0em 2em 0em');
+           setWidth('95%');
+           setMargin('30px');
+           setBottom('-24px');
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setPadding('2em 0em 3em 0em');
+                setWidth('50%');
+                setMargin('0px');
+                setBottom('0px');
+            } else {
+                setPadding('1em 0em 2em 0em');
+                setWidth('95%');
+                setMargin('30px');
+                setBottom('-24px');
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
     
     return (
         <>
@@ -245,18 +279,18 @@ function Goals({ user }) {
                         <Segment style={{ display: 'flex', justifyContent: 'flex-start', margin: '.5em' }}>
                             <h2>{goals.filter(goal => !goal.complete).length} {(goals.length === 1) ? 'goal left to complete' : 'goals left to complete'}</h2>
                         </Segment>
-                        <Segment style={{ border: 'none', padding: '2em 0em 3em 0em' }}>
+                        <Segment style={{ border: 'none', padding: `${padding}` }}>
                             <div>
                                 <div style={{ textAlign: 'left', padding: '0em 1em 1em 1em', fontSize: '19px' }}>Add Goal to List</div>
                                 <h1 style={{ display: 'flex', justifyContent: 'flex-start', margin: '-.4em 0em 0em .7em', fontSize: '23px' }}>
-                                    <input ref={goalNameRef} className={styles.input} type="text" autoFocus placeholder="+ add goals" />
+                                    <input ref={goalNameRef} className={styles.input} type="text" autoFocus placeholder="+ add goals" style={{ width: `${width}` }} />
                                 </h1>    {/* type="text" */}
                             </div>
                         </Segment>
                         <Segment color="blue" style={{ textAlign: 'left', margin: '1em 1em 1em', padding: '2em 2em 2em 2em' }}>
-                            <Button size="big" onClick={handleAddGoal} color="blue">Add Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                            <Button size="big" onClick={handleClear}>Clear Checked Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <Button size="big" onClick={clearAll}>Clear All</Button>
+                            <Button size="big" style={{ marginBottom: `${margin}` }} onClick={handleAddGoal} color="blue">Add Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <Button size="big" style={{ marginBottom: `${margin}` }} onClick={handleClear}>Clear Checked Goal</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button size="big" style={{ transform: `translate(${bottom})` }} onClick={clearAll}>Clear All</Button>
                         </Segment> 
                     </Segment> 
                 </>

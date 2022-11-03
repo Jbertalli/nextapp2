@@ -37,7 +37,9 @@ export default function Goal({ goal, toggleGoal, count }) {                //pas
                         <Label size="massive" style={{ fontSize: '21px', display: 'flex', justifyContent: 'flex-start', color: 'black', background: 'none' }}>
                         {/* <input type="radio" checked={goal.complete} checked={checked} onClick={() => {handleGoalClick(), handleUnclick()}} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                             <input type="radio" checked={goal.complete} onClick={() => {handleGoalClick(), handleUnclick()}} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          {/* onClick={handleUnclick} checked={checked} */}
-                            {goal.name} 
+                            <div>
+                                {goal.name} 
+                            </div>
                         </Label>
                     </Grid.Column>
                     <Grid.Column />
