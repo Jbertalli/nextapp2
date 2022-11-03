@@ -257,20 +257,14 @@ function Goals({ user }) {
                     <Segment>
                         {/* ternary to show placeholder */}
                         {(goals.length < 1) ? (<>
-                            <Placeholder>
-                                <Card.Group itemsPerRow={1} stackable>
-                                    <Card>
-                                        <Card.Content>
-                                            <Placeholder style={{ fontSize: '2em', textAlign: 'center', padding: '5em 2em 5em 4em', margin: '0vw -7.2vw 0vw 0vw', background: 'linear-gradient(to bottom, silver, white)' }}>
-                                                <Icon
-                                                    name="plus"
-                                                />
-                                                Add Some Goals
-                                            </Placeholder>
-                                        </Card.Content>
-                                    </Card>
-                                </Card.Group>
-                            </Placeholder>
+                            <div style={{ fontSize: '2em', textAlign: 'center', background: 'linear-gradient(to bottom, silver, white)', height: '30vh', display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+                                <div style={{ transform: 'translateY(50%)' }}>
+                                    <Icon
+                                    name="plus"
+                                />
+                                Add Some Goals
+                                </div>
+                            </div>
                         </>
                         ) : (
                         <>
