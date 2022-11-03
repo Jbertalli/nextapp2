@@ -23,6 +23,7 @@ function Goals({ user }) {
     const [width, setWidth] = useState<string>('50%');
     const [margin, setMargin] = useState<string>('0px');
     const [bottom, setBottom] = useState<string>('0px');
+    const [font, setFont] = useState<string>('2em');
     const goalNameRef = useRef<any>();                                                         //access to html element
 
     //SAVE GOALS
@@ -213,11 +214,13 @@ function Goals({ user }) {
            setWidth('50%');
            setMargin('0px');
            setBottom('0px');
+           setFont('2em');
         } else {
            setPadding('1em 0em 2em 0em');
            setWidth('95%');
            setMargin('30px');
            setBottom('-24px');
+           setFont('1.5em');
         }
   
         const updateMedia = () => {
@@ -226,11 +229,13 @@ function Goals({ user }) {
                 setWidth('50%');
                 setMargin('0px');
                 setBottom('0px');
+                setFont('2em');
             } else {
                 setPadding('1em 0em 2em 0em');
                 setWidth('95%');
                 setMargin('30px');
                 setBottom('-24px');
+                setFont('1.5em');
             }
         };
           window.addEventListener('resize', updateMedia);
@@ -260,9 +265,9 @@ function Goals({ user }) {
                             <div style={{ fontSize: '2em', textAlign: 'center', background: 'linear-gradient(to bottom, silver, white)', height: '30vh', display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
                                 <div style={{ transform: 'translateY(50%)' }}>
                                     <Icon
-                                    name="plus"
-                                />
-                                Add Some Goals
+                                        name="plus"
+                                    />
+                                    Add Some Goals
                                 </div>
                             </div>
                         </>
@@ -290,21 +295,15 @@ function Goals({ user }) {
                 </>
                 ) : (
                 <>
-                    <Placeholder>
-                        <Card.Group itemsPerRow={1} stackable>
-                            <Card>
-                                <Card.Content>
-                                    <Placeholder style={{ fontSize: '2em', textAlign: 'center', padding: '5em 2em 5em 4em', margin: '0vw -7.2vw 0vw 0vw', background: 'linear-gradient(to bottom, silver, white)' }}>
-                                        <Icon
-                                            name="plus"
-                                        />
-                                        Add Some Goals
-                                    </Placeholder>
-                                </Card.Content>
-                            </Card>
-                        </Card.Group>
-                    </Placeholder>
-                    <Message style={{ textAlign: 'center', margin: '0 0 0' }}>
+                    <div style={{ fontSize: `${font}`, textAlign: 'center', background: 'linear-gradient(to bottom, silver, white)', height: '40vh', display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+                        <div style={{ transform: 'translateY(50%)' }}>
+                            <Icon
+                                name="plus"
+                            />
+                            Add Some Goals
+                        </div>
+                    </div>
+                    <Message style={{ textAlign: 'center', marginTop: '-9px' }}>
                         <Icon
                             name="sign in"
                             size="large"
