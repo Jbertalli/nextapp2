@@ -32,6 +32,7 @@ const CalorieCalculator = ({ user }) => {
     const [average, setAverage] = useState<any>('');
     const [checked, setChecked] = useState<boolean>(false);
     const [checkedMale, setCheckedMale] = useState<boolean>(false);
+    const [desktop, setDesktop] = useState<boolean>(false);
     const Calories = useRef<any>();
 
     useEffect(() => {
@@ -159,6 +160,24 @@ const CalorieCalculator = ({ user }) => {
     const caloric_intake: any = counting.flat();
     console.log(caloric_intake);
     console.log(data);
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setDesktop(true);
+        } else {
+            setDesktop(false);
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                    setDesktop(true);
+            } else {
+                    setDesktop(false);
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
 
     return (
       <>
@@ -318,7 +337,7 @@ const CalorieCalculator = ({ user }) => {
                             onChange={e => {setKilograms(e.target.value), setData([])}}
                         />
                     </>)}
-                        &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
+                        &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
                         <input
                             type="radio"
                             name="rad"
@@ -329,7 +348,7 @@ const CalorieCalculator = ({ user }) => {
                             style={{ width: '30px' }}
                             onMouseUp={() => {setMale(true), handleMaleUnclick()}}
                         />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
                         <input
                             type="radio"
                             name="rad"
@@ -400,9 +419,13 @@ const CalorieCalculator = ({ user }) => {
                                     onChange={handleLifeChange}
                                     onMouseUp={() => {setLifestyle(5), handleUnclick()}}
                                 />
-                                <div style={{ color: 'grey', fontSize: '15px' }}>
-                                    &nbsp;1 = Low Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 = High Activity
-                                </div>
+                                {desktop ? (
+                                <>
+                                    <div style={{ color: 'grey', fontSize: '15px' }}>
+                                        &nbsp;1 = Low Activity <div style={{ transform: 'translate(28.2vw, -23px)' }}>5 = High Activity</div>
+                                    </div>
+                                </>
+                                ): null}
                             </div>
                         </span>
                     <Segment color="blue" textAlign="center" size="massive">
@@ -482,9 +505,9 @@ const CalorieCalculator = ({ user }) => {
                     />
                 </Segment> */}
                 <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
-                    <Button size="big" onClick={handleAddGoal} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <Button style={{ marginBottom: '10px'}} size="big" onClick={handleAddGoal} color="blue">Update Calorie History</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-                    <Button size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Button style={{ marginBottom: '10px'}} size="big" onClick={() => {setAverage(avg), setData([])}} onDoubleClick={() => {setAverage(''), setData([])}} color="blue">Calculate Average</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Button size="big" onClick={() => {clearAll(), setAge(''), setFeet(''), setInches(''), setWeight(''), setCentimeters(''), setKilograms(''), handleRadio(), handleLife(), setData([])}}>Clear All</Button>
                 </Segment>
                 {/* <Modal open={modal} dimmer="blurring" size="small">

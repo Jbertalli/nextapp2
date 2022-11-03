@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -19,6 +19,24 @@ const Navbar = ({ user }): any => {
     // const isAdmin = user && user.role === 'admin';
     // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 
 
+    // useEffect(() => {
+    //     if (window.innerWidth > 440) {
+
+    //     } else {
+            
+    //     }
+  
+    //     const updateMedia = () => {
+    //         if (window.innerWidth > 440) {
+              
+    //         } else {
+              
+    //         }
+    //     };
+    //       window.addEventListener('resize', updateMedia);
+    //       return () => window.removeEventListener('resize', updateMedia);
+    //   }, []);
+
     function isActive(route) {
         return route === router.pathname;
     }
@@ -26,7 +44,11 @@ const Navbar = ({ user }): any => {
     return (
         // <Sticky style={{ position: 'relative' }}>
         <div style={{ padding: '2.5vh' }}>
-            <Menu className={styles.nav} fixed='top' fluid stackable inverted>
+            <Menu 
+                // className={styles.nav} 
+                fixed='top' 
+                inverted
+            >
                 <Grid>
                     <Icons />
                 </Grid>
