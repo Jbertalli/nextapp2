@@ -66,35 +66,41 @@ const Login = () => {
                     content={error}
                 />
                 <Segment>
-                    <Form.Input
-                        fluid
-                        icon="envelope"
-                        iconPosition="left"
-                        label="Email"
-                        placeholder="Email"
-                        name="email"
-                        type="email"
-                        value={user.email}
-                        onChange={handleChange}
-                    />
-                    <Form.Input
-                        fluid
-                        icon="lock"
-                        iconPosition="left"
-                        label="Password"
-                        placeholder="Password"
-                        name="password"
-                        type="password"
-                        value={user.password}
-                        onChange={handleChange}
-                    />
-                    <Button
-                        disabled={disabled || loading}
-                        icon="signup"
-                        type="submit"
-                        color="blue"
-                        content="Login"
-                    />
+                    <div style={{ fontSize: '19px', marginBottom: '30px', marginTop: '20px' }}>
+                        <Form.Input
+                            fluid
+                            icon="envelope"
+                            iconPosition="left"
+                            label="Email"
+                            placeholder="Email"
+                            name="email"
+                            type="email"
+                            value={user.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div style={{ fontSize: '19px', marginBottom: '30px' }}>
+                        <Form.Input
+                            fluid
+                            icon="lock"
+                            iconPosition="left"
+                            label="Password"
+                            placeholder="Password"
+                            name="password"
+                            type="password"
+                            value={user.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div style={{ marginBottom: '10px' }}>
+                        <Button
+                            disabled={disabled || loading}
+                            icon="signup"
+                            type="submit"
+                            color="blue"
+                            content="Login"
+                        />
+                    </div>
                 </Segment>
             </Form>
             <Message attached="bottom">
