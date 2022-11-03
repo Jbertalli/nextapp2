@@ -244,7 +244,7 @@ const CalorieCalculator = ({ user }) => {
                     {imperial ? (<>
                         <Grid>
                             <Grid.Row>
-                                <Grid.Column width={10}>
+                                <Grid.Column width={8}>
                                     <Form.Input
                                         fluid
                                         icon="chart bar"
@@ -261,7 +261,7 @@ const CalorieCalculator = ({ user }) => {
                                         onChange={e => {setFeet(e.target.value), setData([])}}
                                     />
                                 </Grid.Column>
-                                <Grid.Column width={6}>
+                                <Grid.Column width={8}>
                                     <Form.Input
                                         fluid
                                         icon="chart bar"
