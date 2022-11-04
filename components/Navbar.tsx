@@ -204,43 +204,43 @@ const Navbar = ({ user }): any => {
                                 <div>
                                     <Container  style={{ color: '#f5f5f7', fontWeight: '100', lineHeight: '14.6px', fontSize: '17px', width: '584px', cursor: 'pointer', padding: '0px 23px 0px 23px', transform: 'translateY(40px)' }}>
                                         <Link href="/" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Home
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/CalorieIntakeCalculator" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Calorie Intake Calculator
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/BMICalculator" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 BMI Calculator
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/BodyFatCalculator" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Body Fat Calculator
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/LoanCalculator" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Loan Calculator
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/CompoundInterestCalculator" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Compound Interest Calculator
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                         <Link href="/goals" passHref>
-                                            <div>
+                                            <div onClick={() => setMenuModal(false)}>
                                                 Set Goals
                                             </div>
                                         </Link>
@@ -248,13 +248,13 @@ const Navbar = ({ user }): any => {
                                         <>
                                             <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                             <Link href="/account" passHref>
-                                                <div>
+                                                <div onClick={() => setMenuModal(false)}>
                                                     Account
                                                 </div>
                                             </Link>
                                             <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                             <Link href="/Login" passHref>
-                                                <div>
+                                                <div onClick={() => setMenuModal(false)}>
                                                     Logout
                                                 </div>
                                             </Link>
@@ -263,13 +263,13 @@ const Navbar = ({ user }): any => {
                                         <>
                                             <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                             <Link href="/Login" passHref>
-                                                <div>
+                                                <div onClick={() => setMenuModal(false)}>
                                                     Login
                                                 </div>
                                             </Link>
                                             <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
                                             <Link href="/Signup" passHref>
-                                                <div>
+                                                <div onClick={() => setMenuModal(false)}>
                                                     Signup
                                                 </div>
                                             </Link>
