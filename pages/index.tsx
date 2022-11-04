@@ -31,7 +31,7 @@ export default function Home({ examples }) {
       {/* <h1 style={{ textAlign: 'center', fontSize: '50px'  }}>
         HealthStat
       </h1> */}
-      <Container style={{ margin: '3em 0 6em' }}>
+      <Container style={{ margin: '3em 0 3em' }}>
         <div style={{ transform: 'translateY(20px)' }}>
             <CalculatorList examples={examples} />
         </div>

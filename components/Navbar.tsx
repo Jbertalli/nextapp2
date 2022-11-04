@@ -49,11 +49,11 @@ const Navbar = ({ user }): any => {
             <>
                 <div style={{ padding: '2.5vh' }}>
                     <Menu 
-                        // className={styles.nav} 
                         fixed='top' 
                         inverted
+                        style={{ background: 'black' }}
                     >
-                        <div style={{ position: 'absolute' }}>
+                        <div style={{ position: 'absolute', transform: 'translate(50px)' }}>
                             <Grid>
                                 <Icons />
                             </Grid>
@@ -167,6 +167,9 @@ const Navbar = ({ user }): any => {
             </>
             ):(
             <>
+                {/* <div style={{ position: 'absolute', transform: 'scale(0.8) translateY(-22px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
+                    <Icons />
+                </div> */}
                 <Sticky>
                     <Menu
                         fluid
@@ -177,21 +180,29 @@ const Navbar = ({ user }): any => {
                             fontSize: '17px', 
                             fontWeight: '400', 
                             background: '#000000',
-                            opacity: '0.8',
+                            opacity: '1',
                             fontFamily: 'SF Pro Text'
-                    }}>
-                        <Container style={{ opacity: '0.8', display: 'flex', justifyContent: 'space-between' }}>
-                            <Menu.Item 
-                                style={{ color: '#F5F5F7' }} 
-                                onClick={() => setMenuModal(true)}
-                            >
-                                <div style={{ transform: 'scaleX(1.8) translate(0.3px, -11px)', color: '#F5F5F7' }}>
-                                    _
-                                </div>
-                                <div style={{ transform: 'scaleX(1.8) translate(-4.7px, -4px)', color: '#F5F5F7' }}>
-                                    _
-                                </div>
-                            </Menu.Item>
+                        }}>
+                        <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <div style={{ transform: 'translateY(-3px)' }}>
+                                <Menu.Item 
+                                    style={{ color: '#F5F5F7' }} 
+                                    onClick={() => setMenuModal(true)}
+                                >
+                                    <div style={{ transform: 'scaleX(1.8) translate(0.3px, -11px)', color: '#F5F5F7' }}>
+                                        _
+                                    </div>
+                                    <div style={{ transform: 'scaleX(1.8) translate(-4.7px, -4px)', color: '#F5F5F7' }}>
+                                        _
+                                    </div>
+                                    <div style={{ transform: 'scaleX(1.8) translate(-9.2px, 3px)', color: '#F5F5F7' }}>
+                                        _
+                                    </div>
+                                </Menu.Item>
+                            </div>
+                            <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
+                                <Icons />
+                            </div>
                             <Modal className={styles.dropdown} open={menuModal} dimmer="blurring" size="small" style={{ position: 'fixed', background: 'black', width: '100%', height: '100%', transform: 'translateY(-14px)' }}>
                                 <div
                                     style={{ cursor: 'pointer' }}
