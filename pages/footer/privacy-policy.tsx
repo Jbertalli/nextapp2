@@ -6,19 +6,24 @@ import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 
 const privacy = () => {
     const [desktop, setDesktop] = useState<boolean>(true);
+    const [font, setFont] = useState<string>('48px');
 
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
+            setFont('48px');
         } else {
             setDesktop(false);
+            setFont('38px');
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
+                setFont('48px');
             } else {
                 setDesktop(false);
+                setFont('38px');
             }
         };
           window.addEventListener('resize', updateMedia);
@@ -34,11 +39,11 @@ const privacy = () => {
             <Container style={{ fontSize: '17px' }}>
                 <Divider style={{ margin: '3em' }}/>
                 <div className={styles.privacy}>
-                    <h1 style={{ fontSize: '48px' }}>
+                    <h1 style={{ fontSize: `${font}` }}>
                         HealthStat Privacy Policy
                     </h1>
                     <div style={{ fontSize: '21px' }}>
-                        Updated June 1, 2022
+                        Updated January 1, 2023
                     </div>
                     <Icon 
                             name="shield" 
