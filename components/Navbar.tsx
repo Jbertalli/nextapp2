@@ -200,9 +200,9 @@ const Navbar = ({ user }): any => {
                                     </div>
                                 </Menu.Item>
                             </div>
-                            <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
+                            {/* <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
                                 <Icons />
-                            </div>
+                            </div> */}
                             <Modal className={styles.dropdown} open={menuModal} dimmer="blurring" size="small" style={{ position: 'fixed', background: 'black', width: '100%', height: '100%', transform: 'translateY(-14px)' }}>
                                 <div
                                     style={{ cursor: 'pointer' }}

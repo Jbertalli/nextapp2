@@ -1,16 +1,37 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Footer.module.css';
 import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 
 const privacy = () => {
+    const [desktop, setDesktop] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setDesktop(true);
+        } else {
+            setDesktop(false);
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setDesktop(true);
+            } else {
+                setDesktop(false);
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+      }, []);
+
     return (
         <>
             <Head>
                 <title> HealthStat | Privacy Policy</title>
                 <meta name="description" content="privacy policy" />
             </Head>
-            <Container style={{ margin: '3em 0 6em', fontSize: '17px' }}>
+            <Container style={{ fontSize: '17px' }}>
                 <Divider style={{ margin: '3em' }}/>
                 <div className={styles.privacy}>
                     <h1 style={{ fontSize: '48px' }}>
@@ -28,17 +49,16 @@ const privacy = () => {
                     <Divider style={{ margin: '3em' }} />
                 </div>
                 <div>
-                    <Container style={{ margin: '3em 3em' }}>
+                    <Container>
                         <h2><strong>PRIVACY NOTICE</strong></h2>
 
-                        <p><strong>Last updated June 1, 2022</strong></p>
+                        <p><strong>Last updated January 1, 2023</strong></p>
 
                         <p>{`This privacy notice for HealthStat ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"), such as when you:`}</p>
                         <ul>
                             <p><li>Visit our website at <Link href='/' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://healthstat.com</a></u></Link> or any website of ours that links to this privacy notice</li></p>
                             <p><li>Engage with us in other related ways, including any sales, marketing, or events</li></p>
                         </ul>
-
                         <p><strong>Questions or concerns?</strong> Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at jjbertalli@berkeley.edu.</p>
                     </Container>
 
@@ -153,7 +173,7 @@ const privacy = () => {
                     <Divider style={{ marginTop: '2em' }} />
                     <h2><strong><a id="6">6. HOW DO WE KEEP YOUR INFORMATION SAFE?</a></strong></h2>
                     
-                    <p>In Short: We aim to protect your personal information through a system of organizational and technical security measures.</p>
+                   <p>In Short: We aim to protect your personal information through a system of organizational and technical security measures.</p>
                     
                     <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
                     
@@ -164,7 +184,7 @@ const privacy = () => {
                     
                     <p>If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your local data protection supervisory authority. You can find their contact details here: <Link href='https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm.</a></u></Link></p>
                     
-                    <p>If you are located in Switzerland, the contact details for the data protection authorities are available here: <Link href='https://www.edoeb.admin.ch/edoeb/en/home.html' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://www.edoeb.admin.ch/edoeb/en/home.html.</a></u></Link></p>
+                    <p>If you are located in Switzerland, the contact details for the data protection authorities are available here: <Link href='https://www.edoeb.admin.ch/edoeb/en/ home.html' passHref><u><a style={{ color: '#3978f5' }} className={styles.hover}>https://www.edoeb.admin.ch/edoeb</a></u></Link></p>
                     
                     <p><strong><u>Withdrawing your consent:</u></strong> {`If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "`}<u>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</u>{`" below.`}</p>
                     
@@ -213,19 +233,23 @@ const privacy = () => {
                     <p>We have collected the following categories of personal information in the past twelve (12) months:</p>
                     <div>
                         <Table celled striped padded>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>
-                                        Category
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell>
-                                        Examples
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell>
-                                        Collected
-                                    </Table.HeaderCell>
-                                </Table.Row>
-                            </Table.Header>
+                            {desktop ? (
+                            <>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell>
+                                            Category
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>
+                                            Examples
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>
+                                            Collected
+                                        </Table.HeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                            </>
+                            ): null}
                             <Table.Body>
                                 <Table.Row>
                                     <Table.Cell>A. Identifiers</Table.Cell>
