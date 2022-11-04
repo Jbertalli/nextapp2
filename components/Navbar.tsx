@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Menu, Dropdown, Icon, Container, Grid } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Container, Grid, Sticky, Modal, Divider } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 // import AccountHeader from './AccountHeader';
@@ -19,6 +19,7 @@ const Navbar = ({ user }): any => {
     // const isAdmin = user && user.role === 'admin';
     // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 
     const [desktop, setDesktop] = useState<boolean>(true);
+    const [menuModal, setMenuModal] = useState(false);
 
     useEffect(() => {
         if (window.innerWidth > 440) {
@@ -95,15 +96,6 @@ const Navbar = ({ user }): any => {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Menu.Item>
-                            {/* <Link href="/TrackProgress">
-                                <Menu.Item className={styles.hover} as="h3" header active={isActive("/TrackProgress")}>
-                                    <Icon
-                                        name="chart line"
-                                        size="large"
-                                    />
-                                    Track Progress
-                                </Menu.Item>
-                            </Link> */}
                             <Link href="/goals" passHref>
                                 <Menu.Item className={styles.hover} as="h3" header active={isActive("/goals")}>
                                     <Icon
@@ -113,60 +105,61 @@ const Navbar = ({ user }): any => {
                                     Set Goals
                                 </Menu.Item>
                             </Link>
-                            {user ? (<> 
-                            <Link href="/account" passHref>
-                                <Menu.Item className={styles.hover} as="h3" header active={isActive("/account")}>
-                                    <Icon
-                                        name="user outline"
-                                        size="large"
-                                    />
-                                    {/* <Image src={mediaPreview} centered size="small" style={{ borderRadius: '10%', width: '9vw' }} /> */}
-                                    {/* <Feed style={{ margin: '0em 1em 0em 0em' }}>
-                                        <Feed.Event>
-                                            <Feed.Label image={mediaPreview} />
-                                        </Feed.Event>
-                                    </Feed> */}
-                                    {/* <div>
-                                        <Avatar 
-                                            name="profile_pic"
-                                            size="28"
-                                            round={true}
-                                            src={mediaPreview}
+                            {user ? (
+                            <> 
+                                <Link href="/account" passHref>
+                                    <Menu.Item className={styles.hover} as="h3" header active={isActive("/account")}>
+                                        <Icon
+                                            name="user outline"
+                                            size="large"
                                         />
-                                    </div> */}
-                                    Account
-                                </Menu.Item>
-                            </Link>
-                            <Link href="/Login" passHref>
-                                <Menu.Item onClick={handleLogout} className={styles.hover} as="h3" header>
-                                    <Icon
-                                        name="sign out"
-                                        size="large"
-                                    />
-                                    Logout
-                                </Menu.Item>
-                            </Link>
+                                        {/* <Image src={mediaPreview} centered size="small" style={{ borderRadius: '10%', width: '9vw' }} /> */}
+                                        {/* <Feed style={{ margin: '0em 1em 0em 0em' }}>
+                                            <Feed.Event>
+                                                <Feed.Label image={mediaPreview} />
+                                            </Feed.Event>
+                                        </Feed> */}
+                                        {/* <div>
+                                            <Avatar 
+                                                name="profile_pic"
+                                                size="28"
+                                                round={true}
+                                                src={mediaPreview}
+                                            />
+                                        </div> */}
+                                        Account
+                                    </Menu.Item>
+                                </Link>
+                                <Link href="/Login" passHref>
+                                    <Menu.Item onClick={handleLogout} className={styles.hover} as="h3" header>
+                                        <Icon
+                                            name="sign out"
+                                            size="large"
+                                        />
+                                        Logout
+                                    </Menu.Item>
+                                </Link>
                             </>
                             ):(
                             <>
-                            <Link href="/Login" passHref>
-                                <Menu.Item className={styles.hover} as="h3" header active={isActive("/Login")}>
-                                    <Icon
-                                        name="sign in"
-                                        size="large"
-                                    />
-                                    Login
-                                </Menu.Item>
-                            </Link>
-                            <Link href="/Signup" passHref>
-                                <Menu.Item className={styles.hover} as="h3" header active={isActive("/Signup")}>
-                                    <Icon
-                                        name="signup"
-                                        size="large"
-                                    />
-                                    Signup
-                                </Menu.Item>
-                            </Link>
+                                <Link href="/Login" passHref>
+                                    <Menu.Item className={styles.hover} as="h3" header active={isActive("/Login")}>
+                                        <Icon
+                                            name="sign in"
+                                            size="large"
+                                        />
+                                        Login
+                                    </Menu.Item>
+                                </Link>
+                                <Link href="/Signup" passHref>
+                                    <Menu.Item className={styles.hover} as="h3" header active={isActive("/Signup")}>
+                                        <Icon
+                                            name="signup"
+                                            size="large"
+                                        />
+                                        Signup
+                                    </Menu.Item>
+                                </Link>
                             </>)}
                         </Container>
                     </Menu>
@@ -174,7 +167,120 @@ const Navbar = ({ user }): any => {
             </>
             ):(
             <>
-                Hello world
+                <Sticky>
+                    <Menu
+                        fluid
+                        style={{
+                            height: '48px', 
+                            position: 'relative', 
+                            zIndex: '9999', 
+                            fontSize: '17px', 
+                            fontWeight: '400', 
+                            background: '#000000',
+                            opacity: '0.8',
+                            fontFamily: 'SF Pro Text'
+                    }}>
+                        <Container style={{ opacity: '0.8', display: 'flex', justifyContent: 'space-between' }}>
+                            <Menu.Item 
+                                style={{ color: '#F5F5F7' }} 
+                                onClick={() => setMenuModal(true)}
+                            >
+                                <div style={{ transform: 'scaleX(1.8) translate(0.3px, -11px)', color: '#F5F5F7' }}>
+                                    _
+                                </div>
+                                <div style={{ transform: 'scaleX(1.8) translate(-4.7px, -4px)', color: '#F5F5F7' }}>
+                                    _
+                                </div>
+                            </Menu.Item>
+                            <Modal className={styles.dropdown} open={menuModal} dimmer="blurring" size="small" style={{ position: 'fixed', background: 'black', width: '100%', height: '100%', transform: 'translateY(-14px)' }}>
+                                <div
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setMenuModal(false)}
+                                >
+                                    <div style={{ fontSize: '23px', fontWeight: '100', color: '#f5f5f7', transform: 'translate(18px, 10px) scaleX(1.3)', position: 'absolute', zIndex: '100', opacity: '0.6' }}>
+                                        x
+                                    </div>
+                                </div>
+                                <div>
+                                    <Container  style={{ color: '#f5f5f7', fontWeight: '100', lineHeight: '14.6px', fontSize: '17px', width: '584px', cursor: 'pointer', padding: '0px 23px 0px 23px', transform: 'translateY(40px)' }}>
+                                        <Link href="/" passHref>
+                                            <div>
+                                                Home
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/CalorieIntakeCalculator" passHref>
+                                            <div>
+                                                Calorie Intake Calculator
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/BMICalculator" passHref>
+                                            <div>
+                                                BMI Calculator
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/BodyFatCalculator" passHref>
+                                            <div>
+                                                Body Fat Calculator
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/LoanCalculator" passHref>
+                                            <div>
+                                                Loan Calculator
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/CompoundInterestCalculator" passHref>
+                                            <div>
+                                                Compound Interest Calculator
+                                            </div>
+                                        </Link>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/goals" passHref>
+                                            <div>
+                                                Set Goals
+                                            </div>
+                                        </Link>
+                                        {user ? (
+                                        <>
+                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                            <Link href="/account" passHref>
+                                                <div>
+                                                    Account
+                                                </div>
+                                            </Link>
+                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                            <Link href="/Login" passHref>
+                                                <div>
+                                                    Logout
+                                                </div>
+                                            </Link>
+                                        </>
+                                        ):(
+                                        <>
+                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                            <Link href="/Login" passHref>
+                                                <div>
+                                                    Login
+                                                </div>
+                                            </Link>
+                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                            <Link href="/Signup" passHref>
+                                                <div>
+                                                    Signup
+                                                </div>
+                                            </Link>
+                                        </>
+                                        )}
+                                    </Container>
+                                </div>
+                            </Modal>
+                        </Container>
+                    </Menu>
+                </Sticky>
             </>
             )}
         </>
