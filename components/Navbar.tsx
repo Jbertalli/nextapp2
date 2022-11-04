@@ -170,128 +170,128 @@ const Navbar = ({ user }): any => {
                 {/* <div style={{ position: 'absolute', transform: 'scale(0.8) translateY(-22px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
                     <Icons />
                 </div> */}
-                <Sticky>
-                    <Menu
-                        fluid
-                        style={{
-                            height: '48px', 
-                            position: 'relative', 
-                            zIndex: '9999', 
-                            fontSize: '17px', 
-                            fontWeight: '400', 
-                            background: '#000000',
-                            opacity: '1',
-                            fontFamily: 'SF Pro Text'
-                        }}>
-                        <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <div style={{ transform: 'translateY(-3px)' }}>
-                                <Menu.Item 
-                                    style={{ color: '#F5F5F7' }} 
-                                    onClick={() => setMenuModal(true)}
-                                >
-                                    <div style={{ transform: 'scaleX(1.8) translate(0.3px, -11px)', color: '#F5F5F7' }}>
-                                        _
-                                    </div>
-                                    <div style={{ transform: 'scaleX(1.8) translate(-4.7px, -4px)', color: '#F5F5F7' }}>
-                                        _
-                                    </div>
-                                    <div style={{ transform: 'scaleX(1.8) translate(-9.2px, 3px)', color: '#F5F5F7' }}>
-                                        _
-                                    </div>
-                                </Menu.Item>
+                {/* <Sticky> */}
+                <Menu
+                    fluid
+                    style={{
+                        height: '48px', 
+                        position: 'relative', 
+                        zIndex: '9999', 
+                        fontSize: '17px', 
+                        fontWeight: '400', 
+                        background: '#000000',
+                        opacity: '1',
+                        fontFamily: 'SF Pro Text'
+                    }}>
+                    <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div style={{ transform: 'translateY(-3px)' }}>
+                            <Menu.Item 
+                                style={{ color: '#F5F5F7' }} 
+                                onClick={() => setMenuModal(true)}
+                            >
+                                <div style={{ transform: 'scaleX(1.8) translate(0.3px, -11px)', color: '#F5F5F7' }}>
+                                    _
+                                </div>
+                                <div style={{ transform: 'scaleX(1.8) translate(-4.7px, -4px)', color: '#F5F5F7' }}>
+                                    _
+                                </div>
+                                <div style={{ transform: 'scaleX(1.8) translate(-9.1px, 3px)', color: '#F5F5F7' }}>
+                                    _
+                                </div>
+                            </Menu.Item>
+                        </div>
+                        {/* <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
+                            <Icons />
+                        </div> */}
+                        <Modal className={styles.dropdown} open={menuModal} dimmer="blurring" size="small" style={{ position: 'fixed', background: 'black', width: '100%', height: '100%', transform: 'translateY(-14px)' }}>
+                            <div
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => setMenuModal(false)}
+                            >
+                                <div style={{ fontSize: '23px', fontWeight: '100', color: '#f5f5f7', transform: 'translate(18px, 10px) scaleX(1.3)', position: 'absolute', zIndex: '100', opacity: '0.6' }}>
+                                    x
+                                </div>
                             </div>
-                            {/* <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
-                                <Icons />
-                            </div> */}
-                            <Modal className={styles.dropdown} open={menuModal} dimmer="blurring" size="small" style={{ position: 'fixed', background: 'black', width: '100%', height: '100%', transform: 'translateY(-14px)' }}>
-                                <div
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setMenuModal(false)}
-                                >
-                                    <div style={{ fontSize: '23px', fontWeight: '100', color: '#f5f5f7', transform: 'translate(18px, 10px) scaleX(1.3)', position: 'absolute', zIndex: '100', opacity: '0.6' }}>
-                                        x
-                                    </div>
-                                </div>
-                                <div>
-                                    <Container  style={{ color: '#f5f5f7', fontWeight: '100', lineHeight: '14.6px', fontSize: '17px', width: '584px', cursor: 'pointer', padding: '0px 23px 0px 23px', transform: 'translateY(40px)' }}>
-                                        <Link href="/" passHref>
+                            <div>
+                                <Container  style={{ color: '#f5f5f7', fontWeight: '100', lineHeight: '14.6px', fontSize: '17px', width: '584px', cursor: 'pointer', padding: '0px 23px 0px 23px', transform: 'translateY(40px)' }}>
+                                    <Link href="/" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Home
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/CalorieIntakeCalculator" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Calorie Intake Calculator
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/BMICalculator" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            BMI Calculator
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/BodyFatCalculator" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Body Fat Calculator
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/LoanCalculator" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Loan Calculator
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/CompoundInterestCalculator" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Compound Interest Calculator
+                                        </div>
+                                    </Link>
+                                    <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                    <Link href="/goals" passHref>
+                                        <div onClick={() => setMenuModal(false)}>
+                                            Set Goals
+                                        </div>
+                                    </Link>
+                                    {user ? (
+                                    <>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/account" passHref>
                                             <div onClick={() => setMenuModal(false)}>
-                                                Home
+                                                Account
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/CalorieIntakeCalculator" passHref>
+                                        <Link href="/Login" passHref>
                                             <div onClick={() => setMenuModal(false)}>
-                                                Calorie Intake Calculator
+                                                Logout
+                                            </div>
+                                        </Link>
+                                    </>
+                                    ):(
+                                    <>
+                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
+                                        <Link href="/Login" passHref>
+                                            <div onClick={() => setMenuModal(false)}>
+                                                Login
                                             </div>
                                         </Link>
                                         <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/BMICalculator" passHref>
+                                        <Link href="/Signup" passHref>
                                             <div onClick={() => setMenuModal(false)}>
-                                                BMI Calculator
+                                                Signup
                                             </div>
                                         </Link>
-                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/BodyFatCalculator" passHref>
-                                            <div onClick={() => setMenuModal(false)}>
-                                                Body Fat Calculator
-                                            </div>
-                                        </Link>
-                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/LoanCalculator" passHref>
-                                            <div onClick={() => setMenuModal(false)}>
-                                                Loan Calculator
-                                            </div>
-                                        </Link>
-                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/CompoundInterestCalculator" passHref>
-                                            <div onClick={() => setMenuModal(false)}>
-                                                Compound Interest Calculator
-                                            </div>
-                                        </Link>
-                                        <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                        <Link href="/goals" passHref>
-                                            <div onClick={() => setMenuModal(false)}>
-                                                Set Goals
-                                            </div>
-                                        </Link>
-                                        {user ? (
-                                        <>
-                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                            <Link href="/account" passHref>
-                                                <div onClick={() => setMenuModal(false)}>
-                                                    Account
-                                                </div>
-                                            </Link>
-                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                            <Link href="/Login" passHref>
-                                                <div onClick={() => setMenuModal(false)}>
-                                                    Logout
-                                                </div>
-                                            </Link>
-                                        </>
-                                        ):(
-                                        <>
-                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                            <Link href="/Login" passHref>
-                                                <div onClick={() => setMenuModal(false)}>
-                                                    Login
-                                                </div>
-                                            </Link>
-                                            <Divider style={{ background: '#f5f5f7', opacity: '0.3' }} />
-                                            <Link href="/Signup" passHref>
-                                                <div onClick={() => setMenuModal(false)}>
-                                                    Signup
-                                                </div>
-                                            </Link>
-                                        </>
-                                        )}
-                                    </Container>
-                                </div>
-                            </Modal>
-                        </Container>
-                    </Menu>
-                </Sticky>
+                                    </>
+                                    )}
+                                </Container>
+                            </div>
+                        </Modal>
+                    </Container>
+                </Menu>
+                {/* </Sticky> */}
             </>
             )}
         </>
