@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Footer.module.css';
 import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 
-const privacy = () => {
+const Privacy = () => {
     const [desktop, setDesktop] = useState<boolean>(true);
     const [font, setFont] = useState<string>('48px');
 
@@ -403,4 +403,4 @@ const privacy = () => {
     );
 }
 
-export default privacy;
+export default Privacy;

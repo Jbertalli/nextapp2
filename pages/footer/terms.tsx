@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from '../../styles/Footer.module.css';
 import { Divider, Container, Icon } from 'semantic-ui-react';
 
-const terms = () => {
+const Terms = () => {
     const [font, setFont] = useState<string>('48px');
 
     useEffect(() => {
@@ -174,4 +174,4 @@ const terms = () => {
     );
 }
 
-export default terms;
+export default Terms;

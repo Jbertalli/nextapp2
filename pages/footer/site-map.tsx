@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { handleLogout } from '../../utils/auth';
 import { Divider, Grid, Container } from 'semantic-ui-react';
 
-const siteMap = ({ user }) => {
+const SiteMap = ({ user }) => {
     const [size, setSize] = useState<string>('50px');
 
     useEffect(() => {
@@ -135,4 +135,4 @@ const siteMap = ({ user }) => {
     );
 }
 
-export default siteMap;
+export default SiteMap;
