@@ -8,23 +8,28 @@ const Privacy = () => {
     const [desktop, setDesktop] = useState<boolean>(true);
     const [font, setFont] = useState<string>('48px');
     const [scrolled, setScrolled] = useState<number>(0);
+    const [scrollWidth, setScrollWidth] = useState<number>(1.57);
 
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
             setFont('48px');
+            setScrollWidth(1.57);
         } else {
             setDesktop(false);
             setFont('38px');
+            setScrollWidth(0.34);
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
                 setFont('48px');
+                setScrollWidth(1.57);
             } else {
                 setDesktop(false);
                 setFont('38px');
+                setScrollWidth(0.34);
             }
         };
           window.addEventListener('resize', updateMedia);
@@ -36,12 +41,15 @@ const Privacy = () => {
         // console.log(document.body.scrollHeight);
         // console.log(window.scrollY);
         window.addEventListener('scroll', function() {
-            let value = Math.ceil(((scrollY) / window.innerHeight) * 10);
-            setScrolled((value) * 1.37);
+            const value = Math.ceil(((scrollY) / window.innerHeight) * 10);
+            setScrolled((value));
         });
       }, [])
 
-      console.log(scrolled);
+      const responsiveScroll = scrolled * scrollWidth;
+
+    // console.log(scrolled);
+    // console.log(responsiveScroll);
 
     return (
         <>
@@ -52,9 +60,10 @@ const Privacy = () => {
             <div
                 style={{  
                     marginTop: '15px',
-                    width: `${scrolled}vw`,
-                    height: '10px',
-                    background: 'red',
+                    width: `${responsiveScroll}vw`,
+                    height: '5px',
+                    background: '#0066CC',
+                    opacity: '0.9',
                     position: 'fixed'
                 }}
             />
