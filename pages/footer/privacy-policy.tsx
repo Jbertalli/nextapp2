@@ -7,6 +7,7 @@ import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 const Privacy = () => {
     const [desktop, setDesktop] = useState<boolean>(true);
     const [font, setFont] = useState<string>('48px');
+    const [scrolled, setScrolled] = useState<number>(0);
 
     useEffect(() => {
         if (window.innerWidth > 440) {
@@ -30,12 +31,33 @@ const Privacy = () => {
           return () => window.removeEventListener('resize', updateMedia);
       }, []);
 
+      useEffect(() => {
+        // console.log(window.innerHeight);
+        // console.log(document.body.scrollHeight);
+        // console.log(window.scrollY);
+        window.addEventListener('scroll', function() {
+            let value = Math.ceil(((scrollY) / window.innerHeight) * 10);
+            setScrolled((value) * 1.37);
+        });
+      }, [])
+
+      console.log(scrolled);
+
     return (
         <>
             <Head>
                 <title> HealthStat | Privacy Policy</title>
                 <meta name="description" content="privacy policy" />
             </Head>
+            <div
+                style={{  
+                    marginTop: '15px',
+                    width: `${scrolled}vw`,
+                    height: '10px',
+                    background: 'red',
+                    position: 'fixed'
+                }}
+            />
             <Container style={{ fontSize: '17px' }}>
                 <Divider style={{ margin: '3em' }}/>
                 <div className={styles.privacy}>
