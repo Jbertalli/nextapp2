@@ -12,15 +12,15 @@ const Privacy = () => {
     const [jump, setJump] = useState<string>('-87px');
 
     useEffect(() => {
-        if (window.innerWidth > 991) {
+        if (window.innerWidth > 440) {
             setDesktop(true);
             setFont('48px');
-            setScrollWidth(1.09);
+            setScrollWidth(1.0);
             setJump('-87px');
         } else {
             setDesktop(false);
             setFont('38px');
-            setScrollWidth(0.335);
+            setScrollWidth(0.324);
             setJump('-26px');
         }
   
@@ -28,12 +28,12 @@ const Privacy = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
                 setFont('48px');
-                setScrollWidth(1.09);
+                setScrollWidth(1.0);
                 setJump('-87px');
             } else {
                 setDesktop(false);
                 setFont('38px');
-                setScrollWidth(0.335);
+                setScrollWidth(0.324);
                 setJump('-26px');
             }
         };
@@ -42,19 +42,19 @@ const Privacy = () => {
       }, []);
 
       useEffect(() => {
-        // console.log(window.innerHeight);
-        // console.log(document.body.scrollHeight);
-        // console.log(window.scrollY);
+        console.log('window height', window.innerHeight);
+        console.log('scroll height', document.body.scrollHeight);
+        console.log('scrollY', window.scrollY);
         window.addEventListener('scroll', function() {
-            const value = Math.ceil(((scrollY) / window.innerHeight) * 10);
+            const value = Math.ceil(((window.scrollY) / window.innerHeight)) * 10;
             setScrolled((value));
         });
         }, []);
 
       const responsiveScroll = scrolled * scrollWidth;
 
-    // console.log(scrolled);
-    console.log(responsiveScroll);
+    console.log('scrolled', scrolled);
+    console.log('responsiveScroll', responsiveScroll);
 
     return (
         <>
@@ -64,9 +64,9 @@ const Privacy = () => {
             </Head>
             <div
                 style={{  
-                    marginTop: '15px',
+                    marginTop: '-7px',
                     width: `${responsiveScroll}vw`,
-                    height: '5px',
+                    height: '6px',
                     background: '#0066CC',
                     opacity: '0.9',
                     position: 'fixed'
