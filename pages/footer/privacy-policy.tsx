@@ -9,27 +9,32 @@ const Privacy = () => {
     const [font, setFont] = useState<string>('48px');
     const [scrolled, setScrolled] = useState<number>(0);
     const [scrollWidth, setScrollWidth] = useState<number>(1.57);
+    const [jump, setJump] = useState<string>('-87px');
 
     useEffect(() => {
-        if (window.innerWidth > 440) {
+        if (window.innerWidth > 991) {
             setDesktop(true);
             setFont('48px');
-            setScrollWidth(1.57);
+            setScrollWidth(1.09);
+            setJump('-87px');
         } else {
             setDesktop(false);
             setFont('38px');
-            setScrollWidth(0.34);
+            setScrollWidth(0.335);
+            setJump('-26px');
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
                 setFont('48px');
-                setScrollWidth(1.57);
+                setScrollWidth(1.09);
+                setJump('-87px');
             } else {
                 setDesktop(false);
                 setFont('38px');
-                setScrollWidth(0.34);
+                setScrollWidth(0.335);
+                setJump('-26px');
             }
         };
           window.addEventListener('resize', updateMedia);
@@ -44,12 +49,12 @@ const Privacy = () => {
             const value = Math.ceil(((scrollY) / window.innerHeight) * 10);
             setScrolled((value));
         });
-      }, [])
+        }, []);
 
       const responsiveScroll = scrolled * scrollWidth;
 
     // console.log(scrolled);
-    // console.log(responsiveScroll);
+    console.log(responsiveScroll);
 
     return (
         <>
@@ -131,7 +136,18 @@ const Privacy = () => {
                         <ul><strong><u><a href="#12" style={{ color: '#3978f5' }}>12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></u></strong></ul>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="1">1. WHAT INFORMATION DO WE COLLECT?</a></strong></h2>
+                    {/* <h2><strong><a id="1">1. WHAT INFORMATION DO WE COLLECT?</a></strong></h2> */}
+                    <h2>
+                        <strong>
+                            <div 
+                                id='1'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                        1. WHAT INFORMATION DO WE COLLECT
+                        </strong>
+                    </h2>
                     <p><strong>Personal information you disclose to us</strong></p>
                     
                     <p>In Short: We collect personal information that you provide to us.</p>
@@ -167,7 +183,17 @@ const Privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="2">2. HOW DO WE PROCESS YOUR INFORMATION?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='2'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            2. HOW DO WE PROCESS YOUR INFORMATION?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</p>
                 
@@ -179,7 +205,17 @@ const Privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="3">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='3'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: We may share information in specific situations described in this section and/or with the following third parties.</p>
                     
@@ -191,14 +227,34 @@ const Privacy = () => {
                     </ul>
 
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="4">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='4'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: We may use cookies and other tracking technologies to collect and store your information.</p>
                     
                     <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="5">5. HOW LONG DO WE KEEP YOUR INFORMATION?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='5'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            5. HOW LONG DO WE KEEP YOUR INFORMATION?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law.</p>
                     
@@ -207,14 +263,34 @@ const Privacy = () => {
                     <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="6">6. HOW DO WE KEEP YOUR INFORMATION SAFE?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='6'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            6. HOW DO WE KEEP YOUR INFORMATION SAFE?
+                        </strong>
+                    </h2>
                     
                    <p>In Short: We aim to protect your personal information through a system of organizational and technical security measures.</p>
                     
                     <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="7">7. WHAT ARE YOUR PRIVACY RIGHTS?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='7'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            7. WHAT ARE YOUR PRIVACY RIGHTS?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: You may review, change, or terminate your account at any time.</p>
                     
@@ -241,12 +317,32 @@ const Privacy = () => {
                     <p>If you have questions or comments about your privacy rights, you may email us at jjbertalli@berkeley.edu.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="8">8. CONTROLS FOR DO-NOT-TRACK FEATURES</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='8'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            8. CONTROLS FOR DO-NOT-TRACK FEATURES
+                        </strong>
+                    </h2>
                     
                     <p>{`Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.`}</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="9">9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='9'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: Yes, if you are a resident of California, you are granted specific rights regarding access to your personal information.</p>
                     
@@ -411,21 +507,51 @@ const Privacy = () => {
                     <p>To exercise these rights, you can contact us by email at jjbertalli@berkeley.edu, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="10">10. DO WE MAKE UPDATES TO THIS NOTICE?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='10'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            10. DO WE MAKE UPDATES TO THIS NOTICE?
+                        </strong>
+                    </h2>
                     
                     <p>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
                     
                     <p>{`We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.`}</p>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="11">11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='11'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
+                        </strong>
+                    </h2>
                     
                     <p>If you have questions or comments about this notice, you may email us at jjbertalli@berkeley.edu or by post to:</p>
                     <ul>Santa Clarita, CA 91351</ul>
                     <ul>United States</ul>
                     
                     <Divider style={{ marginTop: '2em' }} />
-                    <h2><strong><a id="12">12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></strong></h2>
+                    <h2>
+                        <strong>
+                            <div 
+                                id='12'
+                                style={{
+                                    transform: `translateY(${jump})`
+                                }}
+                            />
+                            12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
+                        </strong>
+                    </h2>
                     
                     <p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances.</p>
                 </div>
