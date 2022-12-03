@@ -7,20 +7,20 @@ import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 const Privacy = () => {
     const [desktop, setDesktop] = useState<boolean>(true);
     const [font, setFont] = useState<string>('48px');
-    const [scrolled, setScrolled] = useState<number>(0);
-    const [scrollWidth, setScrollWidth] = useState<number>(1.57);
+    // const [scrolled, setScrolled] = useState<number>(0);
+    // const [scrollWidth, setScrollWidth] = useState<number>(1.57);
     const [jump, setJump] = useState<string>('-87px');
 
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
             setFont('48px');
-            setScrollWidth(1.0);
+            // setScrollWidth(1.0);
             setJump('-87px');
         } else {
             setDesktop(false);
             setFont('38px');
-            setScrollWidth(0.324);
+            // setScrollWidth(0.324);
             setJump('-26px');
         }
   
@@ -28,12 +28,12 @@ const Privacy = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
                 setFont('48px');
-                setScrollWidth(1.0);
+                // setScrollWidth(1.0);
                 setJump('-87px');
             } else {
                 setDesktop(false);
                 setFont('38px');
-                setScrollWidth(0.324);
+                // setScrollWidth(0.324);
                 setJump('-26px');
             }
         };
@@ -41,20 +41,20 @@ const Privacy = () => {
           return () => window.removeEventListener('resize', updateMedia);
       }, []);
 
-      useEffect(() => {
-        console.log('window height', window.innerHeight);
-        console.log('scroll height', document.body.scrollHeight);
-        console.log('scrollY', window.scrollY);
-        window.addEventListener('scroll', function() {
-            const value = Math.ceil(((window.scrollY) / window.innerHeight)) * 10;
-            setScrolled((value));
-        });
-        }, []);
+    //   useEffect(() => {
+    //     console.log('window height', window.innerHeight);
+    //     console.log('scroll height', document.body.scrollHeight);
+    //     console.log('scrollY', window.scrollY);
+    //     window.addEventListener('scroll', function() {
+    //         const value = Math.ceil(((window.scrollY + window.innerHeight) / window.innerHeight)) * 10;
+    //         setScrolled((value));
+    //     });
+    //     }, []);
 
-      const responsiveScroll = scrolled * scrollWidth;
+    //   const responsiveScroll = scrolled * scrollWidth;
 
-    console.log('scrolled', scrolled);
-    console.log('responsiveScroll', responsiveScroll);
+    // console.log('scrolled', scrolled);
+    // console.log('responsiveScroll', responsiveScroll);
 
     return (
         <>
@@ -62,16 +62,16 @@ const Privacy = () => {
                 <title> HealthStat | Privacy Policy</title>
                 <meta name="description" content="privacy policy" />
             </Head>
-            <div
+            {/* <div
                 style={{  
                     marginTop: '-7px',
-                    width: `${responsiveScroll}vw`,
+                    width: `${scrolled}vw`,
                     height: '6px',
                     background: '#0066CC',
                     opacity: '0.9',
                     position: 'fixed'
                 }}
-            />
+            /> */}
             <Container style={{ fontSize: '17px' }}>
                 <Divider style={{ margin: '3em' }}/>
                 <div className={styles.privacy}>
