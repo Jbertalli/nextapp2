@@ -162,17 +162,20 @@ const Navbar = ({ user }): any => {
                                 </Link>
                             </>)}
                         </Container>
-                        {/* if router.pathname === privacy || terms */}
-                        <div
-                            style={{  
-                                marginTop: '60px',
-                                width: `100%`,
-                                height: '6px',
-                                background: '#0066CC',
-                                opacity: '0.9',
-                                position: 'fixed',
-                            }}
-                        />
+                        {(router.pathname === '/footer/privacy-policy' || router.pathname === '/footer/terms') ? (
+                        <>
+                            <div
+                                style={{  
+                                    marginTop: '60px',
+                                    width: `100%`,
+                                    height: '6px',
+                                    background: '#0066CC',
+                                    opacity: '0.9',
+                                    position: 'fixed',
+                                }}
+                            />
+                        </>
+                        ): null}
                     </Menu>
                 </div>
             </>
