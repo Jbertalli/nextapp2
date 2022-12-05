@@ -8,6 +8,8 @@ import { handleLogout } from '../utils/auth';
 // import AccountHeader from './AccountHeader';
 // import Avatar from 'react-avatar';
 import Icons from './Icons';
+// const [scrolled, setScrolled] = useState<number>(0);
+// const [scrollWidth, setScrollWidth] = useState<number>(1.57);
 
 const Navbar = ({ user }): any => {
 // const Navbar = ({ user, mediaPreview }) => {
@@ -24,24 +26,43 @@ const Navbar = ({ user }): any => {
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
+            // setScrollWidth(1.0);
         } else {
             setDesktop(false);
+            // setScrollWidth(1.0);
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
+                // setScrollWidth(1.0);
             } else {
                 setDesktop(false);
+                // setScrollWidth(1.0);
             }
         };
           window.addEventListener('resize', updateMedia);
           return () => window.removeEventListener('resize', updateMedia);
-      }, []);
+    }, []);
 
     function isActive(route) {
         return route === router.pathname;
     }
+
+    //   useEffect(() => {
+    //     console.log('window height', window.innerHeight);
+    //     console.log('scroll height', document.body.scrollHeight);
+    //     console.log('scrollY', window.scrollY);
+    //     window.addEventListener('scroll', function() {
+    //         const value = Math.ceil(((window.scrollY + window.innerHeight) / window.innerHeight)) * 10;
+    //         setScrolled((value));
+    //     });
+    //     }, []);
+
+    //   const responsiveScroll = scrolled * scrollWidth;
+
+    // console.log('scrolled', scrolled);
+    // console.log('responsiveScroll', responsiveScroll);
 
     return (
         <>
