@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Grid, Sticky, Modal, Divider } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
+import Icons from './Icons';
+// import Image from 'next/image';
 // import AccountHeader from './AccountHeader';
 // import Avatar from 'react-avatar';
-import Icons from './Icons';
-// const [scrolled, setScrolled] = useState<number>(0);
-// const [scrollWidth, setScrollWidth] = useState<number>(1.57);
 
 const Navbar = ({ user }): any => {
 // const Navbar = ({ user, mediaPreview }) => {
@@ -22,44 +20,76 @@ const Navbar = ({ user }): any => {
     // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 
     const [desktop, setDesktop] = useState<boolean>(true);
     const [menuModal, setMenuModal] = useState(false);
+    const [scrolled, setScrolled] = useState<number>(0);
+    const [scrollWidth, setScrollWidth] = useState<number>(1.5);
 
     useEffect(() => {
         if (window.innerWidth > 440) {
             setDesktop(true);
-            // setScrollWidth(1.0);
         } else {
             setDesktop(false);
-            // setScrollWidth(1.0);
         }
   
         const updateMedia = () => {
             if (window.innerWidth > 440) {
                 setDesktop(true);
-                // setScrollWidth(1.0);
             } else {
                 setDesktop(false);
-                // setScrollWidth(1.0);
             }
         };
           window.addEventListener('resize', updateMedia);
           return () => window.removeEventListener('resize', updateMedia);
     }, []);
 
+    useEffect(() => {
+        if (window.innerWidth > 991) {
+            setScrollWidth(1.5);
+        } else if (window.innerWidth < 991 && window.innerWidth > 800) {
+            setScrollWidth(1.25);
+        } else if (window.innerWidth < 800 && window.innerWidth > 600) {
+            setScrollWidth(1.12);
+        } else if (window.innerWidth < 600 && window.innerWidth > 500) {
+            setScrollWidth(1.0);
+        } else {
+            setScrollWidth(0.95);
+        }
+  
+        const updateMedia = () => {
+            if (window.innerWidth > 991) {
+                setScrollWidth(1.5);
+            } else if (window.innerWidth < 991 && window.innerWidth > 800) {
+                setScrollWidth(1.25);
+            } else if (window.innerWidth < 800 && window.innerWidth > 600) {
+                setScrollWidth(1.12);
+            } else if (window.innerWidth < 600 && window.innerWidth > 500) {
+                setScrollWidth(1.0);
+            } else {
+                setScrollWidth(0.95);
+            }
+        };
+          window.addEventListener('resize', updateMedia);
+          return () => window.removeEventListener('resize', updateMedia);
+    }, [scrollWidth]);
+
     function isActive(route) {
         return route === router.pathname;
     }
 
-    //   useEffect(() => {
-    //     console.log('window height', window.innerHeight);
-    //     console.log('scroll height', document.body.scrollHeight);
-    //     console.log('scrollY', window.scrollY);
-    //     window.addEventListener('scroll', function() {
-    //         const value = Math.ceil(((window.scrollY + window.innerHeight) / window.innerHeight)) * 10;
-    //         setScrolled((value));
-    //     });
-    //     }, []);
+    useEffect(() => {
+        // console.log('scroll height', document.body.scrollHeight);
+        // console.log('scrollY', window.scrollY);
+        // console.log('inner height', window.innerHeight);
+        // console.log('outer height', window.outerHeight);
+        // console.log(window.screen.availHeight);
+        // console.log(window);
+        // console.log('inner width', window.innerWidth);
+        window.addEventListener('scroll', function() {
+            const value = Math.ceil(((window.scrollY) / window.outerHeight)) * 10;
+            setScrolled((value));
+        });
+    }, []);
 
-    //   const responsiveScroll = scrolled * scrollWidth;
+    const responsiveScroll = scrolled * scrollWidth;
 
     // console.log('scrolled', scrolled);
     // console.log('responsiveScroll', responsiveScroll);
@@ -188,7 +218,7 @@ const Navbar = ({ user }): any => {
                             <div
                                 style={{  
                                     marginTop: '60px',
-                                    width: `100%`,
+                                    width: `${responsiveScroll}vw`,
                                     height: '6px',
                                     background: '#0066CC',
                                     opacity: '0.9',
