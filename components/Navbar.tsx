@@ -316,6 +316,19 @@ const Navbar = ({ user }): any => {
                             </div>
                         </Modal>
                     </Container>
+                    {(router.pathname === '/footer/privacy-policy' || router.pathname === '/footer/terms') ? (
+                        <>
+                            <div
+                                style={{  
+                                    width: `${percent}vw`,
+                                    height: '6px',
+                                    background: '#0066CC',
+                                    opacity: '0.9',
+                                    position: 'fixed',
+                                }}
+                            />
+                        </>
+                    ): null}
                 </Menu>
                 {/* </Sticky> */}
             </>
