@@ -20,8 +20,7 @@ const Navbar = ({ user }): any => {
     // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions 
     const [desktop, setDesktop] = useState<boolean>(true);
     const [menuModal, setMenuModal] = useState(false);
-    const [scrolled, setScrolled] = useState<number>(0);
-    const [scrollWidth, setScrollWidth] = useState<number>(1.5);
+    const [percent, setPercent] = useState<number>(null);
 
     useEffect(() => {
         if (window.innerWidth > 440) {
@@ -41,59 +40,21 @@ const Navbar = ({ user }): any => {
           return () => window.removeEventListener('resize', updateMedia);
     }, []);
 
-    useEffect(() => {
-        if (window.innerWidth > 991) {
-            setScrollWidth(1.5);
-        } else if (window.innerWidth < 991 && window.innerWidth > 800) {
-            setScrollWidth(1.25);
-        } else if (window.innerWidth < 800 && window.innerWidth > 600) {
-            setScrollWidth(1.12);
-        } else if (window.innerWidth < 600 && window.innerWidth > 500) {
-            setScrollWidth(1.0);
-        } else {
-            setScrollWidth(0.95);
-        }
-  
-        const updateMedia = () => {
-            if (window.innerWidth > 991) {
-                setScrollWidth(1.5);
-            } else if (window.innerWidth < 991 && window.innerWidth > 800) {
-                setScrollWidth(1.25);
-            } else if (window.innerWidth < 800 && window.innerWidth > 600) {
-                setScrollWidth(1.12);
-            } else if (window.innerWidth < 600 && window.innerWidth > 500) {
-                setScrollWidth(1.0);
-            } else {
-                setScrollWidth(0.95);
-            }
-        };
-          window.addEventListener('resize', updateMedia);
-          return () => window.removeEventListener('resize', updateMedia);
-    }, [scrollWidth]);
-
     function isActive(route) {
         return route === router.pathname;
     }
 
     useEffect(() => {
-        // console.log('scroll height', document.body.scrollHeight);
-        // console.log('scrollY', window.scrollY);
-        // console.log('inner height', window.innerHeight);
-        // console.log('outer height', window.outerHeight);
-        // console.log(window.screen.availHeight);
-        // console.log(window);
-        // console.log('inner width', window.innerWidth);
         window.addEventListener('scroll', function() {
-            const value = Math.ceil(((window.scrollY) / window.outerHeight)) * 10;
-            setScrolled((value));
-        });
+            let pixelsFromTop = window.scrollY;
+            let documentHeight = document.body.scrollHeight;
+            let windowHeight = window.innerHeight;
+            let difference = documentHeight - windowHeight;
+            let percentage = (100 * pixelsFromTop) / difference;
+            setPercent(percentage);
+        })
     }, []);
-
-    const responsiveScroll = scrolled * scrollWidth;
-
-    // console.log('scrolled', scrolled);
-    // console.log('responsiveScroll', responsiveScroll);
-
+    
     return (
         <>
             {desktop ? (
@@ -218,7 +179,7 @@ const Navbar = ({ user }): any => {
                             <div
                                 style={{  
                                     marginTop: '60px',
-                                    width: `${responsiveScroll}vw`,
+                                    width: `${percent}vw`,
                                     height: '6px',
                                     background: '#0066CC',
                                     opacity: '0.9',
