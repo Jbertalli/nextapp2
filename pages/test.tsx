@@ -37,113 +37,126 @@ export default function Test() {
 
     const [score, setScore] = useState<number>(0);
     const [teacher, setTeacher] = useState<boolean>(true);
+    const [count, setCount] = useState<number>(0);
 
-    function grade1() {
-        if ((answer1.toLowerCase()) === (studentAnswer1.toLowerCase())) {
-            // console.log(true);
-            setScore(score + 1);
-        } else {
-            // console.log(false);
-            setScore(score + 0);
-        }
-    }
+    const [gradeArray1, setGradeArray1] = useState<Object>([0]);
+    const [gradeArray2, setGradeArray2] = useState<Object>([0]);
+    const [gradeArray3, setGradeArray3] = useState<Object>([0]);
+    const [gradeArray4, setGradeArray4] = useState<Object>([0]);
+    const [gradeArray5, setGradeArray5] = useState<Object>([0]);
+    const [gradeArray6, setGradeArray6] = useState<Object>([0]);
+    const [gradeArray7, setGradeArray7] = useState<Object>([0]);
+    const [gradeArray8, setGradeArray8] = useState<Object>([0]);
+    const [gradeArray9, setGradeArray9] = useState<Object>([0]);
+    const [gradeArray10, setGradeArray10] = useState<Object>([0]);
 
-    function grade2() {
-        if ((answer2.toLowerCase()) === (studentAnswer2.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade3() {
-        if ((answer3.toLowerCase()) === (studentAnswer3.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade4() {
-        if ((answer4.toLowerCase()) === (studentAnswer4.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade5() {
-        if ((answer5.toLowerCase()) === (studentAnswer5.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade6() {
-        if ((answer6.toLowerCase()) === (studentAnswer6.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade7() {
-        if ((answer7.toLowerCase()) === (studentAnswer7.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade8() {
-        if ((answer8.toLowerCase()) === (studentAnswer8.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade9() {
-        if ((answer9.toLowerCase()) === (studentAnswer9.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    function grade10() {
-        if ((answer10.toLowerCase()) === (studentAnswer10.toLowerCase())) {
-            setScore(score + 1);
-        } else {
-            setScore(score + 0);
-        }
-    }
-
-    let grades = [];
+    let grades1 = []
+    let grades2 = []
+    let grades3 = []
+    let grades4 = []
+    let grades5 = []
+    let grades6 = []
+    let grades7 = []
+    let grades8 = []
+    let grades9 = []
+    let grades10 = []
 
     function gradeAll() {
-        //push trues to grades array, then use 'every' method to find length of trues
-        if ((answer10.toLowerCase()) === (studentAnswer10.toLowerCase()))  {
-            grades.unshift(true);
+
+        if ((answer1.length > 0 && studentAnswer1.length > 0) && (answer1.toLowerCase()) === (studentAnswer1.toLowerCase())) {
+            grades1.unshift(1);
+            setGradeArray1(grades1);
         } else {
-            console.log(false);
+            grades1.unshift(0);
+            setGradeArray1(grades1);
         }
 
-        if ((answer9.toLowerCase()) === (studentAnswer9.toLowerCase())) {
-            grades.unshift(true);
+        if ((answer2.length > 0 && studentAnswer2.length > 0) && (answer2.toLowerCase()) === (studentAnswer2.toLowerCase())) {
+            grades2.unshift(1);
+            setGradeArray2(grades2);
         } else {
-            console.log(false);
+            grades2.unshift(0);
+            setGradeArray2(grades2);
+        }
+
+        if ((answer3.length > 0 && studentAnswer3.length > 0) && (answer3.toLowerCase()) === (studentAnswer3.toLowerCase())) {
+            grades3.unshift(1);
+            setGradeArray3(grades3);
+        } else {
+            grades3.unshift(0);
+            setGradeArray3(grades3);
+        }
+
+        if ((answer4.length > 0 && studentAnswer4.length > 0) && (answer4.toLowerCase()) === (studentAnswer4.toLowerCase())) {
+            grades4.unshift(1);
+            setGradeArray4(grades4);
+        } else {
+            grades4.unshift(0);
+            setGradeArray4(grades4);
+        }
+
+        if ((answer5.length > 0 && studentAnswer5.length > 0) && (answer5.toLowerCase()) === (studentAnswer5.toLowerCase())) {
+            grades5.unshift(1);
+            setGradeArray5(grades5);
+        } else {
+            grades5.unshift(0);
+            setGradeArray5(grades5);
+        }
+
+        if ((answer6.length > 0 && studentAnswer6.length > 0) && (answer6.toLowerCase()) === (studentAnswer6.toLowerCase())) {
+            grades6.unshift(1);
+            setGradeArray6(grades6);
+        } else {
+            grades6.unshift(0);
+            setGradeArray6(grades6);
+        }
+
+        if ((answer7.length > 0 && studentAnswer7.length > 0) && (answer7.toLowerCase()) === (studentAnswer7.toLowerCase())) {
+            grades7.unshift(1);
+            setGradeArray7(grades7);
+        } else {
+            grades7.unshift(0);
+            setGradeArray7(grades7);
+        }
+
+        if ((answer8.length > 0 && studentAnswer8.length > 0) && (answer8.toLowerCase()) === (studentAnswer8.toLowerCase())) {
+            grades8.unshift(1);
+            setGradeArray8(grades8);
+        } else {
+            grades8.unshift(0);
+            setGradeArray8(grades8);
+        }
+
+        if ((answer9.length > 0 && studentAnswer9.length > 0) && (answer9.toLowerCase()) === (studentAnswer9.toLowerCase())) {
+            grades9.unshift(1);
+            setGradeArray9(grades9);
+        } else {
+            grades9.unshift(0);
+            setGradeArray9(grades9);
+        }
+
+        if ((answer10.length > 0 && studentAnswer10.length > 0) && (answer10.toLowerCase()) === (studentAnswer10.toLowerCase()))  {
+            grades10.push(1);
+            setGradeArray10(grades10);
+        } else {
+            grades10.push(0);
+            setGradeArray10(grades10);
         }
     }
 
-    console.log(grades.flat());
+    let finalGrade = gradeArray1[0] + gradeArray2[0] + gradeArray3[0] + gradeArray4[0] + gradeArray5[0] + gradeArray6[0] + gradeArray7[0] + gradeArray8[0] + gradeArray9[0] + gradeArray10[0]
+
+    console.log(finalGrade);
 
     return (
         <>
-            <div>
+            <div
+                style={{
+                    transform: 'translateY(50px)'
+                }}
+            >
                 <Button
-                
+                    onClick={() => setCount(count + 1)}
                 >
                     + Add Question
                 </Button>
@@ -220,15 +233,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade1}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -282,15 +286,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade2}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -344,15 +339,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade3}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -406,15 +392,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade4}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -468,15 +445,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade5}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -530,15 +498,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade6}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -592,15 +551,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade7}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -654,15 +604,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade8}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -716,15 +657,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade9}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             {teacher ? (
             <>
@@ -778,15 +710,6 @@ export default function Test() {
                 </div>
             </>
             ): null}
-            <div>
-                <Button
-                    size='huge'
-                    color='green'
-                    onClick={grade10}
-                >
-                    Grade
-                </Button>
-            </div>
             <Divider />
             <div
                 style={{
@@ -796,14 +719,16 @@ export default function Test() {
             >
                 <Button
                     color='green'
-                    onClick={gradeAll}
+                    onClick={() => {gradeAll(), setScore(finalGrade)}}
                 >
-                    Grade All
+                    Grade
                 </Button>
             </div>
             <Divider />
             <h1>
-                Score: {score}
+                Score: {
+                    gradeArray1[0] + gradeArray2[0] + gradeArray3[0] + gradeArray4[0] + gradeArray5[0] + gradeArray6[0] + gradeArray7[0] + gradeArray8[0] + gradeArray9[0] + gradeArray10[0]
+                } / {count}
             </h1>
         </>
     )
