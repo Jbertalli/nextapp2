@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Divider, Input } from 'semantic-ui-react';
 
 export default function Test() {
