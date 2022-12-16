@@ -25,8 +25,8 @@ const Layout = ({ children, user }) => {
                         onClick={() => {setNight(true), setBackground('#313e4c')}}
                         style={{
                             position: 'absolute',
-                            marginTop: '20px',
-                            marginLeft: '20px',
+                            marginTop: '1vw',
+                            marginLeft: '1vw',
                             background: 'black',
                             color: 'white'
                         }}
@@ -43,8 +43,8 @@ const Layout = ({ children, user }) => {
                         onClick={() => {setNight(false), setBackground('#f2f2f2')}}
                         style={{
                             position: 'absolute',
-                            marginTop: '20px',
-                            marginLeft: '20px',
+                            marginTop: '1vw',
+                            marginLeft: '1vw',
                             background: 'white',
                             color: 'black'
                         }}
