@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 
 export default function Services() {
-
     const [serviceList, setServiceList] = useState([{ service: '' }]);
 
-    console.log(serviceList);
+    // console.log(serviceList[0].service);
+
+    let arr = []
+
+    for (let i = 0; i < serviceList.length; i++) {
+        console.log(serviceList[i].service);
+        arr.push(serviceList[i].service);
+    }
+
+    console.log(arr);
 
     const handleServiceRemove = (index) => {
         const list = [...serviceList];
@@ -45,7 +53,7 @@ export default function Services() {
                                         value={singleService.service}
                                         onChange={(e) => handleServiceChange(e, index)}
                                     />
-                                    {serviceList.length - 1 === index && serviceList.length < 4 && (
+                                    {serviceList.length - 1 === index && (
                                         <button
                                             type='button'
                                             onClick={handleAddService}
