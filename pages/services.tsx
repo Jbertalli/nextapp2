@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Divider } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
     const [showAnswers, setShowAnswers] = useState<boolean>(false);
+    const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
     // console.log(serviceList[0].service);
 
@@ -82,7 +83,7 @@ export default function Services() {
                             <div key={index}>
                                 <div>
                                     <div>
-                                        Test Question
+                                        Test Question #{index + 1}
                                     </div>
                                     <input
                                         name='service'
@@ -93,7 +94,7 @@ export default function Services() {
                                         onChange={(e) => handleQuestionChange(e, index)}
                                     />
                                     <div>
-                                        Test Answer
+                                        Test Answer #{index + 1}
                                     </div>
                                     <input
                                         name='answer'
@@ -104,7 +105,7 @@ export default function Services() {
                                         onChange={(e) => handleAnswerChange(e, index)}
                                     />
                                     <div>
-                                        Student Answer
+                                        Student Answer #{index + 1}
                                     </div>
                                     <input
                                         name='student'
@@ -114,6 +115,7 @@ export default function Services() {
                                         value={singleService.student}
                                         onChange={(e) => handleStudentAnswerChange(e, index)}
                                     />
+                                    <Divider />
                                     {serviceList.length - 1 === index && (
                                         <button
                                             type='button'
@@ -136,14 +138,14 @@ export default function Services() {
                             </div>
                         ))}
                     </div>
-                    {showAnswers ? (
+                    {/* {showAnswers ? (
                     <>
                         <Button
                             color='red'
                             onClick={() => setShowAnswers(false)}
                         >
                             Hide Answer Key
-                        </Button>
+                        </Button> */}
                         <div>
                             <h2>Answer Key</h2>
                             {serviceList &&
@@ -154,7 +156,7 @@ export default function Services() {
                                 ))
                             }
                         </div>
-                    </>
+                    {/* </>
                     ):(
                     <>
                         <Button
@@ -165,16 +167,33 @@ export default function Services() {
                         </Button>
                     </>
                     )}
-                    <div>
-                        <h2>Question Key</h2>
-                        {serviceList &&
-                            serviceList.map((singleService, index) => (
-                                <ul key={index}>
-                                    {singleService.answer && <li>{singleService.answer}</li>}
-                                </ul>
-                            ))
-                        }
-                    </div>
+                    {showQuestions ? (
+                    <>
+                        <button
+                            onClick={() => setShowQuestions(false)}
+                        >
+                            Hide Question Key
+                        </button> */}
+                        <div>
+                            <h2>Question Key</h2>
+                            {serviceList &&
+                                serviceList.map((singleService, index) => (
+                                    <ul key={index}>
+                                        {singleService.answer && <li>{singleService.answer}</li>}
+                                    </ul>
+                                ))
+                            }
+                        </div>
+                    {/* </>
+                    ):(
+                    <>
+                        <button
+                            onClick={() => setShowQuestions(true)}
+                        >
+                            Show Question Key
+                        </button>
+                    </>
+                    )} */}
                     <div>
                         <h2>Student Answers</h2>
                         {serviceList &&
