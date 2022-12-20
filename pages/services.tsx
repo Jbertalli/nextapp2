@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Button } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
+    const [showAnswers, setShowAnswers] = useState<boolean>(false);
 
     // console.log(serviceList[0].service);
 
@@ -134,16 +136,35 @@ export default function Services() {
                             </div>
                         ))}
                     </div>
-                    <div>
-                        <h2>Answer Key</h2>
-                        {serviceList &&
-                            serviceList.map((singleService, index) => (
-                                <ul key={index}>
-                                    {singleService.service && <li>{singleService.service}</li>}
-                                </ul>
-                            ))
-                        }
-                    </div>
+                    {showAnswers ? (
+                    <>
+                        <Button
+                            color='red'
+                            onClick={() => setShowAnswers(false)}
+                        >
+                            Hide Answer Key
+                        </Button>
+                        <div>
+                            <h2>Answer Key</h2>
+                            {serviceList &&
+                                serviceList.map((singleService, index) => (
+                                    <ul key={index}>
+                                        {singleService.service && <li>{singleService.service}</li>}
+                                    </ul>
+                                ))
+                            }
+                        </div>
+                    </>
+                    ):(
+                    <>
+                        <Button
+                            color='blue'
+                            onClick={() => setShowAnswers(true)}
+                        >
+                            Show Answer Key
+                        </Button>
+                    </>
+                    )}
                     <div>
                         <h2>Question Key</h2>
                         {serviceList &&
