@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Divider } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
+    const [count, setCount] = useState<number>(0);
     // const [showAnswers, setShowAnswers] = useState<boolean>(false);
     // const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
@@ -10,7 +11,7 @@ export default function Services() {
 
     console.log('Full Test Array', serviceList);
 
-    let questionArray = []
+    let questionArray = [];
 
     for (let i = 0; i < serviceList.length; i++) {
         // console.log(serviceList[i].service);
@@ -19,7 +20,7 @@ export default function Services() {
 
     console.log('%c Question Array', 'color: red', questionArray);
 
-    let answerArray = []
+    let answerArray = [];
 
     for (let i = 0; i < serviceList.length; i++) {
         // console.log(serviceList[i].answer);
@@ -28,7 +29,7 @@ export default function Services() {
 
     console.log('%c Answer Array', 'color: blue', answerArray);
 
-    let studentAnswerArray = []
+    let studentAnswerArray = [];
 
     for (let i = 0; i < serviceList.length; i++) {
         // console.log(serviceList[i].student);
@@ -36,6 +37,30 @@ export default function Services() {
     }
 
     console.log('%c Student Answer Array', 'color: green', studentAnswerArray);
+
+    let gradeArray = [];
+
+    for (let i = 0; i < serviceList.length; i++) {
+        if (serviceList[i].answer === serviceList[i].student) {
+            console.log('correct');
+        } else {
+            console.log('incorrect');
+        }
+    }
+    
+    console.log(gradeArray);
+
+    const handleGrade = () => {
+        for (let i = 0; i < serviceList.length; i++) {
+            if (serviceList[i].answer === serviceList[i].student) {
+                setCount(count + 1);
+            } else {
+                setCount(count);
+            }
+        }
+    }
+
+    console.log(count);
 
     const handleServiceRemove = (index) => {
         const list = [...serviceList];
@@ -165,7 +190,7 @@ export default function Services() {
                                     {serviceList.length - 1 === index && (
                                         <Button
                                             color='blue'
-                                            onClick={handleAddService}
+                                            onClick={() => {handleAddService(), handleGrade()}}
                                         >
                                         <span>Add a Question</span>
                                         </Button>
@@ -241,6 +266,9 @@ export default function Services() {
                         }
                     </div>
                 </form>
+                <h1>
+                    Grade
+                </h1>
             </div>
         </>
     )
