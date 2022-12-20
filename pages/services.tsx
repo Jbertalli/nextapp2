@@ -3,8 +3,8 @@ import { Button, Divider } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
-    const [showAnswers, setShowAnswers] = useState<boolean>(false);
-    const [showQuestions, setShowQuestions] = useState<boolean>(false);
+    // const [showAnswers, setShowAnswers] = useState<boolean>(false);
+    // const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
     // console.log(serviceList[0].service);
 
@@ -149,23 +149,26 @@ export default function Services() {
                                         }}
                                     />
                                     <Divider />
-                                    {serviceList.length - 1 === index && (
-                                        <button
-                                            type='button'
-                                            onClick={handleAddService}
-                                        >
-                                        <span>Add a Question</span>
-                                        </button>
-                                    )}
                                 </div>
                                 <div>
                                     {serviceList.length !== 1 && (
-                                        <button
-                                            type='button'
+                                        <Button
+                                            color='red'
                                             onClick={() => handleServiceRemove(index)}
                                         >
-                                            <span>Remove</span>
-                                        </button>
+                                            <span>Remove Question #{index + 1}</span>
+                                        </Button>
+                                    )}
+                                </div>
+                                <Divider />
+                                <div>
+                                    {serviceList.length - 1 === index && (
+                                        <Button
+                                            color='blue'
+                                            onClick={handleAddService}
+                                        >
+                                        <span>Add a Question</span>
+                                        </Button>
                                     )}
                                 </div>
                             </div>
