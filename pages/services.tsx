@@ -288,26 +288,26 @@ export default function Services() {
                             </div>
                         ))}
                     </div>
-                        {/* <div>
-                            <h2>Answer Key</h2>
-                            {serviceList &&
-                                serviceList.map((singleService, index) => (
-                                    <ul key={index}>
-                                        {singleService.service && <li>{singleService.service}</li>}
-                                    </ul>
-                                ))
-                            }
-                        </div> */}
-                        <div>
-                            <h2>Question Key</h2>
-                            {serviceList &&
-                                serviceList.map((singleService, index) => (
-                                    <ul key={index}>
-                                        {singleService.answer && <li>{singleService.answer}</li>}
-                                    </ul>
-                                ))
-                            }
-                        </div>
+                    {/* <div>
+                        <h2>Answer Key</h2>
+                        {serviceList &&
+                            serviceList.map((singleService, index) => (
+                                <ul key={index}>
+                                    {singleService.service && <li>{singleService.service}</li>}
+                                </ul>
+                            ))
+                        }
+                    </div> */}
+                    {/* <div>
+                        <h2>Question Key</h2>
+                        {serviceList &&
+                            serviceList.map((singleService, index) => (
+                                <ul key={index}>
+                                    {singleService.answer && <li>{singleService.answer}</li>}
+                                </ul>
+                            ))
+                        }
+                    </div> */}
                     <div>
                         <h2>Student Answers</h2>
                         {serviceList &&
@@ -405,6 +405,37 @@ export default function Services() {
                                     serviceList.map((singleService, index) => (
                                         <ul key={index}>
                                             {singleService.service && <li>{singleService.service}</li>}
+                                        </ul>
+                                    ))
+                                }
+                            </h2>
+                        </div>
+                    </div>
+                </Card>
+                <Card
+                    style={{
+                        height: '300px'
+                    }}
+                >
+                    <div
+                        style={{
+                            transform: 'translateY(45.5px)'
+                        }}
+                    >
+                        <div>
+                            <h1
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                Question Key
+                            </h1>
+                            <h2>
+                                {serviceList &&
+                                    serviceList.map((singleService, index) => (
+                                        <ul key={index}>
+                                            {singleService.answer && <li>{singleService.answer}</li>}
                                         </ul>
                                     ))
                                 }
