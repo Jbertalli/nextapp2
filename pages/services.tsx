@@ -89,7 +89,7 @@ export default function Services() {
     // console.log(studentAnswerArray);
 
     const compare = (num1, num2) => {
-        let counter = num1.reduce((total, el, index) => el === num2[index] ? total + 1 : total, 0);
+        let counter = num1.reduce((total, el, index) => el.toLowerCase() === num2[index].toLowerCase() ? total + 1 : total, 0);
         return counter;
     }
 
@@ -98,7 +98,7 @@ export default function Services() {
     console.log(grade);
 
     const comparePercent = (num1, num2) => {
-        let counter = num1.reduce((total, el, index) => el === num2[index] ? total + 1 : total, 0);
+        let counter = num1.reduce((total, el, index) => el.toLowerCase() === num2[index].toLowerCase() ? total + 1 : total, 0);
         const divide = Math.floor((counter / num1.length) * 100);
         const percent = (divide.toFixed(1));
         return percent;
@@ -194,7 +194,7 @@ export default function Services() {
                                     <Divider />
                                 </div>
                                 <div>
-                                    {(singleService.answer === singleService.student) ? (
+                                    {((singleService.answer).toLowerCase() === (singleService.student).toLowerCase()) ? (
                                     <>
                                         <div style={{ fontSize: '30px', fontWeight: '500', color: 'green' }}>
                                             <Icon
