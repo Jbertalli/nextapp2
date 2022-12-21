@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
 
@@ -170,9 +171,12 @@ export default function Services() {
 
     return (
         <>
+            <Head>
+                <title>Test Generator</title>
+                <meta name='description' content='test' />
+            </Head>
             <Container
                 style={{
-                    border: '1px solid red',
                     transform: 'translateY(60px)',
                     display: 'flex',
                     justifyContent: 'center'
