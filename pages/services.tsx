@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Divider, Icon, Card } from 'semantic-ui-react';
 
+const LOCAL_STORAGE_KEY = 'list';
+
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
     const [letterGrade, setLetterGrade] = useState<any>(null);
     const [color, setColor] = useState<string>('');
+
+    useEffect(() => {
+        const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+        if (storedList) setServiceList(storedList)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, 
+        JSON.stringify(serviceList))
+    }, [serviceList])
 
     // console.log(serviceList[0].service);
 
@@ -80,7 +92,7 @@ export default function Services() {
 
     let grade = compare(answerArray, studentAnswerArray);
 
-    console.log(grade);
+    // console.log(grade);
 
     const comparePercent = (num1, num2) => {
         let counter = num1.reduce((total, el, index) => el.toLowerCase() === num2[index].toLowerCase() ? total + 1 : total, 0);
@@ -91,7 +103,7 @@ export default function Services() {
 
     let percent = Number(comparePercent(answerArray, studentAnswerArray));
 
-    console.log(percent);
+    // console.log(percent);
 
     useEffect(() => {
         switch(true) {
@@ -305,7 +317,7 @@ export default function Services() {
                             transform: 'translateY(20%)'
                         }}
                     >
-                        <h2 
+                        <div 
                             style={{ 
                                 marginBottom: '5px'
                             }}
@@ -318,15 +330,15 @@ export default function Services() {
                             >
                                 Grade Report
                             </h1>
-                            <div
+                            <h2
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center'
                                 }}
                             >
                                 Grade: {grade}/{length}
-                            </div>
-                        </h2>
+                            </h2>
+                        </div>
                         <h2>
                             <div
                                 style={{
