@@ -85,6 +85,20 @@ export default function Services() {
         setServiceList([...serviceList, { service: '', answer: '', student: '' }])
     }
 
+    // console.log(answerArray);
+    // console.log(studentAnswerArray);
+
+    const compare = (num1, num2) => {
+        let counter = num1.reduce((total, el, index) => el === num2[index] ? total + 1 : total, 0);
+        const divide = Math.floor((counter / num1.length) * 100);
+        const percent = (divide.toFixed(1) + '%');
+        return percent;
+    }
+
+    let grade = compare(answerArray, studentAnswerArray);
+
+    console.log(grade);
+
     return (
         <>
             <div
@@ -196,6 +210,7 @@ export default function Services() {
                                     </>
                                     )}
                                 </div>
+                                <Divider />
                                 <div>
                                     {serviceList.length !== 1 && (
                                         <Button
@@ -298,7 +313,7 @@ export default function Services() {
                     }}
                 >
                     <h1>
-                        {count}/{length}
+                        {grade}/{length}
                     </h1>    
                 </div>
             </div>
