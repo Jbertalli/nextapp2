@@ -308,7 +308,7 @@ export default function Services() {
                             ))
                         }
                     </div> */}
-                    <div>
+                    {/* <div>
                         <h2>Student Answers</h2>
                         {serviceList &&
                             serviceList.map((singleService, index) => (
@@ -317,7 +317,7 @@ export default function Services() {
                                 </ul>
                             ))
                         }
-                    </div>
+                    </div> */}
                 </form>
                 <Card
                     style={{
@@ -334,26 +334,22 @@ export default function Services() {
                                 marginBottom: '5px'
                             }}
                         >
-                            {(percent) ? (
-                            <>
-                                <h1 
-                                    style={{ 
-                                        display: 'flex', 
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    Grade Report
-                                </h1>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    Grade: {grade}/{length}
-                                </div>
-                            </>
-                            ): null}
+                            <h1 
+                                style={{ 
+                                    display: 'flex', 
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                Grade Report
+                            </h1>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                Grade: {grade}/{length}
+                            </div>
                         </h2>
                         <h2>
                             <div
@@ -391,25 +387,52 @@ export default function Services() {
                             transform: 'translateY(45.5px)'
                         }}
                     >
-                        <div>
-                            <h1
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                Answer Key
-                            </h1>
-                            <h2>
-                                {serviceList &&
-                                    serviceList.map((singleService, index) => (
-                                        <ul key={index}>
-                                            {singleService.service && <li>{singleService.service}</li>}
-                                        </ul>
-                                    ))
-                                }
-                            </h2>
-                        </div>
+                        <h1
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            Answer Key
+                        </h1>
+                        <h2>
+                            {serviceList &&
+                                serviceList.map((singleService, index) => (
+                                    <ul key={index}>
+                                        {singleService.service && <li>{singleService.service}</li>}
+                                    </ul>
+                                ))
+                            }
+                        </h2>
+                    </div>
+                </Card>
+                <Card
+                    style={{
+                        height: '300px'
+                    }}
+                >
+                    <div
+                        style={{
+                            transform: 'translateY(45.5px)'
+                        }}
+                    >
+                        <h1
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            Question Key
+                        </h1>
+                        <h2>
+                            {serviceList &&
+                                serviceList.map((singleService, index) => (
+                                    <ul key={index}>
+                                        {singleService.answer && <li>{singleService.answer}</li>}
+                                    </ul>
+                                ))
+                            }
+                        </h2>
                     </div>
                 </Card>
                 <Card
@@ -429,13 +452,13 @@ export default function Services() {
                                     justifyContent: 'center'
                                 }}
                             >
-                                Question Key
+                                Student Answers
                             </h1>
                             <h2>
                                 {serviceList &&
                                     serviceList.map((singleService, index) => (
                                         <ul key={index}>
-                                            {singleService.answer && <li>{singleService.answer}</li>}
+                                            {singleService.student && <li>{singleService.student}</li>}
                                         </ul>
                                     ))
                                 }
