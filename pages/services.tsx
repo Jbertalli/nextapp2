@@ -249,28 +249,32 @@ export default function Services() {
                                             zIndex: '100'
                                         }}
                                     />
-                                    <h2>
-                                        Test Answer #{index + 1}
-                                    </h2>
-                                    <input
-                                        name='answer'
-                                        type='text'
-                                        id='answer'
-                                        placeholder='Answer'
-                                        value={singleService.answer}
-                                        onChange={(e) => handleAnswerChange(e, index)}
-                                        style={{
-                                            padding: '9px 14px 9px 14px',
-                                            fontSize: '14px',
-                                            fontWeight: '400',
-                                            cursor: 'text',
-                                            width: '178.5px',
-                                            borderRadius: '4px',
-                                            border: '1px solid rgba(34, 36, 38. 0.15)',
-                                            position: 'relative',
-                                            zIndex: '100'
-                                        }}
-                                    />
+                                    {!student ? (
+                                    <>
+                                        <h2>
+                                            Test Answer #{index + 1}
+                                        </h2>
+                                        <input
+                                            name='answer'
+                                            type='text'
+                                            id='answer'
+                                            placeholder='Answer'
+                                            value={singleService.answer}
+                                            onChange={(e) => handleAnswerChange(e, index)}
+                                            style={{
+                                                padding: '9px 14px 9px 14px',
+                                                fontSize: '14px',
+                                                fontWeight: '400',
+                                                cursor: 'text',
+                                                width: '178.5px',
+                                                borderRadius: '4px',
+                                                border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                position: 'relative',
+                                                zIndex: '100'
+                                            }}
+                                        />
+                                    </>
+                                    ): null}
                                     <div
                                         style={{
                                             display: (singleService.service.length > 0 && singleService.answer.length > 0) ? 'block' : 'none'
@@ -411,36 +415,40 @@ export default function Services() {
                         </h1>
                     </div>
                 </Card>
-                <Card
-                    style={{
-                        height: '300px'
-                    }}
-                >
-                    <div
+                {!student ? (
+                <>
+                    <Card
                         style={{
-                            transform: 'translateY(45.5px)',
-                            color: 'red'
+                            height: '300px'
                         }}
                     >
-                        <h1
+                        <div
                             style={{
-                                display: 'flex',
-                                justifyContent: 'center'
+                                transform: 'translateY(45.5px)',
+                                color: 'red'
                             }}
                         >
-                            Answer Key
-                        </h1>
-                        <h2>
-                            {serviceList &&
-                                serviceList.map((singleService, index) => (
-                                    <ul key={index}>
-                                        {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
-                                    </ul>
-                                ))
-                            }
-                        </h2>
-                    </div>
-                </Card>
+                            <h1
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                Answer Key
+                            </h1>
+                            <h2>
+                                {serviceList &&
+                                    serviceList.map((singleService, index) => (
+                                        <ul key={index}>
+                                            {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
+                                        </ul>
+                                    ))
+                                }
+                            </h2>
+                        </div>
+                    </Card>
+                </>
+                ): null}
                 <Card
                     style={{
                         height: '300px'
