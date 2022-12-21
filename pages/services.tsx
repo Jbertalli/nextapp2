@@ -3,7 +3,7 @@ import { Button, Divider, Icon } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
-    const [count, setCount] = useState<number>(0);
+    const [letterGrade, setLetterGrade] = useState<any>(null);
     // const [showAnswers, setShowAnswers] = useState<boolean>(false);
     // const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
@@ -49,8 +49,6 @@ export default function Services() {
     }
     
     console.log(gradeArray);
-
-    console.log(count);
 
     const length = serviceList.length;
 
@@ -104,9 +102,49 @@ export default function Services() {
         return percent;
     }
 
-    let percent = comparePercent(answerArray, studentAnswerArray);
+    let percent = Number(comparePercent(answerArray, studentAnswerArray));
 
     console.log(percent);
+
+    useEffect(() => {
+        switch(true) {
+            case (percent >= 96.67 && percent <= 100.0):
+              setLetterGrade('A+');
+              break;
+            case (percent >= 93.33 && percent <= 96.67):
+              setLetterGrade('A');
+              break;
+            case (percent >= 90.0 && percent <= 93.33):
+              setLetterGrade('A-');
+              break;
+            case (percent >= 86.67 && percent <= 90.0):
+              setLetterGrade('B+');
+              break;
+            case (percent >= 83.33 && percent <= 86.67):
+              setLetterGrade('B');
+              break;
+            case (percent >= 80.0 && percent <= 83.33):
+              setLetterGrade('B-');
+              break;
+            case (percent >= 76.67 && percent <= 80.0):
+              setLetterGrade('C+');
+              break;
+            case (percent >= 73.33 && percent <= 76.67):
+              setLetterGrade('C');
+              break;
+            case (percent >= 70.0 && percent <= 73.33):
+              setLetterGrade('C-');
+              break;
+            case (percent >= 60.0 && percent <= 70.0):
+              setLetterGrade('D');
+              break;
+            case (percent >= 0.0 && percent <= 60.0):
+              setLetterGrade('F');
+              break;
+            default:
+              null;
+        }
+    }, [percent])
 
     return (
         <>
@@ -312,23 +350,33 @@ export default function Services() {
                     </div>
                 </form>
                 <div>
-                    <h1>
-                        Grade
-                    </h1>    
-                </div>
-                <div
-                    style={{
-                        transform: 'translate(-60px, 40px)'
-                    }}
-                >
-                    <h1>
-                        {grade}/{length}
-                    </h1>    
-                </div>
-                <div>
-                    <h1>
-                        {percent} %
-                    </h1>
+                    <h2 style={{ marginBottom: '5px' }}>
+                        {(percent) ? (
+                        <>
+                            <h1 style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
+                                Grade Report
+                            </h1>
+                            Grade: {grade}/{length}
+                        </>
+                        ): null}
+                    </h2>
+                    <h2>
+                        {percent}
+                        <span>
+                            {(percent) ? (
+                            <>
+                                %
+                            </>
+                            ): null}
+                        </span>
+                    </h2>
+                    <h2 style={{ paddingBottom: '30px' }}>
+                        {(length > 0) ? (
+                        <>
+                            {letterGrade}
+                        </>
+                        ): null}
+                    </h2>
                 </div>
             </div>
         </>
