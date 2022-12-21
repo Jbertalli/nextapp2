@@ -178,17 +178,38 @@ export default function Services() {
                     justifyContent: 'center'
                 }}
             >
-                <Button>
-                    Switch to Student&nbsp;&nbsp;&nbsp;
-                    <span>
-                        <Icon
-                            name='pencil'
-                        />
-                    </span>
-                </Button>
-                <Button>
-                    Switch to Admin
-                </Button>
+                {student ? (
+                <>
+                    <h1>
+                        Student View
+                    </h1>
+                    <div>
+                        <Button
+                            onClick={() => setStudent(false)}
+                        >
+                            Switch to Admin
+                        </Button>
+                    </div>
+                </>
+                ):(
+                <>
+                    <h1>
+                        Admin View
+                    </h1>
+                    <div>
+                        <Button
+                            onClick={() => setStudent(true)}
+                        >
+                            Switch to Student&nbsp;&nbsp;&nbsp;
+                            <span>
+                                <Icon
+                                    name='pencil'
+                                />
+                            </span>
+                        </Button>
+                    </div>
+                </>
+                )}
             </Container>
             <div
                 style={{
