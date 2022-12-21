@@ -90,14 +90,23 @@ export default function Services() {
 
     const compare = (num1, num2) => {
         let counter = num1.reduce((total, el, index) => el === num2[index] ? total + 1 : total, 0);
-        const divide = Math.floor((counter / num1.length) * 100);
-        const percent = (divide.toFixed(1) + '%');
-        return percent;
+        return counter;
     }
 
     let grade = compare(answerArray, studentAnswerArray);
 
     console.log(grade);
+
+    const comparePercent = (num1, num2) => {
+        let counter = num1.reduce((total, el, index) => el === num2[index] ? total + 1 : total, 0);
+        const divide = Math.floor((counter / num1.length) * 100);
+        const percent = (divide.toFixed(1));
+        return percent;
+    }
+
+    let percent = comparePercent(answerArray, studentAnswerArray);
+
+    console.log(percent);
 
     return (
         <>
@@ -315,6 +324,11 @@ export default function Services() {
                     <h1>
                         {grade}/{length}
                     </h1>    
+                </div>
+                <div>
+                    <h1>
+                        {percent} %
+                    </h1>
                 </div>
             </div>
         </>
