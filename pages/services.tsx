@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Divider, Icon } from 'semantic-ui-react';
+import { Button, Divider, Icon, Card } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -38,18 +38,6 @@ export default function Services() {
     }
 
     console.log('%c Student Answer Array', 'color: green', studentAnswerArray);
-
-    let gradeArray = [];
-
-    for (let i = 0; i < serviceList.length; i++) {
-        if (serviceList[i].answer === serviceList[i].student) {
-            console.log('correct');
-        } else {
-            console.log('incorrect');
-        }
-    }
-    
-    console.log(gradeArray);
 
     const length = serviceList.length;
 
@@ -190,7 +178,6 @@ export default function Services() {
                                         name='service'
                                         type='text'
                                         id='service'
-                                        // required
                                         placeholder='Question'
                                         value={singleService.service}
                                         onChange={(e) => handleQuestionChange(e, index)}
@@ -213,7 +200,6 @@ export default function Services() {
                                         name='answer'
                                         type='text'
                                         id='answer'
-                                        // required
                                         placeholder='Answer'
                                         value={singleService.answer}
                                         onChange={(e) => handleAnswerChange(e, index)}
@@ -236,7 +222,6 @@ export default function Services() {
                                         name='student'
                                         type='text'
                                         id='student'
-                                        // required
                                         placeholder='Student Question'
                                         value={singleService.student}
                                         onChange={(e) => handleStudentAnswerChange(e, index)}
@@ -372,35 +357,68 @@ export default function Services() {
                         }
                     </div>
                 </form>
-                <div>
-                    <h2 style={{ marginBottom: '5px' }}>
-                        {(percent) ? (
-                        <>
-                            <h1 style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
-                                Grade Report
-                            </h1>
-                            Grade: {grade}/{length}
-                        </>
-                        ): null}
-                    </h2>
-                    <h2>
-                        {percent}
-                        <span>
+                <Card
+                    style={{
+                        height: '300px'
+                    }}
+                >
+                    <div
+                        style={{
+                            transform: 'translateY(20%)'
+                        }}
+                    >
+                        <h2 
+                            style={{ 
+                                marginBottom: '5px'
+                            }}
+                        >
                             {(percent) ? (
                             <>
-                                %
+                                <h1 
+                                    style={{ 
+                                        display: 'flex', 
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    Grade Report
+                                </h1>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    Grade: {grade}/{length}
+                                </div>
                             </>
                             ): null}
-                        </span>
-                    </h2>
-                    <h2 style={{ color: `${color}`, paddingBottom: '30px' }}>
-                        {(length > 0) ? (
-                        <>
-                            {letterGrade}
-                        </>
-                        ): null}
-                    </h2>
-                </div>
+                        </h2>
+                        <h2>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                {percent} %
+                            </div>
+                        </h2>
+                        <h1 
+                            style={{ 
+                                color: `${color}`, 
+                                paddingBottom: '30px' ,
+                                display: 'flex',
+                                justifyContent: 'center'
+                                }}
+                            >
+                            {(length > 0) ? (
+                            <>
+                                {letterGrade}
+                            </>
+                            ): null}
+                        </h1>
+                    </div>
+                </Card>
             </div>
         </>
     )
