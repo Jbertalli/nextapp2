@@ -359,25 +359,39 @@ export default function Services() {
                                         <h2>
                                             Student Answer #{index + 1}
                                         </h2>
-                                        <input
-                                            name='student'
-                                            type='text'
-                                            id='student'
-                                            placeholder='Student Question'
-                                            value={singleService.student}
-                                            onChange={(e) => handleStudentAnswerChange(e, index)}
-                                            style={{
-                                                padding: '9px 14px 9px 14px',
-                                                fontSize: '14px',
-                                                fontWeight: '400',
-                                                cursor: 'text',
-                                                width: '178.5px',
-                                                borderRadius: '4px',
-                                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                position: 'relative',
-                                                zIndex: '100'
-                                            }}
-                                        />
+                                        {finish ? (
+                                        <>
+                                            <div
+                                                style={{
+                                                    fontSize: '25px'
+                                                }}
+                                            >
+                                                {singleService.student}
+                                            </div>
+                                        </>
+                                        ):(
+                                        <>
+                                            <input
+                                                name='student'
+                                                type='text'
+                                                id='student'
+                                                placeholder='Student Question'
+                                                value={singleService.student}
+                                                onChange={(e) => handleStudentAnswerChange(e, index)}
+                                                style={{
+                                                    padding: '9px 14px 9px 14px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '400',
+                                                    cursor: 'text',
+                                                    width: '178.5px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                    position: 'relative',
+                                                    zIndex: '100'
+                                                }}
+                                            />
+                                        </>
+                                        )}
                                     </div>
                                     <Divider />
                                 </div>
