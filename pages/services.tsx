@@ -4,6 +4,7 @@ import { Button, Divider, Icon } from 'semantic-ui-react';
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
     const [letterGrade, setLetterGrade] = useState<any>(null);
+    const [color, setColor] = useState<string>('');
     // const [showAnswers, setShowAnswers] = useState<boolean>(false);
     // const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
@@ -145,6 +146,28 @@ export default function Services() {
               null;
         }
     }, [percent])
+
+    useEffect(() => {
+        switch(true) {
+            case (letterGrade == 'A+' || letterGrade == 'A' || letterGrade == 'A-'):
+              setColor('darkgreen');
+              break;
+            case (letterGrade == 'B+' || letterGrade == 'B' || letterGrade == 'B-'):
+              setColor('green');
+              break;
+            case (letterGrade == 'C+' || letterGrade == 'C' || letterGrade == 'C-'):
+              setColor('orange');
+              break;
+            case (letterGrade == 'D'):
+              setColor('darkred');
+              break;
+            case (letterGrade == 'F'):
+              setColor('red');
+              break;
+            default:
+               null;
+        }
+    }, [letterGrade])
 
     return (
         <>
@@ -370,7 +393,7 @@ export default function Services() {
                             ): null}
                         </span>
                     </h2>
-                    <h2 style={{ paddingBottom: '30px' }}>
+                    <h2 style={{ color: `${color}`, paddingBottom: '30px' }}>
                         {(length > 0) ? (
                         <>
                             {letterGrade}
