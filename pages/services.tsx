@@ -5,8 +5,6 @@ export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
     const [letterGrade, setLetterGrade] = useState<any>(null);
     const [color, setColor] = useState<string>('');
-    // const [showAnswers, setShowAnswers] = useState<boolean>(false);
-    // const [showQuestions, setShowQuestions] = useState<boolean>(false);
 
     // console.log(serviceList[0].service);
 
@@ -290,15 +288,7 @@ export default function Services() {
                             </div>
                         ))}
                     </div>
-                    {/* {showAnswers ? (
-                    <>
-                        <Button
-                            color='red'
-                            onClick={() => setShowAnswers(false)}
-                        >
-                            Hide Answer Key
-                        </Button> */}
-                        <div>
+                        {/* <div>
                             <h2>Answer Key</h2>
                             {serviceList &&
                                 serviceList.map((singleService, index) => (
@@ -307,25 +297,7 @@ export default function Services() {
                                     </ul>
                                 ))
                             }
-                        </div>
-                    {/* </>
-                    ):(
-                    <>
-                        <Button
-                            color='blue'
-                            onClick={() => setShowAnswers(true)}
-                        >
-                            Show Answer Key
-                        </Button>
-                    </>
-                    )}
-                    {showQuestions ? (
-                    <>
-                        <button
-                            onClick={() => setShowQuestions(false)}
-                        >
-                            Hide Question Key
-                        </button> */}
+                        </div> */}
                         <div>
                             <h2>Question Key</h2>
                             {serviceList &&
@@ -336,16 +308,6 @@ export default function Services() {
                                 ))
                             }
                         </div>
-                    {/* </>
-                    ):(
-                    <>
-                        <button
-                            onClick={() => setShowQuestions(true)}
-                        >
-                            Show Question Key
-                        </button>
-                    </>
-                    )} */}
                     <div>
                         <h2>Student Answers</h2>
                         {serviceList &&
@@ -417,6 +379,37 @@ export default function Services() {
                             </>
                             ): null}
                         </h1>
+                    </div>
+                </Card>
+                <Card
+                    style={{
+                        height: '300px'
+                    }}
+                >
+                    <div
+                        style={{
+                            transform: 'translateY(45.5px)'
+                        }}
+                    >
+                        <div>
+                            <h1
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                Answer Key
+                            </h1>
+                            <h2>
+                                {serviceList &&
+                                    serviceList.map((singleService, index) => (
+                                        <ul key={index}>
+                                            {singleService.service && <li>{singleService.service}</li>}
+                                        </ul>
+                                    ))
+                                }
+                            </h2>
+                        </div>
                     </div>
                 </Card>
             </div>
