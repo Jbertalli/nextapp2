@@ -10,6 +10,7 @@ export default function Services() {
     const [color, setColor] = useState<string>('');
     const [student, setStudent] = useState<boolean>(false);
     const [finish, setFinish] = useState<boolean>(false);
+    const [save, setSave] = useState<boolean>(false);
 
     useEffect(() => {
         const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -237,6 +238,31 @@ export default function Services() {
                     </div>
                 )}
             </Container>
+            {save ? (
+            <>
+                <Button
+                    color='red'
+                    onClick={() => setSave(false)}
+                    style={{
+                        transform: 'translate(50vw, 5vh)'
+                    }}
+                >
+                    Edit Questions and Answers
+                </Button>
+            </>
+            ):(
+            <>
+                <Button
+                    color='green'
+                    onClick={() => setSave(true)}
+                    style={{
+                        transform: 'translate(50vw, 5vh)'
+                    }}
+                >
+                    Save Questions and Answers
+                </Button>
+            </>
+            )}
             <div
                 style={{
                     display: 'flex',
@@ -252,37 +278,25 @@ export default function Services() {
                                     <h2>
                                         Test Question #{index + 1}
                                     </h2>
-                                    <input
-                                        name='service'
-                                        type='text'
-                                        id='service'
-                                        placeholder='Question'
-                                        value={singleService.service}
-                                        onChange={(e) => handleQuestionChange(e, index)}
-                                        style={{
-                                            padding: '9px 14px 9px 14px',
-                                            fontSize: '14px',
-                                            fontWeight: '400',
-                                            cursor: 'text',
-                                            width: '178.5px',
-                                            borderRadius: '4px',
-                                            border: '1px solid rgba(34, 36, 38. 0.15)',
-                                            position: 'relative',
-                                            zIndex: '100'
-                                        }}
-                                    />
-                                    {!student ? (
+                                    {save ? (
                                     <>
-                                        <h2>
-                                            Test Answer #{index + 1}
-                                        </h2>
+                                        <div
+                                            style={{
+                                                fontSize: '25px'
+                                            }}
+                                        >
+                                            {singleService.service}
+                                        </div>
+                                    </>
+                                    ):(
+                                    <>
                                         <input
-                                            name='answer'
+                                            name='service'
                                             type='text'
-                                            id='answer'
-                                            placeholder='Answer'
-                                            value={singleService.answer}
-                                            onChange={(e) => handleAnswerChange(e, index)}
+                                            id='service'
+                                            placeholder='Question'
+                                            value={singleService.service}
+                                            onChange={(e) => handleQuestionChange(e, index)}
                                             style={{
                                                 padding: '9px 14px 9px 14px',
                                                 fontSize: '14px',
@@ -295,6 +309,46 @@ export default function Services() {
                                                 zIndex: '100'
                                             }}
                                         />
+                                    </>
+                                    )}
+                                    {!student ? (
+                                    <>
+                                        <h2>
+                                            Test Answer #{index + 1}
+                                        </h2>
+                                        {save ? (
+                                        <>
+                                            <div
+                                                style={{
+                                                    fontSize: '25px'
+                                                }}
+                                            >
+                                                {singleService.answer}
+                                            </div>
+                                        </>
+                                        ):(
+                                        <>
+                                            <input
+                                                name='answer'
+                                                type='text'
+                                                id='answer'
+                                                placeholder='Answer'
+                                                value={singleService.answer}
+                                                onChange={(e) => handleAnswerChange(e, index)}
+                                                style={{
+                                                    padding: '9px 14px 9px 14px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '400',
+                                                    cursor: 'text',
+                                                    width: '178.5px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                    position: 'relative',
+                                                    zIndex: '100'
+                                                }}
+                                            />
+                                        </>
+                                        )}
                                     </>
                                     ): null}
                                     <div
