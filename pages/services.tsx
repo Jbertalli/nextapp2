@@ -9,6 +9,7 @@ export default function Services() {
     const [letterGrade, setLetterGrade] = useState<any>(null);
     const [color, setColor] = useState<string>('');
     const [student, setStudent] = useState<boolean>(false);
+    const [finish, setFinish] = useState<boolean>(false);
 
     useEffect(() => {
         const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -214,6 +215,27 @@ export default function Services() {
                     </div>
                 </>
                 )}
+                {!finish ? (
+                <>
+                    <div>
+                        <Button
+                            color='blue'
+                            onClick={() => setFinish(true)}
+                        >
+                            Finish Test
+                        </Button>
+                    </div>
+                </>
+                ):(
+                    <div>
+                        <Button
+                            color='red'
+                            onClick={() => setFinish(false)}                        
+                        >
+                            Edit Test
+                        </Button>
+                    </div>
+                )}
             </Container>
             <div
                 style={{
@@ -357,64 +379,6 @@ export default function Services() {
                         ))}
                     </div>
                 </form>
-                <Card
-                    style={{
-                        height: '300px'
-                    }}
-                >
-                    <div
-                        style={{
-                            transform: 'translateY(20%)'
-                        }}
-                    >
-                        <div 
-                            style={{ 
-                                marginBottom: '5px'
-                            }}
-                        >
-                            <h1 
-                                style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                Grade Report
-                            </h1>
-                            <h2
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                Grade: {grade}/{length}
-                            </h2>
-                        </div>
-                        <h2>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                {percent} %
-                            </div>
-                        </h2>
-                        <h1 
-                            style={{ 
-                                color: `${color}`, 
-                                paddingBottom: '30px' ,
-                                display: 'flex',
-                                justifyContent: 'center'
-                                }}
-                            >
-                            {(length > 0) ? (
-                            <>
-                                {letterGrade}
-                            </>
-                            ): null}
-                        </h1>
-                    </div>
-                </Card>
                 {!student ? (
                 <>
                     <Card
@@ -509,6 +473,68 @@ export default function Services() {
                         </div>
                     </div>
                 </Card>
+                {finish ? (
+                <>
+                    <Card
+                        style={{
+                            height: '300px'
+                        }}
+                    >
+                        <div
+                            style={{
+                                transform: 'translateY(20%)'
+                            }}
+                        >
+                            <div 
+                                style={{ 
+                                    marginBottom: '5px'
+                                }}
+                            >
+                                <h1 
+                                    style={{ 
+                                        display: 'flex', 
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    Grade Report
+                                </h1>
+                                <h2
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    Grade: {grade}/{length}
+                                </h2>
+                            </div>
+                            <h2>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    {percent} %
+                                </div>
+                            </h2>
+                            <h1 
+                                style={{ 
+                                    color: `${color}`, 
+                                    paddingBottom: '30px' ,
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                    }}
+                                >
+                                {(length > 0) ? (
+                                <>
+                                    {letterGrade}
+                                </>
+                                ): null}
+                            </h1>
+                        </div>
+                    </Card>
+                </>
+                ): null}
             </div>
         </>
     )
