@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Divider } from 'semantic-ui-react';
+import { Button, Divider, Icon } from 'semantic-ui-react';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -50,17 +50,9 @@ export default function Services() {
     
     console.log(gradeArray);
 
-    const handleGrade = () => {
-        for (let i = 0; i < serviceList.length; i++) {
-            if (serviceList[i].answer === serviceList[i].student) {
-                setCount(count + 1);
-            } else {
-                setCount(count);
-            }
-        }
-    }
-
     console.log(count);
+
+    const length = serviceList.length;
 
     const handleServiceRemove = (index) => {
         const list = [...serviceList];
@@ -114,7 +106,8 @@ export default function Services() {
                                         name='service'
                                         type='text'
                                         id='service'
-                                        required
+                                        // required
+                                        placeholder='Question'
                                         value={singleService.service}
                                         onChange={(e) => handleQuestionChange(e, index)}
                                         style={{
@@ -136,7 +129,8 @@ export default function Services() {
                                         name='answer'
                                         type='text'
                                         id='answer'
-                                        required
+                                        // required
+                                        placeholder='Answer'
                                         value={singleService.answer}
                                         onChange={(e) => handleAnswerChange(e, index)}
                                         style={{
@@ -158,7 +152,8 @@ export default function Services() {
                                         name='student'
                                         type='text'
                                         id='student'
-                                        required
+                                        // required
+                                        placeholder='Student Question'
                                         value={singleService.student}
                                         onChange={(e) => handleStudentAnswerChange(e, index)}
                                         style={{
@@ -176,6 +171,32 @@ export default function Services() {
                                     <Divider />
                                 </div>
                                 <div>
+                                    {(singleService.answer === singleService.student) ? (
+                                    <>
+                                        <div style={{ fontSize: '30px', fontWeight: '500', color: 'green' }}>
+                                            <Icon
+                                                name="check"
+                                            />
+                                            <span>
+                                                Correct
+                                            </span>  
+                                        </div>
+                                    </>
+                                    ):(
+                                    <>
+                                        <div style={{ fontSize: '30px', fontWeight: '500', color: 'red' }}>
+                                            <Icon
+                                                name="plus"
+                                                style={{ transform: 'rotate(45deg)' }}
+                                            />
+                                            <span>
+                                                Incorrect
+                                            </span>
+                                        </div>
+                                    </>
+                                    )}
+                                </div>
+                                <div>
                                     {serviceList.length !== 1 && (
                                         <Button
                                             color='red'
@@ -190,7 +211,7 @@ export default function Services() {
                                     {serviceList.length - 1 === index && (
                                         <Button
                                             color='blue'
-                                            onClick={() => {handleAddService(), handleGrade()}}
+                                            onClick={handleAddService}
                                         >
                                         <span>Add a Question</span>
                                         </Button>
@@ -266,9 +287,20 @@ export default function Services() {
                         }
                     </div>
                 </form>
-                <h1>
-                    Grade
-                </h1>
+                <div>
+                    <h1>
+                        Grade
+                    </h1>    
+                </div>
+                <div
+                    style={{
+                        transform: 'translate(-60px, 40px)'
+                    }}
+                >
+                    <h1>
+                        {count}/{length}
+                    </h1>    
+                </div>
             </div>
         </>
     )
