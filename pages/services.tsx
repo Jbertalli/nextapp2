@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Divider, Icon, Card } from 'semantic-ui-react';
+import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
 
 const LOCAL_STORAGE_KEY = 'list';
 
@@ -7,6 +7,7 @@ export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
     const [letterGrade, setLetterGrade] = useState<any>(null);
     const [color, setColor] = useState<string>('');
+    const [student, setStudent] = useState<boolean>(false);
 
     useEffect(() => {
         const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -169,6 +170,26 @@ export default function Services() {
 
     return (
         <>
+            <Container
+                style={{
+                    border: '1px solid red',
+                    transform: 'translateY(60px)',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                <Button>
+                    Switch to Student&nbsp;&nbsp;&nbsp;
+                    <span>
+                        <Icon
+                            name='pencil'
+                        />
+                    </span>
+                </Button>
+                <Button>
+                    Switch to Admin
+                </Button>
+            </Container>
             <div
                 style={{
                     display: 'flex',
@@ -372,7 +393,8 @@ export default function Services() {
                 >
                     <div
                         style={{
-                            transform: 'translateY(45.5px)'
+                            transform: 'translateY(45.5px)',
+                            color: 'red'
                         }}
                     >
                         <h1
@@ -387,7 +409,7 @@ export default function Services() {
                             {serviceList &&
                                 serviceList.map((singleService, index) => (
                                     <ul key={index}>
-                                        {singleService.service && <li>{singleService.service}</li>}
+                                        {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
                                     </ul>
                                 ))
                             }
@@ -416,7 +438,7 @@ export default function Services() {
                             {serviceList &&
                                 serviceList.map((singleService, index) => (
                                     <ul key={index}>
-                                        {singleService.answer && <li>{singleService.answer}</li>}
+                                        {singleService.answer && <div>{index + 1}.{' '}{singleService.answer}</div>}
                                     </ul>
                                 ))
                             }
@@ -446,7 +468,7 @@ export default function Services() {
                                 {serviceList &&
                                     serviceList.map((singleService, index) => (
                                         <ul key={index}>
-                                            {singleService.student && <li>{singleService.student}</li>}
+                                            {singleService.student && <div>{index + 1}.{' '}{singleService.student}</div>}
                                         </ul>
                                     ))
                                 }
