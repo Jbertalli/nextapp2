@@ -12,6 +12,7 @@ export default function Services() {
     const [finish, setFinish] = useState<boolean>(false);
     const [save, setSave] = useState<boolean>(false);
     const [openAnswerKey, setOpenAnswerKey] = useState<boolean>(false);
+    const [openQuestionKey, setOpenQuestionKey] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -236,113 +237,12 @@ export default function Services() {
                     margin: '3em'
                 }}
             >
-                <div>
-                    {!openAnswerKey ? (
-                    <>
-                        <Divider />
-                        <div
-                            style={{ 
-                                transform: 'translateY(-8px)',
-                                cursor: 'pointer' 
-                            }}
-                            onClick={() => {setOpenAnswerKey(true)}}
-                        >
-                            <div 
-                                style={{ 
-                                    marginLeft: '-25px',
-                                    display: 'flex',
-                                    color: '#125CA1',
-                                    transform: 'translateY(100%) scale(0.8)'
-                                }}
-                            >
-                                <Icon
-                                    name='chevron down'
-                                />
-                            </div>
-                            <div
-                                style={{ 
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    fontSize: '18px', 
-                                    fontWeight: '500',
-                                    color: '#125CA1'
-                                }}
-                            >
-                                Open Answer Key
-                            </div>
-                        </div>
-                        <Divider />
-                    </>
-                    ):(
-                    <>
-                        <Container
-                            style={{ 
-                                color: 'red',
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                                cursor: 'pointer',
-                                marginRight: '25px',
-                                transform: 'translate(0vw, -5px)'
-                            }}
-                                onClick={() => setOpenAnswerKey(false)}
-                        >
-                            <div
-                                style={{
-                                    transform: 'scale(2)',
-                                    zIndex: '10'
-                                }}
-                            >
-                                x
-                            </div>
-                        </Container>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {!student ? (
-                                <>
-                                        <div
-                                            style={{
-                                                color: 'red'
-                                            }}
-                                        >
-                                            <h1
-                                                style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'flex-start'
-                                                }}
-                                            >
-                                                Answer Key
-                                            </h1>
-                                            <h2
-                                                style={{
-                                                    transform: 'translate(-20px)'
-                                                }}
-                                            >
-                                                {serviceList &&
-                                                    serviceList.map((singleService, index) => (
-                                                        <ul key={index}>
-                                                            {singleService.answer && <div>{index + 1}.{' '}{singleService.answer}</div>}
-                                                        </ul>
-                                                    ))
-                                                }
-                                            </h2>
-                                        </div>
-                                </>
-                                ): null}
-                            </div>
-                    </>
-                    )}
-                </div>
-            </Container>
-            <Container>
                 <div
                     style={{
                         transform: 'translateY(60px)',
                         display: 'flex',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        marginBottom: '50px'
                     }}
                 >
                     {student ? (
@@ -417,13 +317,208 @@ export default function Services() {
                         color='green'
                         onClick={() => setSave(true)}
                         style={{
-                            transform: 'translate(50vw, 5vh)'
+                            transform: 'translate(50vw, -40px)'
                         }}
                     >
                         Save Questions and Answers
                     </Button>
                 </>
                 )}
+                <div>
+                    {!openAnswerKey ? (
+                    <>
+                        <Divider />
+                        <div
+                            style={{ 
+                                transform: 'translateY(-8px)',
+                                cursor: 'pointer' 
+                            }}
+                            onClick={() => {setOpenAnswerKey(true)}}
+                        >
+                            <div 
+                                style={{ 
+                                    marginLeft: '-25px',
+                                    display: 'flex',
+                                    color: '#125CA1',
+                                    transform: 'translateY(100%) scale(0.8)'
+                                }}
+                            >
+                                <Icon
+                                    name='chevron down'
+                                />
+                            </div>
+                            <div
+                                style={{ 
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    fontSize: '20px', 
+                                    fontWeight: '700',
+                                    color: '#125CA1'
+                                }}
+                            >
+                                Open Answer Key
+                            </div>
+                        </div>
+                        <Divider />
+                    </>
+                    ):(
+                    <>
+                        <Container
+                            style={{ 
+                                color: 'red',
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                cursor: 'pointer',
+                                marginRight: '25px',
+                                transform: 'translate(0vw, -5px)'
+                            }}
+                                onClick={() => setOpenAnswerKey(false)}
+                        >
+                            <div
+                                style={{
+                                    transform: 'scale(2)',
+                                    zIndex: '10'
+                                }}
+                            >
+                                x
+                            </div>
+                        </Container>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {!student ? (
+                            <>
+                                <div
+                                    style={{
+                                        color: 'red'
+                                    }}
+                                >
+                                    <h1
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        Answer Key
+                                    </h1>
+                                    <h2
+                                        style={{
+                                            transform: 'translate(-20px)'
+                                        }}
+                                    >
+                                        {serviceList &&
+                                            serviceList.map((singleService, index) => (
+                                                <ul key={index}>
+                                                    {singleService.answer && <div>{index + 1}.{' '}{singleService.answer}</div>}
+                                                </ul>
+                                            ))
+                                        }
+                                    </h2>
+                                </div>
+                            </>
+                            ): null}
+                        </div>
+                    </>
+                    )}
+                </div>
+                <div>
+                    {!openQuestionKey ? (
+                    <>
+                        <div
+                            style={{ 
+                                transform: 'translateY(-8px)',
+                                cursor: 'pointer' 
+                            }}
+                            onClick={() => {setOpenQuestionKey(true)}}
+                        >
+                            <div 
+                                style={{ 
+                                    marginLeft: '-25px',
+                                    display: 'flex',
+                                    color: '#125CA1',
+                                    transform: 'translateY(100%) scale(0.8)'
+                                }}
+                            >
+                                <Icon
+                                    name='chevron down'
+                                />
+                            </div>
+                            <div
+                                style={{ 
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    fontSize: '20px', 
+                                    fontWeight: '700',
+                                    color: '#125CA1'
+                                }}
+                            >
+                                Open Question Key
+                            </div>
+                        </div>
+                        <Divider />
+                    </>
+                    ):(
+                    <>
+                        <Container
+                            style={{ 
+                                color: 'red',
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                cursor: 'pointer',
+                                marginRight: '25px',
+                                transform: 'translate(0vw, -5px)'
+                            }}
+                                onClick={() => setOpenQuestionKey(false)}
+                        >
+                            <div
+                                style={{
+                                    transform: 'scale(2)',
+                                    zIndex: '10'
+                                }}
+                            >
+                                x
+                            </div>
+                        </Container>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {!student ? (
+                            <>
+                                <div>
+                                    <h1
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        Question Key
+                                    </h1>
+                                    <h2
+                                        style={{
+                                            transform: 'translate(-20px)'
+                                        }}
+                                    >
+                                        {serviceList &&
+                                            serviceList.map((singleService, index) => (
+                                                <ul key={index}>
+                                                    {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
+                                                </ul>
+                                            ))
+                                        }
+                                    </h2>
+                                </div>
+                            </>
+                            ): null}
+                        </div>
+                    </>
+                    )}
+                </div>
                 <div
                     style={{
                         display: 'flex',
@@ -643,7 +738,7 @@ export default function Services() {
                         </Card>
                     </>
                     ): null} */}
-                    <Card
+                    {/* <Card
                         style={{
                             height: '300px'
                         }}
@@ -671,7 +766,7 @@ export default function Services() {
                                 }
                             </h2>
                         </div>
-                    </Card>
+                    </Card> */}
                     <Card
                         style={{
                             height: '300px'
