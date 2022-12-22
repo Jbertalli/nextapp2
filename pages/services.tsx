@@ -13,6 +13,7 @@ export default function Services() {
     const [save, setSave] = useState<boolean>(false);
     const [openAnswerKey, setOpenAnswerKey] = useState<boolean>(false);
     const [openQuestionKey, setOpenQuestionKey] = useState<boolean>(false);
+    const [openStudentAnswers, setOpenStudentAnswers] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -519,6 +520,101 @@ export default function Services() {
                     </>
                     )}
                 </div>
+                <div>
+                    {!openStudentAnswers ? (
+                    <>
+                        <div
+                            style={{ 
+                                transform: 'translateY(-8px)',
+                                cursor: 'pointer' 
+                            }}
+                            onClick={() => {setOpenStudentAnswers(true)}}
+                        >
+                            <div 
+                                style={{ 
+                                    marginLeft: '-25px',
+                                    display: 'flex',
+                                    color: '#125CA1',
+                                    transform: 'translateY(100%) scale(0.8)'
+                                }}
+                            >
+                                <Icon
+                                    name='chevron down'
+                                />
+                            </div>
+                            <div
+                                style={{ 
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    fontSize: '20px', 
+                                    fontWeight: '700',
+                                    color: '#125CA1'
+                                }}
+                            >
+                                Open Student Answers
+                            </div>
+                        </div>
+                        <Divider />
+                    </>
+                    ):(
+                    <>
+                        <Container
+                            style={{ 
+                                color: 'red',
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                cursor: 'pointer',
+                                marginRight: '25px',
+                                transform: 'translate(0vw, -5px)'
+                            }}
+                                onClick={() => setOpenStudentAnswers(false)}
+                        >
+                            <div
+                                style={{
+                                    transform: 'scale(2)',
+                                    zIndex: '10'
+                                }}
+                            >
+                                x
+                            </div>
+                        </Container>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {!student ? (
+                            <>
+                                <div>
+                                    <h1
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center'
+                                        }}
+                                    >
+                                        Student Answers
+                                    </h1>
+                                    <h2
+                                        style={{
+                                            transform: 'translate(-20px)'
+                                        }}
+                                    >
+                                        {serviceList &&
+                                            serviceList.map((singleService, index) => (
+                                                <ul key={index}>
+                                                    {singleService.student && <div>{index + 1}.{' '}{singleService.student}</div>}
+                                                </ul>
+                                            ))
+                                        }
+                                    </h2>
+                                </div>
+                            </>
+                            ): null}
+                        </div>
+                    </>
+                    )}
+                </div>
                 <div
                     style={{
                         display: 'flex',
@@ -704,100 +800,6 @@ export default function Services() {
                             ))}
                         </div>
                     </form>
-                    {/* {!student ? (
-                    <>
-                        <Card
-                            style={{
-                                height: '300px'
-                            }}
-                        >
-                            <div
-                                style={{
-                                    transform: 'translateY(45.5px)',
-                                    color: 'red'
-                                }}
-                            >
-                                <h1
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    Answer Key
-                                </h1>
-                                <h2>
-                                    {serviceList &&
-                                        serviceList.map((singleService, index) => (
-                                            <ul key={index}>
-                                                {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
-                                            </ul>
-                                        ))
-                                    }
-                                </h2>
-                            </div>
-                        </Card>
-                    </>
-                    ): null} */}
-                    {/* <Card
-                        style={{
-                            height: '300px'
-                        }}
-                    >
-                        <div
-                            style={{
-                                transform: 'translateY(45.5px)'
-                            }}
-                        >
-                            <h1
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                Question Key
-                            </h1>
-                            <h2>
-                                {serviceList &&
-                                    serviceList.map((singleService, index) => (
-                                        <ul key={index}>
-                                            {singleService.service && <div>{index + 1}.{' '}{singleService.service}</div>}
-                                        </ul>
-                                    ))
-                                }
-                            </h2>
-                        </div>
-                    </Card> */}
-                    <Card
-                        style={{
-                            height: '300px'
-                        }}
-                    >
-                        <div
-                            style={{
-                                transform: 'translateY(45.5px)'
-                            }}
-                        >
-                            <div>
-                                <h1
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    Student Answers
-                                </h1>
-                                <h2>
-                                    {serviceList &&
-                                        serviceList.map((singleService, index) => (
-                                            <ul key={index}>
-                                                {singleService.student && <div>{index + 1}.{' '}{singleService.student}</div>}
-                                            </ul>
-                                        ))
-                                    }
-                                </h2>
-                            </div>
-                        </div>
-                    </Card>
                     {finish ? (
                     <>
                         <Card
