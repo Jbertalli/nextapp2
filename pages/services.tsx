@@ -312,9 +312,18 @@ export default function Services() {
                         </div>
                     </div>
                     <Divider />
-                    {/* {!finish ? (
+                </div>
+                {student ? (
+                <>
+                    <Divider />
+                    {!finish ? (
                     <>
-                        <div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
                             <Button
                                 color='blue'
                                 onClick={() => setFinish(true)}
@@ -324,7 +333,13 @@ export default function Services() {
                         </div>
                     </>
                     ):(
-                        <div>
+                    <>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
                             <Button
                                 color='red'
                                 onClick={() => setFinish(false)}                        
@@ -332,8 +347,10 @@ export default function Services() {
                                 Edit Test
                             </Button>
                         </div>
-                    )} */}
-                </div>
+                    </>
+                    )}
+                </>
+                ): null}
                 {!student ? (
                 <>
                     <Divider />
