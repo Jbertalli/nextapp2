@@ -238,47 +238,81 @@ export default function Services() {
                     margin: '3em'
                 }}
             >
+                <Divider />
                 <div
                     style={{
-                        transform: 'translateY(60px)',
                         display: 'flex',
-                        justifyContent: 'center',
-                        marginBottom: '50px'
+                        justifyContent: 'center'
                     }}
                 >
-                    {student ? (
-                    <>
-                        <h1>
-                            Student View
-                        </h1>
-                        <div>
-                            <Button
-                                onClick={() => setStudent(false)}
-                            >
-                                Switch to Admin
-                            </Button>
+                    <div
+                        style={{
+                            width: '100%'
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {student ? (
+                            <>
+                                <h1>
+                                    Student View
+                                </h1>
+                            </>
+                            ):(
+                            <>
+                                <h1>
+                                    Admin View
+                                </h1>
+                            </>
+                            )}
                         </div>
-                    </>
-                    ):(
-                    <>
-                        <h1>
-                            Admin View
-                        </h1>
-                        <div>
-                            <Button
-                                onClick={() => setStudent(true)}
-                            >
-                                Switch to Student&nbsp;&nbsp;&nbsp;
-                                <span>
-                                    <Icon
-                                        name='pencil'
-                                    />
-                                </span>
-                            </Button>
+                        <div
+                            style={{
+                                width: '100%'
+                            }}
+                        >
+                            <Divider />
                         </div>
-                    </>
-                    )}
-                    {!finish ? (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {student ? (
+                            <>
+                                <div>
+                                    <Button
+                                        onClick={() => setStudent(false)}
+                                    >
+                                        Switch to Admin
+                                    </Button>
+                                </div>
+                            </>
+                            ):(
+                            <>
+                                <div>
+                                    <Button
+                                        onClick={() => setStudent(true)}
+                                    >
+                                        Switch to Student&nbsp;&nbsp;&nbsp;
+                                        <span>
+                                            <Icon
+                                                name='pencil'
+                                            />
+                                        </span>
+                                    </Button>
+                                </div>
+                            </>
+                            )}
+                        </div>
+                    </div>
+                    <Divider />
+                    {/* {!finish ? (
                     <>
                         <div>
                             <Button
@@ -298,9 +332,9 @@ export default function Services() {
                                 Edit Test
                             </Button>
                         </div>
-                    )}
+                    )} */}
                 </div>
-                {save ? (
+                {/* {save ? (
                 <>
                     <Button
                         color='red'
@@ -324,7 +358,7 @@ export default function Services() {
                         Save Questions and Answers
                     </Button>
                 </>
-                )}
+                )} */}
                 {!student ? (
                 <>
                     <Divider />
