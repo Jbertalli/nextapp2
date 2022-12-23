@@ -334,31 +334,37 @@ export default function Services() {
                         </div>
                     )} */}
                 </div>
-                {/* {save ? (
+                {!student ? (
                 <>
-                    <Button
-                        color='red'
-                        onClick={() => setSave(false)}
+                    <Divider />
+                    <div
                         style={{
-                            transform: 'translate(50vw, 5vh)'
+                            display: 'flex',
+                            justifyContent: 'center'
                         }}
                     >
-                        Edit Questions and Answers
-                    </Button>
+                        {save ? (
+                        <>
+                            <Button
+                                color='red'
+                                onClick={() => setSave(false)}
+                            >
+                                Edit Questions and Answers
+                            </Button>
+                        </>
+                        ):(
+                        <>
+                            <Button
+                                color='green'
+                                onClick={() => setSave(true)}
+                            >
+                                Save Questions and Answers
+                            </Button>
+                        </>
+                        )}
+                    </div>
                 </>
-                ):(
-                <>
-                    <Button
-                        color='green'
-                        onClick={() => setSave(true)}
-                        style={{
-                            transform: 'translate(50vw, -40px)'
-                        }}
-                    >
-                        Save Questions and Answers
-                    </Button>
-                </>
-                )} */}
+                ): null}
                 {!student ? (
                 <>
                     <Divider />
