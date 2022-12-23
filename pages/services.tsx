@@ -3,6 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
 
 const LOCAL_STORAGE_KEY = 'list';
+const LOCAL_STORAGE_KEY_NAME = 'Name';
+const LOCAL_STORAGE_KEY_CLICK_NAME = 'ClickName';
+const LOCAL_STORAGE_KEY_DATE = 'Date';
+const LOCAL_STORAGE_KEY_CLICK_DATE = 'ClickDate';
+const LOCAL_STORAGE_KEY_TITLE = 'Title';
+const LOCAL_STORAGE_KEY_CLICK_TITLE = 'ClickTitle';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -24,6 +30,7 @@ export default function Services() {
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
+    // List
     useEffect(() => {
         const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
         if (storedList) setServiceList(storedList)
@@ -33,6 +40,72 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY, 
         JSON.stringify(serviceList))
     }, [serviceList])
+
+    // Name
+    useEffect(() => {
+        const storedName = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_NAME))
+        if (storedName) setName(storedName)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_NAME, 
+        JSON.stringify(name))
+    }, [name]);
+
+    // Name Clicked
+    useEffect(() => {
+        const storedClickedName = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CLICK_NAME))
+        if (storedClickedName) setNameClicked(storedClickedName)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_CLICK_NAME, 
+        JSON.stringify(nameClicked))
+    }, [nameClicked]);
+
+    // Date
+    useEffect(() => {
+        const storedDate = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_DATE))
+        if (storedDate) setDate(storedDate)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_DATE, 
+        JSON.stringify(date))
+    }, [date]);
+
+    // Date Clicked
+    useEffect(() => {
+        const storedClickDate = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CLICK_DATE))
+        if (storedClickDate) setDateClicked(storedClickDate)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_CLICK_DATE, 
+        JSON.stringify(dateClicked))
+    }, [dateClicked]);
+
+    // Title
+    useEffect(() => {
+        const storedTitle = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TITLE))
+        if (storedTitle) setTitle(storedTitle)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_TITLE, 
+        JSON.stringify(title))
+    }, [title]);
+
+    // Title Clicked
+    useEffect(() => {
+        const storedClickTitle = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CLICK_TITLE))
+        if (storedClickTitle) setTitleClicked(storedClickTitle)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_CLICK_TITLE, 
+        JSON.stringify(titleClicked))
+    }, [titleClicked]);
 
     // console.log(serviceList[0].service);
 
@@ -907,12 +980,12 @@ export default function Services() {
                                     transform: 'translateY(20px)' 
                                 }}
                             >
-                                <span style={{ fontSize: '35px' }}>
+                                <span style={{ fontSize: '45px' }}>
                                     <span 
                                         style={{ 
                                             fontWeight: '500', 
                                             display: 'flex', 
-                                            justifyContent: 'center' 
+                                            justifyContent: 'center'
                                         }}
                                     >
                                         <b>
@@ -939,7 +1012,31 @@ export default function Services() {
                         )}
                     </div>
                 </>
-                ): null}
+                ):(
+                <>
+                    <span 
+                        style={{ 
+                            fontSize: '45px',
+                            display: (title.length > 0) ? 'block' : 'none'
+                        }}
+                    >
+                        <span 
+                            style={{ 
+                                fontWeight: '500', 
+                                display: 'flex', 
+                                justifyContent: 'center',
+                                transform: 'translate(-13px)',
+                                marginTop: '40px',
+                                marginBottom: '20px'
+                            }}
+                        >
+                            <b>
+                                {title}
+                            </b>
+                        </span>
+                    </span>
+                </>
+                )}
                 <div
                     style={{
                         display: 'flex',
@@ -1111,16 +1208,20 @@ export default function Services() {
                                         )}
                                     </div>
                                     <Divider />
-                                    <div>
-                                        {serviceList.length - 1 === index && (
-                                            <Button
-                                                color='blue'
-                                                onClick={handleAddService}
-                                            >
-                                            <span>Add a Question</span>
-                                            </Button>
-                                        )}
-                                    </div>
+                                    {!student ? (
+                                    <>
+                                        <div>
+                                            {serviceList.length - 1 === index && (
+                                                <Button
+                                                    color='blue'
+                                                    onClick={handleAddService}
+                                                >
+                                                <span>Add a Question</span>
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </>
+                                    ): null}
                                 </div>
                             ))}
                         </div>
