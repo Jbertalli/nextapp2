@@ -29,6 +29,8 @@ export default function Services() {
     const [titleClicked, setTitleClicked] = useState<boolean>(false);
     // const [hour, setHour] = useState<string>('0');
     const [minute, setMinute] = useState<string>('0');
+    const [timed, setTimed] = useState<boolean>(false);
+    const [started, setStarted] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -275,12 +277,12 @@ export default function Services() {
                 <meta name='description' content='test' />
             </Head>
             <div>
-                <MyTimer finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
+                <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
             </div>
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: 'center',
                     marginTop: '10px'
                 }}
             >
@@ -297,19 +299,49 @@ export default function Services() {
                         onChange={(e) => setHour(e.target.value)}
                     />
                 </div> */}
-                <div>
-                    Minutes
-                </div>
-                <div>
-                    <input
-                        placeholder='Minutes'
-                        type='number'
-                        min='0'
-                        max='59'
-                        value={minute}
-                        onChange={(e) => setMinute(e.target.value)}
-                    />
-                </div>
+                {!timed ? (
+                <>
+                    <div
+                        style={{
+                            transform: 'translateY(-20px)'
+                        }}
+                    >
+                        <h2
+                            style={{
+                                marginBottom: '5px'
+                            }}
+                        >
+                            Set Minutes (optional)
+                        </h2>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <input
+                                placeholder='Minutes'
+                                type='number'
+                                min='0'
+                                max='59'
+                                value={minute}
+                                onChange={(e) => setMinute(e.target.value)}
+                                style={{
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '80px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100',
+                                }}
+                            />
+                        </div>
+                    </div>
+                </>
+                ): null}
             </div>
             {/* <div
                 style={{
@@ -415,7 +447,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => setStudent(false)}
+                                        onClick={() => {setStudent(false), setStarted(false)}}
                                     >
                                         Switch to Admin
                                     </Button>
@@ -1343,7 +1375,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish }) {
+function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, started, setStarted }) {
     const {
       seconds,
       minutes,
@@ -1368,6 +1400,9 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish }) {
     let value = minuteTime;
     console.log(typeof value);
 
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + minuteTime);
+
     return (
         <div 
             style={{
@@ -1375,43 +1410,127 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish }) {
                 transform: 'translateY(50px)'
             }}
         >
-          <div style={{fontSize: '100px'}}>
-            {/* <span>{days}</span>:<span>{hours}</span>:<span>{minuteTime}</span>:<span>{seconds}</span> */}
-            <span>{minutes}</span>:<span>{seconds}</span>
-          </div>
-          <div
-            style={{
-                marginBottom: '50px',
-                transform: 'translateY(50px)'
-            }}
-          >
-            <button onClick={start}>
-                Start Test
-            </button>
-            <button 
-                onClick={() => {
-                    const time = new Date();
-                    time.setSeconds(time.getSeconds() + minuteTime);
-                    restart(time);
-                }}
-                onMouseLeave={pause}
-            >
-                Set Time Limit
-            </button>
-            {/* <button onClick={pause}>
-                Pause
-            </button>
-            <button onClick={resume}>
-                Resume
-            </button>
-            <button onClick={() => {
-                const time = new Date();
-                time.setSeconds(time.getSeconds() + minuteTime);
-                restart(time);
-            }}>
-                Restart
-            </button> */}
-          </div>
+            {!student ? (
+            <>
+                {timed ? (
+                <>
+                    <div style={{fontSize: '100px'}}>
+                        {/* <span>{days}</span>:<span>{hours}</span>:<span>{minuteTime}</span>:<span>{seconds}</span> */}
+                        <span>{minutes}</span>:<span>{seconds}</span>
+                    </div>
+                    <Button
+                        onClick={() => setTimed(false)}
+                        style={{
+                            marginTop: '40px',
+                            marginBottom: '20px'
+                        }}
+                    >
+                        Reset Time Limit
+                    </Button>
+                </>
+                ):(
+                <>
+                    <div
+                        style={{
+                            marginBottom: '50px',
+                            transform: 'translateY(100px)'
+                        }}
+                    >
+                        <div
+                            onClick={pause}
+                        >
+                            <Button 
+                                color='blue'
+                                onClick={() => {setTimed(true), restart(time)}}
+                            >
+                                Set Time Limit
+                            </Button>
+                        </div>
+                        {/* <button onClick={pause}>
+                            Pause
+                        </button>
+                        <button onClick={resume}>
+                            Resume
+                        </button>
+                        <button onClick={() => {
+                            const time = new Date();
+                            time.setSeconds(time.getSeconds() + minuteTime);
+                            restart(time);
+                        }}>
+                            Restart
+                        </button> */}
+                    </div>
+                </>
+                )}
+            </>
+            ):(
+            <>
+                {student ? (
+                <>
+                    {started ? (
+                    <>
+                        {finish ? (
+                        <>
+                            <h2
+                                style={{
+                                    marginBottom: '20px'
+                                }}
+                            >
+                                Test Completed
+                            </h2>
+                        </>
+                        ):(
+                        <>
+                            <div 
+                                style={{
+                                    fontSize: '100px',
+                                    marginBottom: '40px'
+                                }}
+                            >
+                                <span>{minutes}</span>:<span>{seconds}</span>
+                            </div>
+                            <h3
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginBottom: '20px'
+                                }}
+                            >
+                                Test in progress...
+                            </h3>
+                        </>
+                        )}
+                    </>
+                    ):(
+                    <>
+                        <Button 
+                            color='blue'
+                            onClick={() => {start(), setStarted(true)}}
+                            style={{
+                                marginBottom: '20px'
+                            }}
+                        >
+                            Start Test
+                        </Button>
+                    </>
+                    )}
+                </>
+                ):(
+                <>
+                    <div
+                        onClick={pause}
+                    >
+                        <Button 
+                            color='blue'
+                            onClick={() => {setTimed(true), restart(time)}}
+                        >
+                            Set Time Limit
+                        </Button>
+                    </div>
+                </>
+                )}
+            </>
+            )}
         </div>
     );
 }
