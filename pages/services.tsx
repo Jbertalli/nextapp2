@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
+import { useTimer } from 'react-timer-hook';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -26,6 +27,8 @@ export default function Services() {
     const [nameClicked, setNameClicked] = useState<boolean>(false);
     const [dateClicked, setDateClicked] = useState<boolean>(false);
     const [titleClicked, setTitleClicked] = useState<boolean>(false);
+    // const [hour, setHour] = useState<string>('0');
+    const [minute, setMinute] = useState<string>('0');
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -232,7 +235,7 @@ export default function Services() {
             default:
               null;
         }
-    }, [percent])
+    }, [percent]);
 
     useEffect(() => {
         switch(true) {
@@ -254,7 +257,16 @@ export default function Services() {
             default:
                null;
         }
-    }, [letterGrade])
+    }, [letterGrade]);    
+
+    let minuteTime = Number(minute);
+    console.log(minuteTime);
+
+    // let hourTime = Number(hour);
+    // console.log(hourTime);
+
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 60);
 
     return (
         <>
@@ -262,6 +274,43 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            <div>
+                <MyTimer finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '10px'
+                }}
+            >
+                {/* <div>
+                    Hours
+                </div>
+                <div>
+                    <input
+                        placeholder='Hours'
+                        type='number'
+                        min='0'
+                        max='24'
+                        value={hour}
+                        onChange={(e) => setHour(e.target.value)}
+                    />
+                </div> */}
+                <div>
+                    Minutes
+                </div>
+                <div>
+                    <input
+                        placeholder='Minutes'
+                        type='number'
+                        min='0'
+                        max='59'
+                        value={minute}
+                        onChange={(e) => setMinute(e.target.value)}
+                    />
+                </div>
+            </div>
             {/* <div
                 style={{
                     display: 'flex',
@@ -508,7 +557,7 @@ export default function Services() {
                                     justifyContent: 'flex-end',
                                     cursor: 'pointer',
                                     marginRight: '25px',
-                                    transform: 'translate(0vw, -5px)'
+                                    transform: 'translate(-1vw, -5px)'
                                 }}
                                     onClick={() => setOpenQuestionKey(false)}
                             >
@@ -603,7 +652,7 @@ export default function Services() {
                                     justifyContent: 'flex-end',
                                     cursor: 'pointer',
                                     marginRight: '25px',
-                                    transform: 'translate(0vw, -5px)'
+                                    transform: 'translate(-1vw, -5px)'
                                 }}
                                     onClick={() => setOpenAnswerKey(false)}
                             >
@@ -702,7 +751,7 @@ export default function Services() {
                                     justifyContent: 'flex-end',
                                     cursor: 'pointer',
                                     marginRight: '25px',
-                                    transform: 'translate(0vw, -5px)'
+                                    transform: 'translate(-1vw, -5px)'
                                 }}
                                     onClick={() => setOpenStudentAnswers(false)}
                             >
@@ -1292,4 +1341,77 @@ export default function Services() {
             </Container>
         </>
     )
+}
+
+function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish }) {
+    const {
+      seconds,
+      minutes,
+      hours,
+      days,
+      isRunning,
+      start,
+      pause,
+      resume,
+      restart,
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+
+    console.log(minutes);
+    console.log(seconds);
+
+    if (seconds === 0 && minutes === 0) {
+        setFinish(true);
+    } else {
+        setFinish(false);
+    }
+
+    let value = minuteTime;
+    console.log(typeof value);
+
+    return (
+        <div 
+            style={{
+                textAlign: 'center',
+                transform: 'translateY(50px)'
+            }}
+        >
+          <div style={{fontSize: '100px'}}>
+            {/* <span>{days}</span>:<span>{hours}</span>:<span>{minuteTime}</span>:<span>{seconds}</span> */}
+            <span>{minutes}</span>:<span>{seconds}</span>
+          </div>
+          <div
+            style={{
+                marginBottom: '50px',
+                transform: 'translateY(50px)'
+            }}
+          >
+            <button onClick={start}>
+                Start Test
+            </button>
+            <button 
+                onClick={() => {
+                    const time = new Date();
+                    time.setSeconds(time.getSeconds() + minuteTime);
+                    restart(time);
+                }}
+                onMouseLeave={pause}
+            >
+                Set Time Limit
+            </button>
+            {/* <button onClick={pause}>
+                Pause
+            </button>
+            <button onClick={resume}>
+                Resume
+            </button>
+            <button onClick={() => {
+                const time = new Date();
+                time.setSeconds(time.getSeconds() + minuteTime);
+                restart(time);
+            }}>
+                Restart
+            </button> */}
+          </div>
+        </div>
+    );
 }
