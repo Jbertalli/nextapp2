@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
+import emailjs from 'emailjs-com';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -270,12 +271,47 @@ export default function Services() {
     const time = new Date();
     time.setSeconds(time.getSeconds() + 60);
 
+    let templateParams = {
+        name: 'Grade Report',
+        score: `Grade: ${grade}/${length}`,
+        percent: `${percent}%`,
+        letter: `${letterGrade}`
+    };
+
+    // console.log(grade);
+    // console.log(length);
+    // console.log(percent);
+    // console.log(letterGrade);
+
+    function send() {
+        emailjs.send('service_jj71xm9', 'template_7hans9n', templateParams, 'FlrSx29zmJDjwJhtt')
+            .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+            console.log('FAILED...', error);
+        });
+    }
+
     return (
         <>
             <Head>
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '20px'
+                }}
+            >
+                <Button
+                    color='green'
+                    onClick={send}
+                >
+                    Send Email Grade
+                </Button>
+            </div>
             <div>
                 <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
             </div>
@@ -1348,7 +1384,7 @@ export default function Services() {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                        {percent} %
+                                        {percent}%
                                     </div>
                                 </h2>
                                 <h1 
