@@ -33,6 +33,7 @@ export default function Services() {
     const [timed, setTimed] = useState<boolean>(false);
     const [started, setStarted] = useState<boolean>(false);
     const [openEmail, setOpenEmail] = useState<boolean>(false);
+    const [userEmail, setUserEmail] = useState<string>('');
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -273,11 +274,14 @@ export default function Services() {
     time.setSeconds(time.getSeconds() + 60);
 
     let templateParams = {
+        user_email: `${userEmail}`,
         name: 'Grade Report',
         score: `Grade: ${grade}/${length}`,
         percent: `${percent}%`,
         letter: `${letterGrade}`
     };
+
+    console.log(userEmail);
 
     // console.log(grade);
     // console.log(length);
@@ -299,23 +303,6 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '20px'
-                }}
-            >
-                <Button
-                    color='green'
-                    onClick={send}
-                >
-                    Send Email Grade
-                </Button>
-            </div>
-            <div>
-                <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
-            </div>
             <div
                 style={{
                     display: 'flex',
@@ -609,7 +596,48 @@ export default function Services() {
                                 </div>
                             </Container>
                             <div>
-                                Hello
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginTop: '0px'
+                                    }}
+                                >
+                                    <div>
+                                        <div>
+                                            Email Recipient
+                                        </div>
+                                        <div>
+                                            <input
+                                                type='email'
+                                                name='user_email'
+                                                placeholder='email address'
+                                                style={{ 
+                                                    padding: '9px 14px 9px 14px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '400',
+                                                    cursor: 'text',
+                                                    width: '178.5px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(34, 36, 38. 0.15)'
+                                                }}
+                                                value={userEmail}
+                                                onChange={(e) => setUserEmail(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <Button
+                                            color='green'
+                                            onClick={send}
+                                        >
+                                            Send Email Grade
+                                        </Button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
+                                </div>
                             </div>
                         </>
                         )}
