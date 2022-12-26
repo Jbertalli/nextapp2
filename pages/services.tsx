@@ -32,6 +32,7 @@ export default function Services() {
     const [minute, setMinute] = useState<string>('0');
     const [timed, setTimed] = useState<boolean>(false);
     const [started, setStarted] = useState<boolean>(false);
+    const [openEmail, setOpenEmail] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -545,6 +546,74 @@ export default function Services() {
                         </div>
                     </>
                     )}
+                </>
+                ): null}
+                {student ? (
+                <>
+                    <Divider />
+                    <div>
+                        {!openEmail ? (
+                        <>
+                            <div
+                                style={{ 
+                                    transform: 'translateY(-8px)',
+                                    cursor: 'pointer' 
+                                }}
+                                onClick={() => {setOpenEmail(true)}}
+                            >
+                                <div 
+                                    style={{ 
+                                        marginLeft: '-25px',
+                                        display: 'flex',
+                                        color: '#125CA1',
+                                        transform: 'translateY(100%) scale(0.8)'
+                                    }}
+                                >
+                                    <Icon
+                                        name='chevron down'
+                                    />
+                                </div>
+                                <div
+                                    style={{ 
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        fontSize: '20px', 
+                                        fontWeight: '700',
+                                        color: '#125CA1'
+                                    }}
+                                >
+                                    Email Grade
+                                </div>
+                            </div>
+                        </>
+                        ):(
+                        <>
+                            <Container
+                                style={{ 
+                                    color: 'red',
+                                    display: 'flex',
+                                    justifyContent: 'flex-end',
+                                    cursor: 'pointer',
+                                    marginRight: '25px',
+                                    transform: 'translate(-1vw, -5px)'
+                                }}
+                                    onClick={() => setOpenEmail(false)}
+                            >
+                                <div
+                                    style={{
+                                        transform: 'scale(2)',
+                                        zIndex: '10'
+                                    }}
+                                >
+                                    x
+                                </div>
+                            </Container>
+                            <div>
+                                Hello
+                            </div>
+                        </>
+                        )}
+                    </div>
                 </>
                 ): null}
                 {!student ? (
