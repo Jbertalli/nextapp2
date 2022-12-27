@@ -281,12 +281,11 @@ export default function Services() {
         letter: `${letterGrade}`
     };
 
-    console.log(userEmail);
-
     // console.log(grade);
     // console.log(length);
     // console.log(percent);
     // console.log(letterGrade);
+    // console.log(userEmail);
 
     function send() {
         emailjs.send('service_jj71xm9', 'template_7hans9n', templateParams, 'FlrSx29zmJDjwJhtt')
@@ -604,9 +603,9 @@ export default function Services() {
                                     }}
                                 >
                                     <div>
-                                        <div>
+                                        <h2>
                                             Email Recipient
-                                        </div>
+                                        </h2>
                                         <div>
                                             <input
                                                 type='email'
@@ -625,14 +624,21 @@ export default function Services() {
                                                 onChange={(e) => setUserEmail(e.target.value)}
                                             />
                                         </div>
-                                    </div>
-                                    <div>
-                                        <Button
-                                            color='green'
-                                            onClick={send}
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                marginTop: '25px'
+                                            }}
                                         >
-                                            Send Email Grade
-                                        </Button>
+                                            <Button
+                                                color='green'
+                                                disabled={userEmail.length > 0 ? false : true}
+                                                onClick={send}
+                                            >
+                                                Send Email Grade
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -1411,19 +1417,19 @@ export default function Services() {
                                         )}
                                     </div>
                                     <Divider />
-                                    <div>
-                                        {serviceList.length !== 1 && (
-                                            <Button
-                                                color='red'
-                                                onClick={() => handleServiceRemove(index)}
-                                            >
-                                                <span>Remove Question #{index + 1}</span>
-                                            </Button>
-                                        )}
-                                    </div>
-                                    <Divider />
                                     {!student ? (
                                     <>
+                                        <div>
+                                            {serviceList.length !== 1 && (
+                                                <Button
+                                                    color='red'
+                                                    onClick={() => handleServiceRemove(index)}
+                                                >
+                                                    <span>Remove Question #{index + 1}</span>
+                                                </Button>
+                                            )}
+                                        </div>
+                                        <Divider />
                                         <div>
                                             {serviceList.length - 1 === index && (
                                                 <Button
