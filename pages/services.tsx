@@ -34,6 +34,7 @@ export default function Services() {
     const [started, setStarted] = useState<boolean>(false);
     const [openEmail, setOpenEmail] = useState<boolean>(false);
     const [userEmail, setUserEmail] = useState<string>('');
+    const [isValid, setIsValid] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -295,6 +296,17 @@ export default function Services() {
             console.log('FAILED...', error);
         });
     }
+
+    function validEmail(email) {
+        let regEx = /[a-z0-9][\-_\.\+\!\#\$\%\&\'\*\/\=\?\^\`\{\|]{0,1}([a-z0-9][\-_\.\+\!\#\$\%\&\'\*\/\=\?\^\`\{\|]{0,1})*[a-z0-9]@[a-z0-9][-\.]{0,1}([a-z][-\.]{0,1})*[a-z0-9]\.[a-z0-9]{1,}([\.\-]{0,1}[a-z]){0,}[a-z0-9]{0,}$/;
+        if(!regEx.test(email)) {
+            setIsValid(false);
+        } else {
+            setIsValid(true);
+        } 
+    }
+
+    console.log(isValid);
 
     return (
         <>
@@ -571,7 +583,7 @@ export default function Services() {
                                                     border: '1px solid rgba(34, 36, 38. 0.15)'
                                                 }}
                                                 value={userEmail}
-                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                onChange={(e) => {setUserEmail(e.target.value), validEmail(userEmail)}}
                                             />
                                         </div>
                                         <div
@@ -583,7 +595,7 @@ export default function Services() {
                                         >
                                             <Button
                                                 color='green'
-                                                disabled={userEmail.length > 0 ? false : true}
+                                                disabled={!isValid} 
                                                 onClick={send}
                                             >
                                                 Email Grade
