@@ -725,22 +725,26 @@ export default function Services() {
                         </>
                         )}
                     </div>
+                    {serviceList.length > 1 ? (
+                    <>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                transform: 'translateY(-10px)'
+                            }}
+                        >
+                            <Button
+                                color='red'
+                                onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
+                            >
+                                Clear All Questions
+                            </Button>
+                        </div>
+                    </>
+                    ): null}
                 </>
                 ): null}
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        transform: 'translateY(-10px)'
-                    }}
-                >
-                    <Button
-                        color='red'
-                        onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
-                    >
-                        Clear All Questions
-                    </Button>
-                </div>
                 {!student ? (
                 <>
                     <Divider />
