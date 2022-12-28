@@ -35,6 +35,7 @@ export default function Services() {
     const [openEmail, setOpenEmail] = useState<boolean>(false);
     const [userEmail, setUserEmail] = useState<string>('');
     const [isValid, setIsValid] = useState<boolean>(false);
+    const [edit, setEdit] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -586,7 +587,7 @@ export default function Services() {
                                                 onChange={(e) => {setUserEmail(e.target.value), validEmail(userEmail)}}
                                             />
                                         </div>
-                                        {!isValid ? (
+                                        {(userEmail.length > 0) && !isValid ? (
                                         <>
                                             <div
                                                 style={{
@@ -630,148 +631,211 @@ export default function Services() {
                 ): null}
                 {!student ? (
                 <>
-                    <Divider />
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                    >
-                        {save ? (
+                    <div>
+                        <Divider />
+                        {!edit ? (
                         <>
-                            <Button
-                                color='red'
-                                onClick={() => setSave(false)}
+                            <div
+                                style={{ 
+                                    transform: 'translateY(-8px)',
+                                    cursor: 'pointer' 
+                                }}
+                                onClick={() => {setEdit(true)}}
                             >
-                                Edit Questions and Answers
-                            </Button>
+                                <div 
+                                    style={{ 
+                                        marginLeft: '-25px',
+                                        display: 'flex',
+                                        color: '#125CA1',
+                                        transform: 'translateY(100%) scale(0.8)'
+                                    }}
+                                >
+                                    <Icon
+                                        name='chevron down'
+                                    />
+                                </div>
+                                <div
+                                    style={{ 
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        fontSize: '20px', 
+                                        fontWeight: '700',
+                                        color: '#125CA1'
+                                    }}
+                                >
+                                    Edit Test
+                                </div>
+                            </div>
                         </>
                         ):(
                         <>
-                            <Button
-                                color='green'
-                                onClick={() => setSave(true)}
+                            <Container
+                                style={{ 
+                                    color: 'red',
+                                    display: 'flex',
+                                    justifyContent: 'flex-end',
+                                    cursor: 'pointer',
+                                    marginRight: '25px',
+                                    transform: 'translate(-1vw, -10px)',
+                                    position: 'absolute'
+                                }}
+                                    onClick={() => setEdit(false)}
                             >
-                                Save Questions and Answers
-                            </Button>
-                        </>
-                        )}
-                    </div>
-                    <div>
-                        {timeClick ? (
-                        <>
+                                <div
+                                    style={{
+                                        transform: 'scale(2)',
+                                        zIndex: '10'
+                                    }}
+                                >
+                                    x
+                                </div>
+                            </Container>
                             <div
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center',
-                                    marginTop: '10px'
+                                    justifyContent: 'center'
                                 }}
                             >
-                                {!timed ? (
+                                {save ? (
+                                <>
+                                    <Button
+                                        color='red'
+                                        onClick={() => setSave(false)}
+                                    >
+                                        Edit Questions and Answers
+                                    </Button>
+                                </>
+                                ):(
+                                <>
+                                    <Button
+                                        color='green'
+                                        onClick={() => setSave(true)}
+                                    >
+                                        Save Questions and Answers
+                                    </Button>
+                                </>
+                                )}
+                            </div>
+                            <div>
+                                {timeClick ? (
                                 <>
                                     <div
                                         style={{
-                                            transform: 'translateY(-20px)'
-                                        }}
-                                    >
-                                        <h2
-                                            style={{
-                                                marginBottom: '5px',
-                                                marginTop: '30px'
-                                            }}
-                                        >
-                                            Minutes
-                                        </h2>
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                justifyContent: 'center'
-                                            }}
-                                        >
-                                            <input
-                                                placeholder='Minutes'
-                                                type='number'
-                                                min='0'
-                                                max='59'
-                                                value={minute}
-                                                onChange={(e) => setMinute(e.target.value)}
-                                                style={{
-                                                    padding: '9px 14px 9px 14px',
-                                                    fontSize: '14px',
-                                                    fontWeight: '400',
-                                                    cursor: 'text',
-                                                    width: '80px',
-                                                    borderRadius: '4px',
-                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                    position: 'relative',
-                                                    zIndex: '100',
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <Container
-                                        style={{ 
-                                            color: 'red',
                                             display: 'flex',
-                                            justifyContent: 'flex-end',
-                                            cursor: 'pointer',
-                                            marginRight: '25px',
-                                            transform: 'translate(-1vw, -10px)',
-                                            position: 'absolute'
+                                            justifyContent: 'center',
+                                            marginTop: '10px'
                                         }}
-                                            onClick={() => setTimeClick(false)}
                                     >
-                                        <div
-                                            style={{
-                                                transform: 'scale(2)',
-                                                zIndex: '10'
-                                            }}
+                                        {!timed ? (
+                                        <>
+                                            <div
+                                                style={{
+                                                    transform: 'translateY(-20px)'
+                                                }}
+                                            >
+                                                <h2
+                                                    style={{
+                                                        marginBottom: '5px',
+                                                        marginTop: '30px'
+                                                    }}
+                                                >
+                                                    Minutes
+                                                </h2>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                >
+                                                    <input
+                                                        placeholder='Minutes'
+                                                        type='number'
+                                                        min='0'
+                                                        max='59'
+                                                        value={minute}
+                                                        onChange={(e) => setMinute(e.target.value)}
+                                                        style={{
+                                                            padding: '9px 14px 9px 14px',
+                                                            fontSize: '14px',
+                                                            fontWeight: '400',
+                                                            cursor: 'text',
+                                                            width: '80px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                            position: 'relative',
+                                                            zIndex: '100',
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <Container
+                                                style={{ 
+                                                    color: 'red',
+                                                    display: 'flex',
+                                                    justifyContent: 'flex-end',
+                                                    cursor: 'pointer',
+                                                    marginRight: '25px',
+                                                    transform: 'translate(-1vw, -10px)',
+                                                    position: 'absolute'
+                                                }}
+                                                    onClick={() => setTimeClick(false)}
+                                            >
+                                                <div
+                                                    style={{
+                                                        transform: 'scale(2)',
+                                                        zIndex: '10'
+                                                    }}
+                                                >
+                                                    x
+                                                </div>
+                                            </Container>
+                                        </>
+                                        ): null}
+                                    </div>
+                                </>
+                                ):(
+                                <>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            marginTop: '20px',
+                                            marginBottom: '30px'
+                                        }}
+                                    >
+                                        <Button
+                                            color='blue'
+                                            onClick={() => setTimeClick(true)}
                                         >
-                                            x
-                                        </div>
-                                    </Container>
+                                            Set Timer (optional)
+                                        </Button>
+                                    </div>
+                                </>
+                                )}
+                            </div>
+                            <div>
+                                {serviceList.length > 1 ? (
+                                <>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            transform: 'translateY(-10px)'
+                                        }}
+                                    >
+                                        <Button
+                                            color='red'
+                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
+                                        >
+                                            Clear All Questions
+                                        </Button>
+                                    </div>
                                 </>
                                 ): null}
                             </div>
                         </>
-                        ):(
-                        <>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    marginTop: '20px',
-                                    marginBottom: '30px'
-                                }}
-                            >
-                                <Button
-                                    color='blue'
-                                    onClick={() => setTimeClick(true)}
-                                >
-                                    Set Timer (optional)
-                                </Button>
-                            </div>
-                        </>
                         )}
                     </div>
-                    {serviceList.length > 1 ? (
-                    <>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                transform: 'translateY(-10px)'
-                            }}
-                        >
-                            <Button
-                                color='red'
-                                onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
-                            >
-                                Clear All Questions
-                            </Button>
-                        </div>
-                    </>
-                    ): null}
                 </>
                 ): null}
                 {!student ? (
