@@ -306,7 +306,7 @@ export default function Services() {
         } 
     }
 
-    console.log(isValid);
+    // console.log(isValid);
 
     return (
         <>
@@ -586,6 +586,22 @@ export default function Services() {
                                                 onChange={(e) => {setUserEmail(e.target.value), validEmail(userEmail)}}
                                             />
                                         </div>
+                                        {!isValid ? (
+                                        <>
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    transform: 'translate(-5px, 50%)',
+                                                    color: 'red',
+                                                    fontSize: '20px',
+                                                    fontWeight: '500'
+                                                }}
+                                            >
+                                                Error: Email is invalid!
+                                            </div>
+                                        </>
+                                        ): null}
                                         <div
                                             style={{
                                                 display: 'flex',
