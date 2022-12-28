@@ -727,6 +727,19 @@ export default function Services() {
                     </div>
                 </>
                 ): null}
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        transform: 'translateY(-10px)'
+                    }}
+                >
+                    <Button
+                        color='red'
+                    >
+                        Clear All Questions
+                    </Button>
+                </div>
                 {!student ? (
                 <>
                     <Divider />
