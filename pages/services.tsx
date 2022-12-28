@@ -302,6 +302,19 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    fontSize: '65px',
+                    marginBottom: '5vh',
+                    marginTop: '5vh',
+                    fontFamily: 'sans-serif',
+                    fontWeight: '300'
+                }}
+            >
+                Test Generator
+            </div>
             {/* <div
                 style={{
                     display: 'flex',
