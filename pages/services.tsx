@@ -308,7 +308,7 @@ export default function Services() {
                     justifyContent: 'center',
                     fontSize: '65px',
                     marginBottom: '5vh',
-                    marginTop: '5vh',
+                    marginTop: '8vh',
                     fontFamily: 'sans-serif',
                     fontWeight: '300'
                 }}
@@ -736,6 +736,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
+                        onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
                     >
                         Clear All Questions
                     </Button>
