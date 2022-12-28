@@ -557,6 +557,7 @@ export default function Services() {
                                         </h2>
                                         <div>
                                             <input
+                                                disabled={finish ? false : true}
                                                 type='email'
                                                 name='user_email'
                                                 placeholder='email address'
@@ -590,9 +591,9 @@ export default function Services() {
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                {/* <div>
                                     <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
-                                </div>
+                                </div> */}
                             </div>
                         </>
                         )}
