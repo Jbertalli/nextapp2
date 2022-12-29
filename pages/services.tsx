@@ -29,6 +29,7 @@ export default function Services() {
     const [dateClicked, setDateClicked] = useState<boolean>(false);
     const [titleClicked, setTitleClicked] = useState<boolean>(false);
     const [minute, setMinute] = useState<string>('0');
+    const [second, setSecond] = useState<string>('0');
     const [timed, setTimed] = useState<boolean>(false);
     const [timeClick, setTimeClick] = useState<boolean>(false);
     const [openEmail, setOpenEmail] = useState<boolean>(false);
@@ -266,6 +267,9 @@ export default function Services() {
                null;
         }
     }, [letterGrade]);    
+
+    let secondTime = Number(second);
+    console.log(secondTime);
 
     let minuteTime = Number(minute);
     console.log(minuteTime);
@@ -940,7 +944,7 @@ export default function Services() {
                                     >
                                         <Button
                                             color='red'
-                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
+                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setSecond('0'), setTimed(false), setTimeClick(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
                                         >
                                             Clear All Questions
                                         </Button>
@@ -970,7 +974,7 @@ export default function Services() {
                                                         marginTop: '40px'
                                                     }}
                                                 >
-                                                    Minutes
+                                                    Minutes&nbsp;&nbsp;&nbsp;
                                                 </h2>
                                                 <div
                                                     style={{
@@ -985,6 +989,46 @@ export default function Services() {
                                                         max='59'
                                                         value={minute}
                                                         onChange={(e) => setMinute(e.target.value)}
+                                                        style={{
+                                                            padding: '9px 14px 9px 14px',
+                                                            fontSize: '14px',
+                                                            fontWeight: '400',
+                                                            cursor: 'text',
+                                                            width: '80px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                            position: 'relative',
+                                                            zIndex: '100',
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                style={{
+                                                    transform: 'translateY(-10px)'
+                                                }}
+                                            >
+                                                <h2
+                                                    style={{
+                                                        marginBottom: '5px',
+                                                        marginTop: '40px'
+                                                    }}
+                                                >
+                                                    Seconds
+                                                </h2>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                >
+                                                    <input
+                                                        placeholder='Seconds'
+                                                        type='number'
+                                                        min='0'
+                                                        max='59'
+                                                        value={second}
+                                                        onChange={(e) => setSecond(e.target.value)}
                                                         style={{
                                                             padding: '9px 14px 9px 14px',
                                                             fontSize: '14px',
@@ -1050,7 +1094,7 @@ export default function Services() {
                 </>
                 ): null}
                 <div>
-                    <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
+                    <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
                 </div>
                 {!student ? (
                 <>
@@ -1746,7 +1790,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed }) {
+function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed }) {
     const {
       seconds,
       minutes,
@@ -1762,11 +1806,12 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
     // console.log(minutes);
     // console.log(seconds);
 
-    let value = minuteTime;
+    // let value = secondTime;
     // console.log(typeof value);
 
     const time = new Date();
-    time.setSeconds(time.getSeconds() + minuteTime);
+    time.setSeconds(time.getSeconds() + secondTime);
+    time.setMinutes(time.getMinutes() + minuteTime);
 
     // console.log('isRunning', isRunning);
 
@@ -1789,7 +1834,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                                 marginTop: '15px'
                             }}
                         >
-                            {/* <span>{days}</span>:<span>{hours}</span>:<span>{minuteTime}</span>:<span>{seconds}</span> */}
+                            {/* <span>{days}</span>:<span>{hours}</span>:<span>{secondTime}</span>:<span>{seconds}</span> */}
                             <span>{minutes}</span>:<span>{seconds}</span>
                         </div>
                         <Button
@@ -1832,7 +1877,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                             </button>
                             <button onClick={() => {
                                 const time = new Date();
-                                time.setSeconds(time.getSeconds() + minuteTime);
+                                time.setSeconds(time.getSeconds() + secondTime);
                                 restart(time);
                             }}>
                                 Restart
