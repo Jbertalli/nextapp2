@@ -36,6 +36,7 @@ export default function Services() {
     const [userEmail, setUserEmail] = useState<string>('');
     const [isValid, setIsValid] = useState<boolean>(false);
     const [edit, setEdit] = useState<boolean>(false);
+    const [isTimed, setIsTimed] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -280,7 +281,8 @@ export default function Services() {
         name: 'Grade Report',
         score: `Grade: ${grade}/${length}`,
         percent: `${percent}%`,
-        letter: `${letterGrade}`
+        letter: `${letterGrade}`,
+        to_name: `${name}`
     };
 
     // console.log(grade);
@@ -288,6 +290,7 @@ export default function Services() {
     // console.log(percent);
     // console.log(letterGrade);
     // console.log(userEmail);
+    // console.log('isTimed', isTimed);
 
     function send() {
         emailjs.send('service_jj71xm9', 'template_7hans9n', templateParams, 'FlrSx29zmJDjwJhtt')
@@ -432,7 +435,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => {setStudent(false), setStarted(false)}}
+                                        onClick={() => {setStudent(false), setFinish(false)}}
                                     >
                                         Switch to Admin
                                     </Button>
@@ -442,7 +445,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => setStudent(true)}
+                                        onClick={() => {setStudent(true), setFinish(false)}}
                                     >
                                         Switch to Student&nbsp;&nbsp;&nbsp;
                                         <span>
@@ -460,40 +463,44 @@ export default function Services() {
                 </div>
                 {student ? (
                 <>
-                    <Divider />
-                    {!finish ? (
+                    {!isTimed ? (
                     <>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Button
-                                color='blue'
-                                onClick={() => setFinish(true)}
+                        <Divider />
+                        {!finish ? (
+                        <>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
                             >
-                                Finish Test
-                            </Button>
-                        </div>
-                    </>
-                    ):(
-                    <>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Button
-                                color='red'
-                                onClick={() => setFinish(false)}                        
+                                <Button
+                                    color='blue'
+                                    onClick={() => setFinish(true)}
+                                >
+                                    Finish Test
+                                </Button>
+                            </div>
+                        </>
+                        ):(
+                        <>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
                             >
-                                Edit Test
-                            </Button>
-                        </div>
+                                <Button
+                                    color='red'
+                                    onClick={() => setFinish(false)}                        
+                                >
+                                    Edit Test
+                                </Button>
+                            </div>
+                        </>
+                        )}
                     </>
-                    )}
+                    ): null}
                 </>
                 ): null}
                 {student ? (
@@ -624,9 +631,6 @@ export default function Services() {
                     </div>
                 </>
                 ): null}
-                {/* <div>
-                    <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} />
-                </div> */}
                 {!student ? (
                 <>
                     <div>
@@ -726,7 +730,7 @@ export default function Services() {
                                     >
                                         <Button
                                             color='red'
-                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail('')}}
+                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
                                         >
                                             Clear All Questions
                                         </Button>
@@ -795,7 +799,7 @@ export default function Services() {
                                                     transform: 'translate(-1vw, 40px)',
                                                     position: 'absolute'
                                                 }}
-                                                    onClick={() => setTimeClick(false)}
+                                                    onClick={() => {setTimeClick(false), setIsTimed(false)}}
                                             >
                                                 <div
                                                     style={{
@@ -836,7 +840,7 @@ export default function Services() {
                 </>
                 ): null}
                 <div>
-                    <MyTimer started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
+                    <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
                 </div>
                 {!student ? (
                 <>
@@ -1300,8 +1304,7 @@ export default function Services() {
                                     style={{ 
                                         display: 'flex', 
                                         justifyContent: 'center', 
-                                        marginBottom: '5px', 
-                                        marginTop: '20px' 
+                                        marginBottom: '5px' 
                                     }}
                                 >
                                     Assignment Title
@@ -1323,8 +1326,7 @@ export default function Services() {
                                             borderRadius: '4px',
                                             border: '1px solid rgba(34, 36, 38. 0.15)',
                                             position: 'relative',
-                                            zIndex: '100',
-                                            marginBottom: '15px'
+                                            zIndex: '100'
                                         }}
                                         onChange={(e) => setTitle(e.target.value)}
                                     />
@@ -1335,12 +1337,15 @@ export default function Services() {
                                         style={{ 
                                             display: 'flex', 
                                             justifyContent: 'flex-end', 
-                                            transform: 'translate(40px, -36.5px) scale(0.8)' 
+                                            transform: 'translate(40px, -40px) scale(0.8)'
                                         }}
                                     >
                                         <Button 
                                             color="blue"
                                             onClick={() => setTitleClicked(true)}
+                                            style={{
+                                                position: 'absolute'
+                                            }}
                                         >
                                             Save
                                         </Button>
@@ -1427,7 +1432,7 @@ export default function Services() {
                                 <div key={index}>
                                     <div>
                                         <h2>
-                                            Test Question #{index + 1}
+                                            Question #{index + 1}
                                         </h2>
                                         {save ? (
                                         <>
@@ -1465,7 +1470,7 @@ export default function Services() {
                                         {!student ? (
                                         <>
                                             <h2>
-                                                Test Answer #{index + 1}
+                                                Answer #{index + 1}
                                             </h2>
                                             {save ? (
                                             <>
@@ -1502,78 +1507,86 @@ export default function Services() {
                                             )}
                                         </>
                                         ): null}
-                                        <div
-                                            style={{
-                                                display: (singleService.service.length > 0 && singleService.answer.length > 0) ? 'block' : 'none',
-                                                marginTop: '20px'
-                                            }}
-                                        >
-                                            <h2>
-                                                Student Answer #{index + 1}
-                                            </h2>
-                                            {finish ? (
+                                        {student ? (
+                                        <>
+                                            <div
+                                                style={{
+                                                    display: (singleService.service.length > 0 && singleService.answer.length > 0) ? 'block' : 'none',
+                                                    marginTop: '20px'
+                                                }}
+                                            >
+                                                <h2>
+                                                    Student Answer #{index + 1}
+                                                </h2>
+                                                {finish ? (
+                                                <>
+                                                    <div
+                                                        style={{
+                                                            fontSize: '25px'
+                                                        }}
+                                                    >
+                                                        {singleService.student}
+                                                    </div>
+                                                </>
+                                                ):(
+                                                <>
+                                                    <input
+                                                        name='student'
+                                                        type='text'
+                                                        id='student'
+                                                        placeholder='Student Question'
+                                                        value={singleService.student}
+                                                        onChange={(e) => handleStudentAnswerChange(e, index)}
+                                                        style={{
+                                                            padding: '9px 14px 9px 14px',
+                                                            fontSize: '14px',
+                                                            fontWeight: '400',
+                                                            cursor: 'text',
+                                                            width: '178.5px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                            position: 'relative',
+                                                            zIndex: '100'
+                                                        }}
+                                                    />
+                                                </>
+                                                )}
+                                            </div>
+                                        </>
+                                        ): null}
+                                        <Divider />
+                                    </div>
+                                    {(singleService.student && singleService.student.length > 0) ? (
+                                    <>
+                                        <div>
+                                            {((singleService.answer).toLowerCase() === (singleService.student).toLowerCase()) ? (
                                             <>
-                                                <div
-                                                    style={{
-                                                        fontSize: '25px'
-                                                    }}
-                                                >
-                                                    {singleService.student}
+                                                <div style={{ fontSize: '30px', fontWeight: '500', color: 'green' }}>
+                                                    <Icon
+                                                        name="check"
+                                                    />
+                                                    <span>
+                                                        Correct
+                                                    </span>  
                                                 </div>
                                             </>
                                             ):(
                                             <>
-                                                <input
-                                                    name='student'
-                                                    type='text'
-                                                    id='student'
-                                                    placeholder='Student Question'
-                                                    value={singleService.student}
-                                                    onChange={(e) => handleStudentAnswerChange(e, index)}
-                                                    style={{
-                                                        padding: '9px 14px 9px 14px',
-                                                        fontSize: '14px',
-                                                        fontWeight: '400',
-                                                        cursor: 'text',
-                                                        width: '178.5px',
-                                                        borderRadius: '4px',
-                                                        border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                        position: 'relative',
-                                                        zIndex: '100'
-                                                    }}
-                                                />
+                                                <div style={{ fontSize: '30px', fontWeight: '500', color: 'red' }}>
+                                                    <Icon
+                                                        name="plus"
+                                                        style={{ transform: 'rotate(45deg)' }}
+                                                    />
+                                                    <span>
+                                                        Incorrect
+                                                    </span>
+                                                </div>
                                             </>
                                             )}
                                         </div>
-                                        <Divider />
-                                    </div>
-                                    <div>
-                                        {((singleService.answer).toLowerCase() === (singleService.student).toLowerCase()) ? (
-                                        <>
-                                            <div style={{ fontSize: '30px', fontWeight: '500', color: 'green' }}>
-                                                <Icon
-                                                    name="check"
-                                                />
-                                                <span>
-                                                    Correct
-                                                </span>  
-                                            </div>
-                                        </>
-                                        ):(
-                                        <>
-                                            <div style={{ fontSize: '30px', fontWeight: '500', color: 'red' }}>
-                                                <Icon
-                                                    name="plus"
-                                                    style={{ transform: 'rotate(45deg)' }}
-                                                />
-                                                <span>
-                                                    Incorrect
-                                                </span>
-                                            </div>
-                                        </>
-                                        )}
-                                    </div>
-                                    <Divider />
+                                    </>
+                                    ): null}
+                                    {/* <Divider /> */}
                                     {!student ? (
                                     <>
                                         <div>
@@ -1586,7 +1599,9 @@ export default function Services() {
                                                 </Button>
                                             )}
                                         </div>
-                                        <Divider />
+                                        {serviceList.length > 1 ? (
+                                            <Divider />
+                                        ): null}
                                         <div>
                                             {serviceList.length - 1 === index && (
                                                 <Button
@@ -1603,66 +1618,70 @@ export default function Services() {
                             ))}
                         </div>
                     </form>
-                    {finish ? (
+                    {student ? (
                     <>
-                        <Card
-                            style={{
-                                height: '300px'
-                            }}
-                        >
-                            <div
+                        {finish ? (
+                        <>
+                            <Card
                                 style={{
-                                    transform: 'translateY(20%)'
+                                    height: '300px'
                                 }}
                             >
-                                <div 
-                                    style={{ 
-                                        marginBottom: '5px'
+                                <div
+                                    style={{
+                                        transform: 'translateY(20%)'
                                     }}
                                 >
+                                    <div 
+                                        style={{ 
+                                            marginBottom: '5px'
+                                        }}
+                                    >
+                                        <h1 
+                                            style={{ 
+                                                display: 'flex', 
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            Grade Report
+                                        </h1>
+                                        <h2
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            Grade: {grade}/{length}
+                                        </h2>
+                                    </div>
+                                    <h2>
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            {percent}%
+                                        </div>
+                                    </h2>
                                     <h1 
                                         style={{ 
-                                            display: 'flex', 
+                                            color: `${color}`, 
+                                            paddingBottom: '30px' ,
+                                            display: 'flex',
                                             justifyContent: 'center'
-                                        }}
-                                    >
-                                        Grade Report
+                                            }}
+                                        >
+                                        {(length > 0) ? (
+                                        <>
+                                            {letterGrade}
+                                        </>
+                                        ): null}
                                     </h1>
-                                    <h2
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'center'
-                                        }}
-                                    >
-                                        Grade: {grade}/{length}
-                                    </h2>
                                 </div>
-                                <h2>
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'center'
-                                        }}
-                                    >
-                                        {percent}%
-                                    </div>
-                                </h2>
-                                <h1 
-                                    style={{ 
-                                        color: `${color}`, 
-                                        paddingBottom: '30px' ,
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                        }}
-                                    >
-                                    {(length > 0) ? (
-                                    <>
-                                        {letterGrade}
-                                    </>
-                                    ): null}
-                                </h1>
-                            </div>
-                        </Card>
+                            </Card>
+                        </>
+                        ): null}
                     </>
                     ): null}
                 </div>
@@ -1671,7 +1690,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, started, setStarted, timeClick, edit }) {
+function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, started, setStarted, timeClick, edit, isTimed, setIsTimed }) {
     const {
       seconds,
       minutes,
@@ -1682,22 +1701,18 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
       pause,
       resume,
       restart,
-    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+    } = useTimer({ expiryTimestamp, onExpire: () => {console.warn('onExpire called'), setFinish(true)} });
 
-    console.log(minutes);
-    console.log(seconds);
-
-    if (seconds === 0 && minutes === 0) {
-        setFinish(true);
-    } else {
-        setFinish(false);
-    }
+    // console.log(minutes);
+    // console.log(seconds);
 
     let value = minuteTime;
-    console.log(typeof value);
+    // console.log(typeof value);
 
     const time = new Date();
     time.setSeconds(time.getSeconds() + minuteTime);
+
+    console.log('isRunning', isRunning);
 
     return (
         <div 
@@ -1722,7 +1737,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                             <span>{minutes}</span>:<span>{seconds}</span>
                         </div>
                         <Button
-                            onClick={() => setTimed(false)}
+                            onClick={() => {setTimed(false), setIsTimed(false)}}
                             style={{
                                 marginTop: '40px',
                                 marginBottom: '55px'
@@ -1748,7 +1763,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                             >
                                 <Button 
                                     color='blue'
-                                    onClick={() => {setTimed(true), restart(time)}}
+                                    onClick={() => {setTimed(true), restart(time), setIsTimed(true)}}
                                 >
                                     Set Time Limit
                                 </Button>
@@ -1774,70 +1789,93 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
             </>
             ):(
             <>
-                {student ? (
+                {isTimed ? (
                 <>
-                    {started ? (
-                    <>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            position: 'absolute',
+                            transform: 'translate(50vw, -40px)',
+                            zIndex: '100'
+                        }}
+                    >
+                        {/* <div
+                            style={{
+                                position: 'absolute'
+                            }}
+                        >
+                            {seconds}
+                        </div> */}
                         {finish ? (
                         <>
-                            <h2
+                            <div
                                 style={{
-                                    marginBottom: '20px'
+                                    display: 'flex',
+                                    justifyContent: 'center'
                                 }}
                             >
-                                Test Completed
-                            </h2>
+                                <Button
+                                    color='red'
+                                    onClick={() => setFinish(false)}                        
+                                >
+                                    Edit Test
+                                </Button>
+                            </div>
                         </>
                         ):(
                         <>
-                            <div 
-                                style={{
-                                    fontSize: '100px',
-                                    marginBottom: '40px'
-                                }}
-                            >
-                                <span>{minutes}</span>:<span>{seconds}</span>
+                            <div>
+                                <Button
+                                    style={{
+                                        transform: 'translateY(20px)'
+                                    }}
+                                    // disabled={finish || isRunning}
+                                    onClick={resume}
+                                >
+                                    Start Test
+                                </Button>
                             </div>
-                            <h3
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    marginBottom: '20px'
-                                }}
-                            >
-                                Test in progress...
-                            </h3>
                         </>
                         )}
-                    </>
-                    ):(
+                    </div>
+                </>
+                ): null}
+                {isTimed ? (
+                <>
+                    {finish ? (
                     <>
-                        <Button 
-                            color='blue'
-                            onClick={() => {start(), setStarted(true)}}
+                        <h2
                             style={{
                                 marginBottom: '20px'
                             }}
                         >
-                            Start Test
-                        </Button>
+                            Test Completed
+                        </h2>
+                    </>
+                    ):(
+                    <>
+                        <div 
+                            style={{
+                                fontSize: '100px',
+                                marginBottom: '40px'
+                            }}
+                        >
+                            <span>{minutes}</span>:<span>{seconds}</span>
+                        </div>
+                        <h3
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginBottom: '20px'
+                            }}
+                        >
+                            Test in progress...
+                        </h3>
                     </>
                     )}
                 </>
-                ):(
-                <>
-                    <div
-                        onClick={pause}
-                    >
-                        <Button 
-                            color='blue'
-                            onClick={() => {setTimed(true), restart(time)}}
-                        >
-                            Set Time Limit
-                        </Button>
-                    </div>
-                </>
-                )}
+                ): null}
             </>
             )}
         </div>
