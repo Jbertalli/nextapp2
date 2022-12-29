@@ -36,6 +36,7 @@ export default function Services() {
     const [isValid, setIsValid] = useState<boolean>(false);
     const [edit, setEdit] = useState<boolean>(false);
     const [isTimed, setIsTimed] = useState<boolean>(false);
+    const [openNameDate, setOpenNameDate] = useState<boolean>(false);
     // const [access, setAccess] = useState<boolean>(false);
     // const [password, setPassword] = useState<string>('');
     // const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -434,7 +435,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false)}}
+                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
                                     >
                                         Switch to Admin
                                     </Button>
@@ -444,7 +445,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => {setStudent(true), setFinish(false)}}
+                                        onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
                                     >
                                         Switch to Student&nbsp;&nbsp;&nbsp;
                                         <span>
@@ -625,6 +626,216 @@ export default function Services() {
                                     </div>
                                 </div>
                             </div>
+                        </>
+                        )}
+                    </div>
+                    <Divider />
+                    <div>
+                        {!openNameDate ? (
+                        <>
+                            <div
+                                style={{ 
+                                    transform: 'translateY(-8px)',
+                                    cursor: 'pointer' 
+                                }}
+                                onClick={() => {setOpenNameDate(true)}}
+                            >
+                                <div 
+                                    style={{ 
+                                        marginLeft: '-25px',
+                                        display: 'flex',
+                                        color: '#125CA1',
+                                        transform: 'translateY(100%) scale(0.8)'
+                                    }}
+                                >
+                                    <Icon
+                                        name='chevron down'
+                                    />
+                                </div>
+                                <div
+                                    style={{ 
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        fontSize: '20px', 
+                                        fontWeight: '700',
+                                        color: '#125CA1'
+                                    }}
+                                >
+                                    Open Name and Date
+                                </div>
+                            </div>
+                        </>
+                        ):(
+                        <>
+                            <Container
+                                style={{ 
+                                    color: 'red',
+                                    display: 'flex',
+                                    justifyContent: 'flex-end',
+                                    cursor: 'pointer',
+                                    marginRight: '25px',
+                                    transform: 'translate(-1vw, -5px)'
+                                }}
+                                    onClick={() => setOpenNameDate(false)}
+                            >
+                                <div
+                                    style={{
+                                        transform: 'scale(2)',
+                                        zIndex: '10'
+                                    }}
+                                >
+                                    x
+                                </div>
+                            </Container>
+                            {!nameClicked ? (
+                            <>
+                                <div>
+                                    <h2 
+                                        style={{ 
+                                            marginBottom: '5px' 
+                                        }}
+                                    >
+                                        Name
+                                    </h2>
+                                    <input 
+                                        placeholder="Name"
+                                        style={{ 
+                                            padding: '9px 14px 9px 14px',
+                                            fontSize: '14px',
+                                            fontWeight: '400',
+                                            cursor: 'text',
+                                            width: '178.5px',
+                                            borderRadius: '4px',
+                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                            position: 'relative',
+                                            zIndex: '100'
+                                        }}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                    {(name.length > 0) ? (
+                                    <>
+                                        <span 
+                                            style={{ 
+                                                display: 'flex', 
+                                                justifyContent: 'flex-end', 
+                                                transform: 'translate(40px, -44px) scale(0.8)' 
+                                            }}
+                                        >
+                                            <Button 
+                                                color="blue"
+                                                onClick= {() => setNameClicked(true)}
+                                            >
+                                                Save
+                                            </Button>
+                                        </span>
+                                    </>
+                                    ): null}
+                                </div>
+                            </>
+                            ):(
+                            <>
+                                <div style={{ transform: 'translateY(25px)' }}>
+                                    <span style={{ fontSize: '24px' }}>
+                                        <span style={{ fontWeight: '500' }}>
+                                            Name:{' '} 
+                                        </span>
+                                        <span style={{ fontWeight: '300' }}>
+                                            {name}
+                                        </span>
+                                    </span>
+                                    <span 
+                                        style={{ 
+                                            display: 'flex', 
+                                            justifyContent: 'flex-end', 
+                                            transform: 'translate(40px, -32px) scale(0.8)' 
+                                        }}
+                                    >
+                                        <Button 
+                                            color="blue"
+                                            onClick={() => {setName(''), setNameClicked(false)}}
+                                        >
+                                            Edit Name
+                                        </Button>
+                                    </span>
+                                </div>
+                            </>
+                            )}
+                            {!dateClicked ? (
+                            <>
+                                <div>
+                                    <h2 
+                                        style={{ 
+                                            marginBottom: '5px', 
+                                            marginTop: '20px' 
+                                        }}
+                                    >
+                                        Date
+                                    </h2>
+                                    <input 
+                                        type="date"
+                                        placeholder="Date"
+                                        style={{ 
+                                            padding: '9px 14px 9px 14px',
+                                            fontSize: '14px',
+                                            fontWeight: '400',
+                                            cursor: 'text',
+                                            width: '178.5px',
+                                            borderRadius: '4px',
+                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                            position: 'relative',
+                                            zIndex: '100',
+                                            marginBottom: '10px'
+                                        }}
+                                        onChange={(e) => setDate(e.target.value)}
+                                    />
+                                    {(date.length > 0) ? (
+                                    <>
+                                        <span 
+                                            style={{ 
+                                                display: 'flex', 
+                                                justifyContent: 'flex-end', 
+                                                transform: 'translate(40px, -57px) scale(0.8)' 
+                                            }}
+                                        >
+                                            <Button 
+                                                color="blue"
+                                                onClick={() => setDateClicked(true)}
+                                            >
+                                                Save
+                                            </Button>
+                                        </span>
+                                    </>
+                                    ):null}
+                                </div>
+                            </>
+                            ):(
+                            <>
+                                <div style={{ transform: 'translateY(20px)' }}>
+                                    <span style={{ fontSize: '24px' }}>
+                                        <span style={{ fontWeight: '500' }}>
+                                            Date:{' '}
+                                        </span>
+                                        <span style={{ fontWeight: '300' }}>
+                                            {date}
+                                        </span>
+                                    </span>
+                                    <span 
+                                        style={{ 
+                                            display: 'flex', 
+                                            justifyContent: 'flex-end', 
+                                            transform: 'translate(40px, -32px) scale(0.8)' 
+                                        }}
+                                    >
+                                        <Button 
+                                            color="blue"
+                                            onClick={() => {setDate(''), setDateClicked(false)}}
+                                        >
+                                            Edit Date
+                                        </Button>
+                                    </span>
+                                </div>
+                            </>
+                            )}
                         </>
                         )}
                     </div>
@@ -1132,160 +1343,6 @@ export default function Services() {
                         </>
                         )}
                     </div>
-                </>
-                ): null}
-                {student ? (
-                <>
-                    <Divider />
-                    {!nameClicked ? (
-                    <>
-                        <div 
-                            style={{ 
-                                transform: 'translateY(20px)', 
-                                paddingBottom: '20px' 
-                            }}
-                        >
-                            <h2 style={{ marginBottom: '5px' }}>
-                                Name
-                            </h2>
-                            <input 
-                                placeholder="Name"
-                                style={{ 
-                                    padding: '9px 14px 9px 14px',
-                                    fontSize: '14px',
-                                    fontWeight: '400',
-                                    cursor: 'text',
-                                    width: '178.5px',
-                                    borderRadius: '4px',
-                                    border: '1px solid rgba(34, 36, 38. 0.15)',
-                                    position: 'relative',
-                                    zIndex: '100'
-                                }}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            {(name.length > 0) ? (
-                            <>
-                                <span 
-                                    style={{ 
-                                        display: 'flex', 
-                                        justifyContent: 'flex-end', 
-                                        transform: 'translate(40px, -36.5px) scale(0.8)' 
-                                    }}
-                                >
-                                    <Button 
-                                        color="blue"
-                                        onClick= {() => setNameClicked(true)}
-                                    >
-                                        Save
-                                    </Button>
-                                </span>
-                            </>
-                            ): null}
-                        </div>
-                    </>
-                    ):(
-                    <>
-                        <div style={{ transform: 'translateY(25px)' }}>
-                            <span style={{ fontSize: '24px' }}>
-                                <span style={{ fontWeight: '500' }}>
-                                    Name:{' '} 
-                                </span>
-                                <span style={{ fontWeight: '300' }}>
-                                    {name}
-                                </span>
-                            </span>
-                            <span 
-                                style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'flex-end', 
-                                    transform: 'translate(40px, -32px) scale(0.8)' 
-                                }}
-                            >
-                                <Button 
-                                    color="blue"
-                                    onClick={() => {setName(''), setNameClicked(false)}}
-                                >
-                                    Edit Name
-                                </Button>
-                            </span>
-                        </div>
-                    </>
-                    )}
-                    {!dateClicked ? (
-                    <>
-                        <div>
-                            <h2 
-                                style={{ 
-                                    marginBottom: '5px', 
-                                    marginTop: '20px' 
-                                }}
-                            >
-                                Date
-                            </h2>
-                            <input 
-                                type="date"
-                                placeholder="Date"
-                                style={{ 
-                                    padding: '9px 14px 9px 14px',
-                                    fontSize: '14px',
-                                    fontWeight: '400',
-                                    cursor: 'text',
-                                    width: '178.5px',
-                                    borderRadius: '4px',
-                                    border: '1px solid rgba(34, 36, 38. 0.15)',
-                                    position: 'relative',
-                                    zIndex: '100'
-                                }}
-                                onChange={(e) => setDate(e.target.value)}
-                            />
-                            {(date.length > 0) ? (
-                            <>
-                                <span 
-                                    style={{ 
-                                        display: 'flex', 
-                                        justifyContent: 'flex-end', 
-                                        transform: 'translate(40px, -37px) scale(0.8)' 
-                                    }}
-                                >
-                                    <Button 
-                                        color="blue"
-                                        onClick={() => setDateClicked(true)}
-                                    >
-                                        Save
-                                    </Button>
-                                </span>
-                            </>
-                            ):null}
-                        </div>
-                    </>
-                    ):(
-                    <>
-                        <div style={{ transform: 'translateY(20px)' }}>
-                            <span style={{ fontSize: '24px' }}>
-                                <span style={{ fontWeight: '500' }}>
-                                    Date:{' '}
-                                </span>
-                                <span style={{ fontWeight: '300' }}>
-                                    {date}
-                                </span>
-                            </span>
-                            <span 
-                                style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'flex-end', 
-                                    transform: 'translate(40px, -32px) scale(0.8)' 
-                                }}
-                            >
-                                <Button 
-                                    color="blue"
-                                    onClick={() => {setDate(''), setDateClicked(false)}}
-                                >
-                                    Edit Date
-                                </Button>
-                            </span>
-                        </div>
-                    </>
-                    )}
                 </>
                 ): null}
                 <Divider />
@@ -1826,6 +1883,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                         <>
                             <div>
                                 <Button
+                                    color='blue'
                                     style={{
                                         transform: 'translateY(20px)'
                                     }}
@@ -1862,15 +1920,19 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                         >
                             <span>{minutes}</span>:<span>{seconds}</span>
                         </div>
-                        <h3
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                marginBottom: '20px'
-                            }}
-                        >
-                            Test in progress...
-                        </h3>
+                        {isRunning ? (
+                        <>
+                            <h3
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginBottom: '20px'
+                                }}
+                            >
+                                Test in progress...
+                            </h3>
+                        </>
+                        ): null}
                     </>
                     )}
                 </>
