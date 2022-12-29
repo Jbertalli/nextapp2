@@ -31,7 +31,6 @@ export default function Services() {
     const [minute, setMinute] = useState<string>('0');
     const [timed, setTimed] = useState<boolean>(false);
     const [timeClick, setTimeClick] = useState<boolean>(false);
-    const [started, setStarted] = useState<boolean>(false);
     const [openEmail, setOpenEmail] = useState<boolean>(false);
     const [userEmail, setUserEmail] = useState<string>('');
     const [isValid, setIsValid] = useState<boolean>(false);
@@ -435,7 +434,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false)}}
+                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false)}}
                                     >
                                         Switch to Admin
                                     </Button>
@@ -730,7 +729,7 @@ export default function Services() {
                                     >
                                         <Button
                                             color='red'
-                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setStarted(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
+                                            onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setMinute('0'), setTimed(false), setTimeClick(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
                                         >
                                             Clear All Questions
                                         </Button>
@@ -840,7 +839,7 @@ export default function Services() {
                 </>
                 ): null}
                 <div>
-                    <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} started={started} setStarted={setStarted} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
+                    <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
                 </div>
                 {!student ? (
                 <>
@@ -1690,7 +1689,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, started, setStarted, timeClick, edit, isTimed, setIsTimed }) {
+function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed }) {
     const {
       seconds,
       minutes,
