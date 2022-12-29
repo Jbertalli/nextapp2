@@ -435,7 +435,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
-                                        onClick={() => {setStudent(false), setFinish(false)}}
+                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false)}}
                                     >
                                         Switch to Admin
                                     </Button>
@@ -478,7 +478,7 @@ export default function Services() {
                                     color='blue'
                                     onClick={() => setFinish(true)}
                                 >
-                                    Finish Test
+                                    Submit Test
                                 </Button>
                             </div>
                         </>
@@ -681,7 +681,7 @@ export default function Services() {
                                     transform: 'translate(-1vw, -10px)',
                                     position: 'absolute'
                                 }}
-                                    onClick={() => {setEdit(false), setTimeClick(false)}}
+                                    onClick={() => setEdit(false)}
                             >
                                 <div
                                     style={{
@@ -1586,7 +1586,7 @@ export default function Services() {
                                         </div>
                                     </>
                                     ): null}
-                                    {/* <Divider /> */}
+                                    <Divider />
                                     {!student ? (
                                     <>
                                         <div>
@@ -1712,7 +1712,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
     const time = new Date();
     time.setSeconds(time.getSeconds() + minuteTime);
 
-    console.log('isRunning', isRunning);
+    // console.log('isRunning', isRunning);
 
     return (
         <div 
@@ -1817,9 +1817,9 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => setFinish(false)}                        
+                                    onClick={() => {setFinish(false), restart(time)}}                        
                                 >
-                                    Edit Test
+                                    Restart Test
                                 </Button>
                             </div>
                         </>
@@ -1830,7 +1830,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                                     style={{
                                         transform: 'translateY(20px)'
                                     }}
-                                    // disabled={finish || isRunning}
+                                    disabled={isRunning}
                                     onClick={resume}
                                 >
                                     Start Test
