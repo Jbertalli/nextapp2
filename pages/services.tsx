@@ -1345,7 +1345,7 @@ export default function Services() {
                     </div>
                 </>
                 ): null}
-                <Divider />
+                <Divider />   
                 {!student ? (
                 <>
                     <div
@@ -1845,14 +1845,24 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
             </>
             ):(
             <>
+                {finish ? (
+                <>
+                    <div
+                        style={{
+                            transform: 'translateY(-49px)'
+                        }}
+                    >
+                        <Divider />    
+                    </div>
+                </>
+                ): null}
                 {isTimed ? (
                 <>
                     <div
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
-                            position: 'absolute',
-                            transform: 'translate(50vw, -40px)',
+                            position: 'relative',
                             zIndex: '100'
                         }}
                     >
@@ -1868,7 +1878,8 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                             <div
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center'
+                                    justifyContent: 'center',
+                                    transform: 'translateY(-45px)'
                                 }}
                             >
                                 <Button
@@ -1885,7 +1896,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                                 <Button
                                     color='blue'
                                     style={{
-                                        transform: 'translateY(20px)'
+                                        transform: 'translateY(-10px)'
                                     }}
                                     disabled={isRunning}
                                     onClick={resume}
@@ -1904,7 +1915,7 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                     <>
                         <h2
                             style={{
-                                marginBottom: '20px'
+                                transform: 'translateY(-50px)'
                             }}
                         >
                             Test Completed
@@ -1915,22 +1926,31 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                         <div 
                             style={{
                                 fontSize: '100px',
-                                marginBottom: '40px'
+                                marginBottom: '-105px',
+                                transform: 'translateY(42px)'
                             }}
                         >
                             <span>{minutes}</span>:<span>{seconds}</span>
                         </div>
                         {isRunning ? (
                         <>
-                            <h3
+                            <div
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    marginBottom: '20px'
+                                    transform: 'translateY(190px)'
                                 }}
                             >
-                                Test in progress...
-                            </h3>
+                                <h3
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        position: 'absolute'
+                                    }}
+                                >
+                                    Test in progress...
+                                </h3>
+                            </div>
                         </>
                         ): null}
                     </>
@@ -1939,6 +1959,25 @@ function MyTimer({ expiryTimestamp, minuteTime, finish, setFinish, student, time
                 ): null}
             </>
             )}
+            {student ? (
+            <>
+                {isTimed ? (
+                <>
+                    {!finish ? (
+                    <>
+                        <div
+                            style={{
+                                marginBottom: '230px'
+                            }}
+                        >
+                            <Divider />
+                        </div>
+                    </>
+                    ): null}
+                </>
+                ): null}
+            </>
+            ): null}
         </div>
     );
 }
