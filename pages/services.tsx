@@ -361,7 +361,7 @@ export default function Services() {
                     color='black'
                     onClick={() => setOpenModal(true)}
                 >
-                    Test Mode
+                    Demo Mode
                 </Button> 
             </>
             )}   
@@ -403,7 +403,7 @@ export default function Services() {
                                 marginTop: '3vh'
                             }}
                         >
-                            Set Admin Password to Create Test
+                            Set Admin Password
                         </div>
                         <div
                             style={{
@@ -535,6 +535,9 @@ export default function Services() {
                                         Hide Password
                                     </label>
                                 }
+                                style={{
+                                    marginTop: '15px'
+                                }}
                             />
                         </>
                         ):(
@@ -547,16 +550,24 @@ export default function Services() {
                                         Show Password
                                     </label>
                                 }
+                                style={{
+                                    marginTop: '15px'
+                                }}
                             />
                         </>
                         )}
                     </div>
                     <Divider />
-                    <Button
-                        onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false)}}
-                    >
-                        Take Test
-                    </Button>
+                    {auth ? (
+                    <>
+                        <Button
+                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false)}}
+                        >
+                            Take Test
+                        </Button>
+                    </>
+                    ): null}
+                   
                 </div>
             </Modal>
             <div
