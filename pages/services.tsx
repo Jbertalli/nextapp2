@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import { Button, Divider, Icon, Card, Container, Modal } from 'semantic-ui-react';
+import { Button, Divider, Icon, Card, Container, Modal, Checkbox } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
 import emailjs from 'emailjs-com';
 
@@ -46,6 +46,7 @@ export default function Services() {
     const [hide, setHide] = useState<string>('password');
     const [show, setShow] = useState<boolean>(false);
     const [clickPassword, setClickPassword] = useState<boolean>(true);
+    const [hideAdmin, setHideAdmin] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -346,12 +347,24 @@ export default function Services() {
                     marginBottom: '-50px'
                 }}
             >
+            {student ? (
+            <>
+                <Button
+                    color='black'
+                >
+                    Return to Admin Mode
+                </Button>
+            </>
+            ):(
+            <>
                 <Button
                     color='black'
                     onClick={() => setOpenModal(true)}
                 >
                     Test Mode
-                </Button>  
+                </Button> 
+            </>
+            )}   
             </div>
             <Modal 
                 dimmer
@@ -415,6 +428,15 @@ export default function Services() {
                                     zIndex: '100'
                                 }}
                             />
+                            <Icon
+                                name='eye'
+                                style={{
+                                    transform: 'translate(72px, 14px) scale(1.1)', 
+                                    color: '#80808099', 
+                                    position: 'absolute', 
+                                    zIndex: '100'
+                                }}
+                            />
                         </div>
                         <div
                             style={{
@@ -467,6 +489,15 @@ export default function Services() {
                                     zIndex: '100'
                                 }}
                             />
+                            <Icon
+                                name='eye'
+                                style={{
+                                    transform: 'translate(72px, 14px) scale(1.1)', 
+                                    color: '#80808099', 
+                                    position: 'absolute', 
+                                    zIndex: '100'
+                                }}
+                            />
                         </div>
                         <Divider />
                         <div
@@ -496,26 +527,34 @@ export default function Services() {
                     >
                         {show ? (
                         <>
-                            <Button
+                            <Checkbox
                                 color='red'
                                 onClick={() => {setHide('password'), setShow(false)}}
-                            >
-                                Hide Password
-                            </Button>
+                                label={
+                                    <label>
+                                        Hide Password
+                                    </label>
+                                }
+                            />
                         </>
                         ):(
                         <>
-                            <Button
+                            <Checkbox
                                 color='blue'
                                 onClick={() => {setHide('text'), setShow(true)}}
-                            >
-                                Show Password
-                            </Button>
+                                label={
+                                    <label>
+                                        Show Password
+                                    </label>
+                                }
+                            />
                         </>
                         )}
                     </div>
                     <Divider />
-                    <Button>
+                    <Button
+                        onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false)}}
+                    >
                         Take Test
                     </Button>
                 </div>
@@ -587,6 +626,7 @@ export default function Services() {
                             <>
                                 <div>
                                     <Button
+                                        disabled={hideAdmin}
                                         onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
                                     >
                                         Switch to Admin
