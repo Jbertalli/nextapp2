@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import { Button, Divider, Icon, Card, Container } from 'semantic-ui-react';
+import { Button, Divider, Icon, Card, Container, Modal } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
 import emailjs from 'emailjs-com';
 
@@ -38,9 +38,14 @@ export default function Services() {
     const [edit, setEdit] = useState<boolean>(false);
     const [isTimed, setIsTimed] = useState<boolean>(false);
     const [openNameDate, setOpenNameDate] = useState<boolean>(false);
-    // const [access, setAccess] = useState<boolean>(false);
-    // const [password, setPassword] = useState<string>('');
-    // const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [count, setCount] = useState<number>(0);
+    const [auth, setAuth] = useState<boolean>(false);
+    const [password, setPassword] = useState<string>('');
+    const [adminPassword, setAdminPassword] = useState<string>('');
+    const [hide, setHide] = useState<string>('password');
+    const [show, setShow] = useState<boolean>(false);
+    const [clickPassword, setClickPassword] = useState<boolean>(true);
 
     // List
     useEffect(() => {
@@ -314,7 +319,17 @@ export default function Services() {
         } 
     }
 
-    // console.log(isValid);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            if ((password.length > 0) && (password === adminPassword)) {
+                setAuth(true);
+            } else {
+                setAuth(false);
+            }
+        } else {
+            console.log('window == undefined');
+        }
+    }, [count])
 
     return (
         <>
@@ -322,6 +337,189 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            <div
+                style={{
+                    marginRight: '1vw',
+                    marginTop: '1vh',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginBottom: '-50px'
+                }}
+            >
+                <Button
+                    color='black'
+                    onClick={() => setOpenModal(true)}
+                >
+                    Test Mode
+                </Button>  
+            </div>
+            <Modal 
+                dimmer
+                open={openModal}
+                style={{
+                    width: '50vw',
+                    height: '50vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    transform: 'translateY(-50%)'
+                }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        marginRight: '10px',
+                        fontSize: '40px',
+                        color: 'red',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => setOpenModal(false)}
+                >
+                    x
+                </div>
+                <div>
+                    {clickPassword ? (
+                    <>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                fontSize: '35px',
+                                fontWeight: '700',
+                                marginBottom: '10px', 
+                                marginTop: '3vh'
+                            }}
+                        >
+                            Set Admin Password to Create Test
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <input
+                                type={hide}
+                                placeholder='Admin Password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                style={{ 
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '178.5px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100'
+                                }}
+                            />
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginTop: '20px'
+                            }}
+                        >
+                            <Button
+                                onClick={() => setClickPassword(false)}
+                            >
+                                Set Admin Password
+                            </Button>
+                        </div>
+                    </>
+                    ):(
+                    <>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                fontSize: '35px',
+                                fontWeight: '700',
+                                marginBottom: '10px', 
+                                marginTop: '3vh'
+                            }}
+                        >
+                            Login
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <input
+                                type={hide}
+                                placeholder='Admin Password'
+                                value={adminPassword}
+                                onChange={(e) => setAdminPassword(e.target.value)}
+                                style={{ 
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '178.5px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100'
+                                }}
+                            />
+                        </div>
+                        <Divider />
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Button
+                                onClick={() => setCount(count + 1)}
+                            >
+                                Submit
+                            </Button>
+                            <Button
+                                onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAuth(false)}}
+                            >
+                                Reset Admin Password
+                            </Button>
+                        </div>
+                    </>
+                    )}
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        {show ? (
+                        <>
+                            <Button
+                                color='red'
+                                onClick={() => {setHide('password'), setShow(false)}}
+                            >
+                                Hide Password
+                            </Button>
+                        </>
+                        ):(
+                        <>
+                            <Button
+                                color='blue'
+                                onClick={() => {setHide('text'), setShow(true)}}
+                            >
+                                Show Password
+                            </Button>
+                        </>
+                        )}
+                    </div>
+                    <Divider />
+                    <Button>
+                        Take Test
+                    </Button>
+                </div>
+            </Modal>
             <div
                 style={{
                     display: 'flex',
@@ -335,56 +533,6 @@ export default function Services() {
             >
                 Test Generator
             </div>
-            {/* <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    transform: 'translateY(20px)'
-                }}
-            >
-                {access ? (
-                <>
-                    <Button
-                        color='blue'
-                        onClick={() => setAccess(false)}
-                    >
-                        Set Admin Access Code
-                    </Button>
-                </>
-                ):(
-                <>
-                    <div>
-                        <input
-                            placeholder='access code'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={{
-                                padding: '9px 14px 9px 14px',
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                cursor: 'text',
-                                width: '178.5px',
-                                borderRadius: '4px',
-                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                position: 'relative',
-                                zIndex: '100'
-                            }}
-                        />
-                    </div>
-                    <Button
-                        color='red'
-                        onClick={() => setAccess(true)}
-                    >
-                        x
-                    </Button>
-                    <Button
-                        color='blue'
-                    >
-                        Save
-                    </Button>
-                </>
-                )}
-            </div> */}
             <Container
                 style={{ 
                     margin: '3em'
@@ -1389,7 +1537,11 @@ export default function Services() {
                     </div>
                 </>
                 ): null}
-                <Divider />   
+                {!finish ? (
+                <>
+                    <Divider />   
+                </>
+                ): null}
                 {!student ? (
                 <>
                     <div
