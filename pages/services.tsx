@@ -39,7 +39,6 @@ export default function Services() {
     const [isTimed, setIsTimed] = useState<boolean>(false);
     const [openNameDate, setOpenNameDate] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [count, setCount] = useState<number>(0);
     const [auth, setAuth] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
     const [adminPassword, setAdminPassword] = useState<string>('');
@@ -323,17 +322,13 @@ export default function Services() {
         } 
     }
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            if ((password.length > 0) && (password === adminPassword)) {
-                setAuth(true);
-            } else {
-                setAuth(false);
-            }
+    function matchPass() {
+        if ((password.length > 0) && (password === adminPassword)) {
+            setAuth(true);
         } else {
-            console.log('window == undefined');
+            setAuth(false);
         }
-    }, [count])
+    }
 
     function match() {
         if ((newPassword.length > 0) && (newPassword === adminPassword)) {
@@ -360,12 +355,16 @@ export default function Services() {
             >
             {student ? (
             <>
-                <Button
-                    color='black'
-                    onClick={() => setNewModal(true)}
-                >
-                    Return to Admin Mode
-                </Button>
+                {adminPassword.length > 0 ? (
+                <>
+                    <Button
+                        color='black'
+                        onClick={() => setNewModal(true)}
+                    >
+                        Return to Admin Mode
+                    </Button>
+                </>
+                ): null}
                 <Modal 
                     dimmer
                     open={newModal}
@@ -451,7 +450,7 @@ export default function Services() {
                         {same ? (
                         <>
                             <Button
-                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false)}}
+                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true)}}
                             >
                                 Go to Admin
                             </Button>
@@ -615,7 +614,7 @@ export default function Services() {
                             <Button
                                 color='blue'
                                 disabled={adminPassword.length > 0 ? false : true}
-                                onClick={() => setCount(count + 1)}
+                                onClick={matchPass}
                             >
                                 Submit
                             </Button>
@@ -669,7 +668,7 @@ export default function Services() {
                     {auth ? (
                     <>
                         <Button
-                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false)}}
+                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false)}}
                         >
                             Take Test
                         </Button>
