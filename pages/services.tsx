@@ -47,6 +47,9 @@ export default function Services() {
     const [show, setShow] = useState<boolean>(false);
     const [clickPassword, setClickPassword] = useState<boolean>(true);
     const [hideAdmin, setHideAdmin] = useState<boolean>(false);
+    const [newModal, setNewModal] = useState<boolean>(false);
+    const [newPassword, setNewPassword] = useState<string>('');
+    const [same, setSame] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -332,6 +335,14 @@ export default function Services() {
         }
     }, [count])
 
+    function match() {
+        if ((newPassword.length > 0) && (newPassword === adminPassword)) {
+            setSame(true);
+        } else {
+            setSame(false);
+        } 
+    }
+
     return (
         <>
             <Head>
@@ -351,9 +362,103 @@ export default function Services() {
             <>
                 <Button
                     color='black'
+                    onClick={() => setNewModal(true)}
                 >
                     Return to Admin Mode
                 </Button>
+                <Modal 
+                    dimmer
+                    open={newModal}
+                    style={{
+                        width: '50vw',
+                        height: '50vh',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        transform: 'translateY(-50%)'
+                    }}
+                >
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            marginRight: '10px',
+                            fontSize: '40px',
+                            color: 'red',
+                            cursor: 'pointer'
+                        }}
+                        onClick={() => setNewModal(false)}
+                    >
+                        x
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '35px',
+                            fontWeight: '700',
+                            marginBottom: '10px', 
+                            marginTop: '3vh'
+                        }}
+                    >
+                        Enter Admin Password
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <input
+                            type={hide}
+                            placeholder='Admin Password'
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            style={{ 
+                                padding: '9px 14px 9px 14px',
+                                fontSize: '14px',
+                                fontWeight: '400',
+                                cursor: 'text',
+                                width: '178.5px',
+                                borderRadius: '4px',
+                                border: '1px solid rgba(34, 36, 38. 0.15)',
+                                position: 'relative',
+                                zIndex: '100'
+                            }}
+                        />
+                        <Icon
+                            name='eye'
+                            style={{
+                                transform: 'translate(72px, 14px) scale(1.1)', 
+                                color: '#80808099', 
+                                position: 'absolute', 
+                                zIndex: '100'
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '20px'
+                        }}
+                    >
+                        <Button
+                            color='blue'
+                            onClick={match}
+                        >
+                            Submit
+                        </Button>
+                        {same ? (
+                        <>
+                            <Button
+                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false)}}
+                            >
+                                Go to Admin
+                            </Button>
+                        </>
+                        ): null}
+                    </div>
+                </Modal>
             </>
             ):(
             <>
@@ -364,7 +469,7 @@ export default function Services() {
                     Demo Mode
                 </Button> 
             </>
-            )}   
+            )}  
             </div>
             <Modal 
                 dimmer
@@ -386,7 +491,7 @@ export default function Services() {
                         color: 'red',
                         cursor: 'pointer'
                     }}
-                    onClick={() => setOpenModal(false)}
+                    onClick={() => {setOpenModal(false), setAuth(false)}}
                 >
                     x
                 </div>
@@ -446,6 +551,7 @@ export default function Services() {
                             }}
                         >
                             <Button
+                                disabled={password.length > 0 ? false : true}
                                 onClick={() => setClickPassword(false)}
                             >
                                 Set Admin Password
@@ -507,6 +613,8 @@ export default function Services() {
                             }}
                         >
                             <Button
+                                color='blue'
+                                disabled={adminPassword.length > 0 ? false : true}
                                 onClick={() => setCount(count + 1)}
                             >
                                 Submit
@@ -567,7 +675,6 @@ export default function Services() {
                         </Button>
                     </>
                     ): null}
-                   
                 </div>
             </Modal>
             <div
