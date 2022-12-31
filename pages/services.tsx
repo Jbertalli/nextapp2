@@ -11,27 +11,27 @@ const LOCAL_STORAGE_KEY_DATE = 'Date';
 const LOCAL_STORAGE_KEY_CLICK_DATE = 'ClickDate';
 const LOCAL_STORAGE_KEY_TITLE = 'Title';
 const LOCAL_STORAGE_KEY_CLICK_TITLE = 'ClickTitle';
-const LOCAL_STORAGE_KEY_MINUTE = 'Minute';
-const LOCAL_STORAGE_KEY_SECOND = 'Second'; 
-const LOCAL_STORAGE_KEY_TIMED = 'Timed';
-const LOCAL_STORAGE_KEY_TIME_CLICK = 'TimeClick';
-const LOCAL_STORAGE_KEY_OPEN_EMAIL = 'OpenEmail';
-const LOCAL_STORAGE_KEY_USER_EMAIL = 'UserEmail';
+// const LOCAL_STORAGE_KEY_MINUTE = 'Minute';
+// const LOCAL_STORAGE_KEY_SECOND = 'Second'; 
+// const LOCAL_STORAGE_KEY_TIMED = 'Timed';
+// const LOCAL_STORAGE_KEY_TIME_CLICK = 'TimeClick';
+// const LOCAL_STORAGE_KEY_OPEN_EMAIL = 'OpenEmail';
+// const LOCAL_STORAGE_KEY_USER_EMAIL = 'UserEmail';
 const LOCAL_STORAGE_KEY_IS_VALID = 'IsValid';
-const LOCAL_STORAGE_KEY_EDIT = 'Edit';
-const LOCAL_STORAGE_KEY_IS_TIMED = 'IsTimed';
-const LOCAL_STORAGE_KEY_OPEN_NAME_DATE = 'OpenNameDate';
+// const LOCAL_STORAGE_KEY_EDIT = 'Edit';
+// const LOCAL_STORAGE_KEY_IS_TIMED = 'IsTimed';
+// const LOCAL_STORAGE_KEY_OPEN_NAME_DATE = 'OpenNameDate';
 const LOCAL_STORAGE_KEY_OPEN_MODAL = 'OpenModal';
 const LOCAL_STORAGE_KEY_AUTH = 'Auth';
-const LOCAL_STORAGE_KEY_PASSWORD = 'Password';
-const LOCAL_STORAGE_KEY_ADMIN_PASSWORD = 'AdminPassword'; 
-const LOCAL_STORAGE_KEY_HIDE = 'Hide';
-const LOCAL_STORAGE_KEY_SHOW = 'Show';
-const LOCAL_STORAGE_KEY_CLICK_PASSWORD = 'ClickPassword';
-const LOCAL_STORAGE_KEY_HIDE_ADMIN = 'HideAdmin';
+// const LOCAL_STORAGE_KEY_PASSWORD = 'Password';
+// const LOCAL_STORAGE_KEY_ADMIN_PASSWORD = 'AdminPassword'; 
+// const LOCAL_STORAGE_KEY_HIDE = 'Hide';
+// const LOCAL_STORAGE_KEY_SHOW = 'Show';
+// const LOCAL_STORAGE_KEY_CLICK_PASSWORD = 'ClickPassword';
+// const LOCAL_STORAGE_KEY_HIDE_ADMIN = 'HideAdmin';
 const LOCAL_STORAGE_KEY_NEW_MODAL = 'NewModal';
-const LOCAL_STORAGE_KEY_NEW_PASSWORD = 'NewPassword';
-const LOCAL_STORAGE_KEY_SAME = 'Same';
+// const LOCAL_STORAGE_KEY_NEW_PASSWORD = 'NewPassword';
+// const LOCAL_STORAGE_KEY_SAME = 'Same';
 const LOCAL_STORAGE_KEY_LETTER_GRADE = 'LetterGrade';
 const LOCAL_STORAGE_KEY_COLOR = 'Color';
 const LOCAL_STORAGE_KEY_STUDENT = 'Student';
@@ -274,16 +274,16 @@ export default function Services() {
         JSON.stringify(openModal))
     }, [openModal]);
 
-    // Auth
-    useEffect(() => {
-        const storedAuth = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_AUTH))
-        if (storedAuth) setAuth(storedAuth)
-    }, [])
+    // // Auth
+    // useEffect(() => {
+    //     const storedAuth = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_AUTH))
+    //     if (storedAuth) setAuth(storedAuth)
+    // }, [])
     
-    useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, 
-        JSON.stringify(auth))
-    }, [auth]);
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, 
+    //     JSON.stringify(auth))
+    // }, [auth]);
 
     // // Password
     // useEffect(() => {
@@ -749,6 +749,42 @@ export default function Services() {
                     <div
                         style={{
                             display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        {show ? (
+                        <>
+                            <Checkbox
+                                onClick={() => {setHide('password'), setShow(false)}}
+                                label={
+                                    <label>
+                                        Hide Password
+                                    </label>
+                                }
+                                style={{
+                                    marginTop: '15px'
+                                }}
+                            />
+                        </>
+                        ):(
+                        <>
+                            <Checkbox
+                                onClick={() => {setHide('text'), setShow(true)}}
+                                label={
+                                    <label>
+                                        Show Password
+                                    </label>
+                                }
+                                style={{
+                                    marginTop: '15px'
+                                }}
+                            />
+                        </>
+                        )}
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
                             justifyContent: 'center',
                             marginTop: '20px'
                         }}
@@ -762,7 +798,7 @@ export default function Services() {
                         {same ? (
                         <>
                             <Button
-                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true)}}
+                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
                             >
                                 Go to Admin
                             </Button>
@@ -947,7 +983,6 @@ export default function Services() {
                         {show ? (
                         <>
                             <Checkbox
-                                color='red'
                                 onClick={() => {setHide('password'), setShow(false)}}
                                 label={
                                     <label>
@@ -962,7 +997,6 @@ export default function Services() {
                         ):(
                         <>
                             <Checkbox
-                                color='blue'
                                 onClick={() => {setHide('text'), setShow(true)}}
                                 label={
                                     <label>
