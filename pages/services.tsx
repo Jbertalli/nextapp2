@@ -11,6 +11,32 @@ const LOCAL_STORAGE_KEY_DATE = 'Date';
 const LOCAL_STORAGE_KEY_CLICK_DATE = 'ClickDate';
 const LOCAL_STORAGE_KEY_TITLE = 'Title';
 const LOCAL_STORAGE_KEY_CLICK_TITLE = 'ClickTitle';
+const LOCAL_STORAGE_KEY_MINUTE = 'Minute';
+const LOCAL_STORAGE_KEY_SECOND = 'Second'; 
+const LOCAL_STORAGE_KEY_TIMED = 'Timed';
+const LOCAL_STORAGE_KEY_TIME_CLICK = 'TimeClick';
+const LOCAL_STORAGE_KEY_OPEN_EMAIL = 'OpenEmail';
+const LOCAL_STORAGE_KEY_USER_EMAIL = 'UserEmail';
+const LOCAL_STORAGE_KEY_IS_VALID = 'IsValid';
+const LOCAL_STORAGE_KEY_EDIT = 'Edit';
+const LOCAL_STORAGE_KEY_IS_TIMED = 'IsTimed';
+const LOCAL_STORAGE_KEY_OPEN_NAME_DATE = 'OpenNameDate';
+const LOCAL_STORAGE_KEY_OPEN_MODAL = 'OpenModal';
+const LOCAL_STORAGE_KEY_AUTH = 'Auth';
+const LOCAL_STORAGE_KEY_PASSWORD = 'Password';
+const LOCAL_STORAGE_KEY_ADMIN_PASSWORD = 'AdminPassword'; 
+const LOCAL_STORAGE_KEY_HIDE = 'Hide';
+const LOCAL_STORAGE_KEY_SHOW = 'Show';
+const LOCAL_STORAGE_KEY_CLICK_PASSWORD = 'ClickPassword';
+const LOCAL_STORAGE_KEY_HIDE_ADMIN = 'HideAdmin';
+const LOCAL_STORAGE_KEY_NEW_MODAL = 'NewModal';
+const LOCAL_STORAGE_KEY_NEW_PASSWORD = 'NewPassword';
+const LOCAL_STORAGE_KEY_SAME = 'Same';
+const LOCAL_STORAGE_KEY_LETTER_GRADE = 'LetterGrade';
+const LOCAL_STORAGE_KEY_COLOR = 'Color';
+const LOCAL_STORAGE_KEY_STUDENT = 'Student';
+const LOCAL_STORAGE_KEY_FINISH = 'Finish';
+const LOCAL_STORAGE_KEY_SAVE = 'Save';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -127,6 +153,292 @@ export default function Services() {
         JSON.stringify(titleClicked))
     }, [titleClicked]);
 
+    // // Minute
+    // useEffect(() => {
+    //     const storedMinute = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_MINUTE))
+    //     if (storedMinute) setMinute(storedMinute)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_MINUTE, 
+    //     JSON.stringify(minute))
+    // }, [minute]);
+
+    // // Second
+    // useEffect(() => {
+    //     const storedSecond = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SECOND))
+    //     if (storedSecond) setSecond(storedSecond)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_SECOND, 
+    //     JSON.stringify(second))
+    // }, [second]);
+
+    // // Timed
+    // useEffect(() => {
+    //     const storedTimed = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TIMED))
+    //     if (storedTimed) setTimed(storedTimed)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_TIMED, 
+    //     JSON.stringify(timed))
+    // }, [timed]);
+
+    // // TimeClick
+    // useEffect(() => {
+    //     const storedTimeClick = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TIME_CLICK))
+    //     if (storedTimeClick) setTimeClick(storedTimeClick)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_TIME_CLICK, 
+    //     JSON.stringify(timeClick))
+    // }, [timeClick]);
+
+    // // OpenEmail
+    // useEffect(() => {
+    //     const storedOpenEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_EMAIL))
+    //     if (storedOpenEmail) setOpenEmail(storedOpenEmail)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_EMAIL, 
+    //     JSON.stringify(openEmail))
+    // }, [openEmail]);
+
+    // // UserEmail
+    // useEffect(() => {
+    //     const storedUserEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_USER_EMAIL))
+    //     if (storedUserEmail) setUserEmail(storedUserEmail)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_USER_EMAIL, 
+    //     JSON.stringify(userEmail))
+    // }, [userEmail]);
+
+    // IsValid
+    useEffect(() => {
+        const storedIsValid = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_IS_VALID))
+        if (storedIsValid) setIsValid(storedIsValid)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_IS_VALID, 
+        JSON.stringify(isValid))
+    }, [isValid]);
+
+    // // Edit
+    // useEffect(() => {
+    //     const storedEdit = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_EDIT))
+    //     if (storedEdit) setEdit(storedEdit)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_EDIT, 
+    //     JSON.stringify(edit))
+    // }, [edit]);
+
+    // // IsTimed
+    // useEffect(() => {
+    //     const storedIsTimed = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_IS_TIMED))
+    //     if (storedIsTimed) setIsTimed(storedIsTimed)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_IS_TIMED, 
+    //     JSON.stringify(isTimed))
+    // }, [isTimed]);
+
+    // // OpenNameDate
+    // useEffect(() => {
+    //     const storedOpenNameDate = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE))
+    //     if (storedOpenNameDate) setOpenNameDate(storedOpenNameDate)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE, 
+    //     JSON.stringify(openNameDate))
+    // }, [openNameDate]);
+
+    // OpenModal
+    useEffect(() => {
+        const storedOpenModal = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_MODAL))
+        if (storedOpenModal) setOpenModal(storedOpenModal)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_MODAL, 
+        JSON.stringify(openModal))
+    }, [openModal]);
+
+    // Auth
+    useEffect(() => {
+        const storedAuth = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_AUTH))
+        if (storedAuth) setAuth(storedAuth)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, 
+        JSON.stringify(auth))
+    }, [auth]);
+
+    // // Password
+    // useEffect(() => {
+    //     const storedPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_PASSWORD))
+    //     if (storedPassword) setPassword(storedPassword)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_PASSWORD, 
+    //     JSON.stringify(password))
+    // }, [password]);
+
+    // // AdminPassword
+    // useEffect(() => {
+    //     const storedAdminPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD))
+    //     if (storedAdminPassword) setAdminPassword(storedAdminPassword)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD, 
+    //     JSON.stringify(adminPassword))
+    // }, [adminPassword]);
+
+    // // Hide
+    // useEffect(() => {
+    //     const storedHide = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_HIDE))
+    //     if (storedHide) setHide(storedHide)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_HIDE, 
+    //     JSON.stringify(hide))
+    // }, [hide]);
+
+    // // Show
+    // useEffect(() => {
+    //     const storedShow = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SHOW))
+    //     if (storedShow) setShow(storedShow)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_SHOW, 
+    //     JSON.stringify(show))
+    // }, [show]);
+
+    // ClickPassword
+    // useEffect(() => {
+    //     const storedClickPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CLICK_PASSWORD))
+    //     if (storedClickPassword) setClickPassword(storedClickPassword)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_CLICK_PASSWORD, 
+    //     JSON.stringify(clickPassword))
+    // }, [clickPassword]);
+
+    // // HideAdmin
+    // useEffect(() => {
+    //     const storedHideAdmin = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_HIDE_ADMIN))
+    //     if (storedHideAdmin) setHideAdmin(storedHideAdmin)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_HIDE_ADMIN, 
+    //     JSON.stringify(hideAdmin))
+    // }, [hideAdmin]);
+
+    // NewModal
+    useEffect(() => {
+        const storedNewModal = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_NEW_MODAL))
+        if (storedNewModal) setNewModal(storedNewModal)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_NEW_MODAL, 
+        JSON.stringify(newModal))
+    }, [newModal]);
+
+    // // NewPassword
+    // useEffect(() => {
+    //     const storedNewPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_NEW_PASSWORD))
+    //     if (storedNewPassword) setNewPassword(storedNewPassword)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_NEW_PASSWORD, 
+    //     JSON.stringify(newPassword))
+    // }, [newPassword]);
+
+    // // Same
+    // useEffect(() => {
+    //     const storedSame = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SAME))
+    //     if (storedSame) setSame(storedSame)
+    // }, [])
+    
+    // useEffect(() => {
+    //     localStorage.setItem(LOCAL_STORAGE_KEY_SAME, 
+    //     JSON.stringify(same))
+    // }, [same]);
+
+    // LetterGrade
+    useEffect(() => {
+        const storedLetterGrade = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_LETTER_GRADE))
+        if (storedLetterGrade) setLetterGrade(storedLetterGrade)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_LETTER_GRADE, 
+        JSON.stringify(letterGrade))
+    }, [letterGrade]);
+
+    // Color
+    useEffect(() => {
+        const storedColor = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_COLOR))
+        if (storedColor) setColor(storedColor)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_COLOR, 
+        JSON.stringify(color))
+    }, [color]);
+
+    // Student
+    useEffect(() => {
+        const storedStudent = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_STUDENT))
+        if (storedStudent) setStudent(storedStudent)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_STUDENT, 
+        JSON.stringify(student))
+    }, [student]);
+
+    // Finish
+    useEffect(() => {
+        const storedFinish = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_FINISH))
+        if (storedFinish) setFinish(storedFinish)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_FINISH, 
+        JSON.stringify(finish))
+    }, [finish]);
+
+    // Save
+    useEffect(() => {
+        const storedSave = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SAVE))
+        if (storedSave) setSave(storedSave)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_SAVE, 
+        JSON.stringify(save))
+    }, [save]);
+    
     // console.log(serviceList[0].service);
 
     console.log('Full Test Array', serviceList);
