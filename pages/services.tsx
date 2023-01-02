@@ -655,6 +655,18 @@ export default function Services() {
         } 
     }
 
+    function randomString(length) {
+        let string = '';
+        let options = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*';
+        let optionsLength = options.length;
+        for (let i = 0; i < length; i++) {
+            string += options.charAt(Math.floor(Math.random() * optionsLength));
+        }
+        return string;
+    }
+    
+    console.log(randomString(20));
+
     return (
         <>
             <Head>
