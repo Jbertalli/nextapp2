@@ -75,6 +75,11 @@ export default function Services() {
     const [newModal, setNewModal] = useState<boolean>(false);
     const [newPassword, setNewPassword] = useState<string>('');
     const [same, setSame] = useState<boolean>(false);
+    const [demo, setDemo] = useState<boolean>(false);
+    const [creating, setCreating] = useState<boolean>(false);
+    const [created, setCreated] = useState<boolean>(false);
+    const [adminEmail, setAdminEmail] = useState<string>('');
+    const [resetPassword, setResetPassword] = useState<string>('');
 
     // List
     useEffect(() => {
@@ -667,6 +672,22 @@ export default function Services() {
             >
             {student ? (
             <>
+                {/* <div>
+                    <Button
+                        color='black'
+                        onClick={() => {setFinish(false), setStudent(false), setSave(false), setServiceList([{ service: '', answer: '', student: '' }])}}
+                    >
+                        Create New Test
+                    </Button>
+                </div>
+                <div>
+                    <Button
+                        color='blue'
+                        onClick={() => {setFinish(false), setStudent(false), setSave(false)}}
+                    >
+                        Edit Test
+                    </Button>
+                </div> */}
                 {adminPassword.length > 0 ? (
                 <>
                     <Button
@@ -798,12 +819,50 @@ export default function Services() {
                         {same ? (
                         <>
                             <Button
-                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
+                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
                             >
                                 Go to Admin
                             </Button>
                         </>
                         ): null}
+                    </div>
+                    <Divider />
+                    <div>
+                        <h3
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            Forgot Password?
+                        </h3>
+                        <h3
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                color: 'red'
+                            }}
+                        >
+                            Email me with a New Admin Password
+                        </h3>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Button
+                                color='green'
+                            >
+                                Send Email with New Password
+                            </Button>    
+                        </div>
+                        {/* <div>
+                            <input
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)}
+                            />
+                        </div> */}
                     </div>
                 </Modal>
             </>
@@ -843,6 +902,28 @@ export default function Services() {
                     x
                 </div>
                 <div>
+                    {created ? (
+                    <>
+                        <div>
+                            <Button
+                                color='purple'
+                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true)}}
+                            >
+                                Take a Test
+                            </Button>
+                        </div>
+                    </>
+                    ): null}
+                    {/* <div>
+                        <Button
+                            color='green'
+                            onClick={() => setCreating(true)}
+                        >
+                            Create a Test
+                        </Button>
+                    </div> */}
+                    {creating ? (
+                    <>
                     {clickPassword ? (
                     <>
                         <div
@@ -894,14 +975,39 @@ export default function Services() {
                             style={{
                                 display: 'flex',
                                 justifyContent: 'center',
+                                marginTop: '15px'
+                            }}
+                        >
+                            <input
+                                placeholder='Admin Email'
+                                value={adminEmail}
+                                onChange={(e) => {setAdminEmail(e.target.value), validEmail(adminEmail)}}
+                                style={{ 
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '178.5px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100'
+                                }}
+                            />
+                            {/* {adminEmail} */}
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
                                 marginTop: '20px'
                             }}
                         >
                             <Button
-                                disabled={password.length > 0 ? false : true}
+                                disabled={((password.length > 0) && isValid) ? false : true}
                                 onClick={() => setClickPassword(false)}
                             >
-                                Set Admin Password
+                                Set Admin Email & Password
                             </Button>
                         </div>
                     </>
@@ -967,9 +1073,9 @@ export default function Services() {
                                 Submit
                             </Button>
                             <Button
-                                onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAuth(false)}}
+                                onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false)}}
                             >
-                                Reset Admin Password
+                                Reset Admin Email & Password
                             </Button>
                         </div>
                     </>
@@ -1013,13 +1119,31 @@ export default function Services() {
                     <Divider />
                     {auth ? (
                     <>
-                        <Button
-                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false)}}
+                        {/* <Button
+                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false), setDemo(true)}}
                         >
                             Take Test
+                        </Button> */}
+                        <Button
+                            onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }])}}
+                        >
+                            Create New Test
                         </Button>
                     </>
                     ): null}
+                    </>
+                    ):(
+                    <>
+                        <div>
+                        <Button
+                            color='green'
+                            onClick={() => setCreating(true)}
+                        >
+                            Create a Test
+                        </Button>
+                    </div>
+                    </>
+                    )}
                 </div>
             </Modal>
             <div
@@ -1072,47 +1196,51 @@ export default function Services() {
                             </>
                             )}
                         </div>
-                        <div
-                            style={{
-                                width: '100%'
-                            }}
-                        >
-                            <Divider />
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {student ? (
-                            <>
-                                <div>
-                                    <Button
-                                        disabled={hideAdmin}
-                                        onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
-                                    >
-                                        Switch to Admin
-                                    </Button>
-                                </div>
-                            </>
-                            ):(
-                            <>
-                                <div>
-                                    <Button
-                                        onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
-                                    >
-                                        Switch to Student&nbsp;&nbsp;&nbsp;
-                                        <span>
-                                            <Icon
-                                                name='pencil'
-                                            />
-                                        </span>
-                                    </Button>
-                                </div>
-                            </>
-                            )}
-                        </div>
+                        {/* {demo ? (
+                        <> */}
+                            <div
+                                style={{
+                                    width: '100%'
+                                }}
+                            >
+                                <Divider />
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                {student ? (
+                                <>
+                                    <div>
+                                        <Button
+                                            // disabled={hideAdmin}
+                                            onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
+                                        >
+                                            Switch to Admin
+                                        </Button>
+                                    </div>
+                                </>
+                                ):(
+                                <>
+                                    <div>
+                                        <Button
+                                            onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
+                                        >
+                                            Switch to Student&nbsp;&nbsp;&nbsp;
+                                            <span>
+                                                <Icon
+                                                    name='pencil'
+                                                />
+                                            </span>
+                                        </Button>
+                                    </div>
+                                </>
+                                )}
+                            </div>
+                        {/* </>
+                        ): null} */}
                     </div>
                     <Divider />
                 </div>
@@ -1576,7 +1704,7 @@ export default function Services() {
                                 <>
                                     <Button
                                         color='green'
-                                        onClick={() => setSave(true)}
+                                        onClick={() => {setSave(true), setCreated(true)}}
                                     >
                                         Save Questions and Answers
                                     </Button>
