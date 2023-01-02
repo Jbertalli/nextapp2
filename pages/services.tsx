@@ -37,6 +37,7 @@ const LOCAL_STORAGE_KEY_COLOR = 'Color';
 const LOCAL_STORAGE_KEY_STUDENT = 'Student';
 const LOCAL_STORAGE_KEY_FINISH = 'Finish';
 const LOCAL_STORAGE_KEY_SAVE = 'Save';
+const LOCAL_STORAGE_KEY_RESET = 'ResetPassword';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -443,6 +444,17 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_SAVE, 
         JSON.stringify(save))
     }, [save]);
+
+    // ResetPassword
+    useEffect(() => {
+        const storedResetPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_RESET))
+        if (storedResetPassword) setResetPassword(storedResetPassword)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_RESET, 
+        JSON.stringify(resetPassword))
+    }, [resetPassword]);
     
     // console.log(serviceList[0].service);
 
@@ -664,8 +676,8 @@ export default function Services() {
         }
         return string;
     }
-    
-    console.log(randomString(20));
+
+    console.log(resetPassword);
 
     return (
         <>
@@ -673,6 +685,21 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '30px'
+                }}
+            >
+                <Button
+                    color='red'
+                    onClick={() => {randomString(20), setResetPassword(randomString(20))}}
+                >
+                    Reset Password
+                </Button>
+            </div>
+            {resetPassword}
             <div
                 style={{
                     marginRight: '1vw',
