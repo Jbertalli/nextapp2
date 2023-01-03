@@ -698,13 +698,6 @@ export default function Services() {
         resetPass: `${resetPassword}`
     };
 
-    // console.log(grade);
-    // console.log(length);
-    // console.log(percent);
-    // console.log(letterGrade);
-    // console.log(userEmail);
-    // console.log('isTimed', isTimed);
-
     function sendResetEmail() {
         emailjs.send('service_jj71xm9', 'template_cfc61dq', resetTemplateParams, 'FlrSx29zmJDjwJhtt')
             .then(function(response) {
@@ -718,48 +711,20 @@ export default function Services() {
     console.log(password);
     console.log(adminEmail);
 
+    function resetMatch() {
+        if ((resetPassword.length > 0) && (resetPassword === password)) {
+            setSame(true);
+        } else {
+            setSame(false);
+        } 
+    }
+
     return (
         <>
             <Head>
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '30px'
-                }}
-            >
-                <Button
-                    color='red'
-                    onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
-                >
-                    Reset Password
-                </Button>
-                <Button
-                    onClick={() => setPassword(resetPassword)}
-                >
-                    Change old password
-                </Button>
-                <Button
-                    onClick={sendResetEmail}
-                >
-                    Send email with new password
-                </Button>
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end'
-                }}
-            >
-                <Button
-                    color='purple'
-                >
-                    Send Email with New Password
-                </Button>
-            </div>
             <div
                 style={{
                     marginRight: '1vw',
@@ -769,212 +734,289 @@ export default function Services() {
                     marginBottom: '-50px'
                 }}
             >
-            {student ? (
-            <>
-                {/* <div>
-                    <Button
-                        color='black'
-                        onClick={() => {setFinish(false), setStudent(false), setSave(false), setServiceList([{ service: '', answer: '', student: '' }])}}
-                    >
-                        Create New Test
-                    </Button>
-                </div>
-                <div>
-                    <Button
-                        color='blue'
-                        onClick={() => {setFinish(false), setStudent(false), setSave(false)}}
-                    >
-                        Edit Test
-                    </Button>
-                </div> */}
-                {adminPassword.length > 0 ? (
+                {student ? (
                 <>
-                    <Button
-                        color='black'
-                        onClick={() => setNewModal(true)}
-                    >
-                        Return to Admin Mode
-                    </Button>
-                </>
-                ): null}
-                <Modal 
-                    dimmer
-                    open={newModal}
-                    style={{
-                        width: '50vw',
-                        height: '50vh',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        transform: 'translateY(-50%)'
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'flex-end',
-                            marginRight: '10px',
-                            fontSize: '40px',
-                            color: 'red',
-                            cursor: 'pointer'
-                        }}
-                        onClick={() => setNewModal(false)}
-                    >
-                        x
+                    {/* <div>
+                        <Button
+                            color='black'
+                            onClick={() => {setFinish(false), setStudent(false), setSave(false), setServiceList([{ service: '', answer: '', student: '' }])}}
+                        >
+                            Create New Test
+                        </Button>
                     </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            fontSize: '35px',
-                            fontWeight: '700',
-                            marginBottom: '10px', 
-                            marginTop: '3vh'
-                        }}
-                    >
-                        Enter Admin Password
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <input
-                            type={hide}
-                            placeholder='Admin Password'
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            style={{ 
-                                padding: '9px 14px 9px 14px',
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                cursor: 'text',
-                                width: '178.5px',
-                                borderRadius: '4px',
-                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                position: 'relative',
-                                zIndex: '100'
-                            }}
-                        />
-                        <Icon
-                            name='eye'
-                            style={{
-                                transform: 'translate(72px, 14px) scale(1.1)', 
-                                color: '#80808099', 
-                                position: 'absolute', 
-                                zIndex: '100'
-                            }}
-                        />
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                    >
-                        {show ? (
-                        <>
-                            <Checkbox
-                                onClick={() => {setHide('password'), setShow(false)}}
-                                label={
-                                    <label>
-                                        Hide Password
-                                    </label>
-                                }
-                                style={{
-                                    marginTop: '15px'
-                                }}
-                            />
-                        </>
-                        ):(
-                        <>
-                            <Checkbox
-                                onClick={() => {setHide('text'), setShow(true)}}
-                                label={
-                                    <label>
-                                        Show Password
-                                    </label>
-                                }
-                                style={{
-                                    marginTop: '15px'
-                                }}
-                            />
-                        </>
-                        )}
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            marginTop: '20px'
-                        }}
-                    >
+                    <div>
                         <Button
                             color='blue'
-                            onClick={match}
+                            onClick={() => {setFinish(false), setStudent(false), setSave(false)}}
                         >
-                            Submit
+                            Edit Test
                         </Button>
-                        {same ? (
-                        <>
-                            <Button
-                                onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
-                            >
-                                Go to Admin
-                            </Button>
-                        </>
-                        ): null}
-                    </div>
-                    <Divider />
-                    <div>
-                        <h3
+                    </div> */}
+                    {adminPassword.length > 0 ? (
+                    <>
+                        <Button
+                            color='black'
+                            onClick={() => setNewModal(true)}
+                        >
+                            Return to Admin Mode
+                        </Button>
+                    </>
+                    ): null}
+                    <Modal 
+                        dimmer
+                        open={newModal}
+                        style={{
+                            width: '50vw',
+                            height: '50vh',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            transform: 'translateY(-50%)'
+                        }}
+                    >
+                        <div
                             style={{
                                 display: 'flex',
-                                justifyContent: 'center'
+                                justifyContent: 'flex-end',
+                                marginRight: '10px',
+                                fontSize: '40px',
+                                color: 'red',
+                                cursor: 'pointer'
                             }}
+                            onClick={() => setNewModal(false)}
                         >
-                            Forgot Password?
-                        </h3>
-                        <h3
+                            x
+                        </div>
+                        <div
                             style={{
                                 display: 'flex',
                                 justifyContent: 'center',
-                                color: 'red'
+                                fontSize: '35px',
+                                fontWeight: '700',
+                                marginBottom: '10px', 
+                                marginTop: '3vh'
                             }}
                         >
-                            Email me with a New Admin Password
-                        </h3>
+                            Enter Admin Password
+                        </div>
                         <div
                             style={{
                                 display: 'flex',
                                 justifyContent: 'center'
                             }}
                         >
-                            <Button
-                                color='green'
-                            >
-                                Send Email with New Password
-                            </Button>    
-                        </div>
-                        {/* <div>
                             <input
-                                value={userEmail}
-                                onChange={(e) => setUserEmail(e.target.value)}
+                                type={hide}
+                                placeholder='Admin Password'
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                style={{ 
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '178.5px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100'
+                                }}
                             />
-                        </div> */}
-                    </div>
-                </Modal>
-            </>
-            ):(
-            <>
-                <Button
-                    color='black'
-                    onClick={() => setOpenModal(true)}
-                >
-                    Demo Mode
-                </Button> 
-            </>
-            )}  
+                            <Icon
+                                name='eye'
+                                style={{
+                                    transform: 'translate(72px, 14px) scale(1.1)', 
+                                    color: '#80808099', 
+                                    position: 'absolute', 
+                                    zIndex: '100'
+                                }}
+                            />
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            {show ? (
+                            <>
+                                <Checkbox
+                                    onClick={() => {setHide('password'), setShow(false)}}
+                                    label={
+                                        <label>
+                                            Hide Password
+                                        </label>
+                                    }
+                                    style={{
+                                        marginTop: '15px'
+                                    }}
+                                />
+                            </>
+                            ):(
+                            <>
+                                <Checkbox
+                                    onClick={() => {setHide('text'), setShow(true)}}
+                                    label={
+                                        <label>
+                                            Show Password
+                                        </label>
+                                    }
+                                    style={{
+                                        marginTop: '15px'
+                                    }}
+                                />
+                            </>
+                            )}
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginTop: '20px'
+                            }}
+                        >
+                            <Button
+                                color='blue'
+                                onClick={match}
+                            >
+                                Submit
+                            </Button>
+                            {same ? (
+                            <>
+                                <Button
+                                    onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
+                                >
+                                    Go to Admin
+                                </Button>
+                            </>
+                            ): null}
+                        </div>
+                        <Divider />
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            OR
+                        </div>
+                        <div>
+                            <h3
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: '20px'
+                                }}
+                            >
+                                Forgot Password?
+                            </h3>
+                            <h3
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    color: 'red'
+                                }}
+                            >
+                                Send a new Admin Password to my Email
+                            </h3>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: '30px'
+                                }}
+                            >
+                                <Button
+                                    color='red'
+                                    onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
+                                >
+                                    Reset Password
+                                </Button>
+                                {/* <Button
+                                    onClick={() => setPassword(resetPassword)}
+                                >
+                                    Change old password
+                                </Button> */}
+                                <Button
+                                    color='green'
+                                    onClick={() => {sendResetEmail(), setPassword(resetPassword)}}
+                                >
+                                    Email New Password
+                                </Button>
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'flex-end'
+                                }}
+                            >
+                            </div>
+                            <h2
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    margin: '0px'
+                                }}
+                            >
+                                Enter New Admin Password
+                            </h2>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <div>
+                                    <input
+                                        placeholder='New Admin Password'
+                                        style={{ 
+                                            padding: '9px 14px 9px 14px',
+                                            fontSize: '14px',
+                                            fontWeight: '400',
+                                            cursor: 'text',
+                                            width: '178.5px',
+                                            borderRadius: '4px',
+                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                            position: 'relative',
+                                            zIndex: '100'
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <Button
+                                    color='blue'
+                                    onClick={resetMatch}
+                                >
+                                    Submit
+                                </Button>
+                                {same ? (
+                                <>
+                                    <Button
+                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
+                                    >
+                                        Go to Admin
+                                    </Button>
+                                </>
+                                ): null}
+                            </div>
+                        </div>
+                    </Modal>
+                </>
+                ):(
+                <>
+                    <Button
+                        color='black'
+                        onClick={() => setOpenModal(true)}
+                    >
+                        Demo Mode
+                    </Button> 
+                </>
+                )}  
             </div>
             <Modal 
                 dimmer
