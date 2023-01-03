@@ -38,6 +38,7 @@ const LOCAL_STORAGE_KEY_STUDENT = 'Student';
 const LOCAL_STORAGE_KEY_FINISH = 'Finish';
 const LOCAL_STORAGE_KEY_SAVE = 'Save';
 const LOCAL_STORAGE_KEY_RESET = 'ResetPassword';
+const LOCAL_STORAGE_KEY_ADMIN_EMAIL = 'AdminEmail';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -455,6 +456,17 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_RESET, 
         JSON.stringify(resetPassword))
     }, [resetPassword]);
+
+    // AdminEmail
+    useEffect(() => {
+        const storedAdminEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_ADMIN_EMAIL))
+        if (storedAdminEmail) setAdminEmail(storedAdminEmail)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_ADMIN_EMAIL, 
+        JSON.stringify(adminEmail))
+    }, [adminEmail]);
     
     // console.log(serviceList[0].service);
 
@@ -677,9 +689,34 @@ export default function Services() {
         return string;
     }
 
+    // console.log(resetPassword);
+    // console.log(password);
+    // console.log(adminPassword);
+
+    let resetTemplateParams = {
+        admin_email: `${adminEmail}`,
+        resetPass: `${resetPassword}`
+    };
+
+    // console.log(grade);
+    // console.log(length);
+    // console.log(percent);
+    // console.log(letterGrade);
+    // console.log(userEmail);
+    // console.log('isTimed', isTimed);
+
+    function sendResetEmail() {
+        emailjs.send('service_jj71xm9', 'template_cfc61dq', resetTemplateParams, 'FlrSx29zmJDjwJhtt')
+            .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+            console.log('FAILED...', error);
+        });
+    }
+
     console.log(resetPassword);
     console.log(password);
-    console.log(adminPassword);
+    console.log(adminEmail);
 
     return (
         <>
@@ -705,6 +742,11 @@ export default function Services() {
                 >
                     Change old password
                 </Button>
+                <Button
+                    onClick={sendResetEmail}
+                >
+                    Send email with new password
+                </Button>
             </div>
             <div
                 style={{
@@ -718,7 +760,6 @@ export default function Services() {
                     Send Email with New Password
                 </Button>
             </div>
-            {resetPassword}
             <div
                 style={{
                     marginRight: '1vw',
