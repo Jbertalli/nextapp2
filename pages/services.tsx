@@ -876,7 +876,7 @@ export default function Services() {
                     <>
                         <Button
                             color='purple'
-                            onClick={() => setNewModal(true)}
+                            onClick={() => {setNewModal(true), setSame(false)}}
                         >
                             Return to Admin Page
                         </Button>
@@ -960,15 +960,15 @@ export default function Services() {
                                     }}
                                 >
                                 </div>
-                                <h2
+                                <h4
                                     style={{
                                         display: 'flex',
                                         justifyContent: 'center',
-                                        margin: '0px'
+                                        marginBottom: '10px'
                                     }}
                                 >
                                     Enter New Admin Password
-                                </h2>
+                                </h4>
                                 <div
                                     style={{
                                         display: 'flex',
@@ -1046,7 +1046,7 @@ export default function Services() {
                                     {sameReset ? (
                                     <>
                                         <Button
-                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
+                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false)}}
                                         >
                                             Go to Admin
                                         </Button>
@@ -1177,7 +1177,7 @@ export default function Services() {
                                 {same ? (
                                 <>
                                     <Button
-                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
+                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false)}}
                                     >
                                         Go to Admin
                                     </Button>
