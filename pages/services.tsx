@@ -728,6 +728,37 @@ export default function Services() {
             </Head>
             <div
                 style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '10px',
+                    marginRight: '10px'
+                }}
+            >
+                <Button
+                    color='black'
+                    onClick={() => setOpenModal(true)}
+                >
+                    Demo Mode
+                </Button>     
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '10px',
+                    marginRight: '10px'
+                }}
+            >
+                <Button
+                    color='red'
+                    onClick={() => {setDemo(false), setStudent(false), setEdit(false)}}
+                >
+                    End Demo Mode
+                </Button>     
+            </div>
+
+            <div
+                style={{
                     marginRight: '1vw',
                     marginTop: '1vh',
                     display: 'flex',
@@ -759,7 +790,7 @@ export default function Services() {
                             color='black'
                             onClick={() => setNewModal(true)}
                         >
-                            Return to Admin Mode
+                            Return to Admin Page
                         </Button>
                     </>
                     ): null}
@@ -1009,16 +1040,7 @@ export default function Services() {
                         </div>
                     </Modal>
                 </>
-                ):(
-                <>
-                    <Button
-                        color='black'
-                        onClick={() => setOpenModal(true)}
-                    >
-                        Demo Mode
-                    </Button> 
-                </>
-                )}  
+                ): null}  
             </div>
             <Modal 
                 dimmer
@@ -1201,11 +1223,11 @@ export default function Services() {
                                 }}
                             />
                         </div>
-                        <Divider />
                         <div
                             style={{
                                 display: 'flex',
-                                justifyContent: 'center'
+                                justifyContent: 'center', 
+                                marginTop: '15px'
                             }}
                         >
                             <Button
@@ -1259,32 +1281,40 @@ export default function Services() {
                         </>
                         )}
                     </div>
-                    <Divider />
-                    {auth ? (
-                    <>
-                        {/* <Button
-                            onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false), setDemo(true)}}
-                        >
-                            Take Test
-                        </Button> */}
-                        <Button
-                            onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }])}}
-                        >
-                            Create New Test
-                        </Button>
-                    </>
-                    ): null}
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '15px'
+                        }}
+                    >
+                        {auth ? (
+                        <>
+                            {/* <Button
+                                onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false), setDemo(true)}}
+                            >
+                                Take Test
+                            </Button> */}
+                            <Button
+                                color='green'
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }])}}
+                            >
+                                Create New Test
+                            </Button>
+                        </>
+                        ): null}
+                    </div>
                     </>
                     ):(
                     <>
                         <div>
-                        <Button
-                            color='green'
-                            onClick={() => setCreating(true)}
-                        >
-                            Create a Test
-                        </Button>
-                    </div>
+                            <Button
+                                color='green'
+                                onClick={() => setCreating(true)}
+                            >
+                                Create a Test
+                            </Button>
+                        </div>
                     </>
                     )}
                 </div>
@@ -1339,8 +1369,8 @@ export default function Services() {
                             </>
                             )}
                         </div>
-                        {/* {demo ? (
-                        <> */}
+                        {!demo ? (
+                        <>
                             <div
                                 style={{
                                     width: '100%'
@@ -1358,7 +1388,6 @@ export default function Services() {
                                 <>
                                     <div>
                                         <Button
-                                            // disabled={hideAdmin}
                                             onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
                                         >
                                             Switch to Admin
@@ -1382,8 +1411,8 @@ export default function Services() {
                                 </>
                                 )}
                             </div>
-                        {/* </>
-                        ): null} */}
+                        </>
+                        ): null}
                     </div>
                     <Divider />
                 </div>
@@ -2311,11 +2340,7 @@ export default function Services() {
                     </div>
                 </>
                 ): null}
-                {!finish ? (
-                <>
-                    <Divider />   
-                </>
-                ): null}
+                <Divider /> 
                 {!student ? (
                 <>
                     <div
