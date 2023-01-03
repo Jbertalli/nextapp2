@@ -83,6 +83,7 @@ export default function Services() {
     const [adminEmail, setAdminEmail] = useState<string>('');
     const [resetPassword, setResetPassword] = useState<string>('');
     const [sameReset, setSameReset] = useState<boolean>(false);
+    const [isResetting, setIsResetting] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -818,138 +819,163 @@ export default function Services() {
                         >
                             x
                         </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                fontSize: '35px',
-                                fontWeight: '700',
-                                marginBottom: '10px', 
-                                marginTop: '3vh'
-                            }}
-                        >
-                            Enter Admin Password
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <input
-                                type={hide}
-                                placeholder='Admin Password'
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                style={{ 
-                                    padding: '9px 14px 9px 14px',
-                                    fontSize: '14px',
-                                    fontWeight: '400',
-                                    cursor: 'text',
-                                    width: '178.5px',
-                                    borderRadius: '4px',
-                                    border: '1px solid rgba(34, 36, 38. 0.15)',
-                                    position: 'relative',
-                                    zIndex: '100'
-                                }}
-                            />
-                            <Icon
-                                name='eye'
-                                style={{
-                                    transform: 'translate(72px, 14px) scale(1.1)', 
-                                    color: '#80808099', 
-                                    position: 'absolute', 
-                                    zIndex: '100'
-                                }}
-                            />
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {show ? (
-                            <>
-                                <Checkbox
-                                    onClick={() => {setHide('password'), setShow(false)}}
-                                    label={
-                                        <label>
-                                            Hide Password
-                                        </label>
-                                    }
+                        {isResetting ? (
+                        <>
+                            <div>
+                                <h1
                                     style={{
-                                        marginTop: '15px'
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginTop: '20px'
                                     }}
-                                />
-                            </>
-                            ):(
-                            <>
-                                <Checkbox
-                                    onClick={() => {setHide('text'), setShow(true)}}
-                                    label={
-                                        <label>
-                                            Show Password
-                                        </label>
-                                    }
-                                    style={{
-                                        marginTop: '15px'
-                                    }}
-                                />
-                            </>
-                            )}
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                marginTop: '20px'
-                            }}
-                        >
-                            <Button
-                                color='blue'
-                                onClick={match}
-                            >
-                                Submit
-                            </Button>
-                            {same ? (
-                            <>
-                                <Button
-                                    onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
                                 >
-                                    Go to Admin
-                                </Button>
-                            </>
-                            ): null}
-                        </div>
-                        <Divider />
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            OR
-                        </div>
-                        <div>
-                            <h3
+                                    Forgot Password?
+                                </h1>
+                                <h3
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        color: 'red'
+                                    }}
+                                >
+                                    Send a new Admin Password to my Email
+                                </h3>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginTop: '30px',
+                                        marginBottom: '30px'
+                                    }}
+                                >
+                                    <Button
+                                        color='red'
+                                        onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
+                                    >
+                                        Reset Password
+                                    </Button>
+                                    {/* <Button
+                                        onClick={() => setPassword(resetPassword)}
+                                    >
+                                        Change old password
+                                    </Button> */}
+                                    <Button
+                                        color='green'
+                                        onClick={() => {sendResetEmail(), setPassword(resetPassword)}}
+                                    >
+                                        Email New Password
+                                    </Button>
+                                </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'flex-end'
+                                    }}
+                                >
+                                </div>
+                                <h2
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        margin: '0px'
+                                    }}
+                                >
+                                    Enter New Admin Password
+                                </h2>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <div>
+                                        <input
+                                            type={hide}
+                                            placeholder='New Admin Password'
+                                            style={{ 
+                                                padding: '9px 14px 9px 14px',
+                                                fontSize: '14px',
+                                                fontWeight: '400',
+                                                cursor: 'text',
+                                                width: '178.5px',
+                                                borderRadius: '4px',
+                                                border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                position: 'relative',
+                                                zIndex: '100'
+                                            }}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginBottom: '15px'
+                                    }}
+                                >
+                                    {show ? (
+                                    <>
+                                        <Checkbox
+                                            onClick={() => {setHide('password'), setShow(false)}}
+                                            label={
+                                                <label>
+                                                    Hide Password
+                                                </label>
+                                            }
+                                            style={{
+                                                marginTop: '15px'
+                                            }}
+                                        />
+                                    </>
+                                    ):(
+                                    <>
+                                        <Checkbox
+                                            onClick={() => {setHide('text'), setShow(true)}}
+                                            label={
+                                                <label>
+                                                    Show Password
+                                                </label>
+                                            }
+                                            style={{
+                                                marginTop: '15px'
+                                            }}
+                                        />
+                                    </>
+                                    )}
+                                </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <Button
+                                        color='blue'
+                                        onClick={resetMatch}
+                                    >
+                                        Submit
+                                    </Button>
+                                    {sameReset ? (
+                                    <>
+                                        <Button
+                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
+                                        >
+                                            Go to Admin
+                                        </Button>
+                                    </>
+                                    ): null}
+                                </div>
+                            </div> 
+                            <div
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    marginTop: '20px'
+                                    marginTop: '30px'
                                 }}
                             >
-                                Forgot Password?
-                            </h3>
-                            <h3
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    color: 'red'
-                                }}
-                            >
-                                Send a new Admin Password to my Email
-                            </h3>
+                                OR
+                            </div>
                             <div
                                 style={{
                                     display: 'flex',
@@ -959,68 +985,63 @@ export default function Services() {
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
+                                    onClick={() => setIsResetting(false)}
                                 >
-                                    Reset Password
-                                </Button>
-                                {/* <Button
-                                    onClick={() => setPassword(resetPassword)}
-                                >
-                                    Change old password
-                                </Button> */}
-                                <Button
-                                    color='green'
-                                    onClick={() => {sendResetEmail(), setPassword(resetPassword)}}
-                                >
-                                    Email New Password
+                                    Enter Password?
                                 </Button>
                             </div>
+                        </>
+                        ):(
+                        <>
                             <div
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'flex-end'
-                                }}
-                            >
-                            </div>
-                            <h2
-                                style={{
-                                    display: 'flex',
                                     justifyContent: 'center',
-                                    margin: '0px'
+                                    fontSize: '35px',
+                                    fontWeight: '700',
+                                    marginBottom: '10px', 
+                                    marginTop: '3vh'
                                 }}
                             >
-                                Enter New Admin Password
-                            </h2>
+                                Enter Admin Password
+                            </div>
                             <div
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center'
                                 }}
                             >
-                                <div>
-                                    <input
-                                        type={hide}
-                                        placeholder='New Admin Password'
-                                        style={{ 
-                                            padding: '9px 14px 9px 14px',
-                                            fontSize: '14px',
-                                            fontWeight: '400',
-                                            cursor: 'text',
-                                            width: '178.5px',
-                                            borderRadius: '4px',
-                                            border: '1px solid rgba(34, 36, 38. 0.15)',
-                                            position: 'relative',
-                                            zIndex: '100'
-                                        }}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                </div>
+                                <input
+                                    type={hide}
+                                    placeholder='Admin Password'
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    style={{ 
+                                        padding: '9px 14px 9px 14px',
+                                        fontSize: '14px',
+                                        fontWeight: '400',
+                                        cursor: 'text',
+                                        width: '178.5px',
+                                        borderRadius: '4px',
+                                        border: '1px solid rgba(34, 36, 38. 0.15)',
+                                        position: 'relative',
+                                        zIndex: '100'
+                                    }}
+                                />
+                                <Icon
+                                    name='eye'
+                                    style={{
+                                        transform: 'translate(72px, 14px) scale(1.1)', 
+                                        color: '#80808099', 
+                                        position: 'absolute', 
+                                        zIndex: '100'
+                                    }}
+                                />
                             </div>
                             <div
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center',
-                                    marginBottom: '15px'
+                                    justifyContent: 'center'
                                 }}
                             >
                                 {show ? (
@@ -1056,16 +1077,17 @@ export default function Services() {
                             <div
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center'
+                                    justifyContent: 'center',
+                                    marginTop: '20px'
                                 }}
                             >
                                 <Button
                                     color='blue'
-                                    onClick={resetMatch}
+                                    onClick={match}
                                 >
                                     Submit
                                 </Button>
-                                {sameReset ? (
+                                {same ? (
                                 <>
                                     <Button
                                         onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
@@ -1075,7 +1097,31 @@ export default function Services() {
                                 </>
                                 ): null}
                             </div>
-                        </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: '30px'
+                                }}
+                            >
+                                OR
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: '30px'
+                                }}
+                            >
+                                <Button
+                                    color='red'
+                                    onClick={() => setIsResetting(true)}
+                                >
+                                    Forgot Password?
+                                </Button>
+                            </div>
+                        </>
+                        )}
                     </Modal>
                 </>
                 ): null}  
