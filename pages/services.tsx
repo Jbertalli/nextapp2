@@ -999,6 +999,7 @@ export default function Services() {
                             >
                                 <div>
                                     <input
+                                        type={hide}
                                         placeholder='New Admin Password'
                                         style={{ 
                                             padding: '9px 14px 9px 14px',
@@ -1014,6 +1015,43 @@ export default function Services() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
+                            </div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginBottom: '15px'
+                                }}
+                            >
+                                {show ? (
+                                <>
+                                    <Checkbox
+                                        onClick={() => {setHide('password'), setShow(false)}}
+                                        label={
+                                            <label>
+                                                Hide Password
+                                            </label>
+                                        }
+                                        style={{
+                                            marginTop: '15px'
+                                        }}
+                                    />
+                                </>
+                                ):(
+                                <>
+                                    <Checkbox
+                                        onClick={() => {setHide('text'), setShow(true)}}
+                                        label={
+                                            <label>
+                                                Show Password
+                                            </label>
+                                        }
+                                        style={{
+                                            marginTop: '15px'
+                                        }}
+                                    />
+                                </>
+                                )}
                             </div>
                             <div
                                 style={{
@@ -1297,7 +1335,7 @@ export default function Services() {
                             </Button> */}
                             <Button
                                 color='green'
-                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }])}}
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false)}}
                             >
                                 Create New Test
                             </Button>
@@ -1857,7 +1895,7 @@ export default function Services() {
                                     x
                                 </div>
                             </Container>
-                            <div
+                            {/* <div
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center'
@@ -1882,7 +1920,7 @@ export default function Services() {
                                     </Button>
                                 </>
                                 )}
-                            </div>
+                            </div> */}
                             <div>
                                 {serviceList.length > 1 ? (
                                 <>
@@ -2343,6 +2381,39 @@ export default function Services() {
                 <Divider /> 
                 {!student ? (
                 <>
+                    <div>
+                        {serviceList.length > 0 ? (
+                        <>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                {save ? (
+                                <>
+                                    <Button
+                                        color='red'
+                                        onClick={() => setSave(false)}
+                                    >
+                                        Edit Questions and Answers
+                                    </Button>
+                                </>
+                                ):(
+                                <>
+                                    <Button
+                                        color='green'
+                                        onClick={() => {setSave(true), setCreated(true)}}
+                                    >
+                                        Save Questions and Answers
+                                    </Button>
+                                </>
+                                )}
+                            </div>
+                            <Divider />
+                        </>
+                        ): null}
+                    </div>
                     <div
                         style={{
                             transform: 'translate(-13px)'
@@ -2637,7 +2708,7 @@ export default function Services() {
                                         </div>
                                     </>
                                     ): null}
-                                    <Divider />
+                                    {/* <Divider /> */}
                                     {!student ? (
                                     <>
                                         <div>
@@ -2653,16 +2724,20 @@ export default function Services() {
                                         {serviceList.length > 1 ? (
                                             <Divider />
                                         ): null}
-                                        <div>
-                                            {serviceList.length - 1 === index && (
-                                                <Button
-                                                    color='blue'
-                                                    onClick={handleAddService}
-                                                >
-                                                <span>Add a Question</span>
-                                                </Button>
-                                            )}
-                                        </div>
+                                        {!save ? (
+                                        <>
+                                            <div>
+                                                {serviceList.length - 1 === index && (
+                                                    <Button
+                                                        color='blue'
+                                                        onClick={handleAddService}
+                                                    >
+                                                    <span>Add a Question</span>
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        </>
+                                        ): null}
                                     </>
                                     ): null}
                                 </div>
@@ -2841,7 +2916,7 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
             </>
             ):(
             <>
-                {finish ? (
+                {/* {finish ? (
                 <>
                     <div
                         style={{
@@ -2851,7 +2926,7 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                         <Divider />    
                     </div>
                 </>
-                ): null}
+                ): null} */}
                 {isTimed ? (
                 <>
                     <div
