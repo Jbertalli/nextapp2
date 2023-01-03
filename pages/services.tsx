@@ -82,6 +82,7 @@ export default function Services() {
     const [created, setCreated] = useState<boolean>(false);
     const [adminEmail, setAdminEmail] = useState<string>('');
     const [resetPassword, setResetPassword] = useState<string>('');
+    const [sameReset, setSameReset] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -713,9 +714,9 @@ export default function Services() {
 
     function resetMatch() {
         if ((resetPassword.length > 0) && (resetPassword === password)) {
-            setSame(true);
+            setSameReset(true);
         } else {
-            setSame(false);
+            setSameReset(false);
         } 
     }
 
@@ -979,6 +980,7 @@ export default function Services() {
                                             position: 'relative',
                                             zIndex: '100'
                                         }}
+                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
                             </div>
@@ -994,7 +996,7 @@ export default function Services() {
                                 >
                                     Submit
                                 </Button>
-                                {same ? (
+                                {sameReset ? (
                                 <>
                                     <Button
                                         onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
