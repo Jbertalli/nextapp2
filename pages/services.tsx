@@ -39,6 +39,8 @@ const LOCAL_STORAGE_KEY_FINISH = 'Finish';
 const LOCAL_STORAGE_KEY_SAVE = 'Save';
 const LOCAL_STORAGE_KEY_RESET = 'ResetPassword';
 const LOCAL_STORAGE_KEY_ADMIN_EMAIL = 'AdminEmail';
+const LOCAL_STORAGE_KEY_DEMO = 'Demo';
+const LOCAL_STORAGE_KEY_CREATED = 'Created';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -469,6 +471,28 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_ADMIN_EMAIL, 
         JSON.stringify(adminEmail))
     }, [adminEmail]);
+
+    // Demo
+    useEffect(() => {
+        const storedDemo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_DEMO))
+        if (storedDemo) setDemo(storedDemo)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_DEMO, 
+        JSON.stringify(demo))
+    }, [demo]);
+
+    // Created
+    useEffect(() => {
+        const storedCreated = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CREATED))
+        if (storedCreated) setCreated(storedCreated)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_CREATED, 
+        JSON.stringify(created))
+    }, [created]);
     
     // console.log(serviceList[0].service);
 
@@ -727,6 +751,42 @@ export default function Services() {
                 <title>Test Generator</title>
                 <meta name='description' content='test' />
             </Head>
+            {/* <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    marginTop: '30px',
+                    color: '#125CA1',
+                    fontSize: '30px',
+                    marginRight: '10%',
+                    marginLeft: '10%'
+                }}
+            >
+                <div
+                    onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
+                    style={{
+                        cursor: 'pointer',
+                        textDecoration: `${(!student) ? 'underline' : 'none'}`
+                    }}
+                >
+                    Admin
+                </div>
+                <div
+                    onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
+                    style={{
+                        cursor: 'pointer',
+                        textDecoration: `${(student) ? 'underline' : 'none'}`
+                    }}
+                >
+                    Student
+                </div>
+                <div>
+                    Demo Mode
+                </div>
+                <div>
+                    End Demo
+                </div>
+            </div> */}
             <div
                 style={{
                     display: 'flex',
@@ -736,28 +796,55 @@ export default function Services() {
                 }}
             >
                 <Button
+                    disabled={demo}
                     color='black'
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => {setOpenModal(true), setStudent(false)}}
                 >
                     Demo Mode
                 </Button>     
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginTop: '10px',
-                    marginRight: '10px'
-                }}
-            >
-                <Button
-                    color='red'
-                    onClick={() => {setDemo(false), setStudent(false), setEdit(false)}}
+            {!student ? (
+            <>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        marginTop: '10px',
+                        marginRight: '10px'
+                    }}
                 >
-                    End Demo Mode
-                </Button>     
-            </div>
-
+                    {(created && demo) ? (
+                    <>
+                        <div>
+                            <Button
+                                color='purple'
+                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true)}}
+                            >
+                                Take Test
+                            </Button>
+                        </div>
+                    </>
+                    ): null}
+                </div>
+            </>
+            ): null}
+            {demo ? (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        marginTop: '10px',
+                        marginRight: '10px'
+                    }}
+                >
+                    <Button
+                        color='red'
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false)}}
+                    >
+                        End Demo Mode
+                    </Button>     
+                </div>
+            ): null}
             <div
                 style={{
                     marginRight: '1vw',
@@ -788,7 +875,7 @@ export default function Services() {
                     {adminPassword.length > 0 ? (
                     <>
                         <Button
-                            color='black'
+                            color='purple'
                             onClick={() => setNewModal(true)}
                         >
                             Return to Admin Page
@@ -952,14 +1039,14 @@ export default function Services() {
                                 >
                                     <Button
                                         color='blue'
-                                        onClick={resetMatch}
+                                        onClick={() => {resetMatch(), setCreated(false)}}
                                     >
                                         Submit
                                     </Button>
                                     {sameReset ? (
                                     <>
                                         <Button
-                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
+                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
                                         >
                                             Go to Admin
                                         </Button>
@@ -1083,14 +1170,14 @@ export default function Services() {
                             >
                                 <Button
                                     color='blue'
-                                    onClick={match}
+                                    onClick={() => {match(), setCreated(false)}}
                                 >
                                     Submit
                                 </Button>
                                 {same ? (
                                 <>
                                     <Button
-                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false), setDemo(false)}}
+                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setPassword(''), setAdminPassword(''), setNewPassword(''), setClickPassword(true), setAuth(false)}}
                                     >
                                         Go to Admin
                                     </Button>
@@ -1151,7 +1238,7 @@ export default function Services() {
                     x
                 </div>
                 <div>
-                    {created ? (
+                    {/* {created ? (
                     <>
                         <div>
                             <Button
@@ -1162,7 +1249,7 @@ export default function Services() {
                             </Button>
                         </div>
                     </>
-                    ): null}
+                    ): null} */}
                     {/* <div>
                         <Button
                             color='green'
@@ -1414,7 +1501,7 @@ export default function Services() {
                     fontWeight: '300'
                 }}
             >
-                Test Generator
+                Test Generator {demo ? 'Demo': null}
             </div>
             <Container
                 style={{ 
@@ -2440,7 +2527,7 @@ export default function Services() {
                                 <>
                                     <Button
                                         color='red'
-                                        onClick={() => setSave(false)}
+                                        onClick={() => {setSave(false), setCreated(false)}}
                                     >
                                         Edit Questions and Answers
                                     </Button>
@@ -2754,7 +2841,7 @@ export default function Services() {
                                         </div>
                                     </>
                                     ): null}
-                                    {/* <Divider /> */}
+                                    <Divider />
                                     {!student ? (
                                     <>
                                         <div>
