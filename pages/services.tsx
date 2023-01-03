@@ -678,6 +678,8 @@ export default function Services() {
     }
 
     console.log(resetPassword);
+    console.log(password);
+    console.log(adminPassword);
 
     return (
         <>
@@ -694,9 +696,26 @@ export default function Services() {
             >
                 <Button
                     color='red'
-                    onClick={() => {randomString(20), setResetPassword(randomString(20))}}
+                    onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
                 >
                     Reset Password
+                </Button>
+                <Button
+                    onClick={() => setPassword(resetPassword)}
+                >
+                    Change old password
+                </Button>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end'
+                }}
+            >
+                <Button
+                    color='purple'
+                >
+                    Send Email with New Password
                 </Button>
             </div>
             {resetPassword}
