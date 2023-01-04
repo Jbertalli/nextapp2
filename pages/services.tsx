@@ -87,6 +87,7 @@ export default function Services() {
     const [resetPassword, setResetPassword] = useState<string>('');
     const [sameReset, setSameReset] = useState<boolean>(false);
     const [isResetting, setIsResetting] = useState<boolean>(false);
+    const [saveRipple, setSaveRipple] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -817,12 +818,22 @@ export default function Services() {
                     {(created && demo) ? (
                     <>
                         <div>
-                            <Button
-                                color='purple'
+                            <button
+                                className={styles.takeTest}
                                 onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true)}}
+                                style={{
+                                    background: 'purple',
+                                    padding: '7px 21px 7px 21px',
+                                    color: 'white',
+                                    fontWeight: '700',
+                                    fontSize: '14px',
+                                    fontFamily: 'Nunito',
+                                    borderRadius: '.28571429rem',
+                                    border: '0px solid transparent'
+                                }}
                             >
                                 Take Test
-                            </Button>
+                            </button>
                         </div>
                     </>
                     ): null}
@@ -840,7 +851,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false)}}
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false)}}
                     >
                         End Demo Mode
                     </Button>     
@@ -1513,7 +1524,7 @@ export default function Services() {
                             </Button> */}
                             <Button
                                 color='green'
-                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setCreated(false), setTitleClicked(false)}}
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setTitleClicked(false), setSaveRipple(true)}}
                             >
                                 Create New Test
                             </Button>
@@ -2586,12 +2597,11 @@ export default function Services() {
                                 ):(
                                 <>
                                     <button
-                                        className={styles.saveButton}
-                                        color='green'
+                                        className={saveRipple ? styles.saveButton : null}
                                         onClick={() => {setSave(true), setCreated(true), setTitleClicked(true)}}
                                         style={{
                                             background: '#21BA45',
-                                            padding: '11px 21px 11px 21px',
+                                            padding: '7px 21px 7px 21px',
                                             color: 'white',
                                             fontWeight: '700',
                                             fontSize: '14px',

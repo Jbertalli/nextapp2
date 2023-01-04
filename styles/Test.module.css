@@ -1,57 +1,8 @@
-/* button alerts */
-.button {
-    animation: ripple 1500ms infinite;
- }
- 
- @keyframes ripple {
-    0% {
-        box-shadow: 0 0 0 0px #0066CC30, 0 0 0 0px #fff
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff,
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff,
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff;
-    }
- 
-    50% {
-        box-shadow: 0 0 0 5px #0066CC30, 0 0 0 15px rgba(255, 255, 255, 0),
-        0 0 0 10px #0066CC30, 0 0 0 20px rgba(255, 255, 255, 0),
-        0 0 0 12.5px #0066CC30, 0 0 0 22.5px rgba(255, 255, 255, 0),
-        0 0 0 15px #0066CC30, 0 0 0 25px rgba(255, 255, 255, 0),
-        0 0 0 17.5px #0066CC30, 0 0 0 27.5px rgba(255, 255, 255, 0),
-        0 0 0 20px #0066CC30, 0 0 0 30px rgba(255, 255, 255, 0),
-        0 0 0 22.5px #0066CC30, 0 0 0 32.5px rgba(255, 255, 255, 0),
-        0 0 0 25px #0066CC30, 0 0 0 35px rgba(255, 255, 255, 0);
-    }
- }
- 
- .bagButton {
+.saveButton {
     animation: ripple1 1500ms infinite;
  }
  
  @keyframes ripple1 {
-    0% {
-        /* box-shadow: 0 0 0 0px #0066CC30, 0 0 0 0px #fff
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff,
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff,
-        0 0 0 0px #0066CC30, 0 0 0 0px #fff; */
-    }
- 
-    50% {
-        box-shadow: 0 0 0 5px #0066CC30, 0 0 0 15px rgba(255, 255, 255, 0),
-        0 0 0 10px #0066CC30, 0 0 0 20px rgba(255, 255, 255, 0),
-        0 0 0 12.5px #0066CC30, 0 0 0 22.5px rgba(255, 255, 255, 0);
-    }
- }
-
-
-
-
- 
- 
- .saveButton {
-    animation: ripple2 1500ms infinite;
- }
- 
- @keyframes ripple2 {
     0% {
         box-shadow: 0 0 0 0px #21BA4550, 0 0 0 0px #fff
         0 0 0 0px #21BA4550, 0 0 0 0px #fff,
@@ -63,6 +14,25 @@
         box-shadow: 0 0 0 5px #21BA4550, 0 0 0 15px rgba(255, 255, 255, 0),
         0 0 0 10px #21BA4550, 0 0 0 20px rgba(255, 255, 255, 0),
         0 0 0 12.5px #21BA4550, 0 0 0 22.5px rgba(255, 255, 255, 0);
+    }
+ }
+
+ .takeTest {
+    animation: ripple2 1500ms infinite;
+ }
+ 
+ @keyframes ripple2 {
+    0% {
+        box-shadow: 0 0 0 0px #A020F050, 0 0 0 0px #fff
+        0 0 0 0px #A020F050, 0 0 0 0px #fff,
+        0 0 0 0px #A020F050, 0 0 0 0px #fff,
+        0 0 0 0px #A020F050, 0 0 0 0px #fff;
+    }
+ 
+    50% {
+        box-shadow: 0 0 0 5px #A020F050, 0 0 0 15px rgba(255, 255, 255, 0),
+        0 0 0 10px #A020F050, 0 0 0 20px rgba(255, 255, 255, 0),
+        0 0 0 12.5px #A020F050, 0 0 0 22.5px rgba(255, 255, 255, 0);
     }
  }
  
