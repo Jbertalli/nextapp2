@@ -88,6 +88,7 @@ export default function Services() {
     const [sameReset, setSameReset] = useState<boolean>(false);
     const [isResetting, setIsResetting] = useState<boolean>(false);
     const [saveRipple, setSaveRipple] = useState<boolean>(false);
+    const [errorCheck, setErrorCheck] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -1147,7 +1148,7 @@ export default function Services() {
                                     }}
                                 />
                             </div>
-                            {/* {(!same && newPassword.length > 0) ? (
+                            {(!same && errorCheck) ? (
                                 <div
                                     style={{
                                         display: 'flex',
@@ -1162,7 +1163,7 @@ export default function Services() {
                                 >
                                     Error: Admin Password is Invalid
                                 </div>
-                            ): null} */}
+                            ): null}
                             <div
                                 style={{
                                     display: 'flex',
@@ -1208,14 +1209,14 @@ export default function Services() {
                             >
                                 <Button
                                     color='blue'
-                                    onClick={() => {match(), setCreated(false)}}
+                                    onClick={() => {match(), setCreated(false), setErrorCheck(true)}}
                                 >
                                     Submit
                                 </Button>
                                 {same ? (
                                 <>
                                     <Button
-                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false)}}
+                                        onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false), setErrorCheck(false)}}
                                     >
                                         Go to Admin
                                     </Button>
@@ -1335,7 +1336,7 @@ export default function Services() {
                                 }}
                             />
                         </div>
-                        {/* {(!isValid && adminEmail.length > 0) ? (
+                        {(adminEmail.length > 0 && password.length > 0 && !isValid) ? (
                             <div
                                 style={{
                                     display: 'flex',
@@ -1347,7 +1348,7 @@ export default function Services() {
                             >
                                 Error: Email is Invalid
                             </div>
-                        ): null} */}
+                        ): null}
                         <div
                             style={{
                                 display: 'flex',
@@ -1444,22 +1445,22 @@ export default function Services() {
                                 }}
                             />
                         </div>
-                        {/* <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                transform: 'translate(-5px, 50%)',
-                                color: 'red',
-                                fontSize: '20px',
-                                fontWeight: '500'
-                            }}
-                        >
-                            {!auth ? (
-                            <>
-                                Error: Password is Invalid
-                            </>
-                            ): null}    
-                        </div> */}
+                        {(!auth && errorCheck) ? (
+                        <>
+                             <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    transform: 'translate(-5px, 50%)',
+                                    color: 'red',
+                                    fontSize: '20px',
+                                    fontWeight: '500'
+                                }}
+                            >
+                                Error: Password is Invalid   
+                            </div>
+                        </>
+                        ): null}
                         <div
                             style={{
                                 display: 'flex',
@@ -1470,7 +1471,7 @@ export default function Services() {
                             <Button
                                 color='blue'
                                 disabled={adminPassword.length > 0 ? false : true}
-                                onClick={matchPass}
+                                onClick={() => {matchPass(), setErrorCheck(true)}}
                             >
                                 Submit
                             </Button>
@@ -1534,7 +1535,7 @@ export default function Services() {
                             </Button> */}
                             <Button
                                 color='green'
-                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setTitleClicked(false), setSaveRipple(true)}}
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setTitleClicked(false), setSaveRipple(true), setErrorCheck(false)}}
                             >
                                 Create New Test
                             </Button>
@@ -1673,6 +1674,7 @@ export default function Services() {
                                 }}
                             >
                                 <Button
+                                    disabled={serviceList.length < 1}
                                     color='blue'
                                     onClick={() => setFinish(true)}
                                 >
