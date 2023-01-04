@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
+import styles from '../styles/Test.module.css';
 import { Button, Divider, Icon, Card, Container, Modal, Checkbox } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
 import emailjs from 'emailjs-com';
@@ -1125,6 +1126,22 @@ export default function Services() {
                                     }}
                                 />
                             </div>
+                            {/* {(!same && newPassword.length > 0) ? (
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        transform: 'translate(-5px, 50%)',
+                                        color: 'red',
+                                        fontSize: '20px',
+                                        fontWeight: '500',
+                                        marginTop: '10px',
+                                        marginBottom: '10px'
+                                    }}
+                                >
+                                    Error: Admin Password is Invalid
+                                </div>
+                            ): null} */}
                             <div
                                 style={{
                                     display: 'flex',
@@ -1297,7 +1314,7 @@ export default function Services() {
                                 }}
                             />
                         </div>
-                        {(!isValid && adminEmail.length > 0) ? (
+                        {/* {(!isValid && adminEmail.length > 0) ? (
                             <div
                                 style={{
                                     display: 'flex',
@@ -1309,7 +1326,7 @@ export default function Services() {
                             >
                                 Error: Email is Invalid
                             </div>
-                        ): null}
+                        ): null} */}
                         <div
                             style={{
                                 display: 'flex',
@@ -1406,7 +1423,7 @@ export default function Services() {
                                 }}
                             />
                         </div>
-                        <div
+                        {/* <div
                             style={{
                                 display: 'flex',
                                 justifyContent: 'center',
@@ -1421,7 +1438,7 @@ export default function Services() {
                                 Error: Password is Invalid
                             </>
                             ): null}    
-                        </div>
+                        </div> */}
                         <div
                             style={{
                                 display: 'flex',
@@ -2568,12 +2585,23 @@ export default function Services() {
                                 </>
                                 ):(
                                 <>
-                                    <Button
+                                    <button
+                                        className={styles.saveButton}
                                         color='green'
                                         onClick={() => {setSave(true), setCreated(true), setTitleClicked(true)}}
+                                        style={{
+                                            background: '#21BA45',
+                                            padding: '11px 21px 11px 21px',
+                                            color: 'white',
+                                            fontWeight: '700',
+                                            fontSize: '14px',
+                                            fontFamily: 'Nunito',
+                                            borderRadius: '.28571429rem',
+                                            border: '0px solid transparent'
+                                        }}
                                     >
                                         Save Questions and Answers
-                                    </Button>
+                                    </button>
                                 </>
                                 )}
                             </div>
