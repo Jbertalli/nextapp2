@@ -1297,6 +1297,19 @@ export default function Services() {
                                 }}
                             />
                         </div>
+                        {(!isValid && adminEmail.length > 0) ? (
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    transform: 'translateY(8px)',
+                                    color: 'red',
+                                    fontSize: '15px'
+                                }}
+                            >
+                                Error: Email is Invalid
+                            </div>
+                        ): null}
                         <div
                             style={{
                                 display: 'flex',
