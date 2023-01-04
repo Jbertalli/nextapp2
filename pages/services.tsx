@@ -886,12 +886,22 @@ export default function Services() {
                     </div> */}
                     {adminPassword.length > 0 ? (
                     <>
-                        <Button
-                            color='purple'
+                        <button
+                            className={styles.takeTest}
                             onClick={() => {setNewModal(true), setSame(false)}}
+                            style={{
+                                background: 'purple',
+                                padding: '7px 21px 7px 21px',
+                                color: 'white',
+                                fontWeight: '700',
+                                fontSize: '14px',
+                                fontFamily: 'Nunito',
+                                borderRadius: '.28571429rem',
+                                border: '0px solid transparent'
+                            }}
                         >
                             Return to Admin Page
-                        </Button>
+                        </button>
                     </>
                     ): null}
                     <Modal 
