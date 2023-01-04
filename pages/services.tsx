@@ -1409,6 +1409,22 @@ export default function Services() {
                         <div
                             style={{
                                 display: 'flex',
+                                justifyContent: 'center',
+                                transform: 'translate(-5px, 50%)',
+                                color: 'red',
+                                fontSize: '20px',
+                                fontWeight: '500'
+                            }}
+                        >
+                            {!auth ? (
+                            <>
+                                Error: Password is Invalid
+                            </>
+                            ): null}    
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
                                 justifyContent: 'center', 
                                 marginTop: '15px'
                             }}
