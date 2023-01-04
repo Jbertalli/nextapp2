@@ -821,7 +821,7 @@ export default function Services() {
                         <div>
                             <button
                                 className={styles.takeTest}
-                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true)}}
+                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true), setNewPassword('')}}
                                 style={{
                                     background: 'purple',
                                     padding: '7px 21px 7px 21px',
@@ -1109,7 +1109,7 @@ export default function Services() {
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => setIsResetting(false)}
+                                    onClick={() => {setIsResetting(false), setErrorCheck(false)}}
                                 >
                                     Enter Password?
                                 </Button>
@@ -1255,7 +1255,7 @@ export default function Services() {
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => setIsResetting(true)}
+                                    onClick={() => {setIsResetting(true), setErrorCheck(false)}}
                                 >
                                     Forgot Password?
                                 </Button>
@@ -1490,7 +1490,7 @@ export default function Services() {
                                 Submit
                             </Button>
                             <Button
-                                onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false)}}
+                                onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setErrorCheck(false)}}
                             >
                                 Reset Admin Email & Password
                             </Button>
@@ -1688,7 +1688,7 @@ export default function Services() {
                                 }}
                             >
                                 <Button
-                                    disabled={serviceList.length < 1}
+                                    disabled={serviceList[0].student.length > 0 ? false : true}
                                     color='blue'
                                     onClick={() => setFinish(true)}
                                 >
