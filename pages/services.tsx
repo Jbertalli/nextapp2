@@ -1281,6 +1281,30 @@ export default function Services() {
                             }}
                         >
                             <input
+                                placeholder='Admin Email'
+                                value={adminEmail}
+                                onChange={(e) => {setAdminEmail(e.target.value), validEmail(adminEmail)}}
+                                style={{ 
+                                    padding: '9px 14px 9px 14px',
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    cursor: 'text',
+                                    width: '178.5px',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                    position: 'relative',
+                                    zIndex: '100'
+                                }}
+                            />
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginTop: '15px'
+                            }}
+                        >
+                            <input
                                 type={hide}
                                 placeholder='Admin Password'
                                 value={password}
@@ -1306,31 +1330,6 @@ export default function Services() {
                                     zIndex: '100'
                                 }}
                             />
-                        </div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                marginTop: '15px'
-                            }}
-                        >
-                            <input
-                                placeholder='Admin Email'
-                                value={adminEmail}
-                                onChange={(e) => {setAdminEmail(e.target.value), validEmail(adminEmail)}}
-                                style={{ 
-                                    padding: '9px 14px 9px 14px',
-                                    fontSize: '14px',
-                                    fontWeight: '400',
-                                    cursor: 'text',
-                                    width: '178.5px',
-                                    borderRadius: '4px',
-                                    border: '1px solid rgba(34, 36, 38. 0.15)',
-                                    position: 'relative',
-                                    zIndex: '100'
-                                }}
-                            />
-                            {/* {adminEmail} */}
                         </div>
                         <div
                             style={{
@@ -2578,6 +2577,7 @@ export default function Services() {
                                 >
                                     <input 
                                         placeholder="Title"
+                                        value={title}
                                         style={{ 
                                             padding: '9px 14px 9px 14px',
                                             fontSize: '14px',
