@@ -839,7 +839,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false)}}
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false)}}
                     >
                         End Demo Mode
                     </Button>     
@@ -1468,7 +1468,7 @@ export default function Services() {
                             </Button> */}
                             <Button
                                 color='green'
-                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false)}}
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false)}}
                             >
                                 Create New Test
                             </Button>
@@ -1478,7 +1478,13 @@ export default function Services() {
                     </>
                     ):(
                     <>
-                        <div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                transform: 'translateY(20vh)'
+                            }}
+                        >
                             <Button
                                 color='green'
                                 onClick={() => setCreating(true)}
@@ -2014,7 +2020,7 @@ export default function Services() {
                                     justifyContent: 'flex-end',
                                     cursor: 'pointer',
                                     marginRight: '25px',
-                                    transform: 'translate(-1vw, -10px)',
+                                    transform: 'translate(-1vw, -8px)',
                                     position: 'absolute'
                                 }}
                                     onClick={() => setEdit(false)}
@@ -2197,7 +2203,7 @@ export default function Services() {
                                             display: 'flex',
                                             justifyContent: 'center',
                                             marginTop: '40px',
-                                            marginBottom: '0px'
+                                            marginBottom: '30px'
                                         }}
                                     >
                                         <Button
@@ -2527,7 +2533,7 @@ export default function Services() {
                                 <>
                                     <Button
                                         color='red'
-                                        onClick={() => {setSave(false), setCreated(false)}}
+                                        onClick={() => {setSave(false), setCreated(false), setTitleClicked(false)}}
                                     >
                                         Edit Questions and Answers
                                     </Button>
@@ -2536,7 +2542,7 @@ export default function Services() {
                                 <>
                                     <Button
                                         color='green'
-                                        onClick={() => {setSave(true), setCreated(true)}}
+                                        onClick={() => {setSave(true), setCreated(true), setTitleClicked(true)}}
                                     >
                                         Save Questions and Answers
                                     </Button>
@@ -2841,7 +2847,13 @@ export default function Services() {
                                         </div>
                                     </>
                                     ): null}
-                                    <Divider />
+                                    <div
+                                        style={{
+                                            transform: 'translateY(-5px)'
+                                        }}
+                                    >
+                                        <Divider />
+                                    </div>
                                     {!student ? (
                                     <>
                                         <div>
