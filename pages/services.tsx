@@ -998,25 +998,39 @@ export default function Services() {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <div>
-                                        <input
-                                            type={hide}
-                                            placeholder='New Admin Password'
-                                            style={{ 
-                                                padding: '9px 14px 9px 14px',
-                                                fontSize: '14px',
-                                                fontWeight: '400',
-                                                cursor: 'text',
-                                                width: '178.5px',
-                                                borderRadius: '4px',
-                                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                position: 'relative',
-                                                zIndex: '100'
-                                            }}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
-                                    </div>
+                                    <input
+                                        type={hide}
+                                        placeholder='New Admin Password'
+                                        style={{ 
+                                            padding: '9px 14px 9px 14px',
+                                            fontSize: '14px',
+                                            fontWeight: '400',
+                                            cursor: 'text',
+                                            width: '178.5px',
+                                            borderRadius: '4px',
+                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                            position: 'relative',
+                                            zIndex: '100'
+                                        }}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
                                 </div>
+                                {(!sameReset && errorCheck) ? (
+                                <>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            transform: 'translate(-5px, 50%)',
+                                            color: 'red',
+                                            fontSize: '20px',
+                                            fontWeight: '500'
+                                        }}
+                                    >
+                                        Error: Password is Invalid   
+                                    </div>
+                                </>
+                                ): null}
                                 <div
                                     style={{
                                         display: 'flex',
@@ -1062,14 +1076,14 @@ export default function Services() {
                                 >
                                     <Button
                                         color='blue'
-                                        onClick={() => {resetMatch(), setCreated(false)}}
+                                        onClick={() => {resetMatch(), setCreated(false), setErrorCheck(true)}}
                                     >
                                         Submit
                                     </Button>
                                     {sameReset ? (
                                     <>
                                         <Button
-                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false)}}
+                                            onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false), setErrorCheck(false)}}
                                         >
                                             Go to Admin
                                         </Button>
@@ -1793,7 +1807,7 @@ export default function Services() {
                                             onChange={(e) => {setUserEmail(e.target.value), validEmail(userEmail)}}
                                         />
                                     </div>
-                                    {(userEmail.length > 0) && !isValid ? (
+                                    {(userEmail.length > 0 && !isValid) ? (
                                     <>
                                         <div
                                             style={{
