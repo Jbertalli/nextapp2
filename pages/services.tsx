@@ -839,7 +839,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false)}}
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false)}}
                     >
                         End Demo Mode
                     </Button>     
@@ -1467,7 +1467,7 @@ export default function Services() {
                             </Button> */}
                             <Button
                                 color='green'
-                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false)}}
+                                onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setCreated(false), setTitleClicked(false)}}
                             >
                                 Create New Test
                             </Button>
