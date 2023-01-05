@@ -863,11 +863,6 @@ export default function Services() {
                                     >
                                         Reset Password
                                     </Button>
-                                    {/* <Button
-                                        onClick={() => setPassword(resetPassword)}
-                                    >
-                                        Change old password
-                                    </Button> */}
                                     <Button
                                         color='green'
                                         onClick={() => {sendResetEmail(), setPassword(resetPassword)}}
