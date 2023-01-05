@@ -748,6 +748,17 @@ export default function Services() {
         } 
     }
 
+    let isEmpty = []
+
+    for (let i = 0; i < serviceList.length; i++) {
+        let valueLength = serviceList[i].student.length;
+        let pushed = isEmpty.unshift(valueLength);
+    }
+
+    let allZero = isEmpty.every(num => num === 0);
+    // console.log(isEmpty);
+    // console.log(allZero);
+
     return (
         <>
             <Head>
@@ -925,7 +936,7 @@ export default function Services() {
                                 color: 'red',
                                 cursor: 'pointer'
                             }}
-                            onClick={() => setNewModal(false)}
+                            onClick={() => {setNewModal(false), setErrorCheck(false)}}
                         >
                             x
                         </div>
@@ -1688,7 +1699,7 @@ export default function Services() {
                                 }}
                             >
                                 <Button
-                                    disabled={serviceList[0].student.length > 0 ? false : true}
+                                    disabled={allZero}
                                     color='blue'
                                     onClick={() => setFinish(true)}
                                 >
