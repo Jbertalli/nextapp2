@@ -701,22 +701,43 @@ export default function Services() {
                     End Demo
                 </div>
             </div> */}
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginTop: '10px',
-                    marginRight: '10px'
-                }}
-            >
-                <Button
-                    disabled={demo}
-                    color='black'
-                    onClick={() => {setOpenModal(true), setStudent(false)}}
+            {demo ? (
+            <>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        marginTop: '10px',
+                        marginRight: '10px'
+                    }}
                 >
-                    Demo Mode
-                </Button>     
-            </div>
+                    <Button
+                        color='red'
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false)}}
+                    >
+                        End Demo Mode
+                    </Button>     
+                </div>
+            </>
+            ):(
+            <>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        marginTop: '10px',
+                        marginRight: '10px'
+                    }}
+                >
+                    <Button
+                        color='black'
+                        onClick={() => {setOpenModal(true), setStudent(false)}}
+                    >
+                        Demo Mode
+                    </Button>     
+                </div>
+            </>
+            )}
             {!student ? (
             <>
                 <div
@@ -751,23 +772,6 @@ export default function Services() {
                     ): null}
                 </div>
             </>
-            ): null}
-            {demo ? (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        marginTop: '10px',
-                        marginRight: '10px'
-                    }}
-                >
-                    <Button
-                        color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false)}}
-                    >
-                        End Demo Mode
-                    </Button>     
-                </div>
             ): null}
             <div
                 style={{
@@ -3022,17 +3026,6 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
             </>
             ):(
             <>
-                {finish ? (
-                <>
-                    <div
-                        style={{
-                            transform: 'translateY(-49px)'
-                        }}
-                    >
-                        <Divider />    
-                    </div>
-                </>
-                ): null}
                 {isTimed ? (
                 <>
                     <div
