@@ -1185,26 +1185,6 @@ export default function Services() {
                     x
                 </div>
                 <div>
-                    {/* {created ? (
-                    <>
-                        <div>
-                            <Button
-                                color='purple'
-                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true)}}
-                            >
-                                Take a Test
-                            </Button>
-                        </div>
-                    </>
-                    ): null} */}
-                    {/* <div>
-                        <Button
-                            color='green'
-                            onClick={() => setCreating(true)}
-                        >
-                            Create a Test
-                        </Button>
-                    </div> */}
                     {creating ? (
                     <>
                     {clickPassword ? (
