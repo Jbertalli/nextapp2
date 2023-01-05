@@ -12,22 +12,13 @@ const LOCAL_STORAGE_KEY_DATE = 'Date';
 const LOCAL_STORAGE_KEY_CLICK_DATE = 'ClickDate';
 const LOCAL_STORAGE_KEY_TITLE = 'Title';
 const LOCAL_STORAGE_KEY_CLICK_TITLE = 'ClickTitle';
-// const LOCAL_STORAGE_KEY_MINUTE = 'Minute';
-// const LOCAL_STORAGE_KEY_SECOND = 'Second'; 
-// const LOCAL_STORAGE_KEY_TIMED = 'Timed';
-// const LOCAL_STORAGE_KEY_TIME_CLICK = 'TimeClick';
-// const LOCAL_STORAGE_KEY_OPEN_EMAIL = 'OpenEmail';
-// const LOCAL_STORAGE_KEY_USER_EMAIL = 'UserEmail';
+const LOCAL_STORAGE_KEY_USER_EMAIL = 'UserEmail';
 const LOCAL_STORAGE_KEY_IS_VALID = 'IsValid';
-// const LOCAL_STORAGE_KEY_EDIT = 'Edit';
-// const LOCAL_STORAGE_KEY_IS_TIMED = 'IsTimed';
-// const LOCAL_STORAGE_KEY_OPEN_NAME_DATE = 'OpenNameDate';
+const LOCAL_STORAGE_KEY_OPEN_NAME_DATE = 'OpenNameDate';
 const LOCAL_STORAGE_KEY_OPEN_MODAL = 'OpenModal';
 const LOCAL_STORAGE_KEY_AUTH = 'Auth';
 // const LOCAL_STORAGE_KEY_PASSWORD = 'Password';
-// const LOCAL_STORAGE_KEY_ADMIN_PASSWORD = 'AdminPassword'; 
-// const LOCAL_STORAGE_KEY_HIDE = 'Hide';
-// const LOCAL_STORAGE_KEY_SHOW = 'Show';
+const LOCAL_STORAGE_KEY_ADMIN_PASSWORD = 'AdminPassword'; 
 // const LOCAL_STORAGE_KEY_CLICK_PASSWORD = 'ClickPassword';
 // const LOCAL_STORAGE_KEY_HIDE_ADMIN = 'HideAdmin';
 const LOCAL_STORAGE_KEY_NEW_MODAL = 'NewModal';
@@ -42,6 +33,7 @@ const LOCAL_STORAGE_KEY_RESET = 'ResetPassword';
 const LOCAL_STORAGE_KEY_ADMIN_EMAIL = 'AdminEmail';
 const LOCAL_STORAGE_KEY_DEMO = 'Demo';
 const LOCAL_STORAGE_KEY_CREATED = 'Created';
+const LOCAL_STORAGE_KEY_SAVE_RIPPLE = 'Ripple';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -167,71 +159,16 @@ export default function Services() {
         JSON.stringify(titleClicked))
     }, [titleClicked]);
 
-    // // Minute
-    // useEffect(() => {
-    //     const storedMinute = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_MINUTE))
-    //     if (storedMinute) setMinute(storedMinute)
-    // }, [])
+    // UserEmail
+    useEffect(() => {
+        const storedUserEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_USER_EMAIL))
+        if (storedUserEmail) setUserEmail(storedUserEmail)
+    }, [])
     
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_MINUTE, 
-    //     JSON.stringify(minute))
-    // }, [minute]);
-
-    // // Second
-    // useEffect(() => {
-    //     const storedSecond = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SECOND))
-    //     if (storedSecond) setSecond(storedSecond)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_SECOND, 
-    //     JSON.stringify(second))
-    // }, [second]);
-
-    // // Timed
-    // useEffect(() => {
-    //     const storedTimed = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TIMED))
-    //     if (storedTimed) setTimed(storedTimed)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_TIMED, 
-    //     JSON.stringify(timed))
-    // }, [timed]);
-
-    // // TimeClick
-    // useEffect(() => {
-    //     const storedTimeClick = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TIME_CLICK))
-    //     if (storedTimeClick) setTimeClick(storedTimeClick)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_TIME_CLICK, 
-    //     JSON.stringify(timeClick))
-    // }, [timeClick]);
-
-    // // OpenEmail
-    // useEffect(() => {
-    //     const storedOpenEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_EMAIL))
-    //     if (storedOpenEmail) setOpenEmail(storedOpenEmail)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_EMAIL, 
-    //     JSON.stringify(openEmail))
-    // }, [openEmail]);
-
-    // // UserEmail
-    // useEffect(() => {
-    //     const storedUserEmail = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_USER_EMAIL))
-    //     if (storedUserEmail) setUserEmail(storedUserEmail)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_USER_EMAIL, 
-    //     JSON.stringify(userEmail))
-    // }, [userEmail]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_USER_EMAIL, 
+        JSON.stringify(userEmail))
+    }, [userEmail]);
 
     // IsValid
     useEffect(() => {
@@ -244,38 +181,16 @@ export default function Services() {
         JSON.stringify(isValid))
     }, [isValid]);
 
-    // // Edit
-    // useEffect(() => {
-    //     const storedEdit = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_EDIT))
-    //     if (storedEdit) setEdit(storedEdit)
-    // }, [])
+    // OpenNameDate
+    useEffect(() => {
+        const storedOpenNameDate = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE))
+        if (storedOpenNameDate) setOpenNameDate(storedOpenNameDate)
+    }, [])
     
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_EDIT, 
-    //     JSON.stringify(edit))
-    // }, [edit]);
-
-    // // IsTimed
-    // useEffect(() => {
-    //     const storedIsTimed = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_IS_TIMED))
-    //     if (storedIsTimed) setIsTimed(storedIsTimed)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_IS_TIMED, 
-    //     JSON.stringify(isTimed))
-    // }, [isTimed]);
-
-    // // OpenNameDate
-    // useEffect(() => {
-    //     const storedOpenNameDate = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE))
-    //     if (storedOpenNameDate) setOpenNameDate(storedOpenNameDate)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE, 
-    //     JSON.stringify(openNameDate))
-    // }, [openNameDate]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_OPEN_NAME_DATE, 
+        JSON.stringify(openNameDate))
+    }, [openNameDate]);
 
     // OpenModal
     useEffect(() => {
@@ -310,38 +225,16 @@ export default function Services() {
     //     JSON.stringify(password))
     // }, [password]);
 
-    // // AdminPassword
-    // useEffect(() => {
-    //     const storedAdminPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD))
-    //     if (storedAdminPassword) setAdminPassword(storedAdminPassword)
-    // }, [])
+    // AdminPassword
+    useEffect(() => {
+        const storedAdminPassword = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD))
+        if (storedAdminPassword) setAdminPassword(storedAdminPassword)
+    }, [])
     
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD, 
-    //     JSON.stringify(adminPassword))
-    // }, [adminPassword]);
-
-    // // Hide
-    // useEffect(() => {
-    //     const storedHide = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_HIDE))
-    //     if (storedHide) setHide(storedHide)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_HIDE, 
-    //     JSON.stringify(hide))
-    // }, [hide]);
-
-    // // Show
-    // useEffect(() => {
-    //     const storedShow = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SHOW))
-    //     if (storedShow) setShow(storedShow)
-    // }, [])
-    
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY_SHOW, 
-    //     JSON.stringify(show))
-    // }, [show]);
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_ADMIN_PASSWORD, 
+        JSON.stringify(adminPassword))
+    }, [adminPassword]);
 
     // ClickPassword
     // useEffect(() => {
@@ -496,6 +389,17 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_CREATED, 
         JSON.stringify(created))
     }, [created]);
+
+    // SaveRipple
+    useEffect(() => {
+        const storedSaveRipple = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_SAVE_RIPPLE))
+        if (storedSaveRipple) setSaveRipple(storedSaveRipple)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_SAVE_RIPPLE, 
+        JSON.stringify(saveRipple))
+    }, [saveRipple]);
     
     // console.log(serviceList[0].service);
 
