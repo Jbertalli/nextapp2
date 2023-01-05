@@ -718,10 +718,6 @@ export default function Services() {
         return string;
     }
 
-    // console.log(resetPassword);
-    // console.log(password);
-    // console.log(adminPassword);
-
     let resetTemplateParams = {
         admin_email: `${adminEmail}`,
         resetPass: `${resetPassword}`
@@ -880,22 +876,6 @@ export default function Services() {
             >
                 {student ? (
                 <>
-                    {/* <div>
-                        <Button
-                            color='black'
-                            onClick={() => {setFinish(false), setStudent(false), setSave(false), setServiceList([{ service: '', answer: '', student: '' }])}}
-                        >
-                            Create New Test
-                        </Button>
-                    </div>
-                    <div>
-                        <Button
-                            color='blue'
-                            onClick={() => {setFinish(false), setStudent(false), setSave(false)}}
-                        >
-                            Edit Test
-                        </Button>
-                    </div> */}
                     {adminPassword.length > 0 ? (
                     <>
                         <button
@@ -2127,32 +2107,6 @@ export default function Services() {
                                     x
                                 </div>
                             </Container>
-                            {/* <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                {save ? (
-                                <>
-                                    <Button
-                                        color='red'
-                                        onClick={() => setSave(false)}
-                                    >
-                                        Edit Questions and Answers
-                                    </Button>
-                                </>
-                                ):(
-                                <>
-                                    <Button
-                                        color='green'
-                                        onClick={() => {setSave(true), setCreated(true)}}
-                                    >
-                                        Save Questions and Answers
-                                    </Button>
-                                </>
-                                )}
-                            </div> */}
                             <div>
                                 {serviceList.length > 1 ? (
                                 <>
@@ -3109,7 +3063,6 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                                 marginTop: '15px'
                             }}
                         >
-                            {/* <span>{days}</span>:<span>{hours}</span>:<span>{secondTime}</span>:<span>{seconds}</span> */}
                             <span>{minutes}</span>:<span>{seconds}</span>
                         </div>
                         <Button
@@ -3165,7 +3118,7 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
             </>
             ):(
             <>
-                {/* {finish ? (
+                {finish ? (
                 <>
                     <div
                         style={{
@@ -3175,7 +3128,7 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                         <Divider />    
                     </div>
                 </>
-                ): null} */}
+                ): null}
                 {isTimed ? (
                 <>
                     <div
@@ -3186,13 +3139,6 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                             zIndex: '100'
                         }}
                     >
-                        {/* <div
-                            style={{
-                                position: 'absolute'
-                            }}
-                        >
-                            {seconds}
-                        </div> */}
                         {finish ? (
                         <>
                             <div
