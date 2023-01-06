@@ -576,7 +576,7 @@ export default function Services() {
     // console.log(percent);
     // console.log(letterGrade);
     // console.log(userEmail);
-    // console.log('isTimed', isTimed);
+    // console.log('Is Timer Running?', isTimed);
 
     function send() {
         emailjs.send('service_jj71xm9', 'template_7hans9n', templateParams, 'FlrSx29zmJDjwJhtt')
