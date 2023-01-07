@@ -81,6 +81,7 @@ export default function Services() {
     const [isResetting, setIsResetting] = useState<boolean>(false);
     const [saveRipple, setSaveRipple] = useState<boolean>(false);
     const [errorCheck, setErrorCheck] = useState<boolean>(false);
+    const [resetClicked, setResetClicked] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -659,6 +660,8 @@ export default function Services() {
     // console.log(isEmpty);
     // console.log(allZero);
 
+    console.log(resetClicked);
+
     return (
         <>
             <Head>
@@ -713,7 +716,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false)}}
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false), setResetClicked(false)}}
                     >
                         End Demo Mode
                     </Button>     
@@ -784,7 +787,7 @@ export default function Services() {
             >
                 {student ? (
                 <>
-                    {adminPassword.length > 0 ? (
+                    {(adminPassword.length > 0 || resetClicked) ? (
                     <>
                         <button
                             className={styles.takeTest}
@@ -859,7 +862,7 @@ export default function Services() {
                                 >
                                     <Button
                                         color='red'
-                                        onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword('')}}
+                                        onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword(''), setResetClicked(true)}}
                                     >
                                         Reset Password
                                     </Button>
