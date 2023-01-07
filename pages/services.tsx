@@ -83,6 +83,7 @@ export default function Services() {
     const [saveRipple, setSaveRipple] = useState<boolean>(false);
     const [errorCheck, setErrorCheck] = useState<boolean>(false);
     const [resetClicked, setResetClicked] = useState<boolean>(false);
+    const [eye, setEye] = useState<boolean>(false);
 
     // List
     useEffect(() => {
@@ -837,7 +838,7 @@ export default function Services() {
                                 color: 'red',
                                 cursor: 'pointer'
                             }}
-                            onClick={() => {setNewModal(false), setErrorCheck(false)}}
+                            onClick={() => {setNewModal(false), setErrorCheck(false), setHide('password'), setEye(true)}}
                         >
                             x
                         </div>
@@ -913,7 +914,7 @@ export default function Services() {
                                             fontSize: '14px',
                                             fontWeight: '400',
                                             cursor: 'text',
-                                            width: '178.5px',
+                                            width: '220px',
                                             borderRadius: '4px',
                                             border: '1px solid rgba(34, 36, 38. 0.15)',
                                             position: 'relative',
@@ -921,6 +922,36 @@ export default function Services() {
                                         }}
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
+                                    {eye ? (
+                                    <>
+                                        <Icon
+                                            name='eye'
+                                            onClick={() => {setEye(false), setHide('text'), setShow(true)}}
+                                            style={{
+                                                transform: 'translate(90px, 14px) scale(1.1)', 
+                                                color: '#80808099', 
+                                                position: 'absolute', 
+                                                zIndex: '100',
+                                                cursor: 'pointer'
+                                            }}
+                                        />
+                                    </>    
+                                    ):(
+                                    <>
+                                        <Icon
+                                            name='eye'
+                                            onClick={() => {setEye(true), setHide('password'), setShow(false)}}
+                                            color='blue'
+                                            style={{
+                                                transform: 'translate(90px, 14px) scale(1.1)', 
+                                                color: '#80808099', 
+                                                position: 'absolute', 
+                                                zIndex: '100',
+                                                cursor: 'pointer'
+                                            }}
+                                        />
+                                    </>
+                                    )}
                                 </div>
                                 {(!sameReset && errorCheck) ? (
                                 <>
@@ -945,7 +976,7 @@ export default function Services() {
                                         marginBottom: '15px'
                                     }}
                                 >
-                                    {show ? (
+                                    {/* {show ? (
                                     <>
                                         <Checkbox
                                             onClick={() => {setHide('password'), setShow(false)}}
@@ -973,7 +1004,7 @@ export default function Services() {
                                             }}
                                         />
                                     </>
-                                    )}
+                                    )} */}
                                 </div>
                                 <div
                                     style={{
@@ -1059,15 +1090,36 @@ export default function Services() {
                                         zIndex: '100'
                                     }}
                                 />
-                                <Icon
-                                    name='eye'
-                                    style={{
-                                        transform: 'translate(72px, 14px) scale(1.1)', 
-                                        color: '#80808099', 
-                                        position: 'absolute', 
-                                        zIndex: '100'
-                                    }}
-                                />
+                                {eye ? (
+                                <>
+                                    <Icon
+                                        name='eye'
+                                        onClick={() => {setEye(false), setHide('text'), setShow(true)}}
+                                        style={{
+                                            transform: 'translate(72px, 14px) scale(1.1)', 
+                                            color: '#80808099', 
+                                            position: 'absolute', 
+                                            zIndex: '100',
+                                            cursor: 'pointer'
+                                        }}
+                                    />
+                                </>    
+                                ):(
+                                <>
+                                    <Icon
+                                        name='eye'
+                                        onClick={() => {setEye(true), setHide('password'), setShow(false)}}
+                                        color='blue'
+                                        style={{
+                                            transform: 'translate(72px, 14px) scale(1.1)', 
+                                            color: '#80808099', 
+                                            position: 'absolute', 
+                                            zIndex: '100',
+                                            cursor: 'pointer'
+                                        }}
+                                    />
+                                </>
+                                )}
                             </div>
                             {(!same && errorCheck) ? (
                                 <div
@@ -1085,7 +1137,7 @@ export default function Services() {
                                     Error: Admin Password is Invalid
                                 </div>
                             ): null}
-                            <div
+                            {/* <div
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center'
@@ -1120,7 +1172,7 @@ export default function Services() {
                                     />
                                 </>
                                 )}
-                            </div>
+                            </div> */}
                             <div
                                 style={{
                                     display: 'flex',
@@ -1193,7 +1245,7 @@ export default function Services() {
                         color: 'red',
                         cursor: 'pointer'
                     }}
-                    onClick={() => {setOpenModal(false), setAuth(false)}}
+                    onClick={() => {setOpenModal(false), setAuth(false), setHide('password'), setEye(true)}}
                 >
                     x
                 </div>
@@ -1274,15 +1326,36 @@ export default function Services() {
                                     zIndex: '100'
                                 }}
                             />
-                            <Icon
-                                name='eye'
-                                style={{
-                                    transform: 'translate(72px, 14px) scale(1.1)', 
-                                    color: '#80808099', 
-                                    position: 'absolute', 
-                                    zIndex: '100'
-                                }}
-                            />
+                            {eye ? (
+                            <>
+                                <Icon
+                                    name='eye'
+                                    onClick={() => {setEye(false), setHide('text'), setShow(true)}}
+                                    style={{
+                                        transform: 'translate(72px, 14px) scale(1.1)', 
+                                        color: '#80808099', 
+                                        position: 'absolute', 
+                                        zIndex: '100',
+                                        cursor: 'pointer'
+                                    }}
+                                />
+                            </>    
+                            ):(
+                            <>
+                                <Icon
+                                    name='eye'
+                                    onClick={() => {setEye(true), setHide('password'), setShow(false)}}
+                                    color='blue'
+                                    style={{
+                                        transform: 'translate(72px, 14px) scale(1.1)', 
+                                        color: '#80808099', 
+                                        position: 'absolute', 
+                                        zIndex: '100',
+                                        cursor: 'pointer'
+                                    }}
+                                />
+                            </>
+                            )}
                         </div>
                         <div
                             style={{
@@ -1336,15 +1409,36 @@ export default function Services() {
                                     zIndex: '100'
                                 }}
                             />
-                            <Icon
-                                name='eye'
-                                style={{
-                                    transform: 'translate(72px, 14px) scale(1.1)', 
-                                    color: '#80808099', 
-                                    position: 'absolute', 
-                                    zIndex: '100'
-                                }}
-                            />
+                            {eye ? (
+                            <>
+                                <Icon
+                                    name='eye'
+                                    onClick={() => {setEye(false), setHide('text'), setShow(true)}}
+                                    style={{
+                                        transform: 'translate(72px, 14px) scale(1.1)', 
+                                        color: '#80808099', 
+                                        position: 'absolute', 
+                                        zIndex: '100',
+                                        cursor: 'pointer'
+                                    }}
+                                />
+                            </>    
+                            ):(
+                            <>
+                                <Icon
+                                    name='eye'
+                                    onClick={() => {setEye(true), setHide('password'), setShow(false)}}
+                                    color='blue'
+                                    style={{
+                                        transform: 'translate(72px, 14px) scale(1.1)', 
+                                        color: '#80808099', 
+                                        position: 'absolute', 
+                                        zIndex: '100',
+                                        cursor: 'pointer'
+                                    }}
+                                />
+                            </>
+                            )}
                         </div>
                         {(!auth && errorCheck) ? (
                         <>
@@ -1384,7 +1478,7 @@ export default function Services() {
                         </div>
                     </>
                     )}
-                    <div
+                    {/* <div
                         style={{
                             display: 'flex',
                             justifyContent: 'center'
@@ -1419,7 +1513,7 @@ export default function Services() {
                             />
                         </>
                         )}
-                    </div>
+                    </div> */}
                     <div
                         style={{
                             display: 'flex',
