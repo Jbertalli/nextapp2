@@ -34,6 +34,7 @@ const LOCAL_STORAGE_KEY_ADMIN_EMAIL = 'AdminEmail';
 const LOCAL_STORAGE_KEY_DEMO = 'Demo';
 const LOCAL_STORAGE_KEY_CREATED = 'Created';
 const LOCAL_STORAGE_KEY_SAVE_RIPPLE = 'Ripple';
+const LOCAL_STORAGE_KEY_RESET_CLICKED = 'ResetClicked';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -401,6 +402,17 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_SAVE_RIPPLE, 
         JSON.stringify(saveRipple))
     }, [saveRipple]);
+
+    // ResetClicked
+    useEffect(() => {
+        const storedResetClicked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_RESET_CLICKED))
+        if (storedResetClicked) setResetClicked(storedResetClicked)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_RESET_CLICKED, 
+        JSON.stringify(resetClicked))
+    }, [resetClicked]);
     
     // console.log(serviceList[0].service);
 
@@ -659,8 +671,6 @@ export default function Services() {
     let allZero = isEmpty.every(num => num === 0);
     // console.log(isEmpty);
     // console.log(allZero);
-
-    console.log(resetClicked);
 
     return (
         <>
