@@ -1676,6 +1676,11 @@ export default function Services() {
                                         <div>
                                             <Button
                                                 onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false)}}
+                                                style={{
+                                                    border: `2px solid ${textColor}`,
+                                                    background: 'transparent',
+                                                    color: `${textColor}`
+                                                }}
                                             >
                                                 Switch to Admin
                                             </Button>
@@ -1686,6 +1691,11 @@ export default function Services() {
                                         <div>
                                             <Button
                                                 onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
+                                                style={{
+                                                    border: `2px solid ${textColor}`,
+                                                    background: 'transparent',
+                                                    color: `${textColor}`
+                                                }}
                                             >
                                                 Switch to Student&nbsp;&nbsp;&nbsp;
                                                 <span>
@@ -1717,9 +1727,14 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
+                                        // color='blue'
                                         disabled={allZero}
-                                        color='blue'
                                         onClick={() => setFinish(true)}
+                                        style={{
+                                            border: '2px solid #21BA45',
+                                            background: 'transparent',
+                                            color: '#21BA45'
+                                        }}
                                     >
                                         Submit Test
                                     </Button>
@@ -1734,8 +1749,12 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
-                                        color='red'
-                                        onClick={() => setFinish(false)}                        
+                                        onClick={() => setFinish(false)}   
+                                        style={{
+                                            border: '2px solid red',
+                                            background: 'transparent',
+                                            color: 'red'
+                                        }}                     
                                     >
                                         Edit Test
                                     </Button>
@@ -1867,6 +1886,11 @@ export default function Services() {
                                                 color='green'
                                                 disabled={!isValid} 
                                                 onClick={send}
+                                                style={{
+                                                    border: '2px solid #21BA45',
+                                                    background: 'transparent',
+                                                    color: '#21BA45'
+                                                }}
                                             >
                                                 Email Grade
                                             </Button>
@@ -1975,8 +1999,12 @@ export default function Services() {
                                                 }}
                                             >
                                                 <Button 
-                                                    color="blue"
                                                     onClick= {() => setNameClicked(true)}
+                                                    style={{
+                                                        border: `2px solid ${questionColor}`,
+                                                        background: 'transparent',
+                                                        color: `${questionColor}`
+                                                    }}
                                                 >
                                                     Save
                                                 </Button>
@@ -2059,6 +2087,11 @@ export default function Services() {
                                                 <Button 
                                                     color="blue"
                                                     onClick={() => setDateClicked(true)}
+                                                    style={{
+                                                        border: `2px solid ${questionColor}`,
+                                                        background: 'transparent',
+                                                        color: `${questionColor}`
+                                                    }}
                                                 >
                                                     Save
                                                 </Button>
@@ -2150,7 +2183,7 @@ export default function Services() {
                                         transform: 'translate(-1vw, -8px)',
                                         position: 'absolute'
                                     }}
-                                        onClick={() => setEdit(false)}
+                                        onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
                                 >
                                     <div
                                         style={{
@@ -2172,8 +2205,12 @@ export default function Services() {
                                             }}
                                         >
                                             <Button
-                                                color='red'
                                                 onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setSecond('0'), setTimed(false), setTimeClick(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
+                                                style={{
+                                                    border: '2px solid red',
+                                                    background: 'transparent',
+                                                    color: 'red'
+                                                }}
                                             >
                                                 Clear All Questions
                                             </Button>
@@ -2310,8 +2347,12 @@ export default function Services() {
                                             }}
                                         >
                                             <Button
-                                                color='blue'
                                                 onClick={() => setTimeClick(true)}
+                                                style={{
+                                                    border: `2px solid ${questionColor}`,
+                                                    background: 'transparent',
+                                                    color: `${questionColor}`
+                                                }}
                                             >
                                                 Set Timer (optional)
                                             </Button>
@@ -2325,7 +2366,7 @@ export default function Services() {
                     </>
                     ): null}
                     <div>
-                        <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} />
+                        <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} questionColor={questionColor} />
                     </div>
                     {!student ? (
                     <>
@@ -2635,8 +2676,12 @@ export default function Services() {
                                     {save ? (
                                     <>
                                         <Button
-                                            color='red'
                                             onClick={() => {setSave(false), setCreated(false), setTitleClicked(false)}}
+                                            style={{
+                                                border: '2px solid red',
+                                                background: 'transparent',
+                                                color: 'red'
+                                            }}
                                         >
                                             Edit Questions and Answers
                                         </Button>
@@ -2647,14 +2692,14 @@ export default function Services() {
                                             className={saveRipple ? styles.saveButton : null}
                                             onClick={() => {setSave(true), setCreated(true), setTitleClicked(true)}}
                                             style={{
-                                                background: '#21BA45',
+                                                background: 'transparent',
                                                 padding: '7px 21px 7px 21px',
-                                                color: 'white',
+                                                color: '#21BA45',
                                                 fontWeight: '700',
                                                 fontSize: '14px',
                                                 fontFamily: 'Nunito',
                                                 borderRadius: '.28571429rem',
-                                                border: '0px solid transparent'
+                                                border: '2px solid #21BA45'
                                             }}
                                         >
                                             Save Questions and Answers
@@ -2717,10 +2762,12 @@ export default function Services() {
                                             }}
                                         >
                                             <Button 
-                                                color="blue"
                                                 onClick={() => setTitleClicked(true)}
                                                 style={{
-                                                    position: 'absolute'
+                                                    position: 'absolute',
+                                                    border: '2px solid #125CA1',
+                                                    background: 'transparent',
+                                                    color: '#125CA1'
                                                 }}
                                             >
                                                 Save
@@ -2759,8 +2806,12 @@ export default function Services() {
                                         }}
                                     >
                                         <Button 
-                                            color="blue"
                                             onClick={() => {setTitle(''), setTitleClicked(false)}}
+                                            style={{
+                                                border: '2px solid #125CA1',
+                                                background: 'transparent',
+                                                color: '#125CA1'
+                                            }}
                                         >
                                             Edit Title
                                         </Button>
@@ -2994,7 +3045,7 @@ export default function Services() {
                                                     <Button
                                                         onClick={() => handleServiceRemove(index)}
                                                         style={{
-                                                            border: '1px solid red',
+                                                            border: '2px solid red',
                                                             background: 'transparent',
                                                             color: 'red'
                                                         }}
@@ -3101,7 +3152,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed }) {
+function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed, questionColor }) {
     const {
       seconds,
       minutes,
@@ -3151,7 +3202,10 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                             onClick={() => {setTimed(false), setIsTimed(false)}}
                             style={{
                                 marginTop: '40px',
-                                marginBottom: '55px'
+                                marginBottom: '55px',
+                                border: `2px solid red`,
+                                background: 'transparent',
+                                color: `red`
                             }}
                         >
                             Reset Time Limit
@@ -3173,8 +3227,12 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                                 onClick={pause}
                             >
                                 <Button 
-                                    color='blue'
                                     onClick={() => {setTimed(true), restart(time), setIsTimed(true)}}
+                                    style={{
+                                        border: `2px solid ${questionColor}`,
+                                        background: 'transparent',
+                                        color: `${questionColor}`
+                                    }}
                                 >
                                     Set Time Limit
                                 </Button>
