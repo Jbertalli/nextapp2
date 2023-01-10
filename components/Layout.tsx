@@ -21,43 +21,47 @@ const Layout = ({ children, user }) => {
             <Navbar user={user} />
                 {!night ? (
                 <>
-                    <Button
-                        onClick={() => {setNight(true), setBackground('#313e4c')}}
-                        style={{
-                            position: 'absolute',
-                            marginTop: '1vw',
-                            marginLeft: '1vw',
-                            background: 'black',
-                            color: 'white'
-                        }}
-                    >
-                        <Icon
-                            name='moon'
-                        />
-                        Night Mode
-                    </Button>
+                    {router.pathname !== "/services" &&
+                        <Button
+                            onClick={() => {setNight(true), setBackground('#313e4c')}}
+                            style={{
+                                position: 'absolute',
+                                marginTop: '1vw',
+                                marginLeft: '1vw',
+                                background: 'black',
+                                color: 'white'
+                            }}
+                        >
+                            <Icon
+                                name='moon'
+                            />
+                            Night Mode
+                        </Button>
+                    }
                 </>
                 ):(
                 <>
-                    <Button
-                        onClick={() => {setNight(false), setBackground('#f2f2f2')}}
-                        style={{
-                            position: 'absolute',
-                            marginTop: '1vw',
-                            marginLeft: '1vw',
-                            background: 'white',
-                            color: 'black'
-                        }}
-                    >
-                        <Icon
-                            name='sun'    
-                        />
-                        Day Mode
-                    </Button>
+                    {router.pathname !== "/services" &&
+                        <Button
+                            onClick={() => {setNight(false), setBackground('#f2f2f2')}}
+                            style={{
+                                position: 'absolute',
+                                marginTop: '1vw',
+                                marginLeft: '1vw',
+                                background: 'white',
+                                color: 'black'
+                            }}
+                        >
+                            <Icon
+                                name='sun'    
+                            />
+                            Day Mode
+                        </Button>
+                    }
                 </>
                 )}
                 {children}
-            {router.pathname !== "/404" && 
+            {router.pathname !== "/404" || router.pathname !== "/services" && 
                 <div style={{ marginTop: '80px' }}>
                     <Footer />
                 </div>
