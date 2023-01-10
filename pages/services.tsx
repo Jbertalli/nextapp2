@@ -85,7 +85,7 @@ export default function Services() {
     const [resetClicked, setResetClicked] = useState<boolean>(false);
     const [eye, setEye] = useState<boolean>(false);
     const [night, setNight] = useState<boolean>(false);
-    const [background, setBackground] = useState<string>('#f2f2f2');
+    const [background, setBackground] = useState<string>('white');
     const [textColor, setTextColor] = useState<string>('black');
     const [questionColor, setQuestionColor] = useState<string>('#125CA1');
 
@@ -686,7 +686,8 @@ export default function Services() {
             <div 
                 style={{ 
                     background: `${background}`,
-                    color: `${textColor}`
+                    color: `${textColor}`,
+                    height: '100vh'
                 }}
             >
                 {/* <div
@@ -694,7 +695,7 @@ export default function Services() {
                         display: 'flex',
                         justifyContent: 'space-around',
                         marginTop: '30px',
-                        color: '#125CA1',
+                        color: `${questionColor}`,
                         fontSize: '30px',
                         marginRight: '10%',
                         marginLeft: '10%'
@@ -728,7 +729,7 @@ export default function Services() {
                 {!night ? (
                 <>
                     <Button
-                        onClick={() => {setNight(true), setBackground('#313e4c'), setTextColor('#f2f2f2'), setQuestionColor('#f2f2f2')}}
+                        onClick={() => {setNight(true), setBackground('#202020'), setTextColor('#f2f2f2'), setQuestionColor('#f2f2f2')}}
                         style={{
                             position: 'absolute',
                             marginTop: '20px',
@@ -746,7 +747,7 @@ export default function Services() {
                 ):(
                 <>
                     <Button
-                        onClick={() => {setNight(false), setBackground('#f2f2f2'), setTextColor(''), setQuestionColor('#125CA1')}}
+                        onClick={() => {setNight(false), setBackground('white'), setTextColor(''), setQuestionColor('#125CA1')}}
                         style={{
                             position: 'absolute',
                             marginTop: '20px',
@@ -1762,7 +1763,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -1776,7 +1777,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Email Grade
@@ -1816,7 +1817,11 @@ export default function Services() {
                                         <h2>
                                             Email Recipient
                                         </h2>
-                                        <div>
+                                        <div
+                                            style={{
+                                                color: 'black'
+                                            }}
+                                        >
                                             <input
                                                 disabled={finish ? false : true}
                                                 type='email'
@@ -1886,7 +1891,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -1900,7 +1905,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Open Name and Date
@@ -1939,21 +1944,27 @@ export default function Services() {
                                         >
                                             Name
                                         </h2>
-                                        <input 
-                                            placeholder="Name"
-                                            style={{ 
-                                                padding: '9px 14px 9px 14px',
-                                                fontSize: '14px',
-                                                fontWeight: '400',
-                                                cursor: 'text',
-                                                width: '178.5px',
-                                                borderRadius: '4px',
-                                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                position: 'relative',
-                                                zIndex: '100'
+                                        <div
+                                            style={{
+                                                color: 'black'
                                             }}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
+                                        >
+                                            <input 
+                                                placeholder="Name"
+                                                style={{ 
+                                                    padding: '9px 14px 9px 14px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '400',
+                                                    cursor: 'text',
+                                                    width: '178.5px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                    position: 'relative',
+                                                    zIndex: '100'
+                                                }}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </div>
                                         {(name.length > 0) ? (
                                         <>
                                             <span 
@@ -2013,23 +2024,29 @@ export default function Services() {
                                         >
                                             Date
                                         </h2>
-                                        <input 
-                                            type="date"
-                                            placeholder="Date"
-                                            style={{ 
-                                                padding: '9px 14px 9px 14px',
-                                                fontSize: '14px',
-                                                fontWeight: '400',
-                                                cursor: 'text',
-                                                width: '178.5px',
-                                                borderRadius: '4px',
-                                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                position: 'relative',
-                                                zIndex: '100',
-                                                marginBottom: '10px'
+                                        <div
+                                            style={{
+                                                color: 'black'
                                             }}
-                                            onChange={(e) => setDate(e.target.value)}
-                                        />
+                                        >
+                                            <input 
+                                                type="date"
+                                                placeholder="Date"
+                                                style={{ 
+                                                    padding: '9px 14px 9px 14px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '400',
+                                                    cursor: 'text',
+                                                    width: '178.5px',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                    position: 'relative',
+                                                    zIndex: '100',
+                                                    marginBottom: '10px'
+                                                }}
+                                                onChange={(e) => setDate(e.target.value)}
+                                            />
+                                        </div>
                                         {(date.length > 0) ? (
                                         <>
                                             <span 
@@ -2100,7 +2117,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -2114,7 +2131,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Edit Test
@@ -2191,7 +2208,8 @@ export default function Services() {
                                                     <div
                                                         style={{
                                                             display: 'flex',
-                                                            justifyContent: 'center'
+                                                            justifyContent: 'center',
+                                                            color: 'black'
                                                         }}
                                                     >
                                                         <input
@@ -2231,7 +2249,8 @@ export default function Services() {
                                                     <div
                                                         style={{
                                                             display: 'flex',
-                                                            justifyContent: 'center'
+                                                            justifyContent: 'center',
+                                                            color: 'black'
                                                         }}
                                                     >
                                                         <input
@@ -2325,7 +2344,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -2339,7 +2358,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Open Question Key
@@ -2420,7 +2439,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -2434,7 +2453,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Open Answer Key
@@ -2519,7 +2538,7 @@ export default function Services() {
                                         style={{ 
                                             marginLeft: '-25px',
                                             display: 'flex',
-                                            color: '#125CA1',
+                                            color: `${questionColor}`,
                                             transform: 'translateY(100%) scale(0.8)'
                                         }}
                                     >
@@ -2533,7 +2552,7 @@ export default function Services() {
                                             justifyContent: 'center',
                                             fontSize: '20px', 
                                             fontWeight: '700',
-                                            color: '#125CA1'
+                                            color: `${questionColor}`
                                         }}
                                     >
                                         Open Student Answers
@@ -2667,7 +2686,8 @@ export default function Services() {
                                     <div 
                                         style={{ 
                                             display: 'flex', 
-                                            justifyContent: 'center' 
+                                            justifyContent: 'center',
+                                            color: 'black'
                                         }}
                                     >
                                         <input 
@@ -2802,25 +2822,31 @@ export default function Services() {
                                             </>
                                             ):(
                                             <>
-                                                <input
-                                                    name='service'
-                                                    type='text'
-                                                    id='service'
-                                                    placeholder='Question'
-                                                    value={singleService.service}
-                                                    onChange={(e) => handleQuestionChange(e, index)}
+                                                <div
                                                     style={{
-                                                        padding: '9px 14px 9px 14px',
-                                                        fontSize: '14px',
-                                                        fontWeight: '400',
-                                                        cursor: 'text',
-                                                        width: '178.5px',
-                                                        borderRadius: '4px',
-                                                        border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                        position: 'relative',
-                                                        zIndex: '100'
+                                                        color: 'black'
                                                     }}
-                                                />
+                                                >
+                                                    <input
+                                                        name='service'
+                                                        type='text'
+                                                        id='service'
+                                                        placeholder='Question'
+                                                        value={singleService.service}
+                                                        onChange={(e) => handleQuestionChange(e, index)}
+                                                        style={{
+                                                            padding: '9px 14px 9px 14px',
+                                                            fontSize: '14px',
+                                                            fontWeight: '400',
+                                                            cursor: 'text',
+                                                            width: '178.5px',
+                                                            borderRadius: '4px',
+                                                            border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                            position: 'relative',
+                                                            zIndex: '100'
+                                                        }}
+                                                    />
+                                                </div>
                                             </>
                                             )}
                                             {!student ? (
@@ -2840,25 +2866,31 @@ export default function Services() {
                                                 </>
                                                 ):(
                                                 <>
-                                                    <input
-                                                        name='answer'
-                                                        type='text'
-                                                        id='answer'
-                                                        placeholder='Answer'
-                                                        value={singleService.answer}
-                                                        onChange={(e) => handleAnswerChange(e, index)}
+                                                    <div
                                                         style={{
-                                                            padding: '9px 14px 9px 14px',
-                                                            fontSize: '14px',
-                                                            fontWeight: '400',
-                                                            cursor: 'text',
-                                                            width: '178.5px',
-                                                            borderRadius: '4px',
-                                                            border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                            position: 'relative',
-                                                            zIndex: '100'
+                                                            color: 'black'
                                                         }}
-                                                    />
+                                                    >
+                                                        <input
+                                                            name='answer'
+                                                            type='text'
+                                                            id='answer'
+                                                            placeholder='Answer'
+                                                            value={singleService.answer}
+                                                            onChange={(e) => handleAnswerChange(e, index)}
+                                                            style={{
+                                                                padding: '9px 14px 9px 14px',
+                                                                fontSize: '14px',
+                                                                fontWeight: '400',
+                                                                cursor: 'text',
+                                                                width: '178.5px',
+                                                                borderRadius: '4px',
+                                                                border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                                position: 'relative',
+                                                                zIndex: '100'
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </>
                                                 )}
                                             </>
@@ -2886,25 +2918,31 @@ export default function Services() {
                                                     </>
                                                     ):(
                                                     <>
-                                                        <input
-                                                            name='student'
-                                                            type='text'
-                                                            id='student'
-                                                            placeholder='Student Question'
-                                                            value={singleService.student}
-                                                            onChange={(e) => handleStudentAnswerChange(e, index)}
+                                                        <div
                                                             style={{
-                                                                padding: '9px 14px 9px 14px',
-                                                                fontSize: '14px',
-                                                                fontWeight: '400',
-                                                                cursor: 'text',
-                                                                width: '178.5px',
-                                                                borderRadius: '4px',
-                                                                border: '1px solid rgba(34, 36, 38. 0.15)',
-                                                                position: 'relative',
-                                                                zIndex: '100'
+                                                                color: 'black'
                                                             }}
-                                                        />
+                                                        >
+                                                            <input
+                                                                name='student'
+                                                                type='text'
+                                                                id='student'
+                                                                placeholder='Student Question'
+                                                                value={singleService.student}
+                                                                onChange={(e) => handleStudentAnswerChange(e, index)}
+                                                                style={{
+                                                                    padding: '9px 14px 9px 14px',
+                                                                    fontSize: '14px',
+                                                                    fontWeight: '400',
+                                                                    cursor: 'text',
+                                                                    width: '178.5px',
+                                                                    borderRadius: '4px',
+                                                                    border: '1px solid rgba(34, 36, 38. 0.15)',
+                                                                    position: 'relative',
+                                                                    zIndex: '100'
+                                                                }}
+                                                            />
+                                                        </div>
                                                     </>
                                                     )}
                                                 </div>
@@ -2954,8 +2992,12 @@ export default function Services() {
                                             <div>
                                                 {serviceList.length !== 1 && (
                                                     <Button
-                                                        color='red'
                                                         onClick={() => handleServiceRemove(index)}
+                                                        style={{
+                                                            border: '1px solid red',
+                                                            background: 'transparent',
+                                                            color: 'red'
+                                                        }}
                                                     >
                                                         <span>Remove Question #{index + 1}</span>
                                                     </Button>
@@ -3000,7 +3042,8 @@ export default function Services() {
                                     >
                                         <div 
                                             style={{ 
-                                                marginBottom: '5px'
+                                                marginBottom: '5px',
+                                                color: 'black'
                                             }}
                                         >
                                             <h1 
@@ -3024,7 +3067,8 @@ export default function Services() {
                                             <div
                                                 style={{
                                                     display: 'flex',
-                                                    justifyContent: 'center'
+                                                    justifyContent: 'center',
+                                                    color: 'black'
                                                 }}
                                             >
                                                 {percent}%
