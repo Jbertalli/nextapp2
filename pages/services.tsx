@@ -727,7 +727,7 @@ export default function Services() {
                 >
                     <Button
                         color='red'
-                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false), setResetClicked(false)}}
+                        onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false), setResetClicked(false), setEye(true), setHide('password'), setUserEmail('')}}
                     >
                         End Demo Mode
                     </Button>     
@@ -767,7 +767,7 @@ export default function Services() {
                         <div>
                             <button
                                 className={styles.takeTest}
-                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true), setNewPassword('')}}
+                                onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true), setNewPassword(''), setEye(true), setHide('password')}}
                                 style={{
                                     background: 'purple',
                                     padding: '7px 21px 7px 21px',
@@ -1047,7 +1047,7 @@ export default function Services() {
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => {setIsResetting(false), setErrorCheck(false)}}
+                                    onClick={() => {setIsResetting(false), setErrorCheck(false), setEye(true), setHide('password')}}
                                 >
                                     Enter Password?
                                 </Button>
@@ -1214,7 +1214,7 @@ export default function Services() {
                             >
                                 <Button
                                     color='red'
-                                    onClick={() => {setIsResetting(true), setErrorCheck(false)}}
+                                    onClick={() => {setIsResetting(true), setErrorCheck(false), setEye(true), setHide('password')}}
                                 >
                                     Forgot Password?
                                 </Button>
@@ -1366,7 +1366,7 @@ export default function Services() {
                         >
                             <Button
                                 disabled={((password.length > 0) && isValid) ? false : true}
-                                onClick={() => setClickPassword(false)}
+                                onClick={() => {setClickPassword(false), setEye(true), setHide('password')}}
                             >
                                 Set Admin Email & Password
                             </Button>
