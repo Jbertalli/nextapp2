@@ -1606,7 +1606,7 @@ export default function Services() {
                         )}
                     </div>
                 </Modal>
-                <div
+                {/* <div
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -1614,16 +1614,33 @@ export default function Services() {
                         marginBottom: '5vh',
                         marginTop: '8vh',
                         fontFamily: 'sans-serif',
-                        fontWeight: '300'
+                        fontWeight: '300',
                     }}
                 >
                     Test Generator {demo ? 'Demo': null}
-                </div>
+                </div> */}
                 <Container
                     style={{ 
-                        margin: '3em'
+                        margin: '3em',
+                        border: `2px solid ${questionColor}`,
+                        borderRadius: '10px',
+                        padding: '3em',
+                        marginTop: '6vh'
                     }}
                 >
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '65px',
+                            marginBottom: '7vh',
+                            marginTop: '4vh',
+                            fontFamily: 'sans-serif',
+                            fontWeight: '300',
+                        }}
+                    >
+                        Test Generator {demo ? 'Demo': null}
+                    </div>
                     <Divider />
                     <div
                         style={{
@@ -2765,9 +2782,9 @@ export default function Services() {
                                                 onClick={() => setTitleClicked(true)}
                                                 style={{
                                                     position: 'absolute',
-                                                    border: '2px solid #125CA1',
+                                                    border: `2px solid ${questionColor}`,
                                                     background: 'transparent',
-                                                    color: '#125CA1'
+                                                    color: `${questionColor}`
                                                 }}
                                             >
                                                 Save
