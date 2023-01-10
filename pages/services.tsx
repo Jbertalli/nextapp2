@@ -4,6 +4,7 @@ import styles from '../styles/Test.module.css';
 import { Button, Divider, Icon, Card, Container, Modal, Checkbox } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
 import emailjs from 'emailjs-com';
+import hash from 'object-hash';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -35,6 +36,10 @@ const LOCAL_STORAGE_KEY_DEMO = 'Demo';
 const LOCAL_STORAGE_KEY_CREATED = 'Created';
 const LOCAL_STORAGE_KEY_SAVE_RIPPLE = 'Ripple';
 const LOCAL_STORAGE_KEY_RESET_CLICKED = 'ResetClicked';
+const LOCAL_STORAGE_KEY_NIGHT = 'Night';
+const LOCAL_STORAGE_KEY_BACKGROUND = 'Background';
+const LOCAL_STORAGE_KEY_TEXT_COLOR = 'TextColor';
+const LOCAL_STORAGE_KEY_QUESTION_COLOR = 'QuestionColor';
 
 export default function Services() {
     const [serviceList, setServiceList] = useState([{ service: '', answer: '', student: '' }]);
@@ -418,6 +423,50 @@ export default function Services() {
         localStorage.setItem(LOCAL_STORAGE_KEY_RESET_CLICKED, 
         JSON.stringify(resetClicked))
     }, [resetClicked]);
+
+    // Night
+    useEffect(() => {
+        const storedNight = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_NIGHT))
+        if (storedNight) setNight(storedNight)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_NIGHT, 
+        JSON.stringify(night))
+    }, [night])
+
+    // Background
+    useEffect(() => {
+        const storedBackground = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_BACKGROUND))
+        if (storedBackground) setBackground(storedBackground)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_BACKGROUND, 
+        JSON.stringify(background))
+    }, [background])
+
+    // Text Color
+    useEffect(() => {
+        const storedTextColor = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TEXT_COLOR))
+        if (storedTextColor) setTextColor(storedTextColor)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_TEXT_COLOR, 
+        JSON.stringify(textColor))
+    }, [textColor])
+
+    // Question Color
+    useEffect(() => {
+        const storedQuestionColor = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_QUESTION_COLOR))
+        if (storedQuestionColor) setQuestionColor(storedQuestionColor)
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY_QUESTION_COLOR, 
+        JSON.stringify(questionColor))
+    }, [questionColor])
     
     // console.log(serviceList[0].service);
 
@@ -677,6 +726,9 @@ export default function Services() {
     // console.log(isEmpty);
     // console.log(allZero);
 
+    // console.log(password);
+    // console.log(hash(password));
+
     return (
         <>
             <Head>
@@ -687,7 +739,7 @@ export default function Services() {
                 style={{ 
                     background: `${background}`,
                     color: `${textColor}`,
-                    height: '100vh'
+                    height: '100%'
                 }}
             >
                 {/* <div
@@ -774,8 +826,12 @@ export default function Services() {
                         }}
                     >
                         <Button
-                            color='red'
                             onClick={() => {setDemo(false), setStudent(false), setEdit(false), setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setIsResetting(false), setNewPassword(''), setSave(false), setCreated(false), setTitleClicked(false), setSaveRipple(false), setResetClicked(false), setEye(true), setHide('password'), setUserEmail('')}}
+                            style={{
+                                border: '2px solid red',
+                                background: 'transparent',
+                                color: 'red'
+                            }}
                         >
                             End Demo Mode
                         </Button>     
@@ -792,8 +848,12 @@ export default function Services() {
                         }}
                     >
                         <Button
-                            color='black'
                             onClick={() => {setOpenModal(true), setStudent(false)}}
+                            style={{
+                                border: `2px solid ${textColor}`,
+                                background: 'transparent',
+                                color: `${textColor}`
+                            }}
                         >
                             Demo Mode
                         </Button>     
@@ -838,7 +898,6 @@ export default function Services() {
                 <div
                     style={{
                         marginRight: '1vw',
-                        marginTop: '1vh',
                         display: 'flex',
                         justifyContent: 'flex-end',
                         marginBottom: '-50px'
@@ -920,14 +979,22 @@ export default function Services() {
                                         }}
                                     >
                                         <Button
-                                            color='red'
                                             onClick={() => {randomString(20), setResetPassword(randomString(20)), setAdminPassword(''), setResetClicked(true)}}
+                                            style={{
+                                                border: '2px solid red',
+                                                background: 'transparent',
+                                                color: 'red'
+                                            }}
                                         >
                                             Reset Password
                                         </Button>
                                         <Button
-                                            color='green'
                                             onClick={() => {sendResetEmail(), setPassword(resetPassword)}}
+                                            style={{
+                                                border: '2px solid #21BA45',
+                                                background: 'transparent',
+                                                color: '#21BA45'
+                                            }}
                                         >
                                             Email New Password
                                         </Button>
@@ -1061,8 +1128,12 @@ export default function Services() {
                                         }}
                                     >
                                         <Button
-                                            color='blue'
                                             onClick={() => {resetMatch(), setCreated(false), setErrorCheck(true)}}
+                                            style={{
+                                                border: '2px solid #125CA1',
+                                                background: 'transparent',
+                                                color: '#125CA1'
+                                            }}
                                         >
                                             Submit
                                         </Button>
@@ -1070,6 +1141,11 @@ export default function Services() {
                                         <>
                                             <Button
                                                 onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false), setErrorCheck(false)}}
+                                                style={{
+                                                    border: '2px solid black',
+                                                    background: 'transparent',
+                                                    color: 'black'
+                                                }}
                                             >
                                                 Go to Admin
                                             </Button>
@@ -1094,8 +1170,12 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
-                                        color='red'
                                         onClick={() => {setIsResetting(false), setErrorCheck(false), setEye(true), setHide('password')}}
+                                        style={{
+                                            border: '2px solid red',
+                                            background: 'transparent',
+                                            color: 'red'
+                                        }}
                                     >
                                         Enter Password?
                                     </Button>
@@ -1229,8 +1309,12 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
-                                        color='blue'
                                         onClick={() => {match(), setCreated(false), setErrorCheck(true)}}
+                                        style={{
+                                            border: '2px solid #125CA1',
+                                            background: 'transparent',
+                                            color: '#125CA1'
+                                        }}
                                     >
                                         Submit
                                     </Button>
@@ -1238,6 +1322,11 @@ export default function Services() {
                                     <>
                                         <Button
                                             onClick={() => {setStudent(false), setHideAdmin(false), setSave(false), setNewModal(false), setClickPassword(true), setAuth(false), setErrorCheck(false)}}
+                                            style={{
+                                                border: '2px solid black',
+                                                background: 'transparent',
+                                                color: 'black'
+                                            }}
                                         >
                                             Go to Admin
                                         </Button>
@@ -1261,8 +1350,12 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
-                                        color='red'
                                         onClick={() => {setIsResetting(true), setErrorCheck(false), setEye(true), setHide('password')}}
+                                        style={{
+                                            border: '2px solid red',
+                                            background: 'transparent',
+                                            color: 'red'
+                                        }}
                                     >
                                         Forgot Password?
                                     </Button>
@@ -1415,6 +1508,11 @@ export default function Services() {
                                 <Button
                                     disabled={((password.length > 0) && isValid) ? false : true}
                                     onClick={() => {setClickPassword(false), setEye(true), setHide('password')}}
+                                    style={{
+                                        border: '2px solid #125CA1',
+                                        background: 'transparent',
+                                        color: '#125CA1'
+                                    }}
                                 >
                                     Set Admin Email & Password
                                 </Button>
@@ -1512,14 +1610,23 @@ export default function Services() {
                                 }}
                             >
                                 <Button
-                                    color='blue'
                                     disabled={adminPassword.length > 0 ? false : true}
                                     onClick={() => {matchPass(), setErrorCheck(true)}}
+                                    style={{
+                                        border: '2px solid #125CA1',
+                                        background: 'transparent',
+                                        color: '#125CA1'
+                                    }}
                                 >
                                     Submit
                                 </Button>
                                 <Button
                                     onClick={() => {setClickPassword(true), setPassword(''), setAdminPassword(''), setAdminEmail(''), setAuth(false), setErrorCheck(false)}}
+                                    style={{
+                                        border: '2px solid red',
+                                        background: 'transparent',
+                                        color: 'red'
+                                    }}
                                 >
                                     Reset Admin Email & Password
                                 </Button>
@@ -1577,8 +1684,12 @@ export default function Services() {
                                     Take Test
                                 </Button> */}
                                 <Button
-                                    color='green'
                                     onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setTitleClicked(false), setSaveRipple(true), setErrorCheck(false)}}
+                                    style={{
+                                        border: '2px solid #21BA45',
+                                        background: 'transparent',
+                                        color: '#21BA45'
+                                    }}
                                 >
                                     Create New Test
                                 </Button>
@@ -1596,8 +1707,12 @@ export default function Services() {
                                 }}
                             >
                                 <Button
-                                    color='green'
                                     onClick={() => setCreating(true)}
+                                    style={{
+                                        border: '2px solid #21BA45',
+                                        background: 'transparent',
+                                        color: '#21BA45'
+                                    }}
                                 >
                                     Create a Test
                                 </Button>
@@ -1621,11 +1736,11 @@ export default function Services() {
                 </div> */}
                 <Container
                     style={{ 
-                        margin: '3em',
                         border: `2px solid ${questionColor}`,
                         borderRadius: '10px',
                         padding: '3em',
-                        marginTop: '6vh'
+                        marginTop: '9vh',
+                        marginBottom: '100px'
                     }}
                 >
                     <div
@@ -1744,7 +1859,6 @@ export default function Services() {
                                     }}
                                 >
                                     <Button
-                                        // color='blue'
                                         disabled={allZero}
                                         onClick={() => setFinish(true)}
                                         style={{
@@ -1900,7 +2014,6 @@ export default function Services() {
                                             }}
                                         >
                                             <Button
-                                                color='green'
                                                 disabled={!isValid} 
                                                 onClick={send}
                                                 style={{
@@ -2728,11 +2841,7 @@ export default function Services() {
                             </>
                             ): null}
                         </div>
-                        <div
-                            style={{
-                                transform: 'translate(-13px)'
-                            }}
-                        >
+                        <div>
                             {!titleClicked ? (
                             <>
                                 <div>
@@ -3079,8 +3188,12 @@ export default function Services() {
                                                 <div>
                                                     {serviceList.length - 1 === index && (
                                                         <Button
-                                                            color='blue'
                                                             onClick={handleAddService}
+                                                            style={{
+                                                                border: `2px solid ${questionColor}`,
+                                                                background: 'transparent',
+                                                                color: `${questionColor}`
+                                                            }}
                                                         >
                                                         <span>Add a Question</span>
                                                         </Button>
@@ -3254,19 +3367,6 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                                     Set Time Limit
                                 </Button>
                             </div>
-                            {/* <button onClick={pause}>
-                                Pause
-                            </button>
-                            <button onClick={resume}>
-                                Resume
-                            </button>
-                            <button onClick={() => {
-                                const time = new Date();
-                                time.setSeconds(time.getSeconds() + secondTime);
-                                restart(time);
-                            }}>
-                                Restart
-                            </button> */}
                         </div>
                     </>
                     ): null}
@@ -3295,8 +3395,12 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                                 }}
                             >
                                 <Button
-                                    color='red'
-                                    onClick={() => {setFinish(false), restart(time)}}                        
+                                    onClick={() => {setFinish(false), restart(time)}}      
+                                    style={{
+                                        border: '2px solid red',
+                                        background: 'transparent',
+                                        color: 'red'
+                                    }}                  
                                 >
                                     Restart Test
                                 </Button>
@@ -3306,8 +3410,10 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                         <>
                             <div>
                                 <Button
-                                    color='blue'
                                     style={{
+                                        border: '2px solid #125CA1',
+                                        background: 'transparent',
+                                        color: '#125CA1',
                                         transform: 'translateY(-10px)'
                                     }}
                                     disabled={isRunning}
