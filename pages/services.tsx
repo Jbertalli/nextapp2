@@ -740,7 +740,9 @@ export default function Services() {
                     background: `${background}`,
                     color: `${textColor}`,
                     minHeight: '100vh',
-                    height: '100%'
+                    height: '100%',
+                    transform: 'translateY(-10px)',
+                    paddingBottom: '1px'
                 }}
             >
                 {/* <div
