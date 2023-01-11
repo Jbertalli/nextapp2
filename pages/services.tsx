@@ -4,7 +4,7 @@ import styles from '../styles/Test.module.css';
 import { Button, Divider, Icon, Card, Container, Modal, Checkbox } from 'semantic-ui-react';
 import { useTimer } from 'react-timer-hook';
 import emailjs from 'emailjs-com';
-import hash from 'object-hash';
+// import hash from 'object-hash';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -1949,7 +1949,8 @@ export default function Services() {
                                         marginRight: '25px',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => setOpenEmail(false)}
+                                    className={styles.open}
+                                    onClick={() => setOpenEmail(false)}
                                 >
                                     <div
                                         style={{
@@ -2081,7 +2082,8 @@ export default function Services() {
                                         marginRight: '25px',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => setOpenNameDate(false)}
+                                    className={styles.open}
+                                    onClick={() => setOpenNameDate(false)}
                                 >
                                     <div
                                         style={{
@@ -2315,7 +2317,8 @@ export default function Services() {
                                         cursor: 'pointer',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
+                                    className={styles.open}
+                                    onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
                                 >
                                     <div
                                         style={{
@@ -2533,7 +2536,8 @@ export default function Services() {
                                         marginRight: '25px',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => setOpenQuestionKey(false)}
+                                    className={styles.open}
+                                    onClick={() => setOpenQuestionKey(false)}
                                 >
                                     <div
                                         style={{
@@ -2628,7 +2632,8 @@ export default function Services() {
                                         marginRight: '25px',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => setOpenAnswerKey(false)}
+                                    className={styles.open}
+                                    onClick={() => setOpenAnswerKey(false)}
                                 >
                                     <div
                                         style={{
@@ -2727,7 +2732,8 @@ export default function Services() {
                                         marginRight: '25px',
                                         transform: 'translate(-1vw, -5px)'
                                     }}
-                                        onClick={() => setOpenStudentAnswers(false)}
+                                    className={styles.open}
+                                    onClick={() => setOpenStudentAnswers(false)}
                                 >
                                     <div
                                         style={{
