@@ -2299,7 +2299,7 @@ export default function Services() {
                                             color: `${questionColor}`
                                         }}
                                     >
-                                        Edit Test
+                                        Create Timer
                                     </div>
                                 </div>
                             </>
@@ -2311,9 +2311,7 @@ export default function Services() {
                                         display: 'flex',
                                         justifyContent: 'flex-end',
                                         cursor: 'pointer',
-                                        // marginRight: '25px',
-                                        transform: 'translate(-1vw, -5px)',
-                                        // position: 'absolute'
+                                        transform: 'translate(-1vw, -5px)'
                                     }}
                                         onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
                                 >
@@ -2326,7 +2324,7 @@ export default function Services() {
                                         x
                                     </div>
                                 </Container>
-                                <div>
+                                {/* <div>
                                     {serviceList.length > 1 ? (
                                     <>
                                         <div
@@ -2349,7 +2347,7 @@ export default function Services() {
                                         </div>
                                     </>
                                     ): null}
-                                </div>
+                                </div> */}
                                 <div>
                                     {timeClick ? (
                                     <>
@@ -2444,52 +2442,35 @@ export default function Services() {
                                                         />
                                                     </div>
                                                 </div>
-                                                {/* <Container
-                                                    style={{ 
-                                                        color: 'red',
-                                                        display: 'flex',
-                                                        justifyContent: 'center',
-                                                        cursor: 'pointer',
-                                                        // marginRight: '25px',
-                                                        transform: 'translate(0px, 36px)',
-                                                        position: 'absolute'
-                                                    }}
-                                                        onClick={() => {setTimeClick(false), setIsTimed(false)}}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            transform: 'scale(2)',
-                                                            zIndex: '10'
-                                                        }}
-                                                    >
-                                                        xk
-                                                    </div>
-                                                </Container> */}
                                             </>
                                             ): null}
                                         </div>
                                     </>
                                     ):(
                                     <>
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                marginTop: '20px',
-                                                marginBottom: '30px'
-                                            }}
-                                        >
-                                            <Button
-                                                onClick={() => setTimeClick(true)}
+                                        {!timed ? (
+                                        <>
+                                            <div
                                                 style={{
-                                                    border: `2px solid ${questionColor}`,
-                                                    background: 'transparent',
-                                                    color: `${questionColor}`
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    marginTop: '0px',
+                                                    marginBottom: '30px'
                                                 }}
                                             >
-                                                Set Timer (optional)
-                                            </Button>
-                                        </div>
+                                                <Button
+                                                    onClick={() => setTimeClick(true)}
+                                                    style={{
+                                                        border: `2px solid ${questionColor}`,
+                                                        background: 'transparent',
+                                                        color: `${questionColor}`
+                                                    }}
+                                                >
+                                                    Set Timer (optional)
+                                                </Button>
+                                            </div>
+                                        </>
+                                        ): null}
                                     </>
                                     )}
                                 </div>
@@ -2803,7 +2784,8 @@ export default function Services() {
                                 <div
                                     style={{
                                         display: 'flex',
-                                        justifyContent: 'center'
+                                        justifyContent: 'center',
+                                        marginTop: '20px'
                                     }}
                                 >
                                     {save ? (
@@ -2839,6 +2821,43 @@ export default function Services() {
                                         </button>
                                     </>
                                     )}
+                                </div>
+                                <div>
+                                    {!student ? (
+                                    <>
+                                        <div
+                                            style={{
+                                                marginTop: '5px',
+                                                display: 'flex',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            {serviceList.length > 1 ? (
+                                            <>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        transform: 'translateY(10px)',
+                                                        marginBottom: '15px'
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() => {setServiceList([{ service: '', answer: '', student: '' }]), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setSave(false), setName(''), setDate(''), setTitle(''), setNameClicked(false), setNameClicked(false), setDateClicked(false), setTitleClicked(false), setSecond('0'), setTimed(false), setTimeClick(false), setOpenEmail(false), setUserEmail(''), setFinish(false)}}
+                                                        style={{
+                                                            border: '2px solid red',
+                                                            background: 'transparent',
+                                                            color: 'red'
+                                                        }}
+                                                    >
+                                                        Clear All Questions
+                                                    </Button>
+                                                </div>
+                                            </>
+                                            ): null}
+                                        </div>
+                                    </>
+                                    ): null}
                                 </div>
                                 <Divider />
                             </>
