@@ -12,8 +12,7 @@ const Layout = ({ children, user }) => {
 
     return (
         <div 
-            className={styles.container} 
-            // night mode button
+            className={styles.container}
             style={{ 
                 background: `${background}`
             }}

@@ -739,6 +739,7 @@ export default function Services() {
                 style={{ 
                     background: `${background}`,
                     color: `${textColor}`,
+                    minHeight: '100vh',
                     height: '100%'
                 }}
             >
@@ -1707,7 +1708,7 @@ export default function Services() {
                                 }}
                             >
                                 <Button
-                                    onClick={() => setCreating(true)}
+                                    onClick={() => {setCreating(true), setEye(false)}}
                                     style={{
                                         border: '2px solid #21BA45',
                                         background: 'transparent',
@@ -1752,6 +1753,7 @@ export default function Services() {
                             marginTop: '4vh',
                             fontFamily: 'sans-serif',
                             fontWeight: '300',
+                            color: `${questionColor}`
                         }}
                     >
                         Test Generator {demo ? 'Demo': null}
@@ -2309,9 +2311,9 @@ export default function Services() {
                                         display: 'flex',
                                         justifyContent: 'flex-end',
                                         cursor: 'pointer',
-                                        marginRight: '25px',
-                                        transform: 'translate(-1vw, -8px)',
-                                        position: 'absolute'
+                                        // marginRight: '25px',
+                                        transform: 'translate(-1vw, -5px)',
+                                        // position: 'absolute'
                                     }}
                                         onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
                                 >
@@ -2331,7 +2333,7 @@ export default function Services() {
                                             style={{
                                                 display: 'flex',
                                                 justifyContent: 'center',
-                                                transform: 'translateY(20px)'
+                                                transform: 'translateY(-10px)'
                                             }}
                                         >
                                             <Button
@@ -2354,7 +2356,8 @@ export default function Services() {
                                         <div
                                             style={{
                                                 display: 'flex',
-                                                justifyContent: 'center'
+                                                justifyContent: 'center',
+                                                transform: 'translateY(-20px)'
                                             }}
                                         >
                                             {!timed ? (
@@ -2441,14 +2444,14 @@ export default function Services() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <Container
+                                                {/* <Container
                                                     style={{ 
                                                         color: 'red',
                                                         display: 'flex',
-                                                        justifyContent: 'flex-end',
+                                                        justifyContent: 'center',
                                                         cursor: 'pointer',
-                                                        marginRight: '25px',
-                                                        transform: 'translate(-1vw, 40px)',
+                                                        // marginRight: '25px',
+                                                        transform: 'translate(0px, 36px)',
                                                         position: 'absolute'
                                                     }}
                                                         onClick={() => {setTimeClick(false), setIsTimed(false)}}
@@ -2459,9 +2462,9 @@ export default function Services() {
                                                             zIndex: '10'
                                                         }}
                                                     >
-                                                        x
+                                                        xk
                                                     </div>
-                                                </Container>
+                                                </Container> */}
                                             </>
                                             ): null}
                                         </div>
@@ -2472,7 +2475,7 @@ export default function Services() {
                                             style={{
                                                 display: 'flex',
                                                 justifyContent: 'center',
-                                                marginTop: '40px',
+                                                marginTop: '20px',
                                                 marginBottom: '30px'
                                             }}
                                         >
@@ -2496,7 +2499,7 @@ export default function Services() {
                     </>
                     ): null}
                     <div>
-                        <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} questionColor={questionColor} />
+                        <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} questionColor={questionColor} setTimeClick={setTimeClick} />
                     </div>
                     {!student ? (
                     <>
@@ -3185,7 +3188,12 @@ export default function Services() {
                                             ): null}
                                             {!save ? (
                                             <>
-                                                <div>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center'
+                                                    }}
+                                                >
                                                     {serviceList.length - 1 === index && (
                                                         <Button
                                                             onClick={handleAddService}
@@ -3195,7 +3203,7 @@ export default function Services() {
                                                                 color: `${questionColor}`
                                                             }}
                                                         >
-                                                        <span>Add a Question</span>
+                                                            Add a Question
                                                         </Button>
                                                     )}
                                                 </div>
@@ -3282,7 +3290,7 @@ export default function Services() {
     )
 }
 
-function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed, questionColor }) {
+function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, student, timed, setTimed, timeClick, edit, isTimed, setIsTimed, questionColor, setTimeClick }) {
     const {
       seconds,
       minutes,
@@ -3323,7 +3331,7 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                         <div 
                             style={{
                                 fontSize: '100px',
-                                marginTop: '15px'
+                                marginBottom: '15px'
                             }}
                         >
                             <span>{minutes}</span>:<span>{seconds}</span>
@@ -3349,8 +3357,8 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                     <>
                         <div
                             style={{
-                                marginBottom: '0px',
-                                transform: 'translateY(-50px)'
+                                marginBottom: '10px',
+                                transform: 'translateY(-62px)'
                             }}
                         >
                             <div
@@ -3365,6 +3373,17 @@ function MyTimer({ expiryTimestamp, secondTime, minuteTime, finish, setFinish, s
                                     }}
                                 >
                                     Set Time Limit
+                                </Button>
+                                <Button
+                                    onClick={() => {setTimeClick(false), setIsTimed(false)}}
+                                    style={{
+                                        border: '2px solid red',
+                                        background: 'transparent',
+                                        color: 'red',
+                                        marginTop: '10px'
+                                    }}
+                                >
+                                    Delete Time Limit
                                 </Button>
                             </div>
                         </div>
