@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Test.module.css';
-import { Button, Divider, Icon, Card, Container, Modal, Checkbox } from 'semantic-ui-react';
+import { Button, Divider, Icon, Card, Container, Checkbox } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';    
 import emailjs from 'emailjs-com';
 // import hash from 'object-hash';
@@ -9,6 +9,7 @@ import MyTimer from '../components/test_generator/MyTimer';
 import DemoModal from '../components/test_generator/DemoModal';
 import ReturnAdminModal from '../components/test_generator/ReturnAdminModal';
 import NightMode from '../components/test_generator/NightMode';
+import DemoMode from '../components/test_generator/DemoMode';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -809,44 +810,8 @@ export default function Services() {
                     </div>
                 </div> */}
                 <NightMode night={night} setNight={setNight} setBackground={setBackground} setTextColor={setTextColor} setQuestionColor={setQuestionColor} />
-                {/* {!night ? (
-                <>
-                    <Button
-                        onClick={() => {setNight(true), setBackground('#202020'), setTextColor('#f2f2f2'), setQuestionColor('#f2f2f2')}}
-                        style={{
-                            position: 'absolute',
-                            marginTop: '20px',
-                            marginLeft: '20px',
-                            background: 'black',
-                            color: 'white'
-                        }}
-                    >
-                        <Icon
-                            name='moon'
-                        />
-                        Night Mode
-                    </Button>
-                </>
-                ):(
-                <>
-                    <Button
-                        onClick={() => {setNight(false), setBackground('white'), setTextColor(''), setQuestionColor('#125CA1')}}
-                        style={{
-                            position: 'absolute',
-                            marginTop: '20px',
-                            marginLeft: '20px',
-                            background: 'white',
-                            color: 'black'
-                        }}
-                    >
-                        <Icon
-                            name='sun'    
-                        />
-                        Day Mode
-                    </Button>
-                </>
-                )} */}
-                {demo ? (
+                <DemoMode demo={demo} setDemo={setDemo} setStudent={setStudent} setEdit={setEdit} setClickPassword={setClickPassword} setPassword={setPassword} setAdminPassword={setAdminPassword} setAdminEmail={setAdminEmail} setAuth={setAuth} setIsResetting={setIsResetting} setNewPassword={setNewPassword} setSave={setSave} setCreated={setCreated} setTitleClicked={setTitleClicked} setSaveRipple={setSaveRipple} setResetClicked={setResetClicked} setEye={setEye} setHide={setHide} setUserEmail={setUserEmail} setOpenModal={setOpenModal} setResetTernary={setResetTernary} textColor={textColor} />
+                {/* {demo ? (
                 <>
                     <div
                         style={{
@@ -890,7 +855,7 @@ export default function Services() {
                         </Button>     
                     </div>
                 </>
-                )}
+                )} */}
                 {!student ? (
                 <>
                     <div
