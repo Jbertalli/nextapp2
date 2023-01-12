@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import emailjs from 'emailjs-com';
 import hash from 'object-hash';
 import MyTimer from '../components/test_generator/MyTimer';
+import DemoModal from '../components/test_generator/DemoModal';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -1393,7 +1394,8 @@ export default function Services() {
                     </>
                     ): null}  
                 </div>
-                <Modal
+                <DemoModal openModal={openModal} setOpenModal={setOpenModal} auth={auth} setAuth={setAuth} hide={hide} setHide={setHide} eye={eye} setEye={setEye} creating={creating} clickPassword={clickPassword} setClickPassword={setClickPassword} adminEmail={adminEmail} setAdminEmail={setAdminEmail} validEmail={validEmail} password={password} setPassword={setPassword} setShow={setShow} isValid={isValid} adminPassword={adminPassword} setAdminPassword={setAdminPassword} errorCheck={errorCheck} setErrorCheck={setErrorCheck} matchPass={matchPass} setFinish={setFinish} setDemo={setDemo} setServiceList={setServiceList} setCreating={setCreating} setSave={setSave} setCreated={setCreated} setTitle={setTitle} setTitleClicked={setTitleClicked} setSaveRipple={setSaveRipple} />
+                {/* <Modal
                     dimmer
                     open={openModal}
                     size="small" 
@@ -1673,7 +1675,7 @@ export default function Services() {
                                 </Button>
                             </div>
                         </>
-                        )}
+                        )} */}
                         {/* <div
                             style={{
                                 display: 'flex',
@@ -1710,7 +1712,7 @@ export default function Services() {
                             </>
                             )}
                         </div> */}
-                        <div
+                        {/* <div
                             style={{
                                 display: 'flex',
                                 justifyContent: 'center',
@@ -1718,13 +1720,13 @@ export default function Services() {
                             }}
                         >
                             {auth ? (
-                            <>
+                            <> */}
                                 {/* <Button
                                     onClick={() => {setStudent(true), setHideAdmin(true), setSave(true), setOpenModal(false), setSame(false), setFinish(false), setDemo(true)}}
                                 >
                                     Take Test
                                 </Button> */}
-                                <Button
+                                {/* <Button
                                     onClick={() => {setOpenModal(false), setFinish(false), setDemo(true), setServiceList([{ id: '', service: '', answer: '', student: '' }]), setSave(false), setCreated(false), setTitle(''), setTitleClicked(false), setSaveRipple(true), setErrorCheck(false)}}
                                     style={{
                                         border: '2px solid #21BA45',
@@ -1762,7 +1764,7 @@ export default function Services() {
                         </>
                         )}
                     </div>
-                </Modal>
+                </Modal> */}
                 {/* <div
                     style={{
                         display: 'flex',
