@@ -9,7 +9,25 @@ const LOCAL_STORAGE_KEY = 'profile_pic';
 function AccountHeader({ role, email, name, createdAt }) {
     const [mediaPreview, setMediaPreview] = useState<string>('');
     const [image, setImage] = useState({name: '', media: ''});
-    const [margin, setMargin] = useState<string>('1em 0em 1em 0em');
+    const [resize, setResize] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (window.innerWidth > 440) {
+            setResize(true);
+        } else {
+            setResize(false);
+        }
+
+        const updateMedia = () => {
+            if (window.innerWidth > 440) {
+                setResize(true);
+            } else {
+                setResize(false);
+            }
+        };
+        window.addEventListener('resize', updateMedia);
+        return () => window.removeEventListener('resize', updateMedia);
+    }, []);
 
     useEffect(() => {
         const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -46,24 +64,6 @@ function AccountHeader({ role, email, name, createdAt }) {
     //     console.log({ mediaUrl });
     // }
 
-    useEffect(() => {
-        if (window.innerWidth > 440) {
-            setMargin('1em 0em 1em 0em');
-        } else {
-            setMargin('0.5em 0em 0.2em 0em');
-        }
-  
-        const updateMedia = () => {
-            if (window.innerWidth > 440) {
-                setMargin('1em 0em 1em 0em');
-            } else {
-                setMargin('0.5em 0em 0.2em 0em');
-            }
-        };
-          window.addEventListener('resize', updateMedia);
-          return () => window.removeEventListener('resize', updateMedia);
-      }, []);
-
     return (
         <Segment secondary inverted color="grey">
             <Label
@@ -95,7 +95,7 @@ function AccountHeader({ role, email, name, createdAt }) {
                         type="file"
                         accept="image/*"
                         // content="Select Image"
-                        style={{ width: '200px', margin: `${margin}` }}
+                        style={{ width: '200px', margin: resize ? '0.5em 0em 0.2em 0em' : '1em 0em 1em 0em' }}
                         className={styles.file}
                         onChange={handleChange}
                     />
