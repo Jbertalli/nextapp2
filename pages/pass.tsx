@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { Divider, Container, Icon } from "semantic-ui-react";
+import styles from '../styles/Test.module.css';
 import { v4 as uuidv4 } from "uuid";
 import emailjs from "emailjs-com";
 // import hash from 'object-hash';
@@ -489,12 +490,15 @@ export default function Services() {
                     style={{
                         width: resize ? "20vw" : "100vw",
                         minWidth: '300px',
+                        maxWidth: '600px',
                         height: resize ? "100vh" : "100%",
-                        background: "rgb(238, 75, 43, 1)",
+                        background: night ? 'black' : 'white',
+                        color: `${questionColor}`,
                         position: "relative",
                         zIndex: "1000",
                         fontSize: "20px",
-                        fontWeight: "700"
+                        fontWeight: "700",
+                        borderRight: night ? "2px solid white" : "2px solid #125CA1"
                     }}
                 >
                     <div
@@ -520,18 +524,80 @@ export default function Services() {
                             style={{
                                 width: "88%",
                                 height: "1px",
-                                background: "white",  
+                                background: `${questionColor}`                           
+                            }}
+                        />
+                    </div>
+                    {!night ? (
+                    <>
+                        <div
+                            onClick={() => {
+                                setNight(true),
+                                setBackground("#202020"),
+                                setTextColor("#f2f2f2"),
+                                setQuestionColor("#f2f2f2");
+                            }}
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15px 0px 15px 0px",
+                                padding: '0px'
+                            }}
+                        >
+                            <Icon name="moon" />
+                            Night Mode
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div
+                            onClick={() => {
+                                setNight(false),
+                                setBackground("white"),
+                                setTextColor(""),
+                                setQuestionColor("#125CA1");
+                            }}
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15px 0px 15px 0px",
+                                padding: '0px'
+                            }}
+                        >
+                            <Icon name="sun" />
+                            Day Mode
+                        </div>
+                      </>
+                    )} 
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: `${questionColor}`  
                             }}
                         />
                     </div>
                     <div
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            margin: "15px 0px 15px 0px"
+                            border: '1px solid transparent'
                         }}
+                        // className={styles.takeTest}
                     >
-                        Night Mode
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15px 0px 15px 0px"
+                            }}
+                        >
+                            Demo Mode
+                        </div>
                     </div>
                     <div
                         style={{
@@ -543,30 +609,7 @@ export default function Services() {
                             style={{
                                 width: "88%",
                                 height: "1px",
-                                background: "white",  
-                            }}
-                        />
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            margin: "15px 0px 15px 0px"
-                        }}
-                    >
-                        Demo Mode
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: "white",  
+                                background: `${questionColor}`  
                             }}
                         />
                     </div>
@@ -589,7 +632,7 @@ export default function Services() {
                             style={{
                                 width: "88%",
                                 height: "1px",
-                                background: "white",  
+                                background: `${questionColor}`  
                             }}
                         />
                     </div>
@@ -612,7 +655,7 @@ export default function Services() {
                             style={{
                                 width: "88%",
                                 height: "1px",
-                                background: "white",  
+                                background: `${questionColor}`  
                             }}
                         />
                     </div>
