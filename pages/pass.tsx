@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
-import { Divider, Container } from "semantic-ui-react";
+import { Divider, Container, Icon } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import emailjs from "emailjs-com";
 // import hash from 'object-hash';
@@ -81,6 +81,7 @@ export default function Services() {
   const [questionColor, setQuestionColor] = useState<string>("#125CA1");
   const [resetTernary, setResetTernary] = useState<boolean>(false);
   const [resize, setResize] = useState<boolean>(false);
+  const [openHover, setOpenHover] = useState<boolean>(false);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -475,15 +476,109 @@ export default function Services() {
           paddingBottom: "1px",
         }}
       >
-        <NightMode
+        <div
+            style={{
+                cursor: 'pointer',
+                position: 'absolute'
+            }}
+        >
+            {openHover ? (
+            <>
+                <div
+                    onClick={() => setOpenHover(false)}
+                    style={{
+                        border: '1px solid red',
+                        width: resize ? "30vw" : "50vw",
+                        maxWidth: '300px',
+                        height: '100vh',
+                        background: 'rgb(0, 0, 0, 1)',
+                        position: 'relative',
+                        zIndex: '1000'
+                    }}
+                >
+                    <ul
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            marginRight: '10px'
+                        }}
+                    >
+                        <Icon
+                            name='chevron left'
+                        />
+                    </ul>
+                    <ul>
+                        Night
+                    </ul>
+                    <ul>
+                        Demo Mode
+                    </ul>
+                    <ul>
+                        Take Test
+                    </ul>
+                    <ul>
+                        Return to Admin Page
+                    </ul>
+                </div>
+            </>
+            ):(
+            <>
+                <div
+                    onClick={() => setOpenHover(true)}
+                    style={{
+                        marginTop: resize ? "10px" : "5px",
+                        marginLeft: resize ? "10px" : "5px"
+                    }}
+                >
+                    <div
+                        style={{
+                            width: '50px',
+                            position: 'relative',
+                            transform: 'scaleX(2)',
+                            left: '30px'
+                        }}
+                    >
+                        <Icon
+                            name='minus'
+                        />
+                    </div>
+                    <div
+                        style={{
+                            width: '50px',
+                            position: 'relative',
+                            transform: 'scaleX(2) translateY(-13px)',
+                            left: '30px'
+                            }}
+                    >
+                        <Icon
+                            name='minus'
+                        />
+                    </div>
+                    <div
+                        style={{
+                            width: '50px',
+                            position: 'relative',
+                            transform: 'scaleX(2) translateY(-26px)',
+                            left: '30px'
+                            }}
+                    >
+                        <Icon
+                            name='minus'
+                        />
+                    </div>
+                </div>
+            </>
+            )}
+        </div>
+        {/* <NightMode
           night={night}
           setNight={setNight}
           setBackground={setBackground}
           setTextColor={setTextColor}
           setQuestionColor={setQuestionColor}
           resize={resize}
-        />
-        <DemoMode
+        /> */}
+        {/* <DemoMode
           demo={demo}
           setDemo={setDemo}
           setStudent={setStudent}
@@ -506,7 +601,7 @@ export default function Services() {
           setOpenModal={setOpenModal}
           setResetTernary={setResetTernary}
           textColor={textColor}
-        />
+        /> */}
         <TakeTest
           student={student}
           created={created}
@@ -613,7 +708,7 @@ export default function Services() {
                 border: `2px solid ${questionColor}`,
                 borderRadius: "10px",
                 padding: "3em",
-                marginTop: "12vh",
+                marginTop: "15vh",
                 marginBottom: "100px"
             }}
         >
