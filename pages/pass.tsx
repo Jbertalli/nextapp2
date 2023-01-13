@@ -21,6 +21,7 @@ import CreateTimer from '../components/test_generator/CreateTimer';
 import DateClicked from '../components/test_generator/DateClicked';
 import NameClicked from '../components/test_generator/NameClicked';
 import OpenNameDate from '../components/test_generator/OpenNameDate';
+import SubmitTestButton from '../components/test_generator/SubmitTestButton';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -971,7 +972,8 @@ export default function Services() {
                         </div>
                         <Divider />
                     </div>
-                    {student ? (
+                    <SubmitTestButton student={student} isTimed={isTimed} finish={finish} allZero={allZero} setFinish={setFinish} />
+                    {/* {student ? (
                     <>
                         {!isTimed ? (
                         <>
@@ -1021,7 +1023,7 @@ export default function Services() {
                         </>
                         ): null}
                     </>
-                    ): null}
+                    ): null} */}
                     {student ? (
                     <>
                         <Email openEmail={openEmail} setOpenEmail={setOpenEmail} questionColor={questionColor} finish={finish} userEmail={userEmail} setUserEmail={setUserEmail} validEmail={validEmail} isValid={isValid} send={send} />
@@ -1030,37 +1032,6 @@ export default function Services() {
                             {!openNameDate ? (
                             <>
                                 <OpenNameDate setOpenNameDate={setOpenNameDate} questionColor={questionColor} />
-                                {/* <div
-                                    style={{ 
-                                        transform: 'translateY(-8px)',
-                                        cursor: 'pointer' 
-                                    }}
-                                    onClick={() => {setOpenNameDate(true)}}
-                                >
-                                    <div 
-                                        style={{ 
-                                            marginLeft: '-25px',
-                                            display: 'flex',
-                                            color: `${questionColor}`,
-                                            transform: 'translateY(100%) scale(0.8)'
-                                        }}
-                                    >
-                                        <Icon
-                                            name='chevron down'
-                                        />
-                                    </div>
-                                    <div
-                                        style={{ 
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            fontSize: '20px', 
-                                            fontWeight: '700',
-                                            color: `${questionColor}`
-                                        }}
-                                    >
-                                        Open Name and Date
-                                    </div>
-                                </div> */}
                             </>
                             ):(
                             <>
