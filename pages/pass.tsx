@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Test.module.css';
-import { Button, Divider, Icon, Card, Container, Checkbox } from 'semantic-ui-react';
+import { Button, Divider, Icon, Container, Checkbox } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';    
 import emailjs from 'emailjs-com';
 // import hash from 'object-hash';
@@ -13,6 +13,7 @@ import DemoMode from '../components/test_generator/DemoMode';
 import TakeTest from '../components/test_generator/TakeTest';
 import MappedForm from '../components/test_generator/MappedForm';
 import GradeCard from '../components/test_generator/GradeCard';
+import EditTitle from '../components/test_generator/EditTitle';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -1911,7 +1912,8 @@ export default function Services() {
                     </>
                     ): null}
                     <Divider /> 
-                    {!student ? (
+                    <EditTitle student={student} serviceList={serviceList} save={save} setSave={setSave} setCreated={setCreated} titleClicked={titleClicked} setTitleClicked={setTitleClicked} saveRipple={saveRipple} setServiceList={setServiceList} setOpenAnswerKey={setOpenAnswerKey} setOpenQuestionKey={setOpenQuestionKey} setOpenStudentAnswers={setOpenStudentAnswers} setName={setName} setDate={setDate} setTitle={setTitle} setDateClicked={setDateClicked} setSecond={setSecond} setTimed={setTimed} setTimeClick={setTimeClick} setOpenEmail={setOpenEmail} setUserEmail={setUserEmail} setFinish={setFinish} title={title} setNameClicked={setNameClicked} questionColor={questionColor} />
+                    {/* {!student ? (
                     <>
                         <div>
                             {serviceList.length > 0 ? (
@@ -2128,7 +2130,7 @@ export default function Services() {
                             </span>
                         </span>
                     </>
-                    )}
+                    )} */}
                     <div
                         style={{
                             display: 'flex',
@@ -2138,80 +2140,6 @@ export default function Services() {
                     >
                         <div>
                             <GradeCard student={student} finish={finish} grade={grade} percent={percent} color={color} length={length} letterGrade={letterGrade} />
-                            {/* <div
-                                style={{
-                                    marginBottom: '20px'
-                                }}
-                            >
-                                {student ? (
-                                <>
-                                    {finish ? (
-                                    <>
-                                        <Card
-                                            style={{
-                                                height: '300px'
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    transform: 'translateY(20%)'
-                                                }}
-                                            >
-                                                <div 
-                                                    style={{ 
-                                                        marginBottom: '5px',
-                                                        color: 'black'
-                                                    }}
-                                                >
-                                                    <h1 
-                                                        style={{ 
-                                                            display: 'flex', 
-                                                            justifyContent: 'center'
-                                                        }}
-                                                    >
-                                                        Grade Report
-                                                    </h1>
-                                                    <h2
-                                                        style={{
-                                                            display: 'flex',
-                                                            justifyContent: 'center'
-                                                        }}
-                                                    >
-                                                        Grade: {grade}/{length}
-                                                    </h2>
-                                                </div>
-                                                <h2>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            justifyContent: 'center',
-                                                            color: 'black'
-                                                        }}
-                                                    >
-                                                        {percent}%
-                                                    </div>
-                                                </h2>
-                                                <h1 
-                                                    style={{ 
-                                                        color: `${color}`, 
-                                                        paddingBottom: '30px' ,
-                                                        display: 'flex',
-                                                        justifyContent: 'center'
-                                                        }}
-                                                    >
-                                                    {(length > 0) ? (
-                                                    <>
-                                                        {letterGrade}
-                                                    </>
-                                                    ): null}
-                                                </h1>
-                                            </div>
-                                        </Card>
-                                    </>
-                                    ): null}
-                                </>
-                                ): null}
-                            </div> */}
                             <MappedForm serviceList={serviceList} save={save} student={student} finish={finish} questionColor={questionColor} handleQuestionChange={handleQuestionChange} handleAnswerChange={handleAnswerChange} handleStudentAnswerChange={handleStudentAnswerChange} handleServiceRemove={handleServiceRemove} handleAddService={handleAddService} />
                         </div>
                     </div>
