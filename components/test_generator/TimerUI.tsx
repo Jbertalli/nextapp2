@@ -1,15 +1,18 @@
 import { Button } from "semantic-ui-react";
 
-export default function TimerUI({
-  timeClick,
-  timed,
-  minute,
-  setMinute,
-  second,
-  setSecond,
-  setTimeClick,
-  questionColor,
-}) {
+export default function TimerUI(values) {
+
+  const {
+    timeClick,
+    timed,
+    minute,
+    setMinute,
+    second,
+    setSecond,
+    setTimeClick,
+    questionColor,
+  } = values;
+  
   return (
     <>
       <div>

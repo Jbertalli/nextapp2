@@ -1,17 +1,20 @@
 import { Button, Divider, Icon } from "semantic-ui-react";
 
-export default function MappedForm({
-  serviceList,
-  save,
-  student,
-  finish,
-  questionColor,
-  handleQuestionChange,
-  handleAnswerChange,
-  handleStudentAnswerChange,
-  handleServiceRemove,
-  handleAddService,
-}) {
+export default function MappedForm(values) {
+
+  const {
+    serviceList,
+    save,
+    student,
+    finish,
+    questionColor,
+    handleQuestionChange,
+    handleAnswerChange,
+    handleStudentAnswerChange,
+    handleServiceRemove,
+    handleAddService,
+  } = values;
+  
   return (
     <>
       <div>

@@ -1,4 +1,11 @@
-export default function TestHeader({ resize, questionColor, demo }) {
+export default function TestHeader(values) {
+
+  const {
+    resize, 
+    questionColor, 
+    demo
+  } = values;
+  
   return (
     <>
       <div

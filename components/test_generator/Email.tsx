@@ -1,17 +1,20 @@
 import styles from "../../styles/Test.module.css";
 import { Divider, Container, Icon, Button } from "semantic-ui-react";
 
-export default function Email({
-  openEmail,
-  setOpenEmail,
-  questionColor,
-  finish,
-  userEmail,
-  setUserEmail,
-  validEmail,
-  isValid,
-  send,
-}) {
+export default function Email(values) {
+
+  const {
+    openEmail,
+    setOpenEmail,
+    questionColor,
+    finish,
+    userEmail,
+    setUserEmail,
+    validEmail,
+    isValid,
+    send,
+  } = values;
+  
   return (
     <>
       <Divider />

@@ -1,22 +1,25 @@
 import { Button, Divider } from "semantic-ui-react";
 import { useTimer } from "react-timer-hook";
 
-export default function MyTimer({
-  expiryTimestamp,
-  secondTime,
-  minuteTime,
-  finish,
-  setFinish,
-  student,
-  timed,
-  setTimed,
-  timeClick,
-  edit,
-  isTimed,
-  setIsTimed,
-  questionColor,
-  setTimeClick,
-}) {
+export default function MyTimer(values) {
+
+  const {
+    expiryTimestamp,
+    secondTime,
+    minuteTime,
+    finish,
+    setFinish,
+    student,
+    timed,
+    setTimed,
+    timeClick,
+    edit,
+    isTimed,
+    setIsTimed,
+    questionColor,
+    setTimeClick,
+  } = values;
+
   const {
     seconds,
     minutes,

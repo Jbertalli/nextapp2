@@ -1,18 +1,21 @@
 import styles from "../../styles/Test.module.css";
 
-export default function TakeTest({
-  student,
-  created,
-  demo,
-  setStudent,
-  setOpenModal,
-  setFinish,
-  setSave,
-  setDemo,
-  setNewPassword,
-  setEye,
-  setHide,
-}) {
+export default function TakeTest(values) {
+
+  const {
+    student,
+    created,
+    demo,
+    setStudent,
+    setOpenModal,
+    setFinish,
+    setSave,
+    setDemo,
+    setNewPassword,
+    setEye,
+    setHide,
+  } = values;
+  
   return (
     <>
       {!student ? (

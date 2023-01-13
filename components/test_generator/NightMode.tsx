@@ -1,12 +1,15 @@
 import { Button, Icon } from "semantic-ui-react";
 
-export default function NightMode({
-  night,
-  setNight,
-  setBackground,
-  setTextColor,
-  setQuestionColor,
-}) {
+export default function NightMode(values) {
+
+  const {
+    night,
+    setNight,
+    setBackground,
+    setTextColor,
+    setQuestionColor,
+  } = values;
+  
   return (
     <>
       {!night ? (

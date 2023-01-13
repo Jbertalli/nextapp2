@@ -1,12 +1,15 @@
 import { Button, Divider } from "semantic-ui-react";
 
-export default function SubmitTestButton({
-  student,
-  isTimed,
-  finish,
-  allZero,
-  setFinish,
-}) {
+export default function SubmitTestButton(values) {
+
+  const {
+    student,
+    isTimed,
+    finish,
+    allZero,
+    setFinish,
+  } = values;
+  
   return (
     <>
       {student ? (

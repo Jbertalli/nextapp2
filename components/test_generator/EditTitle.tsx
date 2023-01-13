@@ -1,33 +1,36 @@
 import { Button, Divider } from "semantic-ui-react";
 import styles from "../../styles/Test.module.css";
 
-export default function EditTitle({
-  student,
-  serviceList,
-  save,
-  setSave,
-  setCreated,
-  titleClicked,
-  setTitleClicked,
-  saveRipple,
-  setServiceList,
-  setOpenAnswerKey,
-  setOpenQuestionKey,
-  setOpenStudentAnswers,
-  setName,
-  setDate,
-  setTitle,
-  setDateClicked,
-  setSecond,
-  setTimed,
-  setTimeClick,
-  setOpenEmail,
-  setUserEmail,
-  setFinish,
-  title,
-  setNameClicked,
-  questionColor,
-}) {
+export default function EditTitle(values) {
+
+  const {
+    student,
+    serviceList,
+    save,
+    setSave,
+    setCreated,
+    titleClicked,
+    setTitleClicked,
+    saveRipple,
+    setServiceList,
+    setOpenAnswerKey,
+    setOpenQuestionKey,
+    setOpenStudentAnswers,
+    setName,
+    setDate,
+    setTitle,
+    setDateClicked,
+    setSecond,
+    setTimed,
+    setTimeClick,
+    setOpenEmail,
+    setUserEmail,
+    setFinish,
+    title,
+    setNameClicked,
+    questionColor,
+  } = values;
+  
   return (
     <>
       {!student ? (

@@ -1,12 +1,15 @@
 import { Button } from "semantic-ui-react";
 
-export default function DateClicked({
-  dateClicked,
-  setDate,
-  setDateClicked,
-  questionColor,
-  date,
-}) {
+export default function DateClicked(values) {
+
+  const {
+    dateClicked,
+    setDate,
+    setDateClicked,
+    questionColor,
+    date,
+  } = values;
+  
   return (
     <>
       {!dateClicked ? (

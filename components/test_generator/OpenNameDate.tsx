@@ -1,6 +1,12 @@
 import { Icon } from "semantic-ui-react";
 
-export default function OpenNameDate({ setOpenNameDate, questionColor }) {
+export default function OpenNameDate(values) {
+
+  const {
+    setOpenNameDate,
+    questionColor
+  } = values;
+  
   return (
     <>
       <div

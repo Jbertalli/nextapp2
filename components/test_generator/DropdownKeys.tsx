@@ -1,17 +1,20 @@
 import { Divider, Icon, Container } from "semantic-ui-react";
 import styles from "../../styles/Test.module.css";
 
-export default function DropdownKeys({
-  student,
-  openQuestionKey,
-  setOpenQuestionKey,
-  questionColor,
-  serviceList,
-  openAnswerKey,
-  setOpenAnswerKey,
-  openStudentAnswers,
-  setOpenStudentAnswers,
-}) {
+export default function DropdownKeys(values) {
+
+  const {
+    student,
+    openQuestionKey,
+    setOpenQuestionKey,
+    questionColor,
+    serviceList,
+    openAnswerKey,
+    setOpenAnswerKey,
+    openStudentAnswers,
+    setOpenStudentAnswers,
+  } = values;
+  
   return (
     <>
       {!student ? (

@@ -1,14 +1,17 @@
 import { Button, Container } from "semantic-ui-react";
 import styles from "../../styles/Test.module.css";
 
-export default function NameClicked({
-  nameClicked,
-  setName,
-  name,
-  setNameClicked,
-  questionColor,
-  setOpenNameDate,
-}) {
+export default function NameClicked(values) {
+
+  const {
+    nameClicked,
+    setName,
+    name,
+    setNameClicked,
+    questionColor,
+    setOpenNameDate,
+  } = values;
+  
   return (
     <>
       <Container

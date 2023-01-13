@@ -1,21 +1,24 @@
 import { Divider, Button, Icon } from "semantic-ui-react";
 
-export default function StudentAdminSwitch({
-  student,
-  demo,
-  setStudent,
-  setFinish,
-  setIsTimed,
-  setOpenAnswerKey,
-  setOpenQuestionKey,
-  setOpenStudentAnswers,
-  setEdit,
-  setSave,
-  setTimeClick,
-  textColor,
-  setOpenEmail,
-  setOpenNameDate,
-}) {
+export default function StudentAdminSwitch(values) {
+
+  const {
+    student,
+    demo,
+    setStudent,
+    setFinish,
+    setIsTimed,
+    setOpenAnswerKey,
+    setOpenQuestionKey,
+    setOpenStudentAnswers,
+    setEdit,
+    setSave,
+    setTimeClick,
+    textColor,
+    setOpenEmail,
+    setOpenNameDate,
+  } = values;
+  
   return (
     <>
       <div

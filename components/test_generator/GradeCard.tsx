@@ -1,14 +1,17 @@
 import { Card } from "semantic-ui-react";
 
-export default function GradeCard({
-  student,
-  finish,
-  grade,
-  percent,
-  color,
-  length,
-  letterGrade,
-}) {
+export default function GradeCard(values) {
+
+  const {
+    student,
+    finish,
+    grade,
+    percent,
+    color,
+    length,
+    letterGrade,
+  } = values;
+  
   return (
     <>
       <div

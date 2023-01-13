@@ -1,29 +1,32 @@
 import { Button } from "semantic-ui-react";
 
-export default function DemoMode({
-  demo,
-  setDemo,
-  setStudent,
-  setEdit,
-  setClickPassword,
-  setPassword,
-  setAdminPassword,
-  setAdminEmail,
-  setAuth,
-  setIsResetting,
-  setNewPassword,
-  setSave,
-  setCreated,
-  setTitleClicked,
-  setSaveRipple,
-  setResetClicked,
-  setEye,
-  setHide,
-  setUserEmail,
-  setOpenModal,
-  setResetTernary,
-  textColor,
-}) {
+export default function DemoMode(values) {
+
+  const {
+    demo,
+    setDemo,
+    setStudent,
+    setEdit,
+    setClickPassword,
+    setPassword,
+    setAdminPassword,
+    setAdminEmail,
+    setAuth,
+    setIsResetting,
+    setNewPassword,
+    setSave,
+    setCreated,
+    setTitleClicked,
+    setSaveRipple,
+    setResetClicked,
+    setEye,
+    setHide,
+    setUserEmail,
+    setOpenModal,
+    setResetTernary,
+    textColor,
+  } = values;
+  
   return (
     <>
       {demo ? (

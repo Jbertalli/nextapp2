@@ -2,20 +2,23 @@ import TimerUI from "../test_generator/TimerUI";
 import { Divider, Icon, Container } from "semantic-ui-react";
 import styles from "../../styles/Test.module.css";
 
-export default function CreateTimer({
-  student,
-  edit,
-  setEdit,
-  questionColor,
-  setTimeClick,
-  setIsTimed,
-  timeClick,
-  timed,
-  minute,
-  setMinute,
-  second,
-  setSecond,
-}) {
+export default function CreateTimer(values) {
+  
+  const {
+    student,
+    edit,
+    setEdit,
+    questionColor,
+    setTimeClick,
+    setIsTimed,
+    timeClick,
+    timed,
+    minute,
+    setMinute,
+    second,
+    setSecond,
+  } = values;
+  
   return (
     <>
       {!student ? (
