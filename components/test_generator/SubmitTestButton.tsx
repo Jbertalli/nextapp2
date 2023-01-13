@@ -7,9 +7,9 @@ export default function SubmitTestButton(values) {
     isTimed,
     finish,
     allZero,
-    setFinish,
+    setFinish
   } = values;
-  
+
   return (
     <>
       {student ? (

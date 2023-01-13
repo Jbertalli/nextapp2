@@ -10,9 +10,9 @@ export default function TimerUI(values) {
     second,
     setSecond,
     setTimeClick,
-    questionColor,
+    questionColor
   } = values;
-  
+
   return (
     <>
       <div>

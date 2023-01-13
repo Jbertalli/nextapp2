@@ -24,9 +24,9 @@ export default function DemoMode(values) {
     setUserEmail,
     setOpenModal,
     setResetTernary,
-    textColor,
+    textColor
   } = values;
-  
+
   return (
     <>
       {demo ? (
@@ -64,9 +64,10 @@ export default function DemoMode(values) {
                 border: "2px solid red",
                 background: "transparent",
                 color: "red",
+                marginTop: '20px'
               }}
             >
-              End Demo Mode
+              End Demo
             </Button>
           </div>
         </>
@@ -77,7 +78,7 @@ export default function DemoMode(values) {
               display: "flex",
               justifyContent: "flex-end",
               marginTop: "10px",
-              marginRight: "10px",
+              marginRight: "10px"
             }}
           >
             <Button
@@ -87,7 +88,7 @@ export default function DemoMode(values) {
               style={{
                 border: `2px solid ${textColor}`,
                 background: "transparent",
-                color: `${textColor}`,
+                color: `${textColor}`
               }}
             >
               Demo Mode

@@ -12,9 +12,9 @@ export default function MappedForm(values) {
     handleAnswerChange,
     handleStudentAnswerChange,
     handleServiceRemove,
-    handleAddService,
+    handleAddService
   } = values;
-  
+
   return (
     <>
       <div>

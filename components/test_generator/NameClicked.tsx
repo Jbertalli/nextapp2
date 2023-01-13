@@ -9,9 +9,9 @@ export default function NameClicked(values) {
     name,
     setNameClicked,
     questionColor,
-    setOpenNameDate,
+    setOpenNameDate
   } = values;
-  
+
   return (
     <>
       <Container

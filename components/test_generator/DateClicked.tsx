@@ -7,9 +7,9 @@ export default function DateClicked(values) {
     setDate,
     setDateClicked,
     questionColor,
-    date,
+    date
   } = values;
-  
+
   return (
     <>
       {!dateClicked ? (

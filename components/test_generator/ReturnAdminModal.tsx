@@ -35,9 +35,9 @@ export default function ReturnAdminModal(values) {
     newPassword,
     setNewPassword,
     same,
-    match,
+    match
   } = values;
-  
+
   return (
     <>
       <Modal

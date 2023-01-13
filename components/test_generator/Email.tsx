@@ -12,9 +12,9 @@ export default function Email(values) {
     setUserEmail,
     validEmail,
     isValid,
-    send,
+    send
   } = values;
-  
+
   return (
     <>
       <Divider />

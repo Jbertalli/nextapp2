@@ -1,12 +1,12 @@
 import styles from "../../styles/Test.module.css";
 
 export default function ReturnAdminButton(values) {
-    
+
   const {
     adminPassword,
     resetClicked,
     setNewModal,
-    setSame,
+    setSame
   } = values;
 
   return (

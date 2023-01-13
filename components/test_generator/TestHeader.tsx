@@ -5,7 +5,7 @@ export default function TestHeader(values) {
     questionColor, 
     demo
   } = values;
-  
+
   return (
     <>
       <div
@@ -15,7 +15,7 @@ export default function TestHeader(values) {
           fontSize: resize ? "65px" : "28px",
           lineHeight: resize ? "0px" : "40px",
           marginBottom: resize ? "7vh" : "3vh",
-          marginTop: resize ? "4vh" : "0vh",
+          marginTop: resize ? "4vh" : "-1vh",
           fontFamily: "sans-serif",
           fontWeight: "300",
           color: `${questionColor}`,

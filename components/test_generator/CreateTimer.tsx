@@ -16,9 +16,9 @@ export default function CreateTimer(values) {
     minute,
     setMinute,
     second,
-    setSecond,
+    setSecond
   } = values;
-  
+
   return (
     <>
       {!student ? (

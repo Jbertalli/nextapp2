@@ -8,8 +8,9 @@ export default function NightMode(values) {
     setBackground,
     setTextColor,
     setQuestionColor,
+    resize
   } = values;
-  
+
   return (
     <>
       {!night ? (
@@ -30,7 +31,7 @@ export default function NightMode(values) {
             }}
           >
             <Icon name="moon" />
-            Night Mode
+            {resize ? "Night Mode" : "Dark"}
           </Button>
         </>
       ) : (
@@ -51,7 +52,7 @@ export default function NightMode(values) {
             }}
           >
             <Icon name="sun" />
-            Day Mode
+            {resize ? "Day Mode" : "Light"}
           </Button>
         </>
       )}

@@ -17,7 +17,7 @@ export default function MyTimer(values) {
     isTimed,
     setIsTimed,
     questionColor,
-    setTimeClick,
+    setTimeClick
   } = values;
 
   const {

@@ -12,9 +12,9 @@ export default function DropdownKeys(values) {
     openAnswerKey,
     setOpenAnswerKey,
     openStudentAnswers,
-    setOpenStudentAnswers,
+    setOpenStudentAnswers
   } = values;
-  
+
   return (
     <>
       {!student ? (

@@ -9,9 +9,9 @@ export default function GradeCard(values) {
     percent,
     color,
     length,
-    letterGrade,
+    letterGrade
   } = values;
-  
+
   return (
     <>
       <div

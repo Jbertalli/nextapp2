@@ -16,9 +16,9 @@ export default function StudentAdminSwitch(values) {
     setTimeClick,
     textColor,
     setOpenEmail,
-    setOpenNameDate,
+    setOpenNameDate
   } = values;
-  
+
   return (
     <>
       <div

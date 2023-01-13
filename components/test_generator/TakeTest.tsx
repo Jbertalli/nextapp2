@@ -13,7 +13,7 @@ export default function TakeTest(values) {
     setDemo,
     setNewPassword,
     setEye,
-    setHide,
+    setHide
   } = values;
   
   return (

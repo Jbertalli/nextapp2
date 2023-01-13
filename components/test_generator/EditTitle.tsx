@@ -28,9 +28,9 @@ export default function EditTitle(values) {
     setFinish,
     title,
     setNameClicked,
-    questionColor,
+    questionColor
   } = values;
-  
+
   return (
     <>
       {!student ? (

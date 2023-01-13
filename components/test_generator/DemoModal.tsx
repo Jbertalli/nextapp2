@@ -34,7 +34,7 @@ export default function DemoModal(values) {
     setCreated,
     setTitle,
     setTitleClicked,
-    setSaveRipple,
+    setSaveRipple
   } = values;
   return (
     <>
