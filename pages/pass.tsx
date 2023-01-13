@@ -533,7 +533,7 @@ export default function Services() {
                         <div
                             onClick={() => {
                                 setNight(true),
-                                setBackground("#202020"),
+                                setBackground("black"),
                                 setTextColor("#f2f2f2"),
                                 setQuestionColor("#f2f2f2");
                             }}
@@ -583,22 +583,63 @@ export default function Services() {
                             }}
                         />
                     </div>
-                    <div
-                        style={{
-                            border: '1px solid transparent'
-                        }}
-                        // className={styles.takeTest}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "15px 0px 15px 0px"
-                            }}
-                        >
-                            Demo Mode
-                        </div>
-                    </div>
+                    {demo ? (
+                        <>
+                            <div
+                                onClick={() => {
+                                    setDemo(false),
+                                    setStudent(false),
+                                    setEdit(false),
+                                    setClickPassword(true),
+                                    setPassword(""),
+                                    setAdminPassword(""),
+                                    setAdminEmail(""),
+                                    setAuth(false),
+                                    setIsResetting(false),
+                                    setNewPassword(""),
+                                    setSave(false),
+                                    setCreated(false),
+                                    setTitleClicked(false),
+                                    setSaveRipple(false),
+                                    setResetClicked(false),
+                                    setEye(true),
+                                    setHide("password"),
+                                    setUserEmail("");
+                                }}
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    margin: "15px 0px 15px 0px",
+                                    color: 'red'
+                                }}
+                            >
+                                End Demo Mode
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div
+                                style={{
+                                    border: '1px solid transparent'
+                                }}
+                                onClick={() => {
+                                    setOpenModal(true), 
+                                    setStudent(false), 
+                                    setResetTernary(false);
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        margin: "15px 0px 15px 0px"
+                                    }}
+                                >
+                                    Demo Mode
+                                </div>
+                            </div>
+                        </>
+                    )}
                     <div
                         style={{
                             display: "flex",
@@ -614,13 +655,17 @@ export default function Services() {
                         />
                     </div>
                     <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            margin: "15px 0px 15px 0px"
-                        }}
+                        //  className={styles.takeTest}
                     >
-                        Take Test
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15px 0px 15px 0px"
+                            }}
+                        >
+                            Take Test
+                        </div>
                     </div>
                     <div
                         style={{

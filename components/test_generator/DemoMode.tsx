@@ -83,7 +83,9 @@ export default function DemoMode(values) {
           >
             <Button
               onClick={() => {
-                setOpenModal(true), setStudent(false), setResetTernary(false);
+                setOpenModal(true), 
+                setStudent(false), 
+                setResetTernary(false);
               }}
               style={{
                 border: `2px solid ${textColor}`,
