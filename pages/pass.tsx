@@ -23,6 +23,7 @@ import NameClicked from '../components/test_generator/NameClicked';
 import OpenNameDate from '../components/test_generator/OpenNameDate';
 import SubmitTestButton from '../components/test_generator/SubmitTestButton';
 import StudentAdminSwitch from '../components/test_generator/StudentAdminSwitch';
+import TestHeader from '../components/test_generator/TestHeader';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -869,7 +870,7 @@ export default function Services() {
                         marginBottom: '100px'
                     }}
                 >
-                    <div
+                    {/* <div
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -883,98 +884,10 @@ export default function Services() {
                         }}
                     >
                         Test Generator {demo ? 'Demo': null}
-                    </div>
+                    </div> */}
+                    <TestHeader resize={resize} questionColor={questionColor} demo={demo} />
                     <Divider />
                     <StudentAdminSwitch student={student} demo={demo} setStudent={setStudent} setFinish={setFinish} setIsTimed={setIsTimed} setOpenAnswerKey={setOpenAnswerKey} setOpenQuestionKey={setOpenQuestionKey} setOpenStudentAnswers={setOpenStudentAnswers} setEdit={setEdit} setSave={setSave} setTimeClick={setTimeClick} textColor={textColor} setOpenEmail={setOpenEmail} setOpenNameDate={setOpenNameDate} />
-                    {/* <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: '100%'
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                {student ? (
-                                <>
-                                    <h1>
-                                        Student View
-                                    </h1>
-                                </>
-                                ):(
-                                <>
-                                    <h1>
-                                        Admin View
-                                    </h1>
-                                </>
-                                )}
-                            </div>
-                            {!demo ? (
-                            <>
-                                <div
-                                    style={{
-                                        width: '100%'
-                                    }}
-                                >
-                                    <Divider />
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    {student ? (
-                                    <>
-                                        <div>
-                                            <Button
-                                                onClick={() => {setStudent(false), setFinish(false), setIsTimed(false), setOpenAnswerKey(false), setOpenQuestionKey(false), setOpenStudentAnswers(false), setEdit(false), setSave(false), setTimeClick(false), setIsTimed(false)}}
-                                                style={{
-                                                    border: `2px solid ${textColor}`,
-                                                    background: 'transparent',
-                                                    color: `${textColor}`
-                                                }}
-                                            >
-                                                Switch to Admin
-                                            </Button>
-                                        </div>
-                                    </>
-                                    ):(
-                                    <>
-                                        <div>
-                                            <Button
-                                                onClick={() => {setStudent(true), setFinish(false), setSave(true), setOpenEmail(false), setOpenNameDate(false)}}
-                                                style={{
-                                                    border: `2px solid ${textColor}`,
-                                                    background: 'transparent',
-                                                    color: `${textColor}`
-                                                }}
-                                            >
-                                                Switch to Student&nbsp;&nbsp;&nbsp;
-                                                <span>
-                                                    <Icon
-                                                        name='pencil'
-                                                    />
-                                                </span>
-                                            </Button>
-                                        </div>
-                                    </>
-                                    )}
-                                </div>
-                            </>
-                            ): null}
-                        </div>
-                        <Divider />
-                    </div> */}
-
                     <SubmitTestButton student={student} isTimed={isTimed} finish={finish} allZero={allZero} setFinish={setFinish} />
                     {student ? (
                     <>
