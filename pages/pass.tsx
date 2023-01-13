@@ -11,6 +11,7 @@ import ReturnAdminModal from '../components/test_generator/ReturnAdminModal';
 import NightMode from '../components/test_generator/NightMode';
 import DemoMode from '../components/test_generator/DemoMode';
 import TakeTest from '../components/test_generator/TakeTest';
+import MappedForm from '../components/test_generator/MappedForm';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -813,41 +814,6 @@ export default function Services() {
                 <NightMode night={night} setNight={setNight} setBackground={setBackground} setTextColor={setTextColor} setQuestionColor={setQuestionColor} />
                 <DemoMode demo={demo} setDemo={setDemo} setStudent={setStudent} setEdit={setEdit} setClickPassword={setClickPassword} setPassword={setPassword} setAdminPassword={setAdminPassword} setAdminEmail={setAdminEmail} setAuth={setAuth} setIsResetting={setIsResetting} setNewPassword={setNewPassword} setSave={setSave} setCreated={setCreated} setTitleClicked={setTitleClicked} setSaveRipple={setSaveRipple} setResetClicked={setResetClicked} setEye={setEye} setHide={setHide} setUserEmail={setUserEmail} setOpenModal={setOpenModal} setResetTernary={setResetTernary} textColor={textColor} />
                 <TakeTest student={student} created={created} demo={demo} setStudent={setStudent} setOpenModal={setOpenModal} setFinish={setFinish} setSave={setSave} setDemo={setDemo} setNewPassword={setNewPassword} setEye={setEye} setHide={setHide} />
-                {/* {!student ? (
-                <>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'flex-end',
-                            marginTop: '10px',
-                            marginRight: '10px'
-                        }}
-                    >
-                        {(created && demo) ? (
-                        <>
-                            <div>
-                                <button
-                                    className={styles.takeTest}
-                                    onClick={() => {setStudent(true), setOpenModal(false), setFinish(false), setSave(true), setDemo(true), setNewPassword(''), setEye(true), setHide('password')}}
-                                    style={{
-                                        padding: '7px 21px 7px 21px',
-                                        fontWeight: '700',
-                                        fontSize: '14px',
-                                        fontFamily: 'Nunito',
-                                        borderRadius: '.28571429rem',
-                                        border: `2px solid purple`,
-                                        background: 'transparent',
-                                        color: 'purple'
-                                    }}
-                                >
-                                    Take Test
-                                </button>
-                            </div>
-                        </>
-                        ): null}
-                    </div>
-                </>
-                ): null} */}
                 <div
                     style={{
                         marginRight: '1vw',
@@ -2244,7 +2210,8 @@ export default function Services() {
                                 </>
                                 ): null}
                             </div>
-                            <div>
+                            <MappedForm serviceList={serviceList} save={save} student={student} finish={finish} questionColor={questionColor} handleQuestionChange={handleQuestionChange} handleAnswerChange={handleAnswerChange} handleStudentAnswerChange={handleStudentAnswerChange} handleServiceRemove={handleServiceRemove} handleAddService={handleAddService} />
+                            {/* <div>
                                 <form autoComplete='off'>
                                     <div>
                                         {serviceList.map((singleService, index) => (
@@ -2478,7 +2445,7 @@ export default function Services() {
                                         ))}
                                     </div>
                                 </form>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </Container>
