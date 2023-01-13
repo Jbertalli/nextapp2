@@ -24,6 +24,7 @@ import OpenNameDate from '../components/test_generator/OpenNameDate';
 import SubmitTestButton from '../components/test_generator/SubmitTestButton';
 import StudentAdminSwitch from '../components/test_generator/StudentAdminSwitch';
 import TestHeader from '../components/test_generator/TestHeader';
+import ReturnAdminButton from '../components/test_generator/ReturnAdminButton';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -836,26 +837,7 @@ export default function Services() {
                 >
                     {student ? (
                     <>
-                        {(adminPassword.length > 0 || resetClicked) ? (
-                        <>
-                            <button
-                                className={styles.takeTest}
-                                onClick={() => {setNewModal(true), setSame(false)}}
-                                style={{
-                                    padding: '7px 21px 7px 21px',
-                                    fontWeight: '700',
-                                    fontSize: '14px',
-                                    fontFamily: 'Nunito',
-                                    borderRadius: '.28571429rem',
-                                    border: '2px solid purple',
-                                    background: 'transparent',
-                                    color: 'purple'
-                                }}
-                            >
-                                Return to Admin Page
-                            </button>
-                        </>
-                        ): null}
+                        <ReturnAdminButton adminPassword={adminPassword} resetClicked={resetClicked} setNewModal={setNewModal} setSame={setSame} />
                         <ReturnAdminModal newModal={newModal} setNewModal={setNewModal} isResetting={isResetting} setIsResetting={setIsResetting} errorCheck={errorCheck} setErrorCheck={setErrorCheck} hide={hide} setHide={setHide} eye={eye} setEye={setEye} setResetTernary={setResetTernary} resetTernary={resetTernary} sendResetEmail={sendResetEmail} setPassword={setPassword} resetPassword={resetPassword} randomString={randomString} setResetPassword={setResetPassword} setAdminPassword={setAdminPassword} setResetClicked={setResetClicked} setShow={setShow} sameReset={sameReset} resetMatch={resetMatch} setCreated={setCreated} setStudent={setStudent} setHideAdmin={setHideAdmin} setSave={setSave} setClickPassword={setClickPassword} setAuth={setAuth} resize={resize} newPassword={newPassword} setNewPassword={setNewPassword} same={same} match={match} />
                     </>
                     ): null}  
@@ -870,21 +852,6 @@ export default function Services() {
                         marginBottom: '100px'
                     }}
                 >
-                    {/* <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            fontSize: resize ? '65px' : '28px',
-                            lineHeight: resize ? '0px' : '40px',
-                            marginBottom: resize ? '7vh' : '3vh',
-                            marginTop: resize ? '4vh' : '0vh',
-                            fontFamily: 'sans-serif',
-                            fontWeight: '300',
-                            color: `${questionColor}`
-                        }}
-                    >
-                        Test Generator {demo ? 'Demo': null}
-                    </div> */}
                     <TestHeader resize={resize} questionColor={questionColor} demo={demo} />
                     <Divider />
                     <StudentAdminSwitch student={student} demo={demo} setStudent={setStudent} setFinish={setFinish} setIsTimed={setIsTimed} setOpenAnswerKey={setOpenAnswerKey} setOpenQuestionKey={setOpenQuestionKey} setOpenStudentAnswers={setOpenStudentAnswers} setEdit={setEdit} setSave={setSave} setTimeClick={setTimeClick} textColor={textColor} setOpenEmail={setOpenEmail} setOpenNameDate={setOpenNameDate} />
