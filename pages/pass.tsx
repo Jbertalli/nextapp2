@@ -18,6 +18,7 @@ import DropdownKeys from '../components/test_generator/DropdownKeys';
 // import TimerUI from '../components/test_generator/TimerUI';
 import Email from '../components/test_generator/Email';
 import CreateTimer from '../components/test_generator/CreateTimer';
+import DateClicked from '../components/test_generator/DateClicked';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -855,19 +856,6 @@ export default function Services() {
                     ): null}  
                 </div>
                 <DemoModal openModal={openModal} setOpenModal={setOpenModal} auth={auth} setAuth={setAuth} hide={hide} setHide={setHide} eye={eye} setEye={setEye} creating={creating} clickPassword={clickPassword} setClickPassword={setClickPassword} adminEmail={adminEmail} setAdminEmail={setAdminEmail} validEmail={validEmail} password={password} setPassword={setPassword} setShow={setShow} isValid={isValid} adminPassword={adminPassword} setAdminPassword={setAdminPassword} errorCheck={errorCheck} setErrorCheck={setErrorCheck} matchPass={matchPass} setFinish={setFinish} setDemo={setDemo} setServiceList={setServiceList} setCreating={setCreating} setSave={setSave} setCreated={setCreated} setTitle={setTitle} setTitleClicked={setTitleClicked} setSaveRipple={setSaveRipple} />
-                {/* <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        fontSize: '65px',
-                        marginBottom: '5vh',
-                        marginTop: '8vh',
-                        fontFamily: 'sans-serif',
-                        fontWeight: '300',
-                    }}
-                >
-                    Test Generator {demo ? 'Demo': null}
-                </div> */}
                 <Container
                     style={{ 
                         border: `2px solid ${questionColor}`,
@@ -1177,7 +1165,8 @@ export default function Services() {
                                     </div>
                                 </>
                                 )}
-                                {!dateClicked ? (
+                                <DateClicked dateClicked={dateClicked} setDate={setDate} setDateClicked={setDateClicked} questionColor={questionColor} date={date} />
+                                {/* {!dateClicked ? (
                                 <>
                                     <div>
                                         <h2 
@@ -1263,80 +1252,13 @@ export default function Services() {
                                         </span>
                                     </div>
                                 </>
-                                )}
+                                )} */}
                             </>
                             )}
                         </div>
                     </>
                     ): null}
                     <CreateTimer student={student} edit={edit} setEdit={setEdit} questionColor={questionColor} setTimeClick={setTimeClick} setIsTimed={setIsTimed} timeClick={timeClick} timed={timed} minute={minute} setMinute={setMinute} second={second} setSecond={setSecond} />
-                    {/* {!student ? (
-                    <>
-                        <div>
-                            <Divider />
-                            {!edit ? (
-                            <>
-                                <div
-                                    style={{ 
-                                        transform: 'translateY(-8px)',
-                                        cursor: 'pointer' 
-                                    }}
-                                    onClick={() => {setEdit(true)}}
-                                >
-                                    <div 
-                                        style={{ 
-                                            marginLeft: '-25px',
-                                            display: 'flex',
-                                            color: `${questionColor}`,
-                                            transform: 'translateY(100%) scale(0.8)'
-                                        }}
-                                    >
-                                        <Icon
-                                            name='chevron down'
-                                        />
-                                    </div>
-                                    <div
-                                        style={{ 
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            fontSize: '20px', 
-                                            fontWeight: '700',
-                                            color: `${questionColor}`
-                                        }}
-                                    >
-                                        Create Timer
-                                    </div>
-                                </div>
-                            </>
-                            ):(
-                            <>
-                                <Container
-                                    style={{ 
-                                        color: 'red',
-                                        display: 'flex',
-                                        justifyContent: 'flex-end',
-                                        cursor: 'pointer',
-                                        transform: 'translate(-1vw, -5px)'
-                                    }}
-                                    className={styles.open}
-                                    onClick={() => {setEdit(false), setTimeClick(false), setIsTimed(false)}}
-                                >
-                                    <div
-                                        style={{
-                                            transform: 'scale(2)',
-                                            zIndex: '10'
-                                        }}
-                                    >
-                                        x
-                                    </div>
-                                </Container>
-                                <TimerUI timeClick={timeClick} timed={timed} minute={minute} setMinute={setMinute} second={second} setSecond={setSecond} setTimeClick={setTimeClick} questionColor={questionColor} />
-                            </>
-                            )}
-                        </div>
-                    </>
-                    ): null} */}
-
                     <div>
                         <MyTimer isTimed={isTimed} setIsTimed={setIsTimed} setTimed={setTimed} timed={timed} student={student} finish={finish} setFinish={setFinish} secondTime={secondTime} minuteTime={minuteTime} expiryTimestamp={time} timeClick={timeClick} edit={edit} questionColor={questionColor} setTimeClick={setTimeClick} />
                     </div>
