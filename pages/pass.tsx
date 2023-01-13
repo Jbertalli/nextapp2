@@ -478,8 +478,8 @@ export default function Services() {
       >
         <div
             style={{
-                cursor: 'pointer',
-                position: 'absolute'
+                cursor: "pointer",
+                position: "absolute"
             }}
         >
             {openHover ? (
@@ -487,38 +487,140 @@ export default function Services() {
                 <div
                     onClick={() => setOpenHover(false)}
                     style={{
-                        border: '1px solid red',
-                        width: resize ? "30vw" : "50vw",
-                        maxWidth: '300px',
-                        height: '100vh',
-                        background: 'rgb(0, 0, 0, 1)',
-                        position: 'relative',
-                        zIndex: '1000'
+                        width: resize ? "20vw" : "100vw",
+                        minWidth: '300px',
+                        height: resize ? "100vh" : "100%",
+                        background: "rgb(238, 75, 43, 1)",
+                        position: "relative",
+                        zIndex: "1000",
+                        fontSize: "20px",
+                        fontWeight: "700"
                     }}
                 >
-                    <ul
+                    <div
                         style={{
-                            display: 'flex',
-                            justifyContent: 'flex-end',
-                            marginRight: '10px'
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            marginRight: "20px",
+                            transform: "translateY(15px)",
+                            marginBottom: "30px"
                         }}
                     >
                         <Icon
-                            name='chevron left'
+                            name={resize ? "chevron left" : "chevron up"}
                         />
-                    </ul>
-                    <ul>
-                        Night
-                    </ul>
-                    <ul>
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: "white",  
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "15px 0px 15px 0px"
+                        }}
+                    >
+                        Night Mode
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: "white",  
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "15px 0px 15px 0px"
+                        }}
+                    >
                         Demo Mode
-                    </ul>
-                    <ul>
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: "white",  
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "15px 0px 15px 0px"
+                        }}
+                    >
                         Take Test
-                    </ul>
-                    <ul>
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: "white",  
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "15px 0px 15px 0px"
+                        }}
+                    >
                         Return to Admin Page
-                    </ul>
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center"
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: "88%",
+                                height: "1px",
+                                background: "white",  
+                            }}
+                        />
+                    </div>
+                    <div
+                        style={{
+                            height: "20px"
+                        }}
+                    />
                 </div>
             </>
             ):(
@@ -532,38 +634,38 @@ export default function Services() {
                 >
                     <div
                         style={{
-                            width: '50px',
-                            position: 'relative',
-                            transform: 'scaleX(2)',
-                            left: '30px'
+                            width: "50px",
+                            position: "relative",
+                            transform: "scaleX(2)",
+                            left: "30px"
                         }}
                     >
                         <Icon
-                            name='minus'
+                            name="minus"
                         />
                     </div>
                     <div
                         style={{
-                            width: '50px',
-                            position: 'relative',
-                            transform: 'scaleX(2) translateY(-13px)',
-                            left: '30px'
+                            width: "50px",
+                            position: "relative",
+                            transform: "scaleX(2) translateY(-13px)",
+                            left: "30px"
                             }}
                     >
                         <Icon
-                            name='minus'
+                            name="minus"
                         />
                     </div>
                     <div
                         style={{
-                            width: '50px',
-                            position: 'relative',
-                            transform: 'scaleX(2) translateY(-26px)',
-                            left: '30px'
+                            width: "50px",
+                            position: "relative",
+                            transform: "scaleX(2) translateY(-26px)",
+                            left: "30px"
                             }}
                     >
                         <Icon
-                            name='minus'
+                            name="minus"
                         />
                     </div>
                 </div>
