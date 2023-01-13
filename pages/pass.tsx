@@ -22,6 +22,7 @@ import DateClicked from '../components/test_generator/DateClicked';
 import NameClicked from '../components/test_generator/NameClicked';
 import OpenNameDate from '../components/test_generator/OpenNameDate';
 import SubmitTestButton from '../components/test_generator/SubmitTestButton';
+import StudentAdminSwitch from '../components/test_generator/StudentAdminSwitch';
 
 const LOCAL_STORAGE_KEY = 'list';
 const LOCAL_STORAGE_KEY_NAME = 'Name';
@@ -884,7 +885,8 @@ export default function Services() {
                         Test Generator {demo ? 'Demo': null}
                     </div>
                     <Divider />
-                    <div
+                    <StudentAdminSwitch student={student} demo={demo} setStudent={setStudent} setFinish={setFinish} setIsTimed={setIsTimed} setOpenAnswerKey={setOpenAnswerKey} setOpenQuestionKey={setOpenQuestionKey} setOpenStudentAnswers={setOpenStudentAnswers} setEdit={setEdit} setSave={setSave} setTimeClick={setTimeClick} textColor={textColor} setOpenEmail={setOpenEmail} setOpenNameDate={setOpenNameDate} />
+                    {/* <div
                         style={{
                             display: 'flex',
                             justifyContent: 'center'
@@ -971,59 +973,9 @@ export default function Services() {
                             ): null}
                         </div>
                         <Divider />
-                    </div>
+                    </div> */}
+
                     <SubmitTestButton student={student} isTimed={isTimed} finish={finish} allZero={allZero} setFinish={setFinish} />
-                    {/* {student ? (
-                    <>
-                        {!isTimed ? (
-                        <>
-                            <Divider />
-                            {!finish ? (
-                            <>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    <Button
-                                        disabled={allZero}
-                                        onClick={() => setFinish(true)}
-                                        style={{
-                                            border: '2px solid #21BA45',
-                                            background: 'transparent',
-                                            color: '#21BA45'
-                                        }}
-                                    >
-                                        Submit Test
-                                    </Button>
-                                </div>
-                            </>
-                            ):(
-                            <>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center'
-                                    }}
-                                >
-                                    <Button
-                                        onClick={() => setFinish(false)}   
-                                        style={{
-                                            border: '2px solid red',
-                                            background: 'transparent',
-                                            color: 'red'
-                                        }}                     
-                                    >
-                                        Edit Test
-                                    </Button>
-                                </div>
-                            </>
-                            )}
-                        </>
-                        ): null}
-                    </>
-                    ): null} */}
                     {student ? (
                     <>
                         <Email openEmail={openEmail} setOpenEmail={setOpenEmail} questionColor={questionColor} finish={finish} userEmail={userEmail} setUserEmail={setUserEmail} validEmail={validEmail} isValid={isValid} send={send} />
