@@ -25,6 +25,7 @@ import StudentAdminSwitch from "../components/test_generator/StudentAdminSwitch"
 import TestHeader from "../components/test_generator/TestHeader";
 import ReturnAdminButton from "../components/test_generator/ReturnAdminButton";
 import Local from '../components/test_generator/Local';
+import SideMenu from '../components/test_generator/SideMenu';
 
 export default function Services() {
   const [serviceList, setServiceList] = useState([
@@ -477,7 +478,47 @@ export default function Services() {
           paddingBottom: "1px",
         }}
       >
-        <div
+        <SideMenu 
+            openHover={openHover} 
+            setOpenHover={setOpenHover} 
+            resize={resize} 
+            night={night} 
+            questionColor={questionColor} 
+            setNight={setNight} 
+            setBackground={setBackground} 
+            setTextColor={setTextColor} 
+            setQuestionColor={setQuestionColor} 
+            demo={demo} 
+            setDemo={setDemo} 
+            setStudent={setStudent} 
+            setEdit={setEdit} 
+            setClickPassword={setClickPassword} 
+            setPassword={setPassword} 
+            setAdminPassword={setAdminPassword} 
+            setAdminEmail={setAdminEmail} 
+            setAuth={setAuth} 
+            setIsResetting={setIsResetting} 
+            setNewPassword={setNewPassword} 
+            setSave={setSave} 
+            setCreated={setCreated} 
+            setTitleClicked={setTitleClicked} 
+            setSaveRipple={setSaveRipple} 
+            setResetClicked={setResetClicked} 
+            setEye={setEye} 
+            setHide={setHide} 
+            setUserEmail={setUserEmail}
+            setOpenModal={setOpenModal}
+            setResetTernary={setResetTernary}
+            student={student}
+            created={created} 
+            setFinish={setFinish}
+            adminPassword={adminPassword}
+            resetClicked={resetClicked}
+            setNewModal={setNewModal}
+            setSame={setSame}
+        />
+
+        {/* <div
             style={{
                 cursor: "pointer",
                 position: "absolute"
@@ -817,7 +858,8 @@ export default function Services() {
                 </div>
             </>
             )}
-        </div>
+        </div> */}
+
         {/* <NightMode
           night={night}
           setNight={setNight}
@@ -956,7 +998,7 @@ export default function Services() {
                 border: `2px solid ${questionColor}`,
                 borderRadius: "10px",
                 padding: "3em",
-                marginTop: "16vh",
+                marginTop: resize ? "12vh" : "16vh",
                 marginBottom: "100px"
             }}
         >
