@@ -39,7 +39,7 @@ export default function SideMenu(values) {
     adminPassword,
     resetClicked,
     setNewModal,
-    setSame,
+    setSame
   } = values;
 
   return (
@@ -47,7 +47,7 @@ export default function SideMenu(values) {
       <div
         style={{
           cursor: "pointer",
-          position: "absolute",
+          position: "absolute"
         }}
       >
         {openHover ? (
@@ -65,7 +65,7 @@ export default function SideMenu(values) {
                 zIndex: "1000",
                 fontSize: "20px",
                 fontWeight: "700",
-                border: night ? "2px solid white" : "2px solid #125CA1",
+                border: night ? "2px solid white" : "2px solid #125CA1"
               }}
               className={resize ? styles.menu : styles.dropdown}
             >
@@ -75,7 +75,7 @@ export default function SideMenu(values) {
                   justifyContent: "flex-end",
                   marginRight: "20px",
                   transform: "translateY(44px)",
-                  marginBottom: "30px",
+                  marginBottom: "30px"
                 }}
               >
                 <Icon name={resize ? "chevron left" : "chevron up"} />
@@ -84,7 +84,7 @@ export default function SideMenu(values) {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  transform: "translateY(-15px)",
+                  transform: "translateY(-15px)"
                 }}
               >
                 Dashboard
@@ -92,14 +92,14 @@ export default function SideMenu(values) {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "center"
                 }}
               >
                 <div
                   style={{
                     width: "88%",
                     height: "1px",
-                    background: `${questionColor}`,
+                    background: `${questionColor}`
                   }}
                 />
               </div>
@@ -110,13 +110,13 @@ export default function SideMenu(values) {
                         setNight(true),
                         setBackground("black"),
                         setTextColor("#f2f2f2"),
-                        setQuestionColor("#f2f2f2");
+                        setQuestionColor("#f2f2f2")
                     }}
                     style={{
                       display: "flex",
                       justifyContent: "center",
                       margin: "15px 0px 15px 0px",
-                      padding: "0px",
+                      padding: "0px"
                     }}
                   >
                     <Icon name="moon" />
@@ -130,13 +130,13 @@ export default function SideMenu(values) {
                         setNight(false),
                         setBackground("white"),
                         setTextColor(""),
-                        setQuestionColor("#125CA1");
+                        setQuestionColor("#125CA1")
                     }}
                     style={{
                       display: "flex",
                       justifyContent: "center",
                       margin: "15px 0px 15px 0px",
-                      padding: "0px",
+                      padding: "0px"
                     }}
                   >
                     <Icon name="sun" />
@@ -147,14 +147,14 @@ export default function SideMenu(values) {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "center"
                 }}
               >
                 <div
                   style={{
                     width: "88%",
                     height: "1px",
-                    background: `${questionColor}`,
+                    background: `${questionColor}`
                   }}
                 />
               </div>
@@ -179,13 +179,13 @@ export default function SideMenu(values) {
                         setResetClicked(false),
                         setEye(true),
                         setHide("password"),
-                        setUserEmail("");
+                        setUserEmail("")
                     }}
                     style={{
                       display: "flex",
                       justifyContent: "center",
                       margin: "15px 0px 15px 0px",
-                      color: "red",
+                      color: "red"
                     }}
                   >
                     End Demo Mode
@@ -193,7 +193,7 @@ export default function SideMenu(values) {
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "center"
                     }}
                   >
                     <div
@@ -201,7 +201,7 @@ export default function SideMenu(values) {
                         width: "88%",
                         height: "1px",
                         background: `${questionColor}`,
-                        transform: "translateY(-0px)",
+                        transform: "translateY(-0px)"
                       }}
                     />
                   </div>
@@ -212,17 +212,17 @@ export default function SideMenu(values) {
                     onClick={() => {
                         setOpenModal(true),
                         setStudent(false),
-                        setResetTernary(false);
+                        setResetTernary(false)
                     }}
                     style={{
-                      border: "1px solid transparent",
+                      border: "1px solid transparent"
                     }}
                   >
                     <div
                       style={{
                         display: "flex",
                         justifyContent: "center",
-                        margin: "15px 0px 15px 0px",
+                        margin: "15px 0px 15px 0px"
                       }}
                     >
                       Demo Mode
@@ -231,7 +231,7 @@ export default function SideMenu(values) {
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "center"
                     }}
                   >
                     <div
@@ -239,7 +239,7 @@ export default function SideMenu(values) {
                         width: "88%",
                         height: "1px",
                         background: `${questionColor}`,
-                        transform: "translateY(0px)",
+                        transform: "translateY(0px)"
                       }}
                     />
                   </div>
@@ -260,13 +260,13 @@ export default function SideMenu(values) {
                                 setDemo(true),
                                 setNewPassword(""),
                                 setEye(true),
-                                setHide("password");
+                                setHide("password")
                             }}
                             style={{
                               display: "flex",
                               justifyContent: "center",
                               margin: "0px 18px 16px 18px",
-                              padding: "14.8px",
+                              padding: "14.8px"
                             }}
                             className={
                               night ? styles.takeTestNight : styles.takeTest
@@ -277,7 +277,7 @@ export default function SideMenu(values) {
                           <div
                             style={{
                               display: "flex",
-                              justifyContent: "center",
+                              justifyContent: "center"
                             }}
                           >
                             <div
@@ -285,7 +285,7 @@ export default function SideMenu(values) {
                                 width: "88%",
                                 height: "1px",
                                 background: `${questionColor}`,
-                                transform: "translateY(-16px)",
+                                transform: "translateY(-16px)"
                               }}
                             />
                           </div>
@@ -321,7 +321,7 @@ export default function SideMenu(values) {
                       style={{
                         width: "88%",
                         height: "1px",
-                        background: `${questionColor}`,
+                        background: `${questionColor}`
                       }}
                     />
                   </div>
@@ -342,7 +342,7 @@ export default function SideMenu(values) {
                 marginTop: resize ? "40px" : "3.8vh",
                 marginLeft: resize ? "30px" : "8px",
                 transform: "scale(1.3)",
-                color: `${questionColor}`,
+                color: `${questionColor}`
               }}
             >
               <div
@@ -350,7 +350,7 @@ export default function SideMenu(values) {
                   width: "50px",
                   position: "relative",
                   transform: "scaleX(2)",
-                  left: "30px",
+                  left: "30px"
                 }}
               >
                 <Icon name="minus" />
@@ -360,7 +360,7 @@ export default function SideMenu(values) {
                   width: "50px",
                   position: "relative",
                   transform: "scaleX(2) translateY(-13px)",
-                  left: "30px",
+                  left: "30px"
                 }}
               >
                 <Icon name="minus" />
@@ -370,7 +370,7 @@ export default function SideMenu(values) {
                   width: "50px",
                   position: "relative",
                   transform: "scaleX(2) translateY(-26px)",
-                  left: "30px",
+                  left: "30px"
                 }}
               >
                 <Icon name="minus" />
