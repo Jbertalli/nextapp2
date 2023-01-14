@@ -1,16 +1,12 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
-import { Divider, Container, Icon } from "semantic-ui-react";
-import styles from '../styles/Test.module.css';
+import { Divider, Container } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import emailjs from "emailjs-com";
 // import hash from 'object-hash';
 import MyTimer from "../components/test_generator/MyTimer";
 import DemoModal from "../components/test_generator/DemoModal";
 import ReturnAdminModal from "../components/test_generator/ReturnAdminModal";
-import NightMode from "../components/test_generator/NightMode";
-import DemoMode from "../components/test_generator/DemoMode";
-import TakeTest from "../components/test_generator/TakeTest";
 import MappedForm from "../components/test_generator/MappedForm";
 import GradeCard from "../components/test_generator/GradeCard";
 import EditTitle from "../components/test_generator/EditTitle";
@@ -23,9 +19,8 @@ import OpenNameDate from "../components/test_generator/OpenNameDate";
 import SubmitTestButton from "../components/test_generator/SubmitTestButton";
 import StudentAdminSwitch from "../components/test_generator/StudentAdminSwitch";
 import TestHeader from "../components/test_generator/TestHeader";
-import ReturnAdminButton from "../components/test_generator/ReturnAdminButton";
-import Local from '../components/test_generator/Local';
-import SideMenu from '../components/test_generator/SideMenu';
+import Local from "../components/test_generator/Local";
+import SideMenu from "../components/test_generator/SideMenu";
 
 export default function Services() {
   const [serviceList, setServiceList] = useState([
@@ -399,73 +394,73 @@ export default function Services() {
         <meta name="description" content="test" />
       </Head>
       <Local
-        setServiceList={setServiceList} 
-        serviceList={serviceList} 
-        setName={setName} 
-        name={name} 
-        setNameClicked={setNameClicked} 
-        nameClicked={nameClicked} 
-        setDate={setDate} 
-        date={date} 
-        setDateClicked={setDateClicked} 
-        dateClicked={dateClicked} 
-        setTitle={setTitle} 
-        title={title} 
-        setTitleClicked={setTitleClicked} 
-        titleClicked={titleClicked} 
-        setUserEmail={setUserEmail} 
-        userEmail={userEmail} 
-        setIsValid={setIsValid} 
-        isValid={isValid} 
-        setOpenNameDate={setOpenNameDate} 
-        openNameDate={openNameDate} 
-        setOpenModal={setOpenModal} 
-        openModal={openModal} 
-        setAuth={setAuth} 
+        setServiceList={setServiceList}
+        serviceList={serviceList}
+        setName={setName}
+        name={name}
+        setNameClicked={setNameClicked}
+        nameClicked={nameClicked}
+        setDate={setDate}
+        date={date}
+        setDateClicked={setDateClicked}
+        dateClicked={dateClicked}
+        setTitle={setTitle}
+        title={title}
+        setTitleClicked={setTitleClicked}
+        titleClicked={titleClicked}
+        setUserEmail={setUserEmail}
+        userEmail={userEmail}
+        setIsValid={setIsValid}
+        isValid={isValid}
+        setOpenNameDate={setOpenNameDate}
+        openNameDate={openNameDate}
+        setOpenModal={setOpenModal}
+        openModal={openModal}
+        setAuth={setAuth}
         auth={auth}
-        setPassword={setPassword} 
-        password={password} 
-        setAdminPassword={setAdminPassword} 
-        adminPassword={adminPassword} 
-        setClickPassword={setClickPassword} 
-        clickPassword={clickPassword} 
-        setHideAdmin={setHideAdmin} 
-        hideAdmin={hideAdmin} 
-        setNewModal={setNewModal} 
-        newModal={newModal} 
+        setPassword={setPassword}
+        password={password}
+        setAdminPassword={setAdminPassword}
+        adminPassword={adminPassword}
+        setClickPassword={setClickPassword}
+        clickPassword={clickPassword}
+        setHideAdmin={setHideAdmin}
+        hideAdmin={hideAdmin}
+        setNewModal={setNewModal}
+        newModal={newModal}
         setNewPassword={setNewPassword}
-        newPassword={newPassword} 
-        setSame={setSame} 
-        same={same} 
-        setLetterGrade={setLetterGrade} 
-        letterGrade={letterGrade} 
-        setColor={setColor} 
-        color={color} 
-        setStudent={setStudent} 
-        student={student} 
-        setFinish={setFinish} 
-        finish={finish} 
-        setSave={setSave} 
-        save={save} 
+        newPassword={newPassword}
+        setSame={setSame}
+        same={same}
+        setLetterGrade={setLetterGrade}
+        letterGrade={letterGrade}
+        setColor={setColor}
+        color={color}
+        setStudent={setStudent}
+        student={student}
+        setFinish={setFinish}
+        finish={finish}
+        setSave={setSave}
+        save={save}
         setResetPassword={setResetPassword}
-        resetPassword={resetPassword} 
-        setAdminEmail={setAdminEmail} 
-        adminEmail={adminEmail} 
-        setDemo={setDemo} 
-        demo={demo} 
-        setCreated={setCreated} 
-        created={created} 
-        setSaveRipple={setSaveRipple} 
-        saveRipple={saveRipple} 
-        setResetClicked={setResetClicked} 
+        resetPassword={resetPassword}
+        setAdminEmail={setAdminEmail}
+        adminEmail={adminEmail}
+        setDemo={setDemo}
+        demo={demo}
+        setCreated={setCreated}
+        created={created}
+        setSaveRipple={setSaveRipple}
+        saveRipple={saveRipple}
+        setResetClicked={setResetClicked}
         resetClicked={resetClicked}
-        setNight={setNight} 
-        night={night} 
-        setBackground={setBackground} 
-        background={background} 
-        setTextColor={setTextColor} 
-        textColor={textColor} 
-        setQuestionColor={setQuestionColor} 
+        setNight={setNight}
+        night={night}
+        setBackground={setBackground}
+        background={background}
+        setTextColor={setTextColor}
+        textColor={textColor}
+        setQuestionColor={setQuestionColor}
         questionColor={questionColor}
       />
       <div
@@ -478,397 +473,16 @@ export default function Services() {
           paddingBottom: "1px",
         }}
       >
-        <SideMenu 
-            openHover={openHover} 
-            setOpenHover={setOpenHover} 
-            resize={resize} 
-            night={night} 
-            questionColor={questionColor} 
-            setNight={setNight} 
-            setBackground={setBackground} 
-            setTextColor={setTextColor} 
-            setQuestionColor={setQuestionColor} 
-            demo={demo} 
-            setDemo={setDemo} 
-            setStudent={setStudent} 
-            setEdit={setEdit} 
-            setClickPassword={setClickPassword} 
-            setPassword={setPassword} 
-            setAdminPassword={setAdminPassword} 
-            setAdminEmail={setAdminEmail} 
-            setAuth={setAuth} 
-            setIsResetting={setIsResetting} 
-            setNewPassword={setNewPassword} 
-            setSave={setSave} 
-            setCreated={setCreated} 
-            setTitleClicked={setTitleClicked} 
-            setSaveRipple={setSaveRipple} 
-            setResetClicked={setResetClicked} 
-            setEye={setEye} 
-            setHide={setHide} 
-            setUserEmail={setUserEmail}
-            setOpenModal={setOpenModal}
-            setResetTernary={setResetTernary}
-            student={student}
-            created={created} 
-            setFinish={setFinish}
-            adminPassword={adminPassword}
-            resetClicked={resetClicked}
-            setNewModal={setNewModal}
-            setSame={setSame}
-        />
-
-        {/* <div
-            style={{
-                cursor: "pointer",
-                position: "absolute"
-            }}
-        >
-            {openHover ? (
-            <>
-                <div
-                    onClick={() => setOpenHover(false)}
-                    style={{
-                        width: resize ? "300px" : "100vw",
-                        // minWidth: '300px',
-                        maxWidth: '600px',
-                        height: resize ? "100vh" : "100%",
-                        background: night ? 'black' : 'white',
-                        color: `${questionColor}`,
-                        position: "relative",
-                        zIndex: "1000",
-                        fontSize: "20px",
-                        fontWeight: "700",
-                        border: night ? "2px solid white" : "2px solid #125CA1"
-                    }}
-                    className={resize ? styles.menu : styles.dropdown}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            marginRight: "20px",
-                            transform: "translateY(44px)",
-                            marginBottom: "30px"
-                        }}
-                    >
-                        <Icon
-                            name={resize ? "chevron left" : "chevron up"}
-                        />
-                    </div>
-                    <h1
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            transform: 'translateY(-15px)'
-                        }}
-                    >
-                        Dashboard
-                    </h1>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: `${questionColor}`                           
-                            }}
-                        />
-                    </div>
-                    {!night ? (
-                    <>
-                        <div
-                            onClick={() => {
-                                setNight(true),
-                                setBackground("black"),
-                                setTextColor("#f2f2f2"),
-                                setQuestionColor("#f2f2f2")
-                            }}
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "15px 0px 15px 0px",
-                                padding: '0px'
-                            }}
-                        >
-                            <Icon name="moon" />
-                            Night Mode
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div
-                            onClick={() => {
-                                setNight(false),
-                                setBackground("white"),
-                                setTextColor(""),
-                                setQuestionColor("#125CA1")
-                            }}
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "15px 0px 15px 0px",
-                                padding: '0px'
-                            }}
-                        >
-                            <Icon name="sun" />
-                            Day Mode
-                        </div>
-                      </>
-                    )} 
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: `${questionColor}`  
-                            }}
-                        />
-                    </div>
-                    {demo ? (
-                        <>
-                            <div
-                                onClick={() => {
-                                    setDemo(false),
-                                    setStudent(false),
-                                    setEdit(false),
-                                    setClickPassword(true),
-                                    setPassword(""),
-                                    setAdminPassword(""),
-                                    setAdminEmail(""),
-                                    setAuth(false),
-                                    setIsResetting(false),
-                                    setNewPassword(""),
-                                    setSave(false),
-                                    setCreated(false),
-                                    setTitleClicked(false),
-                                    setSaveRipple(false),
-                                    setResetClicked(false),
-                                    setEye(true),
-                                    setHide("password"),
-                                    setUserEmail("");
-                                }}
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    margin: "15px 0px 15px 0px",
-                                    color: 'red'
-                                }}
-                            >
-                                End Demo Mode
-                            </div>
-                             <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center"
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: "88%",
-                                        height: "1px",
-                                        background: `${questionColor}`,
-                                        transform: 'translateY(-0px)'  
-                                    }}
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div
-                                onClick={() => {
-                                    setOpenModal(true), 
-                                    setStudent(false), 
-                                    setResetTernary(false);
-                                }}
-                                style={{
-                                    border: '1px solid transparent'
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        margin: "15px 0px 15px 0px"
-                                    }}
-                                >
-                                    Demo Mode
-                                </div>
-                            </div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center"
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: "88%",
-                                        height: "1px",
-                                        background: `${questionColor}`,
-                                        transform: 'translateY(0px)'  
-                                    }}
-                                />
-                            </div>
-                        </>
-                    )}
-                    {!student ? (
-                        <>
-                            <div>
-                                {created && demo ? (
-                                    <>
-                                        <div>
-                                            <div
-                                                onClick={() => {
-                                                    setStudent(true),
-                                                    setOpenModal(false),
-                                                    setFinish(false),
-                                                    setSave(true),
-                                                    setDemo(true),
-                                                    setNewPassword(""),
-                                                    setEye(true),
-                                                    setHide("password");
-                                                }}
-                                                style={{
-                                                    display: "flex",
-                                                    justifyContent: "center",
-                                                    margin: "0px 18px 16px 18px",
-                                                    padding: '14.8px'
-                                                }}
-                                                className={night ? styles.takeTestNight : styles.takeTest}
-                                            >
-                                                Take Test
-                                            </div>
-                                            <div
-                                                style={{
-                                                    display: "flex",
-                                                    justifyContent: "center"
-                                                }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: "88%",
-                                                        height: "1px",
-                                                        background: `${questionColor}`,
-                                                        transform: 'translateY(-16px)'  
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                    </>
-                                ) : null}
-                            </div>
-                        </>
-                    ) : null}
-                    {(adminPassword.length > 0 || resetClicked) && student ? (
-                        <>
-                            <div
-                                onClick={() => {
-                                    setNewModal(true), setSame(false);
-                                }}
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    margin: "0px 18px 0px 18px",
-                                    padding: '14.8px'
-                                }}
-                                className={night ? styles.takeTestNight : styles.takeTest}
-                            >
-                                Return to Admin Page
-                            </div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center"
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: "88%",
-                                        height: "1px",
-                                        background: `${questionColor}`  
-                                    }}
-                                />
-                            </div>
-                        </>
-                    ) : null}
-                    <div
-                        style={{
-                            height: "20px"
-                        }}
-                    />
-                </div>
-            </>
-            ):(
-            <>
-                <div
-                    onClick={() => setOpenHover(true)}
-                    style={{
-                        marginTop: resize ? "40px" : "3.8vh",
-                        marginLeft: resize ? "30px" : "8px",
-                        transform: 'scale(1.3)',
-                        color: `${questionColor}`
-                    }}
-                >
-                    <div
-                        style={{
-                            width: "50px",
-                            position: "relative",
-                            transform: "scaleX(2)",
-                            left: "30px"
-                        }}
-                    >
-                        <Icon
-                            name="minus"
-                        />
-                    </div>
-                    <div
-                        style={{
-                            width: "50px",
-                            position: "relative",
-                            transform: "scaleX(2) translateY(-13px)",
-                            left: "30px"
-                            }}
-                    >
-                        <Icon
-                            name="minus"
-                        />
-                    </div>
-                    <div
-                        style={{
-                            width: "50px",
-                            position: "relative",
-                            transform: "scaleX(2) translateY(-26px)",
-                            left: "30px"
-                            }}
-                    >
-                        <Icon
-                            name="minus"
-                        />
-                    </div>
-                </div>
-            </>
-            )}
-        </div> */}
-
-        {/* <NightMode
+        <SideMenu
+          openHover={openHover}
+          setOpenHover={setOpenHover}
+          resize={resize}
           night={night}
+          questionColor={questionColor}
           setNight={setNight}
           setBackground={setBackground}
           setTextColor={setTextColor}
           setQuestionColor={setQuestionColor}
-          resize={resize}
-        /> */}
-        {/* <DemoMode
           demo={demo}
           setDemo={setDemo}
           setStudent={setStudent}
@@ -890,21 +504,14 @@ export default function Services() {
           setUserEmail={setUserEmail}
           setOpenModal={setOpenModal}
           setResetTernary={setResetTernary}
-          textColor={textColor}
-        /> */}
-        {/* <TakeTest
           student={student}
           created={created}
-          demo={demo}
-          setStudent={setStudent}
-          setOpenModal={setOpenModal}
           setFinish={setFinish}
-          setSave={setSave}
-          setDemo={setDemo}
-          setNewPassword={setNewPassword}
-          setEye={setEye}
-          setHide={setHide}
-        /> */}
+          adminPassword={adminPassword}
+          resetClicked={resetClicked}
+          setNewModal={setNewModal}
+          setSame={setSame}
+        />
         <div
           style={{
             marginRight: "1vw",
@@ -915,12 +522,6 @@ export default function Services() {
         >
           {student ? (
             <>
-              {/* <ReturnAdminButton
-                adminPassword={adminPassword}
-                resetClicked={resetClicked}
-                setNewModal={setNewModal}
-                setSame={setSame}
-              /> */}
               <ReturnAdminModal
                 newModal={newModal}
                 setNewModal={setNewModal}
@@ -994,20 +595,20 @@ export default function Services() {
           setSaveRipple={setSaveRipple}
         />
         <Container
-            style={{
-                border: `2px solid ${questionColor}`,
-                borderRadius: "10px",
-                padding: "3em",
-                marginTop: resize ? "12vh" : "16vh",
-                marginBottom: "100px"
-            }}
+          style={{
+            border: `2px solid ${questionColor}`,
+            borderRadius: "10px",
+            padding: "3em",
+            marginTop: resize ? "12vh" : "16vh",
+            marginBottom: "100px",
+          }}
         >
-            {/* <div
+          {/* <div
                 style={{
                     display: 'flex',
                     justifyContent: 'flex-end',
                     marginRight: '-60px',
-                    transform: 'translateY(-65px)'
+                    transform: 'translateY(-50px)'
                 }}
             >
                 <div
