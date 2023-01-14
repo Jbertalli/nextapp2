@@ -693,7 +693,7 @@ export default function Services() {
                                                     margin: "0px 18px 16px 18px",
                                                     padding: '14.8px'
                                                 }}
-                                                className={styles.takeTest}
+                                                className={night ? styles.takeTestNight : styles.takeTest}
                                             >
                                                 Take Test
                                             </div>
@@ -721,9 +721,8 @@ export default function Services() {
                     {(adminPassword.length > 0 || resetClicked) && student ? (
                         <>
                             <div
-                                className={styles.takeTest}
                                 onClick={() => {
-                                setNewModal(true), setSame(false);
+                                    setNewModal(true), setSame(false);
                                 }}
                                 style={{
                                     display: "flex",
@@ -731,6 +730,7 @@ export default function Services() {
                                     margin: "0px 18px 0px 18px",
                                     padding: '14.8px'
                                 }}
+                                className={night ? styles.takeTestNight : styles.takeTest}
                             >
                                 Return to Admin Page
                             </div>
@@ -762,8 +762,10 @@ export default function Services() {
                 <div
                     onClick={() => setOpenHover(true)}
                     style={{
-                        marginTop: resize ? "10px" : "5px",
-                        marginLeft: resize ? "10px" : "5px"
+                        marginTop: resize ? "40px" : "30px",
+                        marginLeft: resize ? "30px" : "8px",
+                        transform: 'scale(1.3)',
+                        color: `${questionColor}`
                     }}
                 >
                     <div
