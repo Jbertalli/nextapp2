@@ -500,14 +500,14 @@ export default function Services() {
                         fontWeight: "700",
                         border: night ? "2px solid white" : "2px solid #125CA1"
                     }}
-                    className={resize ? styles.menu : null}
+                    className={resize ? styles.menu : styles.dropdown}
                 >
                     <div
                         style={{
                             display: "flex",
                             justifyContent: "flex-end",
                             marginRight: "20px",
-                            transform: "translateY(15px)",
+                            transform: "translateY(44px)",
                             marginBottom: "30px"
                         }}
                     >
@@ -515,6 +515,15 @@ export default function Services() {
                             name={resize ? "chevron left" : "chevron up"}
                         />
                     </div>
+                    <h1
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            transform: 'translateY(-15px)'
+                        }}
+                    >
+                        Dashboard
+                    </h1>
                     <div
                         style={{
                             display: "flex",
@@ -763,7 +772,7 @@ export default function Services() {
                 <div
                     onClick={() => setOpenHover(true)}
                     style={{
-                        marginTop: resize ? "40px" : "30px",
+                        marginTop: resize ? "40px" : "3.8vh",
                         marginLeft: resize ? "30px" : "8px",
                         transform: 'scale(1.3)',
                         color: `${questionColor}`
@@ -947,10 +956,50 @@ export default function Services() {
                 border: `2px solid ${questionColor}`,
                 borderRadius: "10px",
                 padding: "3em",
-                marginTop: "15vh",
+                marginTop: "16vh",
                 marginBottom: "100px"
             }}
         >
+            {/* <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginRight: '-60px',
+                    transform: 'translateY(-65px)'
+                }}
+            >
+                <div
+                    style={{
+                        position: 'absolute',
+                        transform: 'scale(0.7)'
+                    }}
+                >
+                    <DemoMode
+                        demo={demo}
+                        setDemo={setDemo}
+                        setStudent={setStudent}
+                        setEdit={setEdit}
+                        setClickPassword={setClickPassword}
+                        setPassword={setPassword}
+                        setAdminPassword={setAdminPassword}
+                        setAdminEmail={setAdminEmail}
+                        setAuth={setAuth}
+                        setIsResetting={setIsResetting}
+                        setNewPassword={setNewPassword}
+                        setSave={setSave}
+                        setCreated={setCreated}
+                        setTitleClicked={setTitleClicked}
+                        setSaveRipple={setSaveRipple}
+                        setResetClicked={setResetClicked}
+                        setEye={setEye}
+                        setHide={setHide}
+                        setUserEmail={setUserEmail}
+                        setOpenModal={setOpenModal}
+                        setResetTernary={setResetTernary}
+                        textColor={textColor}
+                    />
+                </div>
+            </div> */}
           <TestHeader
             resize={resize}
             questionColor={questionColor}
