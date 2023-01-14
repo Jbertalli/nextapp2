@@ -77,9 +77,9 @@ class MyApp extends App {
             <link rel="icon" type="image/png" sizes="16x16" href="/images/HealthStat_Logo.png" />
         </Head>
           <NextNProgress height={4} color="white" startPosition={0.3} stopDelayMs={200} />
-        {/* <Layout {...pageProps}> */}
+        <Layout {...pageProps}>
           <Component {...pageProps} />
-        {/* </Layout> */}
+        </Layout>
       </>
     );
   }
