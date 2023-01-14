@@ -68,3 +68,17 @@
         height: 20px;
     }
 }
+
+.menu {
+    animation-name: menus;
+    animation-duration: 0.1s;
+}
+
+@keyframes menus {
+    0% {
+        width: 0px;
+    }
+    100% {
+        width: 300px;
+    }
+}

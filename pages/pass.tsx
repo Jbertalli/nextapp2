@@ -488,8 +488,8 @@ export default function Services() {
                 <div
                     onClick={() => setOpenHover(false)}
                     style={{
-                        width: resize ? "20vw" : "100vw",
-                        minWidth: '300px',
+                        width: resize ? "300px" : "100vw",
+                        // minWidth: '300px',
                         maxWidth: '600px',
                         height: resize ? "100vh" : "100%",
                         background: night ? 'black' : 'white',
@@ -498,8 +498,9 @@ export default function Services() {
                         zIndex: "1000",
                         fontSize: "20px",
                         fontWeight: "700",
-                        borderRight: night ? "2px solid white" : "2px solid #125CA1"
+                        border: night ? "2px solid white" : "2px solid #125CA1"
                     }}
+                    className={resize ? styles.menu : null}
                 >
                     <div
                         style={{
