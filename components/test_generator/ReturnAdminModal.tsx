@@ -228,34 +228,34 @@ export default function ReturnAdminModal(values) {
                 }}
               >
                 {/* {show ? (
-                            <>
-                                <Checkbox
-                                    onClick={() => {setHide('password'), setShow(false)}}
-                                    label={
-                                        <label>
-                                            Hide Password
-                                        </label>
-                                    }
-                                    style={{
-                                        marginTop: '15px'
-                                    }}
-                                />
-                            </>
-                            ):(
-                            <>
-                                <Checkbox
-                                    onClick={() => {setHide('text'), setShow(true)}}
-                                    label={
-                                        <label>
-                                            Show Password
-                                        </label>
-                                    }
-                                    style={{
-                                        marginTop: '15px'
-                                    }}
-                                />
-                            </>
-                            )} */}
+                <>
+                    <Checkbox
+                        onClick={() => {setHide('password'), setShow(false)}}
+                        label={
+                            <label>
+                                Hide Password
+                            </label>
+                        }
+                        style={{
+                            marginTop: '15px'
+                        }}
+                    />
+                </>
+                ):(
+                <>
+                    <Checkbox
+                        onClick={() => {setHide('text'), setShow(true)}}
+                        label={
+                            <label>
+                                Show Password
+                            </label>
+                        }
+                        style={{
+                            marginTop: '15px'
+                        }}
+                    />
+                </>
+                )} */}
               </div>
               <div
                 style={{
@@ -420,41 +420,41 @@ export default function ReturnAdminModal(values) {
               </div>
             ) : null}
             {/* <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                {show ? (
+                <>
+                    <Checkbox
+                        onClick={() => {setHide('password'), setShow(false)}}
+                        label={
+                            <label>
+                                Hide Password
+                            </label>
+                        }
                         style={{
-                            display: 'flex',
-                            justifyContent: 'center'
+                            marginTop: '15px'
                         }}
-                    >
-                        {show ? (
-                        <>
-                            <Checkbox
-                                onClick={() => {setHide('password'), setShow(false)}}
-                                label={
-                                    <label>
-                                        Hide Password
-                                    </label>
-                                }
-                                style={{
-                                    marginTop: '15px'
-                                }}
-                            />
-                        </>
-                        ):(
-                        <>
-                            <Checkbox
-                                onClick={() => {setHide('text'), setShow(true)}}
-                                label={
-                                    <label>
-                                        Show Password
-                                    </label>
-                                }
-                                style={{
-                                    marginTop: '15px'
-                                }}
-                            />
-                        </>
-                        )}
-                    </div> */}
+                    />
+                </>
+                ):(
+                <>
+                    <Checkbox
+                        onClick={() => {setHide('text'), setShow(true)}}
+                        label={
+                            <label>
+                                Show Password
+                            </label>
+                        }
+                        style={{
+                            marginTop: '15px'
+                        }}
+                    />
+                </>
+                )}
+            </div> */}
             <div
               style={{
                 display: "flex",

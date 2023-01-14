@@ -535,7 +535,7 @@ export default function Services() {
                                 setNight(true),
                                 setBackground("black"),
                                 setTextColor("#f2f2f2"),
-                                setQuestionColor("#f2f2f2");
+                                setQuestionColor("#f2f2f2")
                             }}
                             style={{
                                 display: "flex",
@@ -555,7 +555,7 @@ export default function Services() {
                                 setNight(false),
                                 setBackground("white"),
                                 setTextColor(""),
-                                setQuestionColor("#125CA1");
+                                setQuestionColor("#125CA1")
                             }}
                             style={{
                                 display: "flex",
@@ -615,6 +615,21 @@ export default function Services() {
                             >
                                 End Demo Mode
                             </div>
+                             <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        width: "88%",
+                                        height: "1px",
+                                        background: `${questionColor}`,
+                                        transform: 'translateY(-0px)'  
+                                    }}
+                                />
+                            </div>
                         </>
                     ) : (
                         <>
@@ -638,6 +653,21 @@ export default function Services() {
                                     Demo Mode
                                 </div>
                             </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        width: "88%",
+                                        height: "1px",
+                                        background: `${questionColor}`,
+                                        transform: 'translateY(0px)'  
+                                    }}
+                                />
+                            </div>
                         </>
                     )}
                     {!student ? (
@@ -647,21 +677,6 @@ export default function Services() {
                                     <>
                                         <div>
                                             <div
-                                                style={{
-                                                    display: "flex",
-                                                    justifyContent: "center"
-                                                }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: "88%",
-                                                        height: "1px",
-                                                        background: `${questionColor}`  
-                                                    }}
-                                                />
-                                            </div>
-                                            <div
-                                                className={styles.takeTest}
                                                 onClick={() => {
                                                     setStudent(true),
                                                     setOpenModal(false),
@@ -675,10 +690,27 @@ export default function Services() {
                                                 style={{
                                                     display: "flex",
                                                     justifyContent: "center",
-                                                    margin: "15px 0px 15px 0px"
+                                                    margin: "0px 18px 16px 18px",
+                                                    padding: '14.8px'
                                                 }}
+                                                className={styles.takeTest}
                                             >
                                                 Take Test
+                                            </div>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center"
+                                                }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: "88%",
+                                                        height: "1px",
+                                                        background: `${questionColor}`,
+                                                        transform: 'translateY(-16px)'  
+                                                    }}
+                                                />
                                             </div>
                                         </div>
                                     </>
@@ -686,56 +718,38 @@ export default function Services() {
                             </div>
                         </>
                     ) : null}
-
-
-
-
-
-
-
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: `${questionColor}`  
-                            }}
-                        />
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            margin: "15px 0px 15px 0px"
-                        }}
-                    >
-                        Return to Admin Page
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: `${questionColor}`  
-                            }}
-                        />
-                    </div>
-
-
-
-
-
-
+                    {(adminPassword.length > 0 || resetClicked) && student ? (
+                        <>
+                            <div
+                                className={styles.takeTest}
+                                onClick={() => {
+                                setNewModal(true), setSame(false);
+                                }}
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    margin: "0px 18px 0px 18px",
+                                    padding: '14.8px'
+                                }}
+                            >
+                                Return to Admin Page
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        width: "88%",
+                                        height: "1px",
+                                        background: `${questionColor}`  
+                                    }}
+                                />
+                            </div>
+                        </>
+                    ) : null}
                     <div
                         style={{
                             height: "20px"
@@ -1077,6 +1091,7 @@ export default function Services() {
             title={title}
             setNameClicked={setNameClicked}
             questionColor={questionColor}
+            setOpenHover={setOpenHover}
           />
           <div
             style={{

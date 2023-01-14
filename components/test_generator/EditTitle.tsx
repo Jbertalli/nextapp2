@@ -28,7 +28,8 @@ export default function EditTitle(values) {
     setFinish,
     title,
     setNameClicked,
-    questionColor
+    questionColor,
+    setOpenHover
   } = values;
 
   return (
@@ -70,6 +71,7 @@ export default function EditTitle(values) {
                             setSave(true),
                             setCreated(true),
                             setTitleClicked(true);
+                            setOpenHover(true);
                         }}
                         style={{
                           background: "transparent",
@@ -133,7 +135,8 @@ export default function EditTitle(values) {
                                     setTimeClick(false),
                                     setOpenEmail(false),
                                     setUserEmail(""),
-                                    setFinish(false);
+                                    setFinish(false),
+                                    setOpenHover(false)
                                 }}
                                 style={{
                                   border: "2px solid red",
