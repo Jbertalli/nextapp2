@@ -619,13 +619,13 @@ export default function Services() {
                     ) : (
                         <>
                             <div
-                                style={{
-                                    border: '1px solid transparent'
-                                }}
                                 onClick={() => {
                                     setOpenModal(true), 
                                     setStudent(false), 
                                     setResetTernary(false);
+                                }}
+                                style={{
+                                    border: '1px solid transparent'
                                 }}
                             >
                                 <div
@@ -640,33 +640,59 @@ export default function Services() {
                             </div>
                         </>
                     )}
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center"
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "88%",
-                                height: "1px",
-                                background: `${questionColor}`  
-                            }}
-                        />
-                    </div>
-                    <div
-                        //  className={styles.takeTest}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "15px 0px 15px 0px"
-                            }}
-                        >
-                            Take Test
-                        </div>
-                    </div>
+                    {!student ? (
+                        <>
+                            <div>
+                                {created && demo ? (
+                                    <>
+                                        <div>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center"
+                                                }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: "88%",
+                                                        height: "1px",
+                                                        background: `${questionColor}`  
+                                                    }}
+                                                />
+                                            </div>
+                                            <div
+                                                className={styles.takeTest}
+                                                onClick={() => {
+                                                    setStudent(true),
+                                                    setOpenModal(false),
+                                                    setFinish(false),
+                                                    setSave(true),
+                                                    setDemo(true),
+                                                    setNewPassword(""),
+                                                    setEye(true),
+                                                    setHide("password");
+                                                }}
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    margin: "15px 0px 15px 0px"
+                                                }}
+                                            >
+                                                Take Test
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : null}
+                            </div>
+                        </>
+                    ) : null}
+
+
+
+
+
+
+
                     <div
                         style={{
                             display: "flex",
@@ -704,6 +730,12 @@ export default function Services() {
                             }}
                         />
                     </div>
+
+
+
+
+
+
                     <div
                         style={{
                             height: "20px"
@@ -792,7 +824,7 @@ export default function Services() {
           setResetTernary={setResetTernary}
           textColor={textColor}
         /> */}
-        <TakeTest
+        {/* <TakeTest
           student={student}
           created={created}
           demo={demo}
@@ -804,7 +836,7 @@ export default function Services() {
           setNewPassword={setNewPassword}
           setEye={setEye}
           setHide={setHide}
-        />
+        /> */}
         <div
           style={{
             marginRight: "1vw",
@@ -815,12 +847,12 @@ export default function Services() {
         >
           {student ? (
             <>
-              <ReturnAdminButton
+              {/* <ReturnAdminButton
                 adminPassword={adminPassword}
                 resetClicked={resetClicked}
                 setNewModal={setNewModal}
                 setSame={setSame}
-              />
+              /> */}
               <ReturnAdminModal
                 newModal={newModal}
                 setNewModal={setNewModal}
