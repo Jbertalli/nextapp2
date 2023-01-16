@@ -2,7 +2,7 @@ import App from 'next/app';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import Head from 'next/head';
-import NextNProgress from "nextjs-progressbar";
+import NextNProgress from 'nextjs-progressbar';
 import { parseCookies, destroyCookie } from 'nookies';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
@@ -21,10 +21,9 @@ class MyApp extends App {
     }
 
     if (!token) {
-      const isProtectedRoute =
-        ctx.pathname === "/account";
+      const isProtectedRoute = ctx.pathname === '/account';
       if (isProtectedRoute) {
-        redirectUser(ctx, "/Login");
+        redirectUser(ctx, '/Login');
       }
     } else {
       try {
@@ -34,18 +33,18 @@ class MyApp extends App {
         const user = response.data;
         // const isRoot = user.role === 'root';
         // const isAdmin = user.role === 'admin';
-        // root/admin privileges 
+        // root/admin privileges
         // const isNotPermitted = !(isRoot || isAdmin) && ctx.pathname === '/';
         // if (isNotPermitted) {
         //   redirectUser(ctx, '/');
         // }
         pageProps.user = user;
-      } catch(error) {
-        console.error("Error retrieving current user", error);
+      } catch (error) {
+        console.error('Error retrieving current user', error);
         // 1) Throw out invalid token
-        destroyCookie(ctx, "token")
+        destroyCookie(ctx, 'token');
         // 2) redirect to login page
-        redirectUser(ctx, "/Login")
+        redirectUser(ctx, '/Login');
       }
     }
 
@@ -54,29 +53,52 @@ class MyApp extends App {
 
   //universal logout (auth.js) ---> detect whenever localStorage changes
   componentDidMount() {
-    window.addEventListener('storage', this.syncLogout)
+    window.addEventListener('storage', this.syncLogout);
   }
 
-  syncLogout = event => {
+  syncLogout = (event) => {
     if (event.key === 'logout') {
       console.log('Logged out from storage');
       Router.push('/Login');
     }
-  }
+  };
 
   //server-side rendering
-  render () {
+  render() {
     const { Component, pageProps } = this.props;
 
     return (
       <>
         <Head>
-            <link rel="shortcut icon" sizes="32x32" href="/images/HealthStat_Logo.png" />
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/HealthStat_Logo.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/images/HealthStat_Logo.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/images/HealthStat_Logo.png" />
+          <link
+            rel="shortcut icon"
+            sizes="32x32"
+            href="/images/HealthStat_Logo.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/HealthStat_Logo.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/HealthStat_Logo.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/HealthStat_Logo.png"
+          />
         </Head>
-          <NextNProgress height={4} color="white" startPosition={0.3} stopDelayMs={200} />
+        <NextNProgress
+          height={4}
+          color="white"
+          startPosition={0.3}
+          stopDelayMs={200}
+        />
         <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>

@@ -32,7 +32,7 @@ export default function Home({ examples }) {
       </h1> */}
       <Container style={{ margin: '3em 0 3em' }}>
         <div style={{ transform: 'translateY(20px)' }}>
-            <CalculatorList examples={examples} />
+          <CalculatorList examples={examples} />
         </div>
       </Container>
     </>
@@ -45,4 +45,4 @@ Home.getInitialProps = async () => {
   const response = await axios.get(url);
   return { examples: response.data };
   //return { hello: 'world'}
-}
+};

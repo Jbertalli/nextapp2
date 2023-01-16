@@ -6,7 +6,7 @@ import Chart from '../components/Chart';
 // import { Line } from 'react-chartjs-2';
 
 // import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-  
+
 //   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 // const state = {
@@ -21,7 +21,7 @@ import Chart from '../components/Chart';
 //       borderWidth: 4,
 //       pointHoverBorderWidth: 10,
 //       data: [100, 200, 150, 250, 55]
-//     }, 
+//     },
 //     {
 //         label: 'Body Fat Percentage',
 //         fill: false,
@@ -36,59 +36,62 @@ import Chart from '../components/Chart';
 // }
 
 const TrackProgress = () => {
-    // //empty object
-    // const [chartData, setChartData] = useState({})
-    // //empty array
-    // const [employeeSalary, setEmployeeSalary] = useState([]);
-    // //empty array
-    // const [employeeAge, setEmployeeAge] = useState([]);
+  // //empty object
+  // const [chartData, setChartData] = useState({})
+  // //empty array
+  // const [employeeSalary, setEmployeeSalary] = useState([]);
+  // //empty array
+  // const [employeeAge, setEmployeeAge] = useState([]);
 
-    // const chart = () => {
-    //     //empty arrays
-    //     let empSal = [];
-    //     let empAge = [];
-    //     axios.get('http://dummy.restapiexample.com/api/v1/employees')
-    //     .then(res => {
-    //         console.log(res);
-    //         for(const dataObj of res.data.data) {
-    //             //push to empty arrays
-    //             empSal.push(parseInt(dataObj.employee_salary))
-    //             empAge.push(parseInt(dataObj.employee_age))
-    //         }
-    //         setChartData({
-    //             labels: empAge,
-    //             datasets: [
-    //                 {
-    //                     label: 'BMI',
-    //                     fill: false,
-    //                     lineTension: 0.5,
-    //                     backgroundColor: 'black',
-    //                     borderColor: 'black',
-    //                     borderWidth: 4,
-    //                     pointHoverBorderWidth: 10,
-    //                     data: empSal
-    //                 }
-    //             ]
-    //         });
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
+  // const chart = () => {
+  //     //empty arrays
+  //     let empSal = [];
+  //     let empAge = [];
+  //     axios.get('http://dummy.restapiexample.com/api/v1/employees')
+  //     .then(res => {
+  //         console.log(res);
+  //         for(const dataObj of res.data.data) {
+  //             //push to empty arrays
+  //             empSal.push(parseInt(dataObj.employee_salary))
+  //             empAge.push(parseInt(dataObj.employee_age))
+  //         }
+  //         setChartData({
+  //             labels: empAge,
+  //             datasets: [
+  //                 {
+  //                     label: 'BMI',
+  //                     fill: false,
+  //                     lineTension: 0.5,
+  //                     backgroundColor: 'black',
+  //                     borderColor: 'black',
+  //                     borderWidth: 4,
+  //                     pointHoverBorderWidth: 10,
+  //                     data: empSal
+  //                 }
+  //             ]
+  //         });
+  //     })
+  //     .catch(err => {
+  //         console.log(err);
+  //     })
 
-    //     console.log(empSal, empAge);
-    // }
+  //     console.log(empSal, empAge);
+  // }
 
-    // useEffect(() => {
-    //     chart()
-    // }, [])
+  // useEffect(() => {
+  //     chart()
+  // }, [])
 
-    return (
-        <>
-            <Head>
-                <title>HealthStat | Track Progress</title>
-                <meta name="description" content="track progress, history, improvement" /> 
-            </Head>
-            {/* <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+  return (
+    <>
+      <Head>
+        <title>HealthStat | Track Progress</title>
+        <meta
+          name="description"
+          content="track progress, history, improvement"
+        />
+      </Head>
+      {/* <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
             <Message
                 attached
                 compact
@@ -126,14 +129,12 @@ const TrackProgress = () => {
                     }}
                 />
             </div>
-            </Container> */}
-        </>
-    );
-}
+        </Container> */}
+    </>
+  );
+};
 
 export default TrackProgress;
-
-
 
 // let date = new Date()
 // console.log(date)
