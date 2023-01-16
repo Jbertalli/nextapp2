@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Header, Checkbox, Table, Icon } from 'semantic-ui-react';
 import baseUrl from '../utils/baseUrl';
@@ -6,10 +6,10 @@ import cookie from 'js-cookie';
 import formatDate from '../utils/formatDate';
 
 function AccountPermissions() {
-  const [users, setUsers] = React.useState<any>([]);
+  const [users, setUsers] = useState<any>([]);
   const [desktop, setDesktop] = useState<boolean>(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getUsers();
   }, []);
 
@@ -72,11 +72,11 @@ function AccountPermissions() {
 }
 
 function UserPermission({ user }) {
-  const [admin, setAdmin] = React.useState<boolean>(user.role === 'admin');
+  const [admin, setAdmin] = useState<boolean>(user.role === 'admin');
 
-  const isFirstRun = React.useRef(true);
+  const isFirstRun = useRef(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;

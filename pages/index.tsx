@@ -1,7 +1,7 @@
 import Head from 'next/head';
 // import styles from '../styles/Home.module.css';
 // import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import CalculatorList from '../components/CalculatorList';
 import { Container, Icon } from 'semantic-ui-react';
@@ -11,7 +11,7 @@ export default function Home({ examples }) {
   console.log(examples);
 
   //fetching data for client-rendered React app(valid, just not server-side)
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   getProducts()
   // }, [])
 

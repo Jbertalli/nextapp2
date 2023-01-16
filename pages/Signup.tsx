@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, Message, Segment, Container } from 'semantic-ui-react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -14,12 +14,12 @@ const INITIAL_USER = {
 };
 
 const Signup = () => {
-  const [user, setUser] = React.useState(INITIAL_USER);
-  const [disabled, setDisabled] = React.useState<boolean>(true);
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
+  const [user, setUser] = useState(INITIAL_USER);
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const isUser: boolean = Object.values(user).every((el) => Boolean(el));
     isUser ? setDisabled(false) : setDisabled(true);
   }, [user]);
