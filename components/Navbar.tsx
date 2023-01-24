@@ -5,13 +5,8 @@ import { Menu, Dropdown, Icon, Container, Grid, Sticky, Modal, Divider } from 's
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 import Icons from './Icons';
-// import Image from 'next/image';
-// import AccountHeader from './AccountHeader';
-// import Avatar from 'react-avatar';
 
 const Navbar = ({ user }): any => {
-  // const Navbar = ({ user, mediaPreview }) => {
-  // console.log({mediaPreview});
   console.log(user);
   // console.log(user.role);
   const router: any = useRouter();
