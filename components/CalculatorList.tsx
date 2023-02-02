@@ -1,4 +1,4 @@
-import ReactFocusLock, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'semantic-ui-react';
 
 function CalculatorList({ examples }) {

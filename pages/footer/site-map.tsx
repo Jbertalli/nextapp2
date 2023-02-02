@@ -136,16 +136,6 @@ const SiteMap = ({ user }) => {
                   </h3>
                 </div>
               </Grid.Column>
-              <Grid.Column>
-                <div>
-                  <h1>Languages</h1>
-                  <h3>
-                    <Link href="/Languages">
-                      <a>Languages</a>
-                    </Link>
-                  </h3>
-                </div>
-              </Grid.Column>
             </Grid>
           </div>
         </Container>

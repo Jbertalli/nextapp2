@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Button, Container } from 'semantic-ui-react';
 import styles from '../styles/404.module.css';
 import Fishing from '../components/Fishing';
