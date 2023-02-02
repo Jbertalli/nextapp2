@@ -6,29 +6,19 @@ import { Divider, Container, Table, Icon } from 'semantic-ui-react';
 
 const Privacy = () => {
   const [desktop, setDesktop] = useState<boolean>(true);
-  const [font, setFont] = useState<string>('48px');
-  const [jump, setJump] = useState<string>('-87px');
 
   useEffect(() => {
     if (window.innerWidth > 440) {
       setDesktop(true);
-      setFont('48px');
-      setJump('-87px');
     } else {
       setDesktop(false);
-      setFont('38px');
-      setJump('-26px');
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
         setDesktop(true);
-        setFont('48px');
-        setJump('-87px');
       } else {
         setDesktop(false);
-        setFont('38px');
-        setJump('-26px');
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -44,7 +34,7 @@ const Privacy = () => {
       <Container style={{ fontSize: '17px' }}>
         <Divider style={{ margin: '3em' }} />
         <div className={styles.privacy}>
-          <h1 style={{ fontSize: `${font}` }}>HealthStat Privacy Policy</h1>
+          <h1 style={{ fontSize: desktop ? '48px' : '38px' }}>HealthStat Privacy Policy</h1>
           <div style={{ fontSize: '21px' }}>Updated January 1, 2023</div>
           <Icon
             name="shield"
@@ -281,7 +271,7 @@ const Privacy = () => {
               <div
                 id="1"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               1. WHAT INFORMATION DO WE COLLECT
@@ -394,7 +384,7 @@ const Privacy = () => {
               <div
                 id="2"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               2. HOW DO WE PROCESS YOUR INFORMATION?
@@ -450,7 +440,7 @@ const Privacy = () => {
               <div
                 id="3"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
@@ -500,7 +490,7 @@ const Privacy = () => {
               <div
                 id="4"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
@@ -525,7 +515,7 @@ const Privacy = () => {
               <div
                 id="5"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               5. HOW LONG DO WE KEEP YOUR INFORMATION?
@@ -562,7 +552,7 @@ const Privacy = () => {
               <div
                 id="6"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               6. HOW DO WE KEEP YOUR INFORMATION SAFE?
@@ -595,7 +585,7 @@ const Privacy = () => {
               <div
                 id="7"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               7. WHAT ARE YOUR PRIVACY RIGHTS?
@@ -709,7 +699,7 @@ const Privacy = () => {
               <div
                 id="8"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               8. CONTROLS FOR DO-NOT-TRACK FEATURES
@@ -724,7 +714,7 @@ const Privacy = () => {
               <div
                 id="9"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               9. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?
@@ -1115,7 +1105,7 @@ const Privacy = () => {
               <div
                 id="10"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               10. DO WE MAKE UPDATES TO THIS NOTICE?
@@ -1135,7 +1125,7 @@ const Privacy = () => {
               <div
                 id="11"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
@@ -1155,7 +1145,7 @@ const Privacy = () => {
               <div
                 id="12"
                 style={{
-                  transform: `translateY(${jump})`,
+                  transform: desktop ? 'translateY(-87px)' : 'translateY(-26px)',
                 }}
               />
               12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM

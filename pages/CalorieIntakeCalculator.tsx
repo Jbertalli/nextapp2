@@ -33,7 +33,6 @@ const CalorieCalculator = ({ user }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedMale, setCheckedMale] = useState<boolean>(false);
   const [desktop, setDesktop] = useState<boolean>(false);
-  const [margin, setMargin] = useState<string>('0px');
   const Calories = useRef<any>();
 
   useEffect(() => {
@@ -186,19 +185,15 @@ const CalorieCalculator = ({ user }) => {
   useEffect(() => {
     if (window.innerWidth > 440) {
       setDesktop(true);
-      setMargin('0px');
     } else {
       setDesktop(false);
-      setMargin('20px');
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
         setDesktop(true);
-        setMargin('0px');
       } else {
         setDesktop(false);
-        setMargin('20px');
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -602,7 +597,7 @@ const CalorieCalculator = ({ user }) => {
                 }}
               >
                 <Button
-                  style={{ marginBottom: `${margin}` }}
+                  style={{ marginBottom: desktop ? '0px' : '20px' }}
                   size="big"
                   onClick={handleAddGoal}
                   color="blue"
@@ -612,7 +607,7 @@ const CalorieCalculator = ({ user }) => {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                 <Button
-                  style={{ marginBottom: `${margin}` }}
+                  style={{ marginBottom: desktop ? '0px' : '20px' }}
                   size="big"
                   onClick={() => {
                     setAverage(avg), setData([]);
