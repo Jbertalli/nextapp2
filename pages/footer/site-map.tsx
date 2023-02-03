@@ -6,20 +6,20 @@ import { handleLogout } from '../../utils/auth';
 import { Divider, Grid, Container } from 'semantic-ui-react';
 
 const SiteMap = ({ user }) => {
-  const [size, setSize] = useState<string>('50px');
+  const [desktop, setDesktop] = useState<boolean>(true);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
-      setSize('50px');
+      setDesktop(true);
     } else {
-      setSize('30px');
+      setDesktop(false);
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
-        setSize('50px');
+        setDesktop(true);
       } else {
-        setSize('30px');
+        setDesktop(false);
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -33,7 +33,7 @@ const SiteMap = ({ user }) => {
         <meta name="description" content="site map, directory" />
       </Head>
       <h1 className={styles.siteMap} style={{ transform: 'translateY(20px)' }}>
-        <div style={{ marginTop: '30px', fontSize: `${size}` }}>
+        <div style={{ marginTop: '30px', fontSize: desktop ? '50px' : '30px' }}>
           HealthStat Site Map
         </div>
         <Container>

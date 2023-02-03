@@ -28,8 +28,7 @@ const BodyFatPercent = ({ user }) => {
   const [numb, setNumb] = useState<number>(30);
   const [lined, setLined] = useState<any>('');
   const [checked, setChecked] = useState<boolean>(false);
-  const [margin, setMargin] = useState<string>('0px');
-  const [targetWidth, setTargetWidth] = useState<string>('35%');
+  const [desktop, setDesktop] = useState<boolean>(true);
   const BF = useRef<any>();
 
   useEffect(() => {
@@ -148,20 +147,16 @@ const BodyFatPercent = ({ user }) => {
 
   useEffect(() => {
     if (window.innerWidth > 440) {
-      setMargin('0px');
-      setTargetWidth('35%');
+      setDesktop(true);
     } else {
-      setMargin('20px');
-      setTargetWidth('100%');
+      setDesktop(false);
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
-        setMargin('0px');
-        setTargetWidth('35%');
+        setDesktop(true);
       } else {
-        setMargin('20px');
-        setTargetWidth('100%');
+        setDesktop(false);
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -396,7 +391,7 @@ const BodyFatPercent = ({ user }) => {
                   max="100"
                   value={lined}
                   style={{
-                    width: `${targetWidth}`,
+                    width: desktop ? '35%' : '100%',
                     fontSize: '23px',
                     margin: '0em 0em 1em 0em',
                   }}
@@ -515,7 +510,7 @@ const BodyFatPercent = ({ user }) => {
                 }}
               >
                 <Button
-                  style={{ marginBottom: `${margin}` }}
+                  style={{ marginBottom: desktop ? '0px' : '20px' }}
                   size="big"
                   onClick={handleAddGoal}
                   color="blue"

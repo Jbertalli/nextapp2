@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Menu, Dropdown, Icon, Container, Grid, Sticky, Modal, Divider } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Container, Grid, Modal, Divider } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
 import Icons from './Icons';
 
 const Navbar = ({ user }): any => {
-  console.log(user);
+//   console.log(user);
   // console.log(user.role);
   const router: any = useRouter();
   // const isRoot = user && user.role === 'root';
@@ -143,20 +143,6 @@ const Navbar = ({ user }): any => {
                         active={isActive('/account')}
                       >
                         <Icon name="user outline" size="large" />
-                        {/* <Image src={mediaPreview} centered size="small" style={{ borderRadius: '10%', width: '9vw' }} /> */}
-                        {/* <Feed style={{ margin: '0em 1em 0em 0em' }}>
-                            <Feed.Event>
-                                <Feed.Label image={mediaPreview} />
-                            </Feed.Event>
-                        </Feed> */}
-                        {/* <div>
-                            <Avatar 
-                                name="profile_pic"
-                                size="28"
-                                round={true}
-                                src={mediaPreview}
-                            />
-                        </div> */}
                         Account
                       </Menu.Item>
                     </Link>
@@ -219,10 +205,6 @@ const Navbar = ({ user }): any => {
         </>
       ) : (
         <>
-          {/* <div style={{ position: 'absolute', transform: 'scale(0.8) translateY(-22px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
-                <Icons />
-            </div> */}
-          {/* <Sticky> */}
           <Menu
             fluid
             style={{
@@ -270,9 +252,6 @@ const Navbar = ({ user }): any => {
                   </div>
                 </Menu.Item>
               </div>
-              {/* <div style={{ position: 'absolute', transform: 'scale(0.6) translateY(-26px)', right: '0px', zIndex: '10000', marginRight: '0px' }}>
-                    <Icons />
-                </div> */}
               <Modal
                 className={styles.dropdown}
                 open={menuModal}
@@ -416,7 +395,6 @@ const Navbar = ({ user }): any => {
               </>
             ) : null}
           </Menu>
-          {/* </Sticky> */}
         </>
       )}
     </>

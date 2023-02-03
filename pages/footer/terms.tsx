@@ -5,20 +5,20 @@ import styles from '../../styles/Footer.module.css';
 import { Divider, Container, Icon } from 'semantic-ui-react';
 
 const Terms = () => {
-  const [font, setFont] = useState<string>('48px');
+  const [desktop, setDesktop] = useState<boolean>(true);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
-      setFont('48px');
+      setDesktop(true);
     } else {
-      setFont('38px');
+      setDesktop(false);
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
-        setFont('48px');
+        setDesktop(true);
       } else {
-        setFont('38px');
+        setDesktop(false);
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -34,7 +34,7 @@ const Terms = () => {
       <Container style={{ margin: '3em 0 6em', fontSize: '17px' }}>
         <Divider style={{ margin: '3em' }} />
         <div className={styles.terms}>
-          <h1 style={{ fontSize: `${font}` }}>
+          <h1 style={{ fontSize: desktop ? '48px' : '38px' }}>
             HealthStat Website Terms of Use
           </h1>
           <div style={{ fontSize: '21px' }}>Legal Information & Notices</div>

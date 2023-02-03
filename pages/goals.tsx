@@ -19,11 +19,7 @@ function Goals({ user }) {
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
   const [numb, setNumb] = useState<number>(30);
-  const [padding, setPadding] = useState<string>('2em 0em 3em 0em');
-  const [width, setWidth] = useState<string>('50%');
-  const [margin, setMargin] = useState<string>('0px');
-  const [bottom, setBottom] = useState<string>('0px');
-  const [font, setFont] = useState<string>('2em');
+  const [desktop, setDesktop] = useState<boolean>(true);
   const goalNameRef = useRef<any>(); //access to html element
 
   //SAVE GOALS
@@ -211,32 +207,16 @@ function Goals({ user }) {
 
   useEffect(() => {
     if (window.innerWidth > 440) {
-      setPadding('2em 0em 3em 0em');
-      setWidth('50%');
-      setMargin('0px');
-      setBottom('0px');
-      setFont('2em');
+      setDesktop(true);
     } else {
-      setPadding('1em 0em 2em 0em');
-      setWidth('95%');
-      setMargin('30px');
-      setBottom('-24px');
-      setFont('1.5em');
+      setDesktop(true);
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
-        setPadding('2em 0em 3em 0em');
-        setWidth('50%');
-        setMargin('0px');
-        setBottom('0px');
-        setFont('2em');
+        setDesktop(true);
       } else {
-        setPadding('1em 0em 2em 0em');
-        setWidth('95%');
-        setMargin('30px');
-        setBottom('-24px');
-        setFont('1.5em');
+        setDesktop(true);
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -306,7 +286,7 @@ function Goals({ user }) {
                     : 'goals left to complete'}
                 </h2>
               </Segment>
-              <Segment style={{ border: 'none', padding: `${padding}` }}>
+              <Segment style={{ border: 'none', padding: desktop ? '2em 0em 3em 0em' : '1em 0em 2em 0em' }}>
                 <div>
                   <div
                     style={{
@@ -331,7 +311,7 @@ function Goals({ user }) {
                       type="text"
                       autoFocus
                       placeholder="+ add goals"
-                      style={{ width: `${width}` }}
+                      style={{ width: desktop ? '50%' : '95%' }}
                     />
                   </h1>{' '}
                   {/* type="text" */}
@@ -347,7 +327,7 @@ function Goals({ user }) {
               >
                 <Button
                   size="big"
-                  style={{ marginBottom: `${margin}` }}
+                  style={{ marginBottom: desktop ? '0px' : '30px' }}
                   onClick={handleAddGoal}
                   color="blue"
                 >
@@ -356,7 +336,7 @@ function Goals({ user }) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button
                   size="big"
-                  style={{ marginBottom: `${margin}` }}
+                  style={{ marginBottom: desktop ? '0px' : '30px' }}
                   onClick={handleClear}
                 >
                   Clear Checked Goal
@@ -364,7 +344,7 @@ function Goals({ user }) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button
                   size="big"
-                  style={{ transform: `translate(${bottom})` }}
+                  style={{ transform: desktop ? 'translate(0px)' : 'translate(-24px)' }}
                   onClick={clearAll}
                 >
                   Clear All
@@ -376,7 +356,7 @@ function Goals({ user }) {
           <>
             <div
               style={{
-                fontSize: `${font}`,
+                fontSize: desktop ? '2em' : '1.5em',
                 textAlign: 'center',
                 background: 'linear-gradient(to bottom, silver, white)',
                 height: '40vh',
