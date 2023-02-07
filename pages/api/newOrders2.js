@@ -1,6 +1,6 @@
-import BF from '../../models/BF';
-import connectDb from '../../utils/connectDb';
-import jwt from 'jsonwebtoken';
+import Calorie from "../../models/Calorie";
+import jwt from "jsonwebtoken";
+import connectDb from "../../utils/connectDb";
 
 connectDb();
 
@@ -24,27 +24,11 @@ export default async (req, res) => {
     }
 };
 
-async function handlePostRequest(req, res) {
-    const { newBF, user } = req.body;
-    try {
-        const bf = await new BF({
-            user,
-            newBF
-        }).save();
-        res.status(201).json({ bf });
-        console.log({ bf });
-    } catch(error) {
-        console.error(error);
-        res.status(500).send("Server error while updating BF");
-    }
-}
-
 async function handleGetRequest(req, res) {
-    const { newBF } = req.body;
     try {
-        const bf = await BF.find({ _id: { $ne: newBF }})
-        .sort({ createdAt: 'desc' });
-        res.status(200).json(bf);
+        const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+        const newOrders2 = await Calorie.find({ user: userId });
+        res.status(200).json({ newOrders2 });
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
@@ -54,7 +38,7 @@ async function handleGetRequest(req, res) {
 async function handleDeleteRequest(req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        await BF.findOneAndDelete({ user: { $eq: userId } })
+        await Calorie.deleteMany({ user: { $eq: userId } })
         .sort({ createdAt: 'desc' });
         res.status(203).send();
     } catch(error) {

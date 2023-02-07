@@ -8,12 +8,12 @@ const ProgressSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "User"                                            //what mongoose model are we referencing for ObjectId (grab model name from bottom of mongoose model)  
     },
-    caloric_intake: {
-        type: Array
-    }, 
-    body_mass_index: {
-        type: Array
-    },
+    // caloric_intake: {
+    //     type: Array
+    // }, 
+    // body_mass_index: {
+    //     type: Array
+    // },
     // newBMI: {
     //     type: Number
     // },

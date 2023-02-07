@@ -1,5 +1,6 @@
-import Progress from '../../models/Progress';
+import Calorie from '../../models/Calorie';
 import connectDb from '../../utils/connectDb';
+import jwt from 'jsonwebtoken';
 
 connectDb();
 
@@ -11,6 +12,9 @@ export default async (req, res) => {
         case "POST":
             await handlePostRequest(req, res);
             break;
+        case "PUT":
+            await handlePutRequest(req, res);
+            break;
         case "DELETE":
             await handleDeleteRequest(req, res);
             break;
@@ -21,26 +25,26 @@ export default async (req, res) => {
 };
 
 async function handlePostRequest(req, res) {
-    const { caloric_intake, user } = req.body;
+    const { newCal, user } = req.body;
     try {
-        const cal = await new Progress({
+        const calorie = await new Calorie({
             user,
-            caloric_intake
+            newCal
         }).save();
-        res.status(201).json(cal);
-        console.log({ cal });
+        res.status(201).json({ calorie });
+        console.log({ calorie });
     } catch(error) {
         console.error(error);
-        res.status(500).send("Server updating caloric intake");
+        res.status(500).send("Server error while updating Calories");
     }
 }
 
 async function handleGetRequest(req, res) {
     const { newCal } = req.body;
     try {
-        const orders = await Progress.find({ _id: { $ne: newCal }})
+        const calorie = await Calorie.find({ _id: { $ne: newCal }})
         .sort({ createdAt: 'desc' });
-        res.status(200).json(orders);
+        res.status(200).json(calorie);
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
@@ -48,13 +52,13 @@ async function handleGetRequest(req, res) {
 }
 
 async function handleDeleteRequest(req, res) {
-    const [ caloric_intake ] = req.body;
     try {
-        await Progress.findOneAndDelete([ caloric_intake ]);
-        res.status(204).end();
+        const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+        await Calorie.findOneAndDelete({ user: { $eq: userId } })
+        .sort({ createdAt: 'desc' });
+        res.status(203).send();
     } catch(error) {
         console.error(error);
-        return res.status(500).send("Error deleting calorie intake history");
+        return res.status(500).send('Error deleting Last Order');
     }
 }
-                        

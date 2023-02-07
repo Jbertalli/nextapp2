@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item } from 'semantic-ui-react';
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
@@ -8,10 +8,11 @@ import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
+import { parseCookies } from 'nookies';
 
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
-const CalorieCalculator = ({ user }) => {
+const CalorieCalculator = ({ user, ctx }) => {
   //console.log(user);
   const [age, setAge] = useState<any>('');
   const [feet, setFeet] = useState<any>('');
@@ -24,7 +25,6 @@ const CalorieCalculator = ({ user }) => {
   const [male, setMale] = useState<boolean>(true);
   const [sex, setSex] = useState<string>('male');
   const [radio, setRadio] = useState<any>('');
-  // const [modal, setModal] = useState(false);
   const [goals, setGoals] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
@@ -33,6 +33,7 @@ const CalorieCalculator = ({ user }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [checkedMale, setCheckedMale] = useState<boolean>(false);
   const [desktop, setDesktop] = useState<boolean>(false);
+  const [newData, setNewData] = useState<string>('');
   const Calories = useRef<any>();
 
   useEffect(() => {
@@ -51,24 +52,9 @@ const CalorieCalculator = ({ user }) => {
 
   const handleInput = () => {
     if (imperial) {
-      console.log('imperial', {
-        age,
-        feet,
-        inches,
-        weight,
-        male,
-        lifestyle,
-        Calories,
-      });
+      console.log('imperial', { age, feet, inches, weight, male, lifestyle, Calories });
     } else {
-      console.log('metric', {
-        age,
-        centimeters,
-        kilograms,
-        male,
-        lifestyle,
-        Calories,
-      });
+      console.log('metric', { age, centimeters, kilograms, male, lifestyle, Calories });
     }
   };
 
@@ -98,12 +84,7 @@ const CalorieCalculator = ({ user }) => {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    console.log(
-      goals.length <= 1
-        ? '1 caloric intake calculation'
-        : `%c ${goals.length} caloric intake calculations`,
-      'color: green'
-    );
+    // console.log(goals.length <= 1 ? '1 caloric intake calculation' : `%c ${goals.length} caloric intake calculations`, 'color: green');
   } else {
     console.log('%c caloric intake calculations', 'color: red');
   }
@@ -114,13 +95,11 @@ const CalorieCalculator = ({ user }) => {
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].Calories]);
     // console.log("%c Array", "color: blue", counting[i]);
-    console.table(counting);
+    // console.table(counting);
     // console.log(counting);
     const flattened: any = counting.flat();
     // console.log(flattened);
-    const reduced: any = flattened.reduce(
-      (total, current) => parseFloat(total) + parseFloat(current)
-    );
+    const reduced: any = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
     // console.log(reduced);
     // const average = (reduced / goals.length).toFixed(0);
     avg = (reduced / goals.length).toFixed(0);
@@ -129,58 +108,13 @@ const CalorieCalculator = ({ user }) => {
 
   console.log(avg);
 
-  async function handleAddGoal(e) {
-    const name: any = Calories.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
-    if (name === '') return;
-    setGoals((prevGoals) => {
-      return [...prevGoals, { Calories: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
-    });
-
-    setCount(count + 1);
-    console.log(count);
-    setData([]);
-
-    Calories.current?.innerText == null; //clear out input after clicking Update Calorie History
-
-    const url: string = `${baseUrl}/api/CalorieIntakeCalculator`;
-    const payload = [caloric_intake];
-    const response = await axios.post(url, payload);
-    console.log(response.data);
-    console.log(caloric_intake);
-  }
-
-  async function clearAll() {
-    setCount(0);
-    setGoals([]);
-    setData([]);
-    console.clear();
-    console.log('%c cleared all goals', 'color: red');
-
-    const url: string = `${baseUrl}/api/CalorieIntakeCalculator`;
-    const payload: any = [caloric_intake];
-    const response: any = axios.delete(url, payload);
-    console.log(response.data);
-    console.log(caloric_intake);
-  }
-
-  let fruits: any = [];
-
-  for (let i = 0; i < goals.length; i++) {
-    fruits.push(counting.flat()[i]);
-  }
-
-  for (let num = numb; num >= 0; num--) {
-    data.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
-      value: fruits.shift(),
-      average: average,
-    });
-  }
+  let newCal = counting.flat().pop();
+  console.log(newCal);
 
   // console.log(counting.flat());                                          //flatten out array
   const caloric_intake: any = counting.flat();
-  console.log(caloric_intake);
-  console.log(data);
+  // console.log(caloric_intake);
+  // console.log(data);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -199,6 +133,75 @@ const CalorieCalculator = ({ user }) => {
     window.addEventListener('resize', updateMedia);
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
+
+  async function postData() {
+    const url = `${baseUrl}/api/calAPI`;
+    const payload = { user, newCal };
+    const response = await axios.post(url, payload);
+    console.log(response.data);
+  }
+
+  async function getData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders2`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.get(url, payload);
+    console.log(response.data);
+    setNewData(response.data);
+  }
+
+  async function deleteData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/calAPI`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  async function deleteAll() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders2`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  let CalArray = Object(Object(newData).newOrders2);
+  console.log(typeof CalArray);
+
+  let app = []
+
+  for (let i = 0; i < CalArray.length; i++) {
+    app.push(CalArray[i].newCal);
+  }
+
+  console.log(app);
+
+  for (let num = numb; num >= 0; num--) {
+    data.push({
+      date: subDays(new Date(), num).toISOString().substr(0, 10),
+      value: app.shift(),
+      average: average,
+    });
+  }
+
+  async function counter() {
+    const name: any = Calories.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
+    if (name === '') return;
+    setGoals((prevGoals) => {
+      return [...prevGoals, { Calories: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
+    });
+
+    setCount(count + 1);
+    console.log(count);
+    setData([]);
+
+    Calories.current?.innerText == null; 
+  }
 
   return (
     <>
@@ -219,7 +222,6 @@ const CalorieCalculator = ({ user }) => {
             content="Calculate Your Recommended Daily Caloric Intake"
             color="black"
           />
-          {/* ternary to switch from imperial to metric button*/}
           {imperial ? (
             <>
               <Button
@@ -280,7 +282,6 @@ const CalorieCalculator = ({ user }) => {
                   setAge(e.target.value), setData([]);
                 }}
               />
-              {/* ternary to switch from imperial to metric heigh and weight input */}
               {imperial ? (
                 <>
                   <Grid>
@@ -346,7 +347,6 @@ const CalorieCalculator = ({ user }) => {
                 </>
               ) : (
                 <>
-                  {/* metric */}
                   <Grid>
                     <Grid.Row>
                       <Grid.Column>
@@ -497,11 +497,9 @@ const CalorieCalculator = ({ user }) => {
                 </div>
               </span>
               <Segment color="blue" textAlign="center" size="massive">
-                {/* imperial to metric ternary */}
                 {/* Male (imperial) */}
                 {imperial ? (
                   <>
-                    {/* male/female ternary */}
                     {male ? (
                       <>
                         <span ref={Calories}>
@@ -540,7 +538,6 @@ const CalorieCalculator = ({ user }) => {
                 ) : (
                   <>
                     {/* Male (metric): BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) */}
-                    {/* male/female ternary */}
                     {male ? (
                       <>
                         <span ref={Calories}>
@@ -580,34 +577,29 @@ const CalorieCalculator = ({ user }) => {
           </Form>
           {user ? (
             <>
-              {/* <Segment style={{ textAlign: 'left', margin: '0 0 0', padding: '2em 2em 2em 2em' }}>
-                    <Button
-                        size="large"
-                        type="submit"
-                        content="Update Progress"
-                        color="blue"
-                        onClick={() => setModal(true)}
-                    />
-                </Segment> */}
               <Segment
                 style={{
                   textAlign: 'left',
-                  margin: '0 0 0',
+                  margin: '0',
                   padding: '2em 2em 2em 2em',
+                  display: 'flex',
+                  justifyContent: desktop ? 'space-around' : 'space-between'
                 }}
               >
                 <Button
-                  style={{ marginBottom: desktop ? '0px' : '20px' }}
-                  size="big"
-                  onClick={handleAddGoal}
-                  color="blue"
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {postData(), getData(), counter()}}
+                  style={{
+                    border: '3px solid #125CA1',
+                    background: 'transparent',
+                    color: '#125CA1',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
                 >
                   Update Calorie History
                 </Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                 <Button
-                  style={{ marginBottom: desktop ? '0px' : '20px' }}
                   size="big"
                   onClick={() => {
                     setAverage(avg), setData([]);
@@ -615,44 +607,65 @@ const CalorieCalculator = ({ user }) => {
                   onDoubleClick={() => {
                     setAverage(''), setData([]);
                   }}
-                  color="blue"
+                  style={{
+                    border: '3px solid #125CA1',
+                    background: 'transparent',
+                    color: '#125CA1',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
                 >
                   Calculate Average
                 </Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button
-                  size="big"
+                  size={desktop ? 'big' : 'small'}
                   onClick={() => {
-                      clearAll(),
-                      setAge(''),
-                      setFeet(''),
-                      setInches(''),
-                      setWeight(''),
-                      setCentimeters(''),
-                      setKilograms(''),
-                      handleRadio(),
-                      handleLife(),
-                      setData([]);
+                    deleteData(), 
+                    setAge(''),
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    handleRadio(),
+                    handleLife(),
+                    setData([]);
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
-                  Clear All
+                  Delete Last
+                </Button>
+                <Button
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {
+                    deleteAll(),
+                    setAge(''),
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    handleRadio(),
+                    handleLife(),
+                    setData([]);
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
+                >
+                  Delete All
                 </Button>
               </Segment>
-              {/* <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal> */}
             </>
           ) : (
             <>
@@ -894,3 +907,14 @@ function CustomTooltip({
 }
 
 export default CalorieCalculator;
+
+CalorieCalculator.getInitialProps = async ctx => {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return { newOrders2: [] }
+  }  
+  const payload = { headers: { Authorization: token } };
+  const url = `${baseUrl}/api/newOrders2`;
+  const response = await axios.get(url, payload);
+  return response.data;
+}
