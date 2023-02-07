@@ -1,12 +1,14 @@
-import React, { useState, useRef } from 'react';
 import Head from 'next/head';
-import { Container, Button, Form, Message, Segment } from 'semantic-ui-react';
+import React, { useState, useRef } from 'react';
+import { Container, Divider, Form, Message, Segment } from 'semantic-ui-react';
 import FocusLock from 'react-focus-lock';
 
 const CompoundInterestCalculator = () => {
   const [initialInvestment, setInitialInvestment] = useState<any>('');
   const [interestRate, setInterestRate] = useState<any>('');
   const [years, setYears] = useState<any>('');
+  const CompoundInterest = useRef<any>();
+  console.log(CompoundInterest.current?.innerText);
 
   const handleInput = () => {
     console.log('Compound Interest', {
@@ -16,9 +18,6 @@ const CompoundInterestCalculator = () => {
       CompoundInterest,
     });
   };
-
-  const CompoundInterest = useRef<any>();
-  console.log(CompoundInterest.current?.innerText);
 
   return (
     <>
@@ -94,15 +93,23 @@ const CompoundInterestCalculator = () => {
                 textAlign="center"
                 size="massive"
                 style={{
-                  display:
-                    initialInvestment && interestRate && years
-                      ? 'block'
-                      : 'none',
+                  display: initialInvestment && interestRate && years ? 'block' : 'none'
                 }}
               >
-                {/* Compound Interest Logic */}
                 <span ref={CompoundInterest}>
-                  {`After ${years} years, your initial investment of $${initialInvestment} will be ${(
+                  {(
+                    parseFloat(initialInvestment) *
+                    Math.pow(1 + interestRate / 100, years * 1)
+                  )
+                    .toLocaleString('en-US', {
+                      style: 'currency',
+                      currency: 'USD',
+                    })
+                    .replace('NaN', '')}
+                </span>
+                <Divider />
+                <span ref={CompoundInterest}>
+                  {`After ${years} year${years > 1 ? 's' : ''}, your initial investment of $${initialInvestment} will be ${(
                     parseFloat(initialInvestment) *
                     Math.pow(1 + interestRate / 100, years * 1)
                   )
@@ -112,22 +119,9 @@ const CompoundInterestCalculator = () => {
                     })
                     .replace('NaN', '')}`}
                 </span>
-                {/* <div>
-                    {(CompoundInterest.current?.innerText) * 2}
-                </div> */}
               </Segment>
-              <Button
-                size="large"
-                type="submit"
-                content="Calculate"
-                color="blue"
-                style={{ margin: '1em 0em .3em 0em' }}
-                //onClick={() => }
-              />
             </Segment>
           </Form>
-          {/* <strong>onChange:</strong>
-            <pre>{JSON.stringify({ initialInvestment, interestRate, years }, null, 2)}</pre> */}
         </FocusLock>
       </Container>
     </>
