@@ -34,7 +34,7 @@ export default async (req, res) => {
         }).save();
         console.log({newUser});
         // 5) create Progress Tracker for new user
-        await new Progress({ user: newUser._id }).save();
+        // await new Progress({ user: newUser._id }).save();
         // 6) create token for new user
         const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: '7d'

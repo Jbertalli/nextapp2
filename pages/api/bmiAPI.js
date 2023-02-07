@@ -1,4 +1,4 @@
-import Progress from '../../models/Progress';
+import BMI from '../../models/BMI';
 import connectDb from '../../utils/connectDb';
 import jwt from 'jsonwebtoken';
 
@@ -28,7 +28,7 @@ async function handlePostRequest(req, res) {
     // const { body_mass_index, user } = req.body;
     const { newBMI, user } = req.body;
     try {
-        const bmi = await new Progress({
+        const bmi = await new BMI({
             user,
             newBMI
         }).save();
@@ -44,37 +44,23 @@ async function handleGetRequest(req, res) {
     // const { body_mass_index } = req.body;
     const { newBMI } = req.body;
     try {
-        const orders = await Progress.find({ _id: { $ne: newBMI }})
+        const hey = await BMI.find({ _id: { $ne: newBMI }})
         .sort({ createdAt: 'desc' });
-        res.status(200).json(orders);
+        res.status(200).json(hey);
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
     }
 }
 
-async function handlePutRequest(req, res) {
-    const { body_mass_index } = req.body;
-    try {
-        const bmi = await Progress.findOneAndUpdate({ body_mass_index });
-        return res.status(200).json({ bmi })
-    } catch(error) {
-        console.error(error);
-        return res.status(500).send("Error updating BMI");
-    }
-    // const put = await Progress.findOneAndUpdate(
-    //     { body_mass_index }
-    // )
-    // res.status(201).json({ put });
-}
-
 async function handleDeleteRequest(req, res) {
-    const [ body_mass_index ] = req.body;
     try {
-        await Progress.findOneAndDelete([ body_mass_index ]);
-        res.status(204).end();
+        const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+        await BMI.findOneAndDelete({ user: { $eq: userId } })
+        .sort({ createdAt: 'desc' });
+        res.status(203).send();
     } catch(error) {
         console.error(error);
-        return res.status(500).send("Error deleting BMI history");
+        return res.status(500).send('Error deleting Last Order');
     }
 }

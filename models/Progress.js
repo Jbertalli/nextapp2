@@ -14,6 +14,9 @@ const ProgressSchema = new mongoose.Schema({
     body_mass_index: {
         type: Array
     },
+    // newBMI: {
+    //     type: Number
+    // },
     body_fat_percent: {
         type: Array
     }, 

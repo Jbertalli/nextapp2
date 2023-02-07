@@ -1,19 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Divider } from 'semantic-ui-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Item, Divider } from 'semantic-ui-react';
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
-// import GoalList from '../components/GoalList';
 import styles from '../styles/Footer.module.css';
-// import Chart from '../components/Chart';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
+import { parseCookies } from 'nookies';
 
 const LOCAL_STORAGE_KEY = 'BMI_progress';
 
-const BMICalculator = ({ user }) => {
+const BMICalculator = ({ user, ctx }) => {
   //console.log(user);
   const [feet, setFeet] = useState<any>('');
   const [inches, setInches] = useState<any>('');
@@ -21,14 +20,13 @@ const BMICalculator = ({ user }) => {
   const [centimeters, setCentimeters] = useState<any>('');
   const [kilograms, setKilograms] = useState<any>('');
   const [imperial, setImperial] = useState<boolean>(true);
-  // const [modal, setModal] = useState(false);
   const [goals, setGoals] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
   const [numb, setNumb] = useState<number>(30);
   const [lined, setLined] = useState<any>('');
-  const [margin, setMargin] = useState<string>('0px');
-  const [targetWidth, setTargetWidth] = useState<string>('35%');
+  const [desktop, setDesktop] = useState<boolean>(true);
+  const [newData, setNewData] = useState<string>('');
   const BMI = useRef<any>();
 
   useEffect(() => {
@@ -55,12 +53,7 @@ const BMICalculator = ({ user }) => {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    console.log(
-      goals.length <= 1
-        ? '1 BMI calculation'
-        : `%c ${goals.length} BMI calculations`,
-      'color: green'
-    );
+    // console.log(goals.length <= 1 ? '1 BMI calculation' : `%c ${goals.length} BMI calculations`, 'color: green');
   } else {
     console.log('%c no BMI calculations', 'color: red');
   }
@@ -70,21 +63,94 @@ const BMICalculator = ({ user }) => {
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BMI]);
     // console.log("%c Array", "color: blue", counting[i]);
-    console.table(counting);
-    // console.log(counting);
+    // console.table(counting);
   }
 
-  //toggle from complete to incomplete, then pass to <GoalList toggleGoal={toggleGoal} />
-  // function toggleGoal(id) {
-  //     const newGoals = [...goals]                                                  //copy of goals array to modify
-  //     const goal = newGoals.find(goal => goal.id === id);
-  //     goal.complete = !goal.complete;
-  //     setGoals(newGoals);
-  //     console.log(newGoals);
-  //     setData([]);
-  // }
+  let newBMI = counting.flat().pop();
+  console.log(newBMI);
+  // console.log(typeof newBMI);
 
-  async function handleAddGoal(e) {
+  // console.log(counting.flat());                                          //flatten out array
+  // const body_mass_index: any = counting.flat();
+  // console.log(body_mass_index);
+  // console.log('target BMI line:', lined);
+  // console.log(data);
+  // console.log(orders);
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
+
+  async function postData() {
+    const url = `${baseUrl}/api/bmiAPI`;
+    const payload = { user, newBMI };
+    const response = await axios.post(url, payload);
+    console.log(response.data);
+  }
+
+  async function getData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.get(url, payload);
+    console.log(response.data);
+    setNewData(response.data);
+  }
+
+  async function deleteData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/bmiAPI`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  async function deleteAll() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+  
+  let BMIArray = Object(Object(newData).newOrders);
+  console.log(typeof BMIArray);
+
+  let app = []
+
+  for (let i = 0; i < BMIArray.length; i++) {
+    app.push(BMIArray[i].newBMI);
+  }
+
+  console.log(app);
+
+  for (let num = numb; num >= 0; num--) {
+    data.push({
+      date: subDays(new Date(), num).toISOString().substr(0, 10),
+      value: app.shift(),
+      line: lined,
+    });
+  }
+
+  async function counter() {
     const name: any = BMI.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
     if (name === '') return;
     setGoals((prevGoals) => {
@@ -95,83 +161,8 @@ const BMICalculator = ({ user }) => {
     console.log(count);
     setData([]);
 
-    BMI.current?.innerText == null; //clear out input after clicking Update BMI
-
-    e.preventDefault();
-    const url: string = `${baseUrl}/api/BMICalculator`;
-    const payload: any = [body_mass_index];
-    const response = await axios.post(url, payload);
-    console.log(response.data);
-    console.log(body_mass_index);
+    BMI.current?.innerText == null; 
   }
-
-  // function handleClear() {
-  //     const newGoals = goals.filter(goal => !goal.complete);
-  //     setGoals(newGoals);
-  //     setCount(newGoals.length);
-  //     setData([]);
-  //     // console.log(newGoals);
-  //     // console.log(newGoals.length);
-  //     console.log('%c cleared some goals', 'color: orange');
-  // }
-
-  async function clearAll(e) {
-    setCount(0);
-    setGoals([]);
-    setData([]);
-    console.clear();
-    console.log('%c cleared all calculations', 'color: red');
-
-    const url = `${baseUrl}/api/BMICalculator`;
-    const payload: any = [body_mass_index];
-    const response = await axios.delete(url, payload);
-    console.log(response.data);
-    console.log(body_mass_index);
-  }
-
-  let fruits: any = [];
-
-  // for (let i = 0; i < BMI.current?.innerText.length; i++) {
-  for (let i = 0; i < goals.length; i++) {
-    fruits.push(counting.flat()[i]);
-    // console.log(lined - counting.flat()[i]);
-  }
-
-  for (let num = numb; num >= 0; num--) {
-    data.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
-      value: fruits.shift(),
-      line: lined,
-    });
-  }
-
-  // console.log(counting.flat());                                          //flatten out array
-  const body_mass_index: any = counting.flat();
-  console.log(body_mass_index);
-  console.log(data);
-  console.log('target BMI line:', lined);
-
-  useEffect(() => {
-    if (window.innerWidth > 440) {
-      setMargin('0px');
-      setTargetWidth('35%');
-    } else {
-      setMargin('20px');
-      setTargetWidth('100%');
-    }
-
-    const updateMedia = () => {
-      if (window.innerWidth > 440) {
-        setMargin('0px');
-        setTargetWidth('35%');
-      } else {
-        setMargin('20px');
-        setTargetWidth('100%');
-      }
-    };
-    window.addEventListener('resize', updateMedia);
-    return () => window.removeEventListener('resize', updateMedia);
-  }, []);
 
   return (
     <>
@@ -189,7 +180,6 @@ const BMICalculator = ({ user }) => {
             content="Calculate Your Body Mass Index"
             color="black"
           />
-          {/* ternary to switch from imperial to metric button*/}
           {imperial ? (
             <>
               <Button
@@ -228,7 +218,6 @@ const BMICalculator = ({ user }) => {
           )}
           <Form onClick={() => handleInput()}>
             <Segment size="huge" textAlign="left">
-              {/* imperial to metric ternary */}
               {imperial ? (
                 <>
                   <Grid>
@@ -355,7 +344,7 @@ const BMICalculator = ({ user }) => {
                   max="100"
                   value={lined}
                   style={{
-                    width: `${targetWidth}`,
+                    width: desktop ? '35%' : '100%',
                     fontSize: '23px',
                     margin: '0em 0em 1em 0em',
                   }}
@@ -365,7 +354,6 @@ const BMICalculator = ({ user }) => {
                 />
               </div>
               <Segment color="blue" textAlign="center" size="massive">
-                {/* imperial to metric ternary */}
                 {imperial ? (
                   <>
                     {/* BMI (imperial): US units: BMI = (weight (lb) ÷ height^2 (in)) * 703 */}
@@ -402,63 +390,73 @@ const BMICalculator = ({ user }) => {
           </Form>
           {user ? (
             <>
-              {/* <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
-                    <Button
-                        size="large"
-                        type="submit"
-                        content="Update Progress"
-                        color="blue"
-                        onClick={() => setModal(true)}
-                    />
-                </Segment> */}
               <Segment
                 style={{
                   textAlign: 'left',
-                  margin: '0 0 0',
+                  margin: '0',
                   padding: '2em 2em 2em 2em',
+                  display: 'flex',
+                  justifyContent: desktop ? 'space-around' : 'space-between'
                 }}
               >
                 <Button
-                  style={{ marginBottom: `${margin}` }}
-                  size="big"
-                  onClick={handleAddGoal}
-                  color="blue"
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {postData(), getData(), counter()}}
+                  style={{
+                    border: '3px solid #125CA1',
+                    background: 'transparent',
+                    color: '#125CA1',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
                 >
                   Update BMI
                 </Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {/* <Button size="big" onClick={handleClear}>Clear Checked BMI</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                 <Button
-                  size="big"
+                  size={desktop ? 'big' : 'small'}
                   onClick={() => {
-                    clearAll(null),
-                      setFeet(''),
-                      setInches(''),
-                      setWeight(''),
-                      setCentimeters(''),
-                      setKilograms(''),
-                      setLined(''),
-                      setData([]);
+                    deleteData(), 
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    setLined(''),
+                    setData([])
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
-                  Clear All
+                  Delete Last
+                </Button>
+                <Button
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {
+                    deleteAll()
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    setLined(''),
+                    setData([])
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
+                >
+                  Delete All
                 </Button>
               </Segment>
-              {/* <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal> */}
             </>
           ) : (
             <>
@@ -637,18 +635,6 @@ const BMICalculator = ({ user }) => {
                         tickCount={8}
                         tickFormatter={(number) => `${number}`}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "middle",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"BMI"}
-                            position='insideTop'
-                        /> */}
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
                       <CartesianGrid opacity={0.1} vertical={false} />
@@ -711,3 +697,14 @@ function CustomTooltip({
 }
 
 export default BMICalculator;
+
+BMICalculator.getInitialProps = async ctx => {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return { newOrders: [] }
+  }  
+  const payload = { headers: { Authorization: token } };
+  const url = `${baseUrl}/api/newOrders`;
+  const response = await axios.get(url, payload);
+  return response.data;
+}
