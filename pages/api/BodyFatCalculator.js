@@ -1,5 +1,6 @@
 import Progress from '../../models/Progress';
 import connectDb from '../../utils/connectDb';
+import jwt from 'jsonwebtoken';
 
 connectDb();
 
@@ -11,6 +12,9 @@ export default async (req, res) => {
         case "POST":
             await handlePostRequest(req, res);
             break;
+        case "PUT":
+            await handlePutRequest(req, res);
+            break;
         case "DELETE":
             await handleDeleteRequest(req, res);
             break;
@@ -21,10 +25,11 @@ export default async (req, res) => {
 }
 
 async function handlePostRequest(req, res) {
-    const [ body_fat_percent ] = req.body;
+    const { newBF, user } = req.body;
     try {
         const bf = await new Progress({
-            body_fat_percent
+            user,
+            newBF
         }).save();
         res.status(201).json(bf);
         console.log({ bf });
@@ -34,8 +39,20 @@ async function handlePostRequest(req, res) {
     }
 }
 
+async function handleGetRequest(req, res) {
+    const { newBF } = req.body;
+    try {
+        const orders = await Progress.find({ _id: { $ne: newBF }})
+        .sort({ createdAt: 'desc' });
+        res.status(200).json(orders);
+    } catch(error) {
+        console.error(error);
+        res.status(403).send('error');
+    }
+}
+
 async function handleDeleteRequest(req, res) {
-    const [ body_fat_percent] = req.body;
+    const [ body_fat_percent ] = req.body;
     try {
         await Progress.findOneAndDelete([ body_fat_percent ]);
         res.status(204).end();

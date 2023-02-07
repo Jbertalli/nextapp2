@@ -25,7 +25,6 @@ export default async (req, res) => {
 };
 
 async function handlePostRequest(req, res) {
-    // const { body_mass_index, user } = req.body;
     const { newBMI, user } = req.body;
     try {
         const bmi = await new Progress({
@@ -41,7 +40,6 @@ async function handlePostRequest(req, res) {
 }
 
 async function handleGetRequest(req, res) {
-    // const { body_mass_index } = req.body;
     const { newBMI } = req.body;
     try {
         const orders = await Progress.find({ _id: { $ne: newBMI }})

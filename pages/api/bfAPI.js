@@ -1,4 +1,4 @@
-import BMI from '../../models/BMI';
+import BF from '../../models/BF';
 import connectDb from '../../utils/connectDb';
 import jwt from 'jsonwebtoken';
 
@@ -25,28 +25,26 @@ export default async (req, res) => {
 };
 
 async function handlePostRequest(req, res) {
-    // const { body_mass_index, user } = req.body;
-    const { newBMI, user } = req.body;
+    const { newBF, user } = req.body;
     try {
-        const bmi = await new BMI({
+        const bf = await new BF({
             user,
-            newBMI
+            newBF
         }).save();
-        res.status(201).json({ bmi });
-        console.log({ bmi });
+        res.status(201).json({ bf });
+        console.log({ bf });
     } catch(error) {
         console.error(error);
-        res.status(500).send("Server error while updating BMI");
+        res.status(500).send("Server error while updating BF");
     }
 }
 
 async function handleGetRequest(req, res) {
-    // const { body_mass_index } = req.body;
-    const { newBMI } = req.body;
+    const { newBF } = req.body;
     try {
-        const bmi = await BMI.find({ _id: { $ne: newBMI }})
+        const bf = await BF.find({ _id: { $ne: newBF }})
         .sort({ createdAt: 'desc' });
-        res.status(200).json(bmi);
+        res.status(200).json(bf);
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
@@ -56,7 +54,7 @@ async function handleGetRequest(req, res) {
 async function handleDeleteRequest(req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        await BMI.findOneAndDelete({ user: { $eq: userId } })
+        await BF.findOneAndDelete({ user: { $eq: userId } })
         .sort({ createdAt: 'desc' });
         res.status(203).send();
     } catch(error) {

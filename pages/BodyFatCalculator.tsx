@@ -1,17 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item, Divider } from 'semantic-ui-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Item, Divider } from 'semantic-ui-react';
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
+import { parseCookies } from 'nookies';
 
 const LOCAL_STORAGE_KEY = 'BF%_progress';
 
-const BodyFatPercent = ({ user }) => {
+const BodyFatPercent = ({ user, ctx }) => {
   const [age, setAge] = useState<any>('');
   const [feet, setFeet] = useState<any>('');
   const [inches, setInches] = useState<any>('');
@@ -21,7 +22,6 @@ const BodyFatPercent = ({ user }) => {
   const [imperial, setImperial] = useState<boolean>(true);
   const [male, setMale] = useState<boolean>(true);
   const [sex, setSex] = useState<string>('male');
-  // const [modal, setModal] = useState(false);
   const [goals, setGoals] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
@@ -29,6 +29,7 @@ const BodyFatPercent = ({ user }) => {
   const [lined, setLined] = useState<any>('');
   const [checked, setChecked] = useState<boolean>(false);
   const [desktop, setDesktop] = useState<boolean>(true);
+  const [newData, setNewData] = useState<string>('');
   const BF = useRef<any>();
 
   useEffect(() => {
@@ -70,12 +71,7 @@ const BodyFatPercent = ({ user }) => {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    console.log(
-      goals.length <= 1
-        ? '1 body fat % calculation'
-        : `%c ${goals.length} body fat % calculations`,
-      'color: green'
-    );
+    // console.log(goals.length <= 1 ? '1 body fat % calculation' : `%c ${goals.length} body fat % calculations`, 'color: green');
   } else {
     console.log('%c no body fat % calculations', 'color: red');
   }
@@ -85,63 +81,13 @@ const BodyFatPercent = ({ user }) => {
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BF]);
     // console.log("%c Array", "color: blue", counting[i]);
-    console.table(counting);
+    // console.table(counting);
     // console.log(counting);
   }
 
-  async function handleAddGoal(e) {
-    const name: any = BF.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
-    if (name === '') return;
-    setGoals((prevGoals) => {
-      return [...prevGoals, { BF: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
-    });
-
-    setCount(count + 1);
-    console.log(count);
-    setData([]);
-
-    BF.current?.innerText == null; //clear out input after clicking Update Body Fat %
-
-    e.preventDefault();
-    const url: string = `${baseUrl}/api/BodyFatCalculator`;
-    const payload = [body_fat_percent];
-    const response = await axios.post(url, payload);
-    console.log(response);
-    console.log(body_fat_percent);
-  }
-
-  async function clearAll() {
-    setCount(0);
-    setGoals([]);
-    setData([]);
-    console.clear();
-    console.log('%c cleared all calculations', 'color: red');
-
-    const url: any = `${baseUrl}/api/BodyFatCalculator`;
-    const payload: any = [body_fat_percent];
-    const response = await axios.delete(url, payload);
-    console.log(response.data);
-    console.log(body_fat_percent);
-  }
-
-  let fruits: any = [];
-
-  for (let i = 0; i < goals.length; i++) {
-    fruits.push(counting.flat()[i]);
-    // console.log(lined - counting.flat()[i]);
-  }
-
-  for (let num = numb; num >= 0; num--) {
-    data.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
-      value: fruits.shift(),
-      line: lined,
-    });
-  }
-
   //console.log(counting.flat());                                          //flatten out array
-  const body_fat_percent: any = counting.flat();
-  console.log(body_fat_percent);
+  // const body_fat_percent: any = counting.flat();
+  // console.log(body_fat_percent);
   console.log(data);
   console.log('target BF% line:', lined);
 
@@ -163,6 +109,78 @@ const BodyFatPercent = ({ user }) => {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
+  let newBF = counting.flat().pop();
+  console.log(newBF);
+
+  async function postData() {
+    const url = `${baseUrl}/api/bfAPI`;
+    const payload = { user, newBF };
+    const response = await axios.post(url, payload);
+    console.log(response.data);
+  }
+
+  async function getData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders1`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.get(url, payload);
+    console.log(response.data);
+    setNewData(response.data);
+  }
+
+  async function deleteData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/bfAPI`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  async function deleteAll() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newOrders1`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.delete(url, payload);
+    console.log(response.data)
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  let BFArray = Object(Object(newData).newOrders1);
+  console.log(typeof BFArray);
+
+  let app = []
+
+  for (let i = 0; i < BFArray.length; i++) {
+    app.push(BFArray[i].newBF);
+  }
+
+  console.log(app);
+
+  for (let num = numb; num >= 0; num--) {
+    data.push({
+      date: subDays(new Date(), num).toISOString().substr(0, 10),
+      value: app.shift(),
+      line: lined,
+    });
+  }
+
+  async function counter() {
+    const name: any = BF.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
+    if (name === '') return;
+    setGoals((prevGoals) => {
+      return [...prevGoals, { BF: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
+    });
+
+    setCount(count + 1);
+    console.log(count);
+    setData([]);
+
+    BF.current?.innerText == null; 
+  }
+
   return (
     <>
       <Head>
@@ -179,7 +197,6 @@ const BodyFatPercent = ({ user }) => {
             content="Calculate Your Body Fat Percentage"
             color="black"
           />
-          {/* ternary to switch from imperial to metric button*/}
           {imperial ? (
             <>
               <Button
@@ -240,7 +257,6 @@ const BodyFatPercent = ({ user }) => {
                   setAge(e.target.value), setData([]);
                 }}
               />
-              {/* imperial to metric ternary */}
               {imperial ? (
                 <>
                   <Grid>
@@ -403,7 +419,6 @@ const BodyFatPercent = ({ user }) => {
               <Segment color="blue" textAlign="center" size="massive">
                 {imperial ? (
                   <>
-                    {/* male/female ternary */}
                     {/* Men Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
                     {male ? (
                       <>
@@ -422,14 +437,12 @@ const BodyFatPercent = ({ user }) => {
                             .toFixed(1)
                             .replace('NaN', '')}
                         </span>{' '}
-                        %{/* Math manipulation with output value */}
                         {/* <div>
-                                    {(BodyFatPercentage.current?.innerText) * 2}
-                                </div> */}
+                          {(BodyFatPercentage.current?.innerText) * 2}
+                        </div> */}
                       </>
                     ) : (
                       <>
-                        {/* Female (imperial) */}
                         {/* Female Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 5.4 = Body Fat Percentage */}
                         <span ref={BF}>
                           {(
@@ -453,7 +466,6 @@ const BodyFatPercent = ({ user }) => {
                 ) : (
                   <>
                     {/* Male Body Fat % (metric): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
-                    {/* male/female ternary */}
                     {male ? (
                       <>
                         <span ref={BF}>
@@ -493,65 +505,77 @@ const BodyFatPercent = ({ user }) => {
           </Form>
           {user ? (
             <>
-              {/* <Segment style={{ textAlign: 'left', margin: '0 0 0' }}>
-                    <Button
-                        size="large"
-                        type="submit"
-                        content="Update Progress"
-                        color="blue"
-                        onClick={() => setModal(true)}
-                    />
-                </Segment> */}
               <Segment
                 style={{
                   textAlign: 'left',
-                  margin: '0 0 0',
+                  margin: '0',
                   padding: '2em 2em 2em 2em',
+                  display: 'flex',
+                  justifyContent: desktop ? 'space-around' : 'space-between'
                 }}
               >
                 <Button
-                  style={{ marginBottom: desktop ? '0px' : '20px' }}
-                  size="big"
-                  onClick={handleAddGoal}
-                  color="blue"
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {postData(), getData(), counter()}}
+                  style={{
+                    border: '3px solid #125CA1',
+                    background: 'transparent',
+                    color: '#125CA1',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
                 >
                   Update Body Fat %
                 </Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {/* <Button size="big" onClick={handleClear}>Clear Checked BF%</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
                 <Button
-                  size="big"
+                  size={desktop ? 'big' : 'small'}
                   onClick={() => {
-                      clearAll(),
-                      setAge(''),
-                      setFeet(''),
-                      setInches(''),
-                      setWeight(''),
-                      setCentimeters(''),
-                      setKilograms(''),
-                      handleRadio(),
-                      setLined(''),
-                      setData([]);
+                    deleteData(), 
+                    setAge(''),
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    handleRadio(),
+                    setLined(''),
+                    setData([]);
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
-                  Clear All
+                  Delete Last
+                </Button>
+                <Button
+                  size={desktop ? 'big' : 'small'}
+                  onClick={() => {
+                    deleteAll()
+                    setAge(''),
+                    setFeet(''),
+                    setInches(''),
+                    setWeight(''),
+                    setCentimeters(''),
+                    setKilograms(''),
+                    handleRadio(),
+                    setLined(''),
+                    setData([]);
+                  }}
+                  style={{
+                    border: '3px solid red',
+                    background: 'transparent',
+                    color: 'red',
+                    height: desktop ? null : '40px',
+                    padding: desktop ? null : '0px 10px 0px 10px'
+                  }}
+                >
+                  Delete All
                 </Button>
               </Segment>
-              {/* <Modal open={modal} dimmer="blurring" size="small">
-                    <Modal.Header><h1>Update Progress</h1></Modal.Header>
-                    <h3 style={{ padding: "15px" }}>Are you sure you want to update your progress?</h3>
-                    <Modal.Actions>
-                        <Button 
-                            content="Cancel" 
-                            onClick={() => setModal(false)}
-                        />
-                        <Button
-                            content="Update Progress"
-                            color="blue"
-                            //onClick={() => }
-                        />
-                    </Modal.Actions>
-                </Modal> */}
             </>
           ) : (
             <>
@@ -805,3 +829,14 @@ function CustomTooltip({
 }
 
 export default BodyFatPercent;
+
+BodyFatPercent.getInitialProps = async ctx => {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return { newOrders1: [] }
+  }  
+  const payload = { headers: { Authorization: token } };
+  const url = `${baseUrl}/api/newOrders1`;
+  const response = await axios.get(url, payload);
+  return response.data;
+}
