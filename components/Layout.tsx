@@ -18,7 +18,7 @@ const Layout = ({ children, user }) => {
       }}
     >
       <Navbar user={user} />
-      {!night ? (
+      {/* {!night ? (
         <>
           <Button
             onClick={() => {
@@ -54,7 +54,7 @@ const Layout = ({ children, user }) => {
             Day Mode
           </Button>
         </>
-      )}
+      )} */}
       {children}
       {router.pathname !== '/404' && (
         <div style={{ marginTop: '80px' }}>
