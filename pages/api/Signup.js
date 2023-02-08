@@ -31,7 +31,7 @@ export default async (req, res) => {
             email,
             password: hash
         }).save();
-        console.log({newUser});
+        console.log({ newUser });
         // 5) create Progress Tracker for new user
         // await new Progress({ user: newUser._id }).save();
         // 6) create token for new user

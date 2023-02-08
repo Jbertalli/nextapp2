@@ -47,7 +47,6 @@ const BMICalculator = ({ user, ctx }) => {
   };
 
   // console.log(goals);
-  // console.log(goals.length);
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}

@@ -13,7 +13,6 @@ import { parseCookies } from 'nookies';
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
 const CalorieCalculator = ({ user, ctx }) => {
-  //console.log(user);
   const [age, setAge] = useState<any>('');
   const [feet, setFeet] = useState<any>('');
   const [inches, setInches] = useState<any>('');

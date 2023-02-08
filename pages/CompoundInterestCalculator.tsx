@@ -8,15 +8,10 @@ const CompoundInterestCalculator = () => {
   const [interestRate, setInterestRate] = useState<any>('');
   const [years, setYears] = useState<any>('');
   const CompoundInterest = useRef<any>();
-  console.log(CompoundInterest.current?.innerText);
+  // console.log(CompoundInterest.current?.innerText);
 
   const handleInput = () => {
-    console.log('Compound Interest', {
-      initialInvestment,
-      interestRate,
-      years,
-      CompoundInterest,
-    });
+    // console.log('Compound Interest', { initialInvestment, interestRate, years, CompoundInterest });
   };
 
   return (
