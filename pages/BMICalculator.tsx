@@ -96,7 +96,7 @@ const BMICalculator = ({ user, ctx }) => {
 
   async function getData() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders`;
+    const url = `${baseUrl}/api/newBMI1`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.get(url, payload);
     console.log(response.data);
@@ -113,7 +113,7 @@ const BMICalculator = ({ user, ctx }) => {
 
   async function deleteAll() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders`;
+    const url = `${baseUrl}/api/newBMI1`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
     console.log(response.data)
@@ -123,7 +123,7 @@ const BMICalculator = ({ user, ctx }) => {
     getData();
   }, []);
   
-  let BMIArray = Object(Object(newData).newOrders);
+  let BMIArray = Object(Object(newData).newBMI1);
   console.log(typeof BMIArray);
 
   let app = []
@@ -677,10 +677,10 @@ export default BMICalculator;
 BMICalculator.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
   if (!token) {
-    return { newOrders: [] }
+    return { newBMI1: [] }
   }  
   const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newOrders`;
+  const url = `${baseUrl}/api/newBMI1`;
   const response = await axios.get(url, payload);
   return response.data;
 }

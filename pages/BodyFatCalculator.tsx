@@ -113,7 +113,7 @@ const BodyFatPercent = ({ user, ctx }) => {
 
   async function getData() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders1`;
+    const url = `${baseUrl}/api/newBF`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.get(url, payload);
     console.log(response.data);
@@ -130,7 +130,7 @@ const BodyFatPercent = ({ user, ctx }) => {
 
   async function deleteAll() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders1`;
+    const url = `${baseUrl}/api/newBF`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
     console.log(response.data)
@@ -140,7 +140,7 @@ const BodyFatPercent = ({ user, ctx }) => {
     getData();
   }, []);
 
-  let BFArray = Object(Object(newData).newOrders1);
+  let BFArray = Object(Object(newData).newBF);
   console.log(typeof BFArray);
 
   let app = []
@@ -793,10 +793,10 @@ export default BodyFatPercent;
 BodyFatPercent.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
   if (!token) {
-    return { newOrders1: [] }
+    return { newBF: [] }
   }  
   const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newOrders1`;
+  const url = `${baseUrl}/api/newBF`;
   const response = await axios.get(url, payload);
   return response.data;
 }

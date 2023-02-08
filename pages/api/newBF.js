@@ -1,4 +1,4 @@
-import Calorie from "../../models/Calorie";
+import BF from "../../models/BF";
 import jwt from "jsonwebtoken";
 import connectDb from "../../utils/connectDb";
 
@@ -18,11 +18,11 @@ export default async (req, res) => {
     }
 };
 
-async function handleGetRequest(req, res) {
+async function handleGetRequest (req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        const newOrders2 = await Calorie.find({ user: userId });
-        res.status(200).json({ newOrders2 });
+        const newBF = await BF.find({ user: userId });
+        res.status(200).json({ newBF });
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
@@ -32,7 +32,7 @@ async function handleGetRequest(req, res) {
 async function handleDeleteRequest(req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        await Calorie.deleteMany({ user: { $eq: userId } })
+        await BF.deleteMany({ user: { $eq: userId } })
         .sort({ createdAt: 'desc' });
         res.status(203).send();
     } catch(error) {

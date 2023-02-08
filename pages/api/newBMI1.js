@@ -21,8 +21,8 @@ export default async (req, res) => {
 async function handleGetRequest (req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        const newOrders = await BMI.find({ user: userId });
-        res.status(200).json({ newOrders });
+        const newBMI1 = await BMI.find({ user: userId });
+        res.status(200).json({ newBMI1 });
     } catch(error) {
         console.error(error);
         res.status(403).send('error');

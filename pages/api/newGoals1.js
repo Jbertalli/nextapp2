@@ -1,4 +1,4 @@
-import BF from "../../models/BF";
+import Goal from "../../models/Goal";
 import jwt from "jsonwebtoken";
 import connectDb from "../../utils/connectDb";
 
@@ -18,11 +18,11 @@ export default async (req, res) => {
     }
 };
 
-async function handleGetRequest (req, res) {
+async function handleGetRequest(req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        const newOrders1 = await BF.find({ user: userId });
-        res.status(200).json({ newOrders1 });
+        const newGoals1 = await Goal.find({ user: userId });
+        res.status(200).json({ newGoals1 });
     } catch(error) {
         console.error(error);
         res.status(403).send('error');
@@ -32,7 +32,7 @@ async function handleGetRequest (req, res) {
 async function handleDeleteRequest(req, res) {
     try {
         const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-        await BF.deleteMany({ user: { $eq: userId } })
+        await Goal.deleteMany({ user: { $eq: userId } })
         .sort({ createdAt: 'desc' });
         res.status(203).send();
     } catch(error) {

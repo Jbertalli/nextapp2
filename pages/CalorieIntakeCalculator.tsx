@@ -137,7 +137,7 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   async function getData() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders2`;
+    const url = `${baseUrl}/api/newCalorie`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.get(url, payload);
     console.log(response.data);
@@ -154,7 +154,7 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   async function deleteAll() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders2`;
+    const url = `${baseUrl}/api/newCalorie`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
     console.log(response.data)
@@ -164,7 +164,7 @@ const CalorieCalculator = ({ user, ctx }) => {
     getData();
   }, []);
 
-  let CalArray = Object(Object(newData).newOrders2);
+  let CalArray = Object(Object(newData).newCalorie);
   console.log(typeof CalArray);
 
   let app = []
@@ -875,10 +875,10 @@ export default CalorieCalculator;
 CalorieCalculator.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
   if (!token) {
-    return { newOrders2: [] }
+    return { newCalorie: [] }
   }  
   const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newOrders2`;
+  const url = `${baseUrl}/api/newCalorie`;
   const response = await axios.get(url, payload);
   return response.data;
 }
