@@ -80,8 +80,8 @@ const BodyFatPercent = ({ user, ctx }) => {
   }
 
   //console.log(counting.flat());                                          //flatten out array
-  console.log(data);
-  console.log('target BF% line:', lined);
+  // console.log(data);
+  // console.log('target BF% line:', lined);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -140,7 +140,6 @@ const BodyFatPercent = ({ user, ctx }) => {
   useEffect(() => {
     if (user) {
       getData();
-      console.log('user');
     } else {
       console.log('no user');
     }

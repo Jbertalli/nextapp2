@@ -123,7 +123,6 @@ const BMICalculator = ({ user, ctx }) => {
   useEffect(() => {
     if (user) {
       getData();
-      console.log('user');
     } else {
       console.log('no user');
     }
