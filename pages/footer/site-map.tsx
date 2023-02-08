@@ -75,7 +75,6 @@ const SiteMap = ({ user }) => {
                   </h3>
                 </div>
               </Grid.Column>
-              {/* dynamic view based on user status */}
               <Grid.Column>
                 <div>
                   <h1>Account</h1>

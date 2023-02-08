@@ -34,7 +34,6 @@ const Signup = () => {
     try {
       setLoading(true);
       setError('');
-      //console.log(user);
       const url: string = `${baseUrl}/api/Signup`; //request to corresponding api
       const payload = { ...user }; //payload to send over form data to endpoint ---> spread in captured user data (fields needed to create new user)
       const response = await axios.post(url, payload);

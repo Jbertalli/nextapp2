@@ -7,8 +7,6 @@ import { handleLogout } from '../utils/auth';
 import Icons from './Icons';
 
 const Navbar = ({ user }): any => {
-//   console.log(user);
-  // console.log(user.role);
   const router: any = useRouter();
   // const isRoot = user && user.role === 'root';
   // const isAdmin = user && user.role === 'admin';

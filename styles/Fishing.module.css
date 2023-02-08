@@ -1,213 +1,199 @@
 .reel1 {
-    border: 8px solid black;
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    background: silver;
-    position: relative;
-    z-index: 5;
-  }
+  border: 8px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: silver;
+  position: relative;
+  z-index: 5;
+}
   
 .reel2 {
-    border: 8px solid black;
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    background: linear-gradient(to bottom, white, rgb(70, 68, 68));
-    position: relative;
-    z-index: 6;
-  }
+  border: 8px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, white, rgb(70, 68, 68));
+  position: relative;
+  z-index: 6;
+}
   
 .line {
-    border: 5px solid black;
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    background: rgb(197, 154, 0);
-    position: relative;
-    z-index: 5;
-  }
+  border: 5px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: rgb(197, 154, 0);
+  position: relative;
+  z-index: 5;
+}
   
 .wood {
-    border: 8px solid black;
-    width: 50px;
-    height: 180px;
-    border-radius: 30px 30px 20px 20px;
-    background: #8B4513;
-    transform: rotate(-5deg);
-    position: relative;
-    z-index: 3;
-  }
+  border: 8px solid black;
+  width: 50px;
+  height: 180px;
+  border-radius: 30px 30px 20px 20px;
+  background: #8B4513;
+  transform: rotate(-5deg);
+  position: relative;
+  z-index: 3;
+}
   
 .rod {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 12px 850px 12px;
-    border-radius: 50px;
-    border-color: transparent transparent black transparent;
-    transform: rotate(-5deg);
-    position: relative;
-    z-index: 1;
-  }
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12px 850px 12px;
+  border-radius: 50px;
+  border-color: transparent transparent black transparent;
+  transform: rotate(-5deg);
+  position: relative;
+  z-index: 1;
+}
   
 .handle1 {
-    width: 18px;
-    height: 18px;
-    background: rgb(77, 75, 75);
-    border-radius: 3px 3px 0px 0px;
-  }
+  width: 18px;
+  height: 18px;
+  background: rgb(77, 75, 75);
+  border-radius: 3px 3px 0px 0px;
+}
   
 .handle2 {
-    width: 50px;
-    height: 18px;
-    background: rgb(77, 75, 75);
-    border-radius: 0px 8px 0px 8px;
-  }
+  width: 50px;
+  height: 18px;
+  background: rgb(77, 75, 75);
+  border-radius: 0px 8px 0px 8px;
+}
   
 .handle3 {
-    width: 18px;
-    height: 30px;
-    background: linear-gradient(to top, rgb(121, 112, 112), rgb(77, 75, 75));
-    border-radius: 0px 0px 8px 8px;
-  }
+  width: 18px;
+  height: 30px;
+  background: linear-gradient(to top, rgb(121, 112, 112), rgb(77, 75, 75));
+  border-radius: 0px 0px 8px 8px;
+}
   
 .circle {
-    height: 25px;
-    width: 13px;
-    background: black;
-    border-radius: 50px;
-  }
+  height: 25px;
+  width: 13px;
+  background: black;
+  border-radius: 50px;
+}
   
 .rope {
-    height: 500px;
-    width: 500px;
-    background: black;
-    border-radius: 50%;
-  }
-  
+  height: 500px;
+  width: 500px;
+  background: black;
+  border-radius: 50%;
+}
+
 .transparent {
-    height: 500px;
-    width: 540px;
-    background: #F2F2F2;
-    border-radius: 50%;
-    position: relative;
-    z-index: 0;
-  }
+  height: 500px;
+  width: 540px;
+  background: #F2F2F2;
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+}
   
 .fishingline {
-    height: 800px;
-    width: 1px;
-    background: black;
-    border: 1px solid black;
-  }
+  height: 800px;
+  width: 1px;
+  background: black;
+  border: 1px solid black;
+}
   
 .lined {
-    height: 850px;
-    width: 1px;
-    background: black;
-    border: 1px solid black;
-  }
+  height: 850px;
+  width: 1px;
+  background: black;
+  border: 1px solid black;
+}
   
 .hook1 {
-    height: 7px;
-    width: 10px;
-    border: 1px solid black;
-    background: black;
-    border-radius: 0% 0% 0% 0%;
-  }
+  height: 7px;
+  width: 10px;
+  border: 1px solid black;
+  background: black;
+  border-radius: 0% 0% 0% 0%;
+}
   
 .hook2 {
-    height: 10px;
-    width: 30px;
-    border: 1px solid black;
-    background: black;
-    border-radius: 0% 50% 0% 50%;
-  }
+  height: 10px;
+  width: 30px;
+  border: 1px solid black;
+  background: black;
+  border-radius: 0% 50% 0% 50%;
+}
   
 .hook3 {
-    height: 20px;
-    width: 10px;
-    border: 1px solid black;
-    background: black;
-  }
+  height: 20px;
+  width: 10px;
+  border: 1px solid black;
+  background: black;
+}
   
 .hook4 {
-    height: 10px;
-    width: 30px;
-    border: 1px solid black;
-    background: black;
-    border-radius: 50% 0% 50% 50%;
-  }
+  height: 10px;
+  width: 30px;
+  border: 1px solid black;
+  background: black;
+  border-radius: 50% 0% 50% 50%;
+}
   
 .hook5 {
-    height: 12px;
-    width: 10px;
-    border: 1px solid black;
-    background: black;
-    border-radius: 50% 0% 50% 50%;
-  }
+  height: 12px;
+  width: 10px;
+  border: 1px solid black;
+  background: black;
+  border-radius: 50% 0% 50% 50%;
+}
   
 .hook6 {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 11px 13px 11px;
-    border-color: transparent transparent black transparent;
-    border-radius: 50px;
-  }
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 11px 13px 11px;
+  border-color: transparent transparent black transparent;
+  border-radius: 50px;
+}
   
 .animate_pole {
-    position: relative;
-    display: inline-block;
-    animation-name: poles;
-    animation-duration: .7s;
-  }
+  position: relative;
+  display: inline-block;
+  animation-name: poles;
+  animation-duration: .7s;
+}
   
 @keyframes poles {
-    0% {bottom: -14vh; right: -10vw;}
-    100% {bottom: 0px; right: 0px;}
-  }
-  
+  0% {bottom: -14vh; right: -10vw;}
+  100% {bottom: 0px; right: 0px;}
+}
+
 .spinning {
-    position: relative;
-    display: inline-block;
-    animation-name: spinning;
-    animation-duration: 4s;
-    transform-origin: top;
-  }
+  position: relative;
+  display: inline-block;
+  animation-name: spinning;
+  animation-duration: 4s;
+  transform-origin: top;
+}
   
 @keyframes spinning {
-    0% { transform: rotate(0deg) }
-    100% { transform: rotate(2160deg) }
-  }
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(2160deg) }
+}
   
 .rotating {
-    animation-name: rotating;
-    animation-duration: 1.36s;
-    animation-fill-mode: forwards;
-    position: relative;
-    z-index: 1;
-  }
-  
-/* @keyframes rotating {
-    0% { transform: rotate(0deg)}
-    10% { transform: rotate(-36deg)}
-    20% { transform: rotate(-72deg)}
-    30% { transform: rotate(-108deg)}
-    40% { transform: rotate(-144deg)}
-    50% { transform: rotate(-180deg)}
-    60% { transform: rotate(-216deg)}
-    70% { transform: rotate(-252deg)}
-    80% { transform: rotate(-288deg)}
-    90% { transform: rotate(-324deg)}
-    100% { transform: rotate(-360deg)}
-  } */
+  animation-name: rotating;
+  animation-duration: 1.36s;
+  animation-fill-mode: forwards;
+  position: relative;
+  z-index: 1;
+}
   
 @keyframes rotating {
-    0% { transform: rotate(0deg) scale(.1,.1) translateX(-40%) translateY(0%) }
-    10% { transform: rotate(-10deg) }
-    25% { transform: rotate(25deg) }
-    50% { transform: rotate(-50deg) translateX(-27%) translateY(-15%) }
-    100% { transform: rotate(0deg) scale(1,1) translateX(100%) translateY(21%) }
-  }
+  0% { transform: rotate(0deg) scale(.1,.1) translateX(-40%) translateY(0%) }
+  10% { transform: rotate(-10deg) }
+  25% { transform: rotate(25deg) }
+  50% { transform: rotate(-50deg) translateX(-27%) translateY(-15%) }
+  100% { transform: rotate(0deg) scale(1,1) translateX(100%) translateY(21%) }
+}

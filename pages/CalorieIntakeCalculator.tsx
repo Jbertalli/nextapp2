@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Modal, Item } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend, TooltipProps } from 'recharts';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
@@ -94,9 +94,6 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].Calories]);
-    // console.log("%c Array", "color: blue", counting[i]);
-    // console.table(counting);
-    // console.log(counting);
     const flattened: any = counting.flat();
     // console.log(flattened);
     const reduced: any = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
@@ -113,8 +110,6 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   // console.log(counting.flat());                                          //flatten out array
   const caloric_intake: any = counting.flat();
-  // console.log(caloric_intake);
-  // console.log(data);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -497,7 +492,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                 </div>
               </span>
               <Segment color="blue" textAlign="center" size="massive">
-                {/* Male (imperial) */}
                 {imperial ? (
                   <>
                     {male ? (
@@ -518,7 +512,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                       </>
                     ) : (
                       <>
-                        {/* Female (imperial) */}
                         <span ref={Calories}>
                           {(
                             (parseFloat(lifestyle) * 0.2 + 1) *
@@ -678,8 +671,6 @@ const CalorieCalculator = ({ user, ctx }) => {
               </Message>
             </>
           )}
-          {/* <strong>onChange:</strong>
-            <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms, lifestyle }, null, 2)}</pre> */}
         </Container>
         {user ? (
           <>
@@ -811,7 +802,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                         fill="url(#colorPv)"
                         key={`avg_${data.length}`}
                       />{' '}
-                      {/* goal line */}
                       <XAxis
                         dataKey="date"
                         axisLine={false}
@@ -824,18 +814,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                           return '';
                         }}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "end",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"Date"} 
-                            position='insideRight'
-                        /> */}
                       </XAxis>
                       <YAxis
                         dataKey="value"
@@ -844,21 +822,8 @@ const CalorieCalculator = ({ user, ctx }) => {
                         tickCount={8}
                         tickFormatter={(number) => `${number}`}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "middle",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"Calories"}
-                            position='insideTop'
-                        /> */}
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
-                      {/* <Legend verticalAlign="top" iconType="plainline" /> */}
                       <CartesianGrid opacity={0.1} vertical={false} />
                     </AreaChart>
                   </ResponsiveContainer>

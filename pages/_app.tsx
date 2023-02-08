@@ -9,7 +9,6 @@ import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import Router from 'next/router';
 
-//function MyApp({ Component, pageProps }) {
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { token } = parseCookies(ctx);

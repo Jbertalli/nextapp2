@@ -60,10 +60,6 @@ async function handlePutRequest(req, res) {
         console.error(error);
         return res.status(500).send("Error updating BMI");
     }
-    // const put = await Progress.findOneAndUpdate(
-    //     { body_mass_index }
-    // )
-    // res.status(201).json({ put });
 }
 
 async function handleDeleteRequest(req, res) {

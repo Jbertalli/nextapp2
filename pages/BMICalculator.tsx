@@ -13,7 +13,6 @@ import { parseCookies } from 'nookies';
 const LOCAL_STORAGE_KEY = 'BMI_progress';
 
 const BMICalculator = ({ user, ctx }) => {
-  //console.log(user);
   const [feet, setFeet] = useState<any>('');
   const [inches, setInches] = useState<any>('');
   const [weight, setWeight] = useState<any>('');
@@ -48,7 +47,6 @@ const BMICalculator = ({ user, ctx }) => {
   };
 
   // console.log(goals);
-  // console.log(goals[1]);
   // console.log(goals.length);
 
   if (goals.length > 0) {
@@ -62,17 +60,12 @@ const BMICalculator = ({ user, ctx }) => {
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BMI]);
-    // console.log("%c Array", "color: blue", counting[i]);
-    // console.table(counting);
   }
 
   let newBMI = counting.flat().pop();
   console.log(newBMI);
   // console.log(typeof newBMI);
-
   // console.log(counting.flat());                                          //flatten out array
-  // const body_mass_index: any = counting.flat();
-  // console.log(body_mass_index);
   // console.log('target BMI line:', lined);
   // console.log(data);
   // console.log(orders);
@@ -284,7 +277,6 @@ const BMICalculator = ({ user, ctx }) => {
                 </>
               ) : (
                 <>
-                  {/* metric */}
                   <Grid>
                     <Grid.Row>
                       <Grid.Column>
@@ -469,8 +461,6 @@ const BMICalculator = ({ user, ctx }) => {
               </Message>
             </>
           )}
-          {/* <strong>onChange:</strong>
-            <pre>{JSON.stringify({ feet, inches, weight, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
         {user ? (
           <>
@@ -602,7 +592,6 @@ const BMICalculator = ({ user, ctx }) => {
                         fill="url(#colorPv)"
                         key={`ac_${data.length}`}
                       />{' '}
-                      {/* goal line */}
                       <XAxis
                         dataKey="date"
                         axisLine={false}
@@ -615,18 +604,6 @@ const BMICalculator = ({ user, ctx }) => {
                           return '';
                         }}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "end",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"Date"} 
-                            position='insideRight'
-                        /> */}
                       </XAxis>
                       <YAxis
                         dataKey="value"

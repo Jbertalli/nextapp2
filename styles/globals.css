@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
 body {
-  /* background: linear-gradient(#f2f2f2, #4979ff); */
   background: #f2f2f2;
   color: #333;
   font-family: "Nunito";
@@ -17,12 +16,6 @@ input {
 h1::selection {
   background: blue;
   color: white;
-} 
-*/
-
-/* outline text
-h1 {
-  -webkit-text-stroke: 1px blue;
 } 
 */
  
@@ -65,12 +58,3 @@ footer a:hover {
   color: darkblue;
   text-decoration: underline;
 }
-
-/* .not-found {
-  text-align: center;
-}
-
-.not-found a {
-  color: #4979ff;
-  text-decoration: underline;
-} */

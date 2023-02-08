@@ -10,12 +10,6 @@ const NotFound = () => {
   const router: any = useRouter();
   console.error('Page Not Found');
 
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //         router.push('/');
-  //     }, 5000)
-  // }, [])
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
   }, []);

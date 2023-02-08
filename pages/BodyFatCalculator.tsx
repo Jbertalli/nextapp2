@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item, Divider } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, Legend, TooltipProps } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
@@ -50,9 +50,6 @@ const BodyFatPercent = ({ user, ctx }) => {
     }
   };
 
-  // const BodyFatPercentage = useRef();
-  // console.log(BodyFatPercentage.current?.innerText);
-
   useEffect(() => {
     setSex('');
   }, []);
@@ -80,14 +77,9 @@ const BodyFatPercent = ({ user, ctx }) => {
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BF]);
-    // console.log("%c Array", "color: blue", counting[i]);
-    // console.table(counting);
-    // console.log(counting);
   }
 
   //console.log(counting.flat());                                          //flatten out array
-  // const body_fat_percent: any = counting.flat();
-  // console.log(body_fat_percent);
   console.log(data);
   console.log('target BF% line:', lined);
 
@@ -322,7 +314,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                 </>
               ) : (
                 <>
-                  {/* metric */}
                   <Grid>
                     <Grid.Row>
                       <Grid.Column>
@@ -437,9 +428,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                             .toFixed(1)
                             .replace('NaN', '')}
                         </span>{' '}
-                        {/* <div>
-                          {(BodyFatPercentage.current?.innerText) * 2}
-                        </div> */}
                       </>
                     ) : (
                       <>
@@ -588,8 +576,6 @@ const BodyFatPercent = ({ user, ctx }) => {
               </Message>
             </>
           )}
-          {/* <strong>onChange:</strong>
-            <pre>{JSON.stringify({ age, feet, inches, weight, male, centimeters, kilograms }, null, 2)}</pre> */}
         </Container>
         {user ? (
           <>
@@ -721,7 +707,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                         fill="url(#colorPv)"
                         key={`ac_${data.length}`}
                       />{' '}
-                      {/* goal line */}
                       <XAxis
                         dataKey="date"
                         axisLine={false}
@@ -734,18 +719,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                           return '';
                         }}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "end",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"Date"} 
-                            position='insideRight'
-                        /> */}
                       </XAxis>
                       <YAxis
                         dataKey="value"
@@ -754,21 +727,8 @@ const BodyFatPercent = ({ user, ctx }) => {
                         tickCount={8}
                         tickFormatter={(number) => `${number}`}
                       >
-                        {/* <Label
-                            style={{
-                                textAnchor: "middle",
-                                fontSize: "1em",
-                                fill: "gray",
-                                fillOpacity: ".7",
-                                fontWeight: "700"
-                            }}
-                            angle={0} 
-                            value={"Body Fat %"}
-                            position='insideTop'
-                        /> */}
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
-                      {/* <Legend verticalAlign="top" iconType="plainline" /> */}
                       <CartesianGrid opacity={0.1} vertical={false} />
                     </AreaChart>
                   </ResponsiveContainer>

@@ -12,7 +12,6 @@ const Languages = () => {
           style={{ transform: 'rotate(-30deg)' }}
         >
           {' '}
-          {/* rotate whole rod here */}
           <div style={{ margin: '40em', transform: 'translateY(0%)' }}>
             <div style={{ transform: 'translateY(200%)' }}>
               <div

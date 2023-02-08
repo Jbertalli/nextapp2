@@ -103,7 +103,6 @@ function AccountHeader(values) {
             name="media"
             type="file"
             accept="image/*"
-            // content="Select Image"
             style={{
               width: '200px',
               margin: resize ? '0.5em 0em 0.2em 0em' : '1em 0em 1em 0em',
@@ -112,11 +111,6 @@ function AccountHeader(values) {
             onChange={handleChange}
           />
         </div>
-        {/* <Feed size="large">
-            <Feed.Event style={{ display: 'flex', justifyContent: 'center' }}>
-                <Feed.Label style={{ width: '7vw' }} image={image} />
-            </Feed.Event>
-        </Feed> */}
         <div style={{ margin: '.3em' }} />
         {name}
         <Header.Subheader style={{ margin: '.3em' }}>{email}</Header.Subheader>

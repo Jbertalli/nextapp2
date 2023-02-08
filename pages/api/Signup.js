@@ -1,6 +1,5 @@
 import connectDb from '../../utils/connectDb';
 import User from '../../models/User';                               //import User mongoose model to interact with it in api
-import Progress from '../../models/Progress';
 import bcrypt from 'bcrypt';                                        //hash password
 import jwt from 'jsonwebtoken';
 import isEmail from 'validator/lib/isEmail';

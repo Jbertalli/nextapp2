@@ -265,7 +265,6 @@ const Privacy = () => {
           </ul>
 
           <Divider style={{ marginTop: '2em' }} />
-          {/* <h2><strong><a id="1">1. WHAT INFORMATION DO WE COLLECT?</a></strong></h2> */}
           <h2>
             <strong>
               <div
