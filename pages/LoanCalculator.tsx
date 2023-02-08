@@ -102,6 +102,9 @@ const LoanCalculator = () => {
                       currency: 'USD',
                     })
                     .replace('NaN', '')}
+                </span>{' '}
+                <span style={{ fontSize: '15px' }}>
+                  /month
                 </span>
                 <Divider />
                 <div ref={LoanAmount}>

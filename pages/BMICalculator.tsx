@@ -119,8 +119,14 @@ const BMICalculator = ({ user, ctx }) => {
     console.log(response.data)
   }
 
+  // get data only if user
   useEffect(() => {
-    getData();
+    if (user) {
+      getData();
+      console.log('user');
+    } else {
+      console.log('no user');
+    }
   }, []);
   
   let BMIArray = Object(Object(newData).newBMI1);
@@ -320,30 +326,34 @@ const BMICalculator = ({ user, ctx }) => {
                   />
                 </>
               )}
-              <Divider style={{ margin: '1.5em' }} />
-              <div>
-                <Form.Input
-                  fluid
-                  icon="target"
-                  size="big"
-                  iconPosition="left"
-                  label="Set BMI Target (optional)"
-                  placeholder="target"
-                  name="target"
-                  type="number"
-                  min="0"
-                  max="100"
-                  value={lined}
-                  style={{
-                    width: desktop ? '35%' : '100%',
-                    fontSize: '23px',
-                    margin: '0em 0em 1em 0em',
-                  }}
-                  onChange={(e) => {
-                    setLined(e.target.value), setData([]);
-                  }}
-                />
-              </div>
+              {user ? (
+              <>
+                <Divider style={{ margin: '1.5em' }} />
+                <div>
+                  <Form.Input
+                    fluid
+                    icon="target"
+                    size="big"
+                    iconPosition="left"
+                    label="Set BMI Target (optional)"
+                    placeholder="target"
+                    name="target"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={lined}
+                    style={{
+                      width: desktop ? '35%' : '100%',
+                      fontSize: '23px',
+                      margin: '0em 0em 1em 0em',
+                    }}
+                    onChange={(e) => {
+                      setLined(e.target.value), setData([]);
+                    }}
+                  />
+                </div>
+              </>
+              ): null}
               <Segment color="blue" textAlign="center" size="massive">
                 {imperial ? (
                   <>

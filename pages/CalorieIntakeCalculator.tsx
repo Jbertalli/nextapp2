@@ -160,8 +160,14 @@ const CalorieCalculator = ({ user, ctx }) => {
     console.log(response.data)
   }
 
+  // get data only if user
   useEffect(() => {
-    getData();
+    if (user) {
+      getData();
+      console.log('user');
+    } else {
+      console.log('no user');
+    }
   }, []);
 
   let CalArray = Object(Object(newData).newCalorie);
