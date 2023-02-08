@@ -6,14 +6,11 @@ connectDb();
 
 export default async (req, res) => {
     switch(req.method) {
-        case "GET":
-            await handleGetRequest(req, res);
-            break;
         case "POST":
             await handlePostRequest(req, res);
             break;
-        case "PUT":
-            await handlePutRequest(req, res);
+        case "GET":
+            await handleGetRequest(req, res);
             break;
         case "DELETE":
             await handleDeleteRequest(req, res);
