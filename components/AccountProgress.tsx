@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { Header, Accordion, Label, Segment, Icon, Button, List } from 'semantic-ui-react';
+import { Header, Accordion, Segment, Icon, Button } from 'semantic-ui-react';
 
-function AccountProgress({ progress }) {
+function AccountProgress() {
   const router: any = useRouter();
 
   return (
