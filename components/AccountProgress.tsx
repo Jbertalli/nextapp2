@@ -11,7 +11,26 @@ function AccountProgress({ user, ctx }) {
   const [BMIData, setBMIData] = useState('');
   const [CalorieData, setCalorieData] = useState('');
   const [GoalData, setGoalData] = useState('');
+  const [desktop, setDesktop] = useState<boolean>(true);
   const router: any = useRouter();
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   async function getBF() {
     const { token } = parseCookies(ctx);
@@ -100,10 +119,10 @@ function AccountProgress({ user, ctx }) {
     }
   }, [])
 
-  console.log(String(BF).length);
-  console.log(String(BMI).length);
-  console.log(String(Calorie).length);
-  console.log(String(Goal).length);
+  // console.log(String(BF).length);
+  // console.log(String(BMI).length);
+  // console.log(String(Calorie).length);
+  // console.log(String(Goal).length);
 
   return (
     <>
@@ -148,102 +167,158 @@ function AccountProgress({ user, ctx }) {
             <Table.Body>
               <Table.Row>
                 <Table.Cell width={12}>
-                  Latest Body Fat:
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    Latest Body Fat:
+                  </div>
                 </Table.Cell>
                 <Table.Cell width={4}>
-                  {(String(BF).length !== 9) ? (
-                  <>
-                    {BF}%
-                  </>
-                  ):(
-                  <>
-                    <Button
-                      style={{
-                        border: '3px solid white',
-                        background: 'transparent',
-                        color: 'white'
-                      }}
-                      onClick={() => router.push('/BodyFatCalculator')}
-                    >
-                      Calculate
-                    </Button>
-                  </>
-                  )}
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    {(String(BF).length !== 9) ? (
+                    <>
+                      {BF}%
+                    </>
+                    ):(
+                    <>
+                      <Button
+                        style={{
+                          border: '3px solid white',
+                          background: 'transparent',
+                          color: 'white'
+                        }}
+                        onClick={() => router.push('/BodyFatCalculator')}
+                      >
+                        Calculate
+                      </Button>
+                    </>
+                    )}
+                  </div>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell width={12}>
-                  Latest BMI:
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    Latest BMI:
+                  </div>
                 </Table.Cell>
                 <Table.Cell width={4}>
-                  {(String(BMI).length !== 9) ? (
-                  <>
-                    {BMI}
-                  </>
-                  ): (
-                  <>
-                    <Button
-                      style={{
-                        border: '3px solid white',
-                        background: 'transparent',
-                        color: 'white'
-                      }}
-                      onClick={() => router.push('/BMICalculator')}
-                    >
-                      Calculate
-                    </Button>
-                  </>
-                  )}
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    {(String(BMI).length !== 9) ? (
+                    <>
+                      {BMI}
+                    </>
+                    ): (
+                    <>
+                      <Button
+                        style={{
+                          border: '3px solid white',
+                          background: 'transparent',
+                          color: 'white'
+                        }}
+                        onClick={() => router.push('/BMICalculator')}
+                      >
+                        Calculate
+                      </Button>
+                    </>
+                    )}
+                  </div>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell width={12}>
-                  Latest Caloric Intake:
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    Latest {desktop ? 'Caloric' : null} Intake:
+                  </div>
                 </Table.Cell>
                 <Table.Cell width={4}>
-                  {(String(Calorie).length !== 9) ? (
-                  <>
-                    {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
-                  </>
-                  ):(
-                  <>
-                    <Button
-                      style={{
-                        border: '3px solid white',
-                        background: 'transparent',
-                        color: 'white'
-                      }}
-                      onClick={() => router.push('/CalorieIntakeCalculator')}
-                    >
-                      Calculate
-                    </Button>
-                  </>
-                  )}
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    {(String(Calorie).length !== 9) ? (
+                    <>
+                      {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
+                    </>
+                    ):(
+                    <>
+                      <Button
+                        style={{
+                          border: '3px solid white',
+                          background: 'transparent',
+                          color: 'white'
+                        }}
+                        onClick={() => router.push('/CalorieIntakeCalculator')}
+                      >
+                        Calculate
+                      </Button>
+                    </>
+                    )}
+                  </div>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell width={12}>
-                  Latest Goal:
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    Latest Goal:
+                  </div>
                 </Table.Cell>
                 <Table.Cell width={4}>
-                  {(String(Goal).length !== 9) ? (
-                  <>
-                    {Goal}
-                  </>
-                  ):(
-                  <>
-                    <Button
-                      style={{
-                        border: '3px solid white',
-                        background: 'transparent',
-                        color: 'white'
-                      }}
-                      onClick={() => router.push('/goals')}
-                    >
-                      Calculate
-                    </Button>
-                  </>
-                  )}
+                  <div
+                    style={{
+                      display: desktop ? null : 'flex',
+                      justifyContent: desktop ? null :  'center'
+                    }}
+                  >
+                    {(String(Goal).length !== 9) ? (
+                    <>
+                      {Goal}
+                    </>
+                    ):(
+                    <>
+                      <Button
+                        style={{
+                          border: '3px solid white',
+                          background: 'transparent',
+                          color: 'white'
+                        }}
+                        onClick={() => router.push('/goals')}
+                      >
+                        Calculate
+                      </Button>
+                    </>
+                    )}
+                  </div>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
