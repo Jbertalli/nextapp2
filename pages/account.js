@@ -13,7 +13,7 @@ function Account({ user }) {
         <meta name="description" content="account" />
       </Head>
       <Container style={{ margin: '4em' }}>
-        <AccountHeader {...user} />
+        <AccountHeader {...user} user={user} />
         <AccountProgress user={user} />
         {user.role === 'root' && (
           <AccountPermissions currentUserId={user._id} />
