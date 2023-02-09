@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
-import { Header, Segment, Icon, Table, Divider } from 'semantic-ui-react';
+import { Header, Segment, Icon, Table, Divider, Button } from 'semantic-ui-react';
 
 function AccountProgress({ user, ctx }) {
   // console.log(user.nane);
@@ -100,169 +100,176 @@ function AccountProgress({ user, ctx }) {
     }
   }, [])
 
+  console.log(String(BF).length);
+  console.log(String(BMI).length);
+  console.log(String(Calorie).length);
+  console.log(String(Goal).length);
+
   return (
     <>
-      {/* <Button
-        color='blue'
-        onClick={() => {getBF(), getBMI(), getCalories(), getGoals()}}
-      >
-        Get User Data
-      </Button> */}
-      <Segment
-        inverted
-        tertiary
-        color="grey"
-        style={{ paddingTop: '30px'}}
-      >
-        {/* <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '35px'
-          }}
+      {((String(BF).length !== 9) || (String(BMI).length !== 9) || (String(Calorie).length !== 9) || (String(Goal).length !== 9)) ? (
+      <>
+        <Segment
+          inverted
+          tertiary
+          color="grey"
+          style={{ paddingTop: '30px'}}
         >
-          {user.name}{`'s`} History
-        </div>
-        <div
-          style={{
-            fontSize: '25px'
-          }}
-        >
-          <ul>
-            <span>
-              Latest Body Fat:
-            </span>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end'
-              }}
-            >
-              {BF}%
-            </span>
-          </ul>
-          <ul>
-            <span>
-              Latest BMI:
-            </span>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end'
-              }}
-            >
-              {BMI}
-            </span>
-          </ul>
-          <ul>
-            <span>
-              Latest Caloric Intake:
-            </span>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end'
-              }}
-            >
-              {Calorie} Cal
-            </span>
-          </ul>
-          <ul>
-            <span>
-              Latest Goal:
-            </span>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end'
-              }}
-            >
-              {Goal}
-            </span>
-          </ul>
-        </div> */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '35px'
-          }}
-        >
-          {user.name}{`'s`} History
-        </div>
-        <div
-          style={{
-            paddingTop: '20px',
-            marginBottom: '-20px'
-          }}
-        >
-          <Divider />
-        </div>
-        <Table
-          fixed
-          style={{
-            background: 'transparent',
-            border: '0px solid transparent',
-            display: 'flex',
-            justifyContent: 'center',
-            color: 'white',
-            fontSize: '30px',
-            fontWeight: '300',
-            lineHeight: '30px'
-          }}
-        >
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell width={12}>
-                Latest Body Fat:
-              </Table.Cell>
-              <Table.Cell width={4}>
-                {BF}%
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell width={12}>
-                Latest BMI:
-              </Table.Cell>
-              <Table.Cell width={4}>
-                {BMI}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell width={12}>
-                Latest Caloric Intake:
-              </Table.Cell>
-              <Table.Cell width={4}>
-                {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell width={12}>
-                Latest Goal:
-              </Table.Cell>
-              <Table.Cell width={4}>
-                {Goal}
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </Segment>
-      <Header as="h2">
-        <Icon name="folder open" />
-        User History
-      </Header>
-      <Segment 
-        inverted
-        tertiary
-        color="grey"
-        textAlign="center"
-        style={{ paddingTop: '30px'}}
-      >
-        <Header icon>
-          <Icon name="copy outline" />
-          No user history.
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              fontSize: '35px'
+            }}
+          >
+            {user.name}{`'s`} History
+          </div>
+          <div
+            style={{
+              paddingTop: '20px',
+              marginBottom: '-20px'
+            }}
+          >
+            <Divider />
+          </div>
+          <Table
+            fixed
+            style={{
+              background: 'transparent',
+              border: '0px solid transparent',
+              display: 'flex',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: '30px',
+              fontWeight: '300',
+              lineHeight: '30px'
+            }}
+          >
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell width={12}>
+                  Latest Body Fat:
+                </Table.Cell>
+                <Table.Cell width={4}>
+                  {(String(BF).length !== 9) ? (
+                  <>
+                    {BF}%
+                  </>
+                  ):(
+                  <>
+                    <Button
+                      style={{
+                        border: '3px solid white',
+                        background: 'transparent',
+                        color: 'white'
+                      }}
+                      onClick={() => router.push('/BodyFatCalculator')}
+                    >
+                      Calculate
+                    </Button>
+                  </>
+                  )}
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell width={12}>
+                  Latest BMI:
+                </Table.Cell>
+                <Table.Cell width={4}>
+                  {(String(BMI).length !== 9) ? (
+                  <>
+                    {BMI}
+                  </>
+                  ): (
+                  <>
+                    <Button
+                      style={{
+                        border: '3px solid white',
+                        background: 'transparent',
+                        color: 'white'
+                      }}
+                      onClick={() => router.push('/BMICalculator')}
+                    >
+                      Calculate
+                    </Button>
+                  </>
+                  )}
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell width={12}>
+                  Latest Caloric Intake:
+                </Table.Cell>
+                <Table.Cell width={4}>
+                  {(String(Calorie).length !== 9) ? (
+                  <>
+                    {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
+                  </>
+                  ):(
+                  <>
+                    <Button
+                      style={{
+                        border: '3px solid white',
+                        background: 'transparent',
+                        color: 'white'
+                      }}
+                      onClick={() => router.push('/CalorieIntakeCalculator')}
+                    >
+                      Calculate
+                    </Button>
+                  </>
+                  )}
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell width={12}>
+                  Latest Goal:
+                </Table.Cell>
+                <Table.Cell width={4}>
+                  {(String(Goal).length !== 9) ? (
+                  <>
+                    {Goal}
+                  </>
+                  ):(
+                  <>
+                    <Button
+                      style={{
+                        border: '3px solid white',
+                        background: 'transparent',
+                        color: 'white'
+                      }}
+                      onClick={() => router.push('/goals')}
+                    >
+                      Calculate
+                    </Button>
+                  </>
+                  )}
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Segment>
+      </>
+      ):(
+      <>
+        <Header as="h2">
+          <Icon name="folder open" />
+          User History
         </Header>
-      </Segment>
+        <Segment 
+          inverted
+          tertiary
+          color="grey"
+          textAlign="center"
+          style={{ paddingTop: '30px'}}
+        >
+          <Header icon>
+            <Icon name="copy outline" />
+            No user history.
+          </Header>
+        </Segment>
+      </>
+      )}
     </>
   );
 }
