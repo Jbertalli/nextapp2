@@ -14,7 +14,7 @@ function Account({ user }) {
       </Head>
       <Container style={{ margin: '4em' }}>
         <AccountHeader {...user} />
-        <AccountProgress />
+        <AccountProgress user={user} />
         {user.role === 'root' && (
           <AccountPermissions currentUserId={user._id} />
         )}

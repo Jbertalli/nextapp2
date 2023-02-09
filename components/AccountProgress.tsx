@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
-import { Header, Accordion, Segment, Icon, Button } from 'semantic-ui-react';
+import { Header, Segment, Icon, Table, Divider } from 'semantic-ui-react';
 
-function AccountProgress({ ctx }) {
+function AccountProgress({ user, ctx }) {
+  // console.log(user.nane);
   const [BFData, setBFData] = useState('');
   const [BMIData, setBMIData] = useState('');
   const [CalorieData, setCalorieData] = useState('');
@@ -88,56 +89,180 @@ function AccountProgress({ ctx }) {
 
   let Goal = Goalapp.pop();
 
+  useEffect(() => {
+    if (user) {
+      getBF(), 
+      getBMI(), 
+      getCalories(), 
+      getGoals()
+    } else {
+      console.log('no user');
+    }
+  }, [])
+
   return (
     <>
-    <Button
-      color='blue'
-      onClick={getBF}
-    >
-      Get User Data
-    </Button>
-    {BF}
-    <Button
-      color='blue'
-      onClick={getBMI}
-    >
-      Get User Data
-    </Button>
-    {BMI}
-    <Button
-      color='blue'
-      onClick={getCalories}
-    >
-      Get User Data
-    </Button>
-    {Calorie}
-    <Button
-      color='blue'
-      onClick={getGoals}
-    >
-      Get User Data
-    </Button>
-    {Goal}
+      {/* <Button
+        color='blue'
+        onClick={() => {getBF(), getBMI(), getCalories(), getGoals()}}
+      >
+        Get User Data
+      </Button> */}
+      <Segment
+        inverted
+        tertiary
+        color="grey"
+        style={{ paddingTop: '30px'}}
+      >
+        {/* <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '35px'
+          }}
+        >
+          {user.name}{`'s`} History
+        </div>
+        <div
+          style={{
+            fontSize: '25px'
+          }}
+        >
+          <ul>
+            <span>
+              Latest Body Fat:
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end'
+              }}
+            >
+              {BF}%
+            </span>
+          </ul>
+          <ul>
+            <span>
+              Latest BMI:
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end'
+              }}
+            >
+              {BMI}
+            </span>
+          </ul>
+          <ul>
+            <span>
+              Latest Caloric Intake:
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end'
+              }}
+            >
+              {Calorie} Cal
+            </span>
+          </ul>
+          <ul>
+            <span>
+              Latest Goal:
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end'
+              }}
+            >
+              {Goal}
+            </span>
+          </ul>
+        </div> */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '35px'
+          }}
+        >
+          {user.name}{`'s`} History
+        </div>
+        <div
+          style={{
+            paddingTop: '20px',
+            marginBottom: '-20px'
+          }}
+        >
+          <Divider />
+        </div>
+        <Table
+          fixed
+          style={{
+            background: 'transparent',
+            border: '0px solid transparent',
+            display: 'flex',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: '30px',
+            fontWeight: '300',
+            lineHeight: '30px'
+          }}
+        >
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell width={12}>
+                Latest Body Fat:
+              </Table.Cell>
+              <Table.Cell width={4}>
+                {BF}%
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={12}>
+                Latest BMI:
+              </Table.Cell>
+              <Table.Cell width={4}>
+                {BMI}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={12}>
+                Latest Caloric Intake:
+              </Table.Cell>
+              <Table.Cell width={4}>
+                {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={12}>
+                Latest Goal:
+              </Table.Cell>
+              <Table.Cell width={4}>
+                {Goal}
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </Segment>
       <Header as="h2">
         <Icon name="folder open" />
-        Goal History
+        User History
       </Header>
-      <Segment inverted tertiary color="grey" textAlign="center">
+      <Segment 
+        inverted
+        tertiary
+        color="grey"
+        textAlign="center"
+        style={{ paddingTop: '30px'}}
+      >
         <Header icon>
           <Icon name="copy outline" />
-          No goal history.
+          No user history.
         </Header>
-        <div>
-          <Button onClick={() => router.push('/goals')} color="blue">
-            Set Goals
-          </Button>
-        </div>
       </Segment>
-      <Accordion
-        fluid
-        styled
-        exclusive={false}
-      />
     </>
   );
 }
