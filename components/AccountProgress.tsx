@@ -145,7 +145,7 @@ function AccountProgress({ user, ctx }) {
           </div>
           <div
             style={{
-              paddingTop: '20px',
+              paddingTop: '10px',
               marginBottom: '-20px'
             }}
           >
@@ -263,7 +263,17 @@ function AccountProgress({ user, ctx }) {
                   >
                     {(String(Calorie).length !== 9) ? (
                     <>
-                      {Calorie} <span style={{ fontSize: '17px' }}>Cal</span>
+                      <span>
+                        {Calorie}
+                      </span>
+                      <span
+                        style={{ 
+                          fontSize: '17px',
+                          transform: desktop ? null : 'translateY(3.9px)'
+                        }}
+                      >
+                        Cal
+                      </span>
                     </>
                     ):(
                     <>
