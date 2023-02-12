@@ -1,18 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import GoalList from '../components/GoalList';
-import { Button, Container, Message, Segment, Icon } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
 import { parseCookies } from 'nookies';
-import axios from 'axios';
+import { Button, Container, Message, Segment, Icon } from 'semantic-ui-react';
 
 const LOCAL_STORAGE_KEY = 'goals';
 
 function Goals({ user, ctx }) {
-  // console.log(user);
   const [goals, setGoals] = useState<any>([]); //set array of goals when first loading
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
@@ -52,10 +51,8 @@ function Goals({ user, ctx }) {
     counting.push([goals[i].name]);
   }
 
-  console.log(counting.flat);
-
   let newGoal = counting.flat().pop();
-  console.log(newGoal);
+  // console.log(newGoal);
 
   //toggle from complete to incomplete, then pass to <GoalList toggleGoal={toggleGoal} />
   function toggleGoal(id) {
@@ -63,21 +60,28 @@ function Goals({ user, ctx }) {
     const goal: any = newGoals.find((goal) => goal.id === id);
     goal.complete = !goal.complete;
     setGoals(newGoals);
-    console.log(newGoals);
     setData([]);
+  }
+
+  let GoalArray = Object(Object(newData).newGoals1);
+
+  let app = []
+
+  for (let i = 0; i < GoalArray.length; i++) {
+    app.push(GoalArray[i].createdAt);
   }
 
   async function handleAddGoal() {
     const name: any = goalNameRef.current.value; //append goal ---> get access to name with useRef hook (reference elements in html)
+    const date = app.pop();
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { id: uuidv4(), name: name, complete: false }]; //previous value and return new goals by spreading over array, then adding new goal to list
+      return [...prevGoals, { id: uuidv4(), name: name, date: date, complete: false }]; //previous value and return new goals by spreading over array, then adding new goal to list
     });
 
     setCount(count + 1);
-    console.log(count);
     setData([]);
-    console.log(goalNameRef.current.value);
+    // console.log(goalNameRef.current.value);
 
     goalNameRef.current.value = null;
   }
@@ -97,20 +101,19 @@ function Goals({ user, ctx }) {
   }
 
   console.log(data);
-  // console.log(data[0].date);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
       setDesktop(true);
     } else {
-      setDesktop(true);
+      setDesktop(false);
     }
 
     const updateMedia = () => {
       if (window.innerWidth > 440) {
         setDesktop(true);
       } else {
-        setDesktop(true);
+        setDesktop(false);
       }
     };
     window.addEventListener('resize', updateMedia);
@@ -126,13 +129,13 @@ function Goals({ user, ctx }) {
 
   async function getData() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders3`;
+    const url = `${baseUrl}/api/newGoals1`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.get(url, payload);
     console.log(response.data);
     setNewData(response.data);
   }
-  
+
   async function deleteData() {
     const { token } = parseCookies(ctx);
     const url = `${baseUrl}/api/goalAPI`;
@@ -143,26 +146,20 @@ function Goals({ user, ctx }) {
 
   async function deleteAll() {
     const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newOrders3`;
+    const url = `${baseUrl}/api/newGoals1`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
     console.log(response.data)
   }
 
+  // get data only if user
   useEffect(() => {
-    getData();
+    if (user) {
+      getData();
+    } else {
+      console.log('no user');
+    }
   }, []);
-
-  let GoalArray = Object(Object(newData).newOrders3);
-  console.log(typeof GoalArray);
-
-  let app = []
-
-  for (let i = 0; i < GoalArray.length; i++) {
-    app.push(GoalArray[i].newGoal);
-  }
-
-  console.log(app);
 
   return (
     <>
@@ -170,7 +167,7 @@ function Goals({ user, ctx }) {
         <title>HealthStat | Goals</title>
         <meta name="description" content="goals" />
       </Head>
-      <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+      <Container textAlign="center" as="h3" style={{ margin: desktop ? '3em' : '2em' }}>
         <Message
           attached
           compact
@@ -207,7 +204,6 @@ function Goals({ user, ctx }) {
                   <GoalList
                     goals={goals}
                     toggleGoal={toggleGoal}
-                    count={count}
                   />{' '}
                 </>
               )}
@@ -220,9 +216,7 @@ function Goals({ user, ctx }) {
               >
                 <h2>
                   {goals.filter((goal) => !goal.complete).length}{' '}
-                  {goals.length === 1
-                    ? 'goal left to complete'
-                    : 'goals left to complete'}
+                  {goals.length === 1 ? 'goal left to complete' : 'goals left to complete'}
                 </h2>
               </Segment>
               <Segment style={{ border: 'none', padding: desktop ? '2em 0em 3em 0em' : '1em 0em 2em 0em' }}>
@@ -259,26 +253,28 @@ function Goals({ user, ctx }) {
                 color="blue"
                 style={{
                   textAlign: 'left',
-                  margin: '1em 1em 1em',
-                  padding: '2em 2em 2em 2em',
+                  margin: desktop ? '1em 1em 1em' : null,
+                  padding: desktop ? '2em 2em 2em 2em' : null,
                   display: 'flex',
                   justifyContent: desktop ? 'space-around' : 'space-between'
                 }}
               >
                 <Button
+                  fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {postData(), getData(), handleAddGoal()}}
                   style={{
                     border: '3px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
-                    height: desktop ? null : '40px',
+                    height: desktop ? null : '45px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
                   Add Goal
                 </Button>
                 <Button
+                  fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
                   onClick={() =>{
                     deleteData(),
@@ -288,13 +284,15 @@ function Goals({ user, ctx }) {
                     border: '3px solid red',
                     background: 'transparent',
                     color: 'red',
-                    height: desktop ? null : '40px',
+                    lineHeight: desktop ? null : '11px',
+                    height: desktop ? null : '45px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
                   Clear Checked Goal
                 </Button>
                 <Button
+                  fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {
                     deleteAll(),
@@ -304,7 +302,7 @@ function Goals({ user, ctx }) {
                     border: '3px solid red',
                     background: 'transparent',
                     color: 'red',
-                    height: desktop ? null : '40px',
+                    height: desktop ? null : '45px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
@@ -350,10 +348,10 @@ export default Goals;
 Goals.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
   if (!token) {
-    return { newOrders3: [] }
+    return { newGoals1: [] }
   }  
   const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newOrders3`;
+  const url = `${baseUrl}/api/newGoals1`;
   const response = await axios.get(url, payload);
   return response.data;
 }
