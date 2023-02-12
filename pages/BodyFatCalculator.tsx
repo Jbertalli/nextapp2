@@ -380,7 +380,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   checked={sex === 'male' && checked}
                   onChange={handleChange}
                   required
-                  style={{ width: '30px' }}
+                  style={{ width: '30px', cursor: 'pointer' }}
                   onMouseUp={() => {
                     setMale(true), handleUnclick();
                   }}
@@ -393,7 +393,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   checked={sex === 'female' && checked}
                   onChange={handleChange}
                   required
-                  style={{ width: '30px' }}
+                  style={{ width: '30px', cursor: 'pointer' }}
                   onMouseUp={() => {
                     setMale(false), handleUnclick();
                   }}

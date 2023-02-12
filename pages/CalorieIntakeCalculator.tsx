@@ -407,7 +407,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   checked={sex === 'male' && checkedMale}
                   onChange={handleChange}
                   required
-                  style={{ width: '30px' }}
+                  style={{ width: '30px', cursor: 'pointer' }}
                   onMouseUp={() => {
                     setMale(true), handleMaleUnclick();
                   }}
@@ -420,7 +420,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   checked={sex === 'female' && checkedMale}
                   onChange={handleChange}
                   required
-                  style={{ width: '30px' }}
+                  style={{ width: '30px', cursor: 'pointer' }}
                   onMouseUp={() => {
                     setMale(false), handleMaleUnclick();
                   }}
@@ -433,7 +433,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       type="radio"
                       name="lifestyle"
                       required
-                      style={{ width: '30px' }}
+                      style={{ width: '30px', cursor: 'pointer' }}
                       value={lifestyle}
                       checked={radio === '1' && checked}
                       onChange={handleLifeChange}
@@ -446,7 +446,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       type="radio"
                       name="lifestyle"
                       required
-                      style={{ width: '30px' }}
+                      style={{ width: '30px', cursor: 'pointer' }}
                       value={lifestyle}
                       checked={radio === '2' && checked}
                       onChange={handleLifeChange}
@@ -459,7 +459,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       type="radio"
                       name="lifestyle"
                       required
-                      style={{ width: '30px' }}
+                      style={{ width: '30px', cursor: 'pointer' }}
                       value={lifestyle}
                       checked={radio === '3' && checked}
                       onChange={handleLifeChange}
@@ -472,7 +472,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       type="radio"
                       name="lifestyle"
                       required
-                      style={{ width: '30px' }}
+                      style={{ width: '30px', cursor: 'pointer' }}
                       value={lifestyle}
                       checked={radio === '4' && checked}
                       onChange={handleLifeChange}
@@ -485,7 +485,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       type="radio"
                       name="lifestyle"
                       required
-                      style={{ width: '30px' }}
+                      style={{ width: '30px', cursor: 'pointer' }}
                       value={lifestyle}
                       checked={radio === '5' && checked}
                       onChange={handleLifeChange}
