@@ -185,7 +185,14 @@ const BodyFatPercent = ({ user, ctx }) => {
         <meta name="description" content="body fat, calculator" />
       </Head>
       <FocusLock>
-        <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+        <Container 
+          textAlign="center" 
+          as="h3" 
+          style={{ margin: '3em' }} 
+          onKeyUp={() => setData([])} 
+          onMouseEnter={() => setData([])} 
+          onMouseLeave={() => setData([])}
+        >
           <Message
             attached
             compact
@@ -362,32 +369,36 @@ const BodyFatPercent = ({ user, ctx }) => {
                   />
                 </>
               )}
-              &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
-              <input
-                type="radio"
-                name="rad"
-                value="male"
-                checked={sex === 'male' && checked}
-                onChange={handleChange}
-                required
-                style={{ width: '30px' }}
-                onMouseUp={() => {
-                  setMale(true), handleUnclick();
-                }}
-              />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
-              <input
-                type="radio"
-                name="rad"
-                value="female"
-                checked={sex === 'female' && checked}
-                onChange={handleChange}
-                required
-                style={{ width: '30px' }}
-                onMouseUp={() => {
-                  setMale(false), handleUnclick();
-                }}
-              />
+              <div
+                onClick={() => setData([])}
+              >
+                &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
+                <input
+                  type="radio"
+                  name="rad"
+                  value="male"
+                  checked={sex === 'male' && checked}
+                  onChange={handleChange}
+                  required
+                  style={{ width: '30px' }}
+                  onMouseUp={() => {
+                    setMale(true), handleUnclick();
+                  }}
+                />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
+                <input
+                  type="radio"
+                  name="rad"
+                  value="female"
+                  checked={sex === 'female' && checked}
+                  onChange={handleChange}
+                  required
+                  style={{ width: '30px' }}
+                  onMouseUp={() => {
+                    setMale(false), handleUnclick();
+                  }}
+                />
+              </div>
               {user ? (
               <>
                 <Divider style={{ margin: '1.5em' }} />
@@ -515,6 +526,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 <Button
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {postData(), getData(), counter()}}
+                  onMouseMove={() => setData([])}
                   style={{
                     border: '3px solid #125CA1',
                     background: 'transparent',
@@ -596,6 +608,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 margin: '3em',
                 display: counting.length ? 'block' : 'none',
               }}
+              onMouseEnter={() => setData([])}
             >
               <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
                 <Message

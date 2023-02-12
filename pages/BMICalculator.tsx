@@ -168,7 +168,14 @@ const BMICalculator = ({ user, ctx }) => {
         <meta name="description" content="BMI, calculator, body mass index" />
       </Head>
       <FocusLock>
-        <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+        <Container 
+          textAlign="center" 
+          as="h3" 
+          style={{ margin: '3em' }} 
+          onKeyUp={() => setData([])} 
+          onMouseEnter={() => setData([])} 
+          onMouseLeave={() => setData([])}
+        >
           <Message
             attached
             compact
@@ -402,6 +409,7 @@ const BMICalculator = ({ user, ctx }) => {
                 <Button
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {postData(), getData(), counter()}}
+                  onMouseMove={() => setData([])}
                   style={{
                     border: '3px solid #125CA1',
                     background: 'transparent',
@@ -479,6 +487,7 @@ const BMICalculator = ({ user, ctx }) => {
                 margin: '3em',
                 display: counting.length ? 'block' : 'none',
               }}
+              onMouseEnter={() => setData([])}
             >
               <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
                 <Message

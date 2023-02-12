@@ -212,7 +212,14 @@ const CalorieCalculator = ({ user, ctx }) => {
         />
       </Head>
       <FocusLock>
-        <Container textAlign="center" as="h3" style={{ margin: '3em' }} onKeyUp={() => setData([])}>
+        <Container 
+          textAlign="center" 
+          as="h3" 
+          style={{ margin: '3em' }} 
+          onKeyUp={() => setData([])} 
+          onMouseEnter={() => setData([])} 
+          onMouseLeave={() => setData([])}
+        >
           <Message
             attached
             compact
@@ -390,7 +397,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                 </>
               )}
               <div
-                onMouseMove={() => setData([])}
+                onClick={() => setData([])}
               >
                 &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
                 <input
@@ -690,6 +697,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                 margin: '3em',
                 display: counting.length ? 'block' : 'none',
               }}
+              onMouseEnter={() => setData([])}
             >
               <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
                 <Message
