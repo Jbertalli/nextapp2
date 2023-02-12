@@ -1,5 +1,5 @@
 //map over current array and return element of goals
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Label, Divider, Grid } from 'semantic-ui-react';
 
 const config: any = {
@@ -16,6 +16,25 @@ export default function Goal(values) {
   } = values;
   
   const [checked, setChecked] = useState<boolean>(false);
+  const [desktop, setDesktop] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   function handleGoalClick() {
     toggleGoal(goal.id);
@@ -47,6 +66,9 @@ export default function Goal(values) {
               <input
                 type="radio"
                 checked={goal.complete}
+                style={{
+                  transform: 'translateY(2px)'
+                }}
                 onClick={() => {
                   handleGoalClick(), handleUnclick();
                 }}
@@ -60,7 +82,10 @@ export default function Goal(values) {
             style={{ 
               fontSize: '1em', 
               margin: '14px 0% 0% 0%', 
-              color: 'gray' 
+              color: 'gray',
+              display: desktop ? 'flex' : null,
+              justifyContent: desktop ? 'flex-end' : null,
+              transform: desktop ? 'translate(-20px)' : 'translate(-10px)'
             }}
           >
             {goal.date ? (
