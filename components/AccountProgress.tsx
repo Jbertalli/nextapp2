@@ -185,7 +185,23 @@ function AccountProgress({ user, ctx }) {
                   >
                     {(String(BF).length !== 9) ? (
                     <>
-                      {BF}%
+                      <div
+                        style={{
+                          transform: desktop ? 'translateY(2px)': null
+                        }}
+                      >
+                        <span>
+                          {BF}
+                        </span>
+                        <span
+                          style={{ 
+                            fontSize: '17px',
+                            transform: desktop ? null : 'translateY(3.9px)'
+                          }}
+                        >
+                          %
+                        </span>
+                      </div>
                     </>
                     ):(
                     <>
@@ -263,17 +279,23 @@ function AccountProgress({ user, ctx }) {
                   >
                     {(String(Calorie).length !== 9) ? (
                     <>
-                      <span>
-                        {Calorie}
-                      </span>
-                      <span
-                        style={{ 
-                          fontSize: '17px',
-                          transform: desktop ? null : 'translateY(3.9px)'
+                      <div
+                        style={{
+                          transform: desktop ? 'translateY(2.3px)': null
                         }}
                       >
-                        Cal
-                      </span>
+                        <span>
+                          {Calorie}
+                        </span>
+                        <span
+                          style={{ 
+                            fontSize: '17px',
+                            transform: desktop ? null : 'translateY(3.9px)'
+                          }}
+                        >
+                          Cal
+                        </span>
+                      </div>
                     </>
                     ):(
                     <>
