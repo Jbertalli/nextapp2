@@ -2,7 +2,7 @@ import Head from 'next/head';
 import AccountHeader from '../components/AccountHeader';
 import AccountProgress from '../components/AccountProgress';
 import AccountPermissions from '../components/AccountPermissions';
-import { Container, Progress } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 function Account({ user }) {
 
