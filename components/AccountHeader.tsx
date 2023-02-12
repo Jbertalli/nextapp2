@@ -88,7 +88,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx}) {
     const response = await axios.delete(url, payload);
     console.log(response.data)
   }
-  
+
   // get data only if user
   useEffect(() => {
     if (user) {
@@ -158,7 +158,8 @@ function AccountHeader({ role, email, name, createdAt, user, ctx}) {
                 onClick={() => {deleteImage(), setMediaPreview('')}}
                 style={{
                   border: '1px solid black',
-                  height: '42px'
+                  height: '42px',
+                  transform: resize ? null : 'translate(12px, -8px)'
                 }}
               >
                 Delete Image
