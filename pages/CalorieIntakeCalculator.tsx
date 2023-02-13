@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
-import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
-import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
 import { parseCookies } from 'nookies';
+import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
+import { format, parseISO, subDays } from 'date-fns';
 
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
@@ -602,6 +602,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                     border: '3px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
+                    lineHeight: desktop ? null : '10px',
                     height: desktop ? null : '40px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
@@ -609,7 +610,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   Update Calorie History
                 </Button>
                 <Button
-                  size="big"
+                  size={desktop ? "big" : "small"}
                   onClick={() => {
                     setAverage(avg), setData([]);
                   }}
