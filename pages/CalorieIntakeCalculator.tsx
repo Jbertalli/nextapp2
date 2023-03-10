@@ -101,7 +101,6 @@ const CalorieCalculator = ({ user, ctx }) => {
   console.log(avg);
 
   let newCal = counting.flat().pop();
-  console.log(newCal);
 
   const caloric_intake: any = counting.flat();
 
@@ -164,7 +163,7 @@ const CalorieCalculator = ({ user, ctx }) => {
   }, []);
 
   let CalArray = Object(Object(newData).newCalorie);
-  console.log(typeof CalArray);
+  // console.log(typeof CalArray);
 
   let app = []
 
@@ -172,7 +171,7 @@ const CalorieCalculator = ({ user, ctx }) => {
     app.push(CalArray[i].newCal);
   }
 
-  console.log(app);
+  // console.log(app);
 
   for (let num = numb; num >= 0; num--) {
     data.push({
@@ -190,7 +189,6 @@ const CalorieCalculator = ({ user, ctx }) => {
     });
 
     setCount(count + 1);
-    console.log(count);
     setData([]);
 
     Calories.current?.innerText == null; 

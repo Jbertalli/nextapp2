@@ -59,7 +59,6 @@ const BMICalculator = ({ user, ctx }) => {
   }
 
   let newBMI = counting.flat().pop();
-  console.log(newBMI);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -120,7 +119,7 @@ const BMICalculator = ({ user, ctx }) => {
   }, []);
   
   let BMIArray = Object(Object(newData).newBMI1);
-  console.log(typeof BMIArray);
+  // console.log(typeof BMIArray);
 
   let app = []
 
@@ -128,7 +127,7 @@ const BMICalculator = ({ user, ctx }) => {
     app.push(BMIArray[i].newBMI);
   }
 
-  console.log(app);
+  // console.log(app);
 
   for (let num = numb; num >= 0; num--) {
     data.push({
@@ -146,7 +145,6 @@ const BMICalculator = ({ user, ctx }) => {
     });
 
     setCount(count + 1);
-    console.log(count);
     setData([]);
 
     BMI.current?.innerText == null; 

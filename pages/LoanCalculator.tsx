@@ -11,7 +11,7 @@ const LoanCalculator = () => {
   const term: number = years * 12;
   const rate: number = interestRate / 100 / 12;
   
-  console.log(LoanAmount.current?.innerText);
+  // console.log(LoanAmount.current?.innerText);
 
   const handleInput = () => {
     console.log('Loan Amount', { principal, interestRate, years, LoanAmount });

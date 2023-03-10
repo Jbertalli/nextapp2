@@ -97,7 +97,6 @@ const BodyFatPercent = ({ user, ctx }) => {
   }, []);
 
   let newBF = counting.flat().pop();
-  console.log(newBF);
 
   async function postData() {
     const url = `${baseUrl}/api/bfAPI`;
@@ -140,7 +139,7 @@ const BodyFatPercent = ({ user, ctx }) => {
   }, []);
 
   let BFArray = Object(Object(newData).newBF);
-  console.log(typeof BFArray);
+  // console.log(typeof BFArray);
 
   let app = []
 
@@ -148,7 +147,7 @@ const BodyFatPercent = ({ user, ctx }) => {
     app.push(BFArray[i].newBF);
   }
 
-  console.log(app);
+  // console.log(app);
 
   for (let num = numb; num >= 0; num--) {
     data.push({
@@ -166,7 +165,6 @@ const BodyFatPercent = ({ user, ctx }) => {
     });
 
     setCount(count + 1);
-    console.log(count);
     setData([]);
 
     BF.current?.innerText == null; 
