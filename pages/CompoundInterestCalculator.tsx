@@ -11,7 +11,7 @@ const CompoundInterestCalculator = () => {
   // console.log(CompoundInterest.current?.innerText);
 
   const handleInput = () => {
-    // console.log('Compound Interest', { initialInvestment, interestRate, years, CompoundInterest });
+    console.log('Compound Interest', { initialInvestment, interestRate, years, CompoundInterest });
   };
 
   return (

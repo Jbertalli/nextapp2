@@ -1,6 +1,7 @@
 import connectDb from '../../utils/connectDb';
-import User from '../../models/User';                               //import User mongoose model to interact with it in api
-import bcrypt from 'bcrypt';                                        //hash password
+//import User mongoose model to interact with it in api
+import User from '../../models/User';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import isEmail from 'validator/lib/isEmail';
 import isLength from 'validator/lib/isLength';
@@ -8,7 +9,8 @@ import isLength from 'validator/lib/isLength';
 connectDb();
 
 export default async (req, res) => {
-    const { name, email, password } = req.body;                      //from ...user in pages payload (which has req.body)
+    //from ...user in pages payload (which has req.body)
+    const { name, email, password } = req.body;
     try {
         // 1) Validate name/email/password 
         if (!isLength(name, { min: 3, max: 20 })) {
@@ -24,7 +26,8 @@ export default async (req, res) => {
             res.status(422).send(`User already exists with email ${email}`);
         }
         // 3) if not, hash their password
-        const hash = await bcrypt.hash(password, 10);                //pass in password from req.body and determine SALT rounds
+        //pass in password from req.body and determine SALT rounds
+        const hash = await bcrypt.hash(password, 10);
         // 4) create user
         const newUser = await new User({
             name,

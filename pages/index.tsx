@@ -4,10 +4,7 @@ import axios from 'axios';
 import CalculatorList from '../components/CalculatorList';
 import { Container } from 'semantic-ui-react';
 
-// export default function Home() {
 export default function Home({ examples }) {
-  // console.log(examples);
-
   return (
     <>
       <Head>

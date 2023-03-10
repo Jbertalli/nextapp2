@@ -12,22 +12,21 @@ import { Button, Container, Message, Segment, Icon } from 'semantic-ui-react';
 const LOCAL_STORAGE_KEY = 'goals';
 
 function Goals({ user, ctx }) {
-  const [goals, setGoals] = useState<any>([]); //set array of goals when first loading
+  const [goals, setGoals] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
   const [desktop, setDesktop] = useState<boolean>(true);
   const [newData, setNewData] = useState<string>('');
-  const goalNameRef = useRef<any>(); //access to html element
+  const goalNameRef = useRef<any>();
 
-  //SAVE GOALS
-  //useEffect to load goals right when component mounts
+  console.log(goals);
+
   useEffect(() => {
-    const storedGoals = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)); //parse to turn into array
+    const storedGoals = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedGoals) setGoals(storedGoals);
     setData([]);
   }, []);
 
-  //save goals across page reloads by storing inside localStorage
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(goals));
   }, [goals]);
@@ -40,7 +39,6 @@ function Goals({ user, ctx }) {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    // console.log(goals.length <= 1 ? '1 goal' : `%c ${goals.length} goals`, 'color: green');
   } else {
     console.log('%c no goals', 'color: red');
   }
@@ -52,11 +50,9 @@ function Goals({ user, ctx }) {
   }
 
   let newGoal = counting.flat().pop();
-  // console.log(newGoal);
 
-  //toggle from complete to incomplete, then pass to <GoalList toggleGoal={toggleGoal} />
   function toggleGoal(id) {
-    const newGoals = [...goals]; //copy of goals array to modify
+    const newGoals = [...goals];
     const goal: any = newGoals.find((goal) => goal.id === id);
     goal.complete = !goal.complete;
     setGoals(newGoals);
@@ -72,16 +68,16 @@ function Goals({ user, ctx }) {
   }
 
   async function handleAddGoal() {
-    const name: any = goalNameRef.current.value; //append goal ---> get access to name with useRef hook (reference elements in html)
+    const name: any = goalNameRef.current.value;
+    const userId = user._id;
     const date = app.pop();
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { id: uuidv4(), name: name, date: date, complete: false }]; //previous value and return new goals by spreading over array, then adding new goal to list
+      return [...prevGoals, { id: uuidv4(), userId: userId, name: name, date: date, complete: false }];
     });
 
     setCount(count + 1);
     setData([]);
-    // console.log(goalNameRef.current.value);
 
     goalNameRef.current.value = null;
   }
@@ -141,7 +137,7 @@ function Goals({ user, ctx }) {
     const url = `${baseUrl}/api/goalAPI`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    console.log(response.data);
   }
 
   async function deleteAll() {
@@ -149,10 +145,9 @@ function Goals({ user, ctx }) {
     const url = `${baseUrl}/api/newGoals1`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    console.log(response.data);
   }
 
-  // get data only if user
   useEffect(() => {
     if (user) {
       getData();
@@ -204,6 +199,7 @@ function Goals({ user, ctx }) {
                   <GoalList
                     goals={goals}
                     toggleGoal={toggleGoal}
+                    user={user}
                   />{' '}
                 </>
               )}
@@ -276,10 +272,7 @@ function Goals({ user, ctx }) {
                 <Button
                   fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
-                  onClick={() =>{
-                    deleteData(),
-                    handleClear()
-                  }}
+                  onClick={() =>{deleteData(), handleClear()}}
                   style={{
                     border: '3px solid red',
                     background: 'transparent',

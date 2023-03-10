@@ -46,16 +46,13 @@ const BMICalculator = ({ user, ctx }) => {
     }
   };
 
-  // console.log(goals);
-
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    // console.log(goals.length <= 1 ? '1 BMI calculation' : `%c ${goals.length} BMI calculations`, 'color: green');
   } else {
     console.log('%c no BMI calculations', 'color: red');
   }
 
-  let counting: any = []; //IMPORTANT
+  let counting: any = [];
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BMI]);
@@ -63,11 +60,6 @@ const BMICalculator = ({ user, ctx }) => {
 
   let newBMI = counting.flat().pop();
   console.log(newBMI);
-  // console.log(typeof newBMI);
-  // console.log(counting.flat());                                          //flatten out array
-  // console.log('target BMI line:', lined);
-  // console.log(data);
-  // console.log(orders);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -119,7 +111,6 @@ const BMICalculator = ({ user, ctx }) => {
     console.log(response.data)
   }
 
-  // get data only if user
   useEffect(() => {
     if (user) {
       getData();
@@ -148,10 +139,10 @@ const BMICalculator = ({ user, ctx }) => {
   }
 
   async function counter() {
-    const name: any = BMI.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
+    const name: any = BMI.current?.innerText;
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { BMI: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
+      return [...prevGoals, { BMI: name }];
     });
 
     setCount(count + 1);
@@ -581,7 +572,6 @@ const BMICalculator = ({ user, ctx }) => {
                   >
                     <AreaChart data={data} key={`ac_${data.length}`}>
                       <defs>
-                        {/* <linearGradient id="color" x1="0" y1="0" x2="0" y1="1"> */}
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
                             offset="0%"
@@ -649,9 +639,6 @@ function CustomTooltip({
   payload,
   label,
 }: TooltipProps<number, string>) {
-  // console.log(payload[0]);
-  // console.log(payload[0]?.payload?.value);               //hover over graph to see
-  // console.log(payload[0]?.payload?.line);                //goal line
 
   if (active) {
     return (

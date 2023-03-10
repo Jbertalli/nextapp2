@@ -8,9 +8,6 @@ import Icons from './Icons';
 
 const Navbar = ({ user }): any => {
   const router: any = useRouter();
-  // const isRoot = user && user.role === 'root';
-  // const isAdmin = user && user.role === 'admin';
-  // const isRootOrAdmin = isRoot || isAdmin;                     pass to component ternary to specify permissions
   const [desktop, setDesktop] = useState<boolean>(true);
   const [menuModal, setMenuModal] = useState(false);
   const [percent, setPercent] = useState<number>(null);

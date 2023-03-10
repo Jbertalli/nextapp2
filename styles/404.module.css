@@ -3,7 +3,6 @@
   transform: translateY(-1vh);
 }
   
-/* text gradient */
 .notfound h1 {
   background: -webkit-linear-gradient(#3978f5, violet);
   -webkit-background-clip: text;

@@ -1,4 +1,7 @@
 //map over current array and return element of goals
+import axios from 'axios';
+import baseUrl from '../utils/baseUrl';
+import { parseCookies } from 'nookies';
 import React, { useState, useEffect } from 'react';
 import { Label, Divider, Grid } from 'semantic-ui-react';
 
@@ -11,10 +14,14 @@ const config: any = {
 export default function Goal(values) {
 
   const { 
-    goal, 
-    toggleGoal
+    goal,
+    toggleGoal,
+    user,
+    goals,
+    ctx
   } = values;
   
+  const [newData, setNewData] = useState<any>([]);
   const [checked, setChecked] = useState<boolean>(false);
   const [desktop, setDesktop] = useState<boolean>(true);
 
@@ -46,6 +53,23 @@ export default function Goal(values) {
 
   const date = new Date();
   const year = date.getFullYear();
+
+  async function getData() {
+    const { token } = parseCookies(ctx);
+    const url = `${baseUrl}/api/newGoals1`;
+    const payload = { headers: { Authorization: token } };
+    const response = await axios.get(url, payload);
+    console.log(response.data);
+    setNewData(response.data);
+  }
+
+  useEffect(() => {
+    if (user) {
+      getData();
+    } else {
+      console.log('no user');
+    }
+  }, []);
 
   return (
     <div>
@@ -91,7 +115,6 @@ export default function Goal(values) {
             {goal.date ? (
             <>
               {(goal.date).slice(5, 10)}-{year}
-              {/* {goal.date} */}
             </>
             ): null}
           </Grid.Column>
@@ -100,4 +123,15 @@ export default function Goal(values) {
       <Divider />
     </div>
   );
+}
+
+Goal.getInitialProps = async ctx => {
+  const { token } = parseCookies(ctx);
+  if (!token) {
+    return { newGoals1: [] }
+  }  
+  const payload = { headers: { Authorization: token } };
+  const url = `${baseUrl}/api/newGoals1`;
+  const response = await axios.get(url, payload);
+  return response.data;
 }

@@ -2,7 +2,7 @@ const { SitemapStream, streamToPromise } = require( 'sitemap' );
 const { Readable } = require( 'stream' );
 
 export default async (req, res) => {
-    // An array with your links
+    // Array with all page links
     const links = [
         { url: '/pages/CalorieIntakeCalculator', changefreq: 'daily', priority: 0.2  }, 
         { url: '/pages/BMICalculator', changefreq: 'daily', priority: 0.2  },

@@ -5,13 +5,14 @@ export default function GoalList(values) {
 
     const { 
       goals,
-      toggleGoal
+      toggleGoal,
+      user
     } = values;
     
   return (
     goals.map((goal) => {
       return (
-        <Goal key={goal.id} goal={goal} toggleGoal={toggleGoal} />
+        <Goal key={goal.id} goal={goal} toggleGoal={toggleGoal} user={user} goals={goals} />
       );
     })
   );

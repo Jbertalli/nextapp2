@@ -68,20 +68,15 @@ const BodyFatPercent = ({ user, ctx }) => {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    // console.log(goals.length <= 1 ? '1 body fat % calculation' : `%c ${goals.length} body fat % calculations`, 'color: green');
   } else {
     console.log('%c no body fat % calculations', 'color: red');
   }
 
-  let counting: any = []; //IMPORTANT
+  let counting: any = [];
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].BF]);
   }
-
-  //console.log(counting.flat());                                          //flatten out array
-  // console.log(data);
-  // console.log('target BF% line:', lined);
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -136,7 +131,6 @@ const BodyFatPercent = ({ user, ctx }) => {
     console.log(response.data)
   }
 
-  // get data only if user
   useEffect(() => {
     if (user) {
       getData();
@@ -165,10 +159,10 @@ const BodyFatPercent = ({ user, ctx }) => {
   }
 
   async function counter() {
-    const name: any = BF.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
+    const name: any = BF.current?.innerText;
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { BF: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
+      return [...prevGoals, { BF: name }];
     });
 
     setCount(count + 1);
@@ -430,7 +424,7 @@ const BodyFatPercent = ({ user, ctx }) => {
               <Segment color="blue" textAlign="center" size="massive">
                 {imperial ? (
                   <>
-                    {/* Men Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
+                    {/* Male Body Fat % (imperial): (1.20 x BMI) + (0.23 x Age) - 16.2 = Body Fat Percentage */}
                     {male ? (
                       <>
                         <span ref={BF}>
@@ -702,7 +696,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                   >
                     <AreaChart data={data} key={`ac_${data.length}`}>
                       <defs>
-                        {/* <linearGradient id="color" x1="0" y1="0" x2="0" y1="1"> */}
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
                             offset="0%"
@@ -770,9 +763,6 @@ function CustomTooltip({
   payload,
   label,
 }: TooltipProps<number, string>) {
-  // console.log(payload[0]);
-  // console.log(payload[0]?.payload?.value);               //hover over graph to see
-  // console.log(payload[0]?.payload?.line);                //goal line
 
   if (active) {
     return (

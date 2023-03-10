@@ -83,21 +83,17 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   if (goals.length > 0) {
     for (let i = 0; i < goals.length; i++) {}
-    // console.log(goals.length <= 1 ? '1 caloric intake calculation' : `%c ${goals.length} caloric intake calculations`, 'color: green');
   } else {
     console.log('%c caloric intake calculations', 'color: red');
   }
 
-  let counting: any = []; //IMPORTANT
+  let counting: any = [];
   let avg: any = [];
 
   for (let i = 0; i < goals.length; i++) {
     counting.push([goals[i].Calories]);
     const flattened: any = counting.flat();
-    // console.log(flattened);
     const reduced: any = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
-    // console.log(reduced);
-    // const average = (reduced / goals.length).toFixed(0);
     avg = (reduced / goals.length).toFixed(0);
     console.log('%c average calories:', 'color: blue', avg);
   }
@@ -107,7 +103,6 @@ const CalorieCalculator = ({ user, ctx }) => {
   let newCal = counting.flat().pop();
   console.log(newCal);
 
-  // console.log(counting.flat());                                          //flatten out array
   const caloric_intake: any = counting.flat();
 
   useEffect(() => {
@@ -160,7 +155,6 @@ const CalorieCalculator = ({ user, ctx }) => {
     console.log(response.data)
   }
 
-  // get data only if user
   useEffect(() => {
     if (user) {
       getData();
@@ -189,10 +183,10 @@ const CalorieCalculator = ({ user, ctx }) => {
   }
 
   async function counter() {
-    const name: any = Calories.current?.innerText; //append goal ---> get access to name with useRef hook (reference elements in html)
+    const name: any = Calories.current?.innerText;
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { Calories: name }]; //previous value and return new goals by spreading over array, then adding new goal to list
+      return [...prevGoals, { Calories: name }];
     });
 
     setCount(count + 1);
@@ -792,7 +786,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                   >
                     <AreaChart data={data} key={`ac_${data.length}`}>
                       <defs>
-                        {/* <linearGradient id="color" x1="0" y1="0" x2="0" y1="1"> */}
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
                             offset="0%"
@@ -860,10 +853,6 @@ function CustomTooltip({
   payload,
   label,
 }: TooltipProps<number, string>) {
-  // console.log(payload[0]);
-  // console.log(payload[0]?.payload?.value);               //hover over graph to see
-  // console.log(payload[0]?.payload?.line);                //goal line
-  // console.log(payload[0]?.payload?.average);             //average line
 
   if (active) {
     return (

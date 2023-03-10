@@ -9,8 +9,7 @@ import axios from 'axios';
 
 const LOCAL_STORAGE_KEY = 'profile_pic';
 
-function AccountHeader({ role, email, name, createdAt, user, ctx}) {
-  // console.log(user);
+function AccountHeader({ role, email, name, createdAt, user, ctx }) {
   const [mediaPreview, setMediaPreview] = useState<string>('');
   const [resize, setResize] = useState<boolean>(false);
   const [newData, setNewData] = useState<string>('');
@@ -97,8 +96,6 @@ function AccountHeader({ role, email, name, createdAt, user, ctx}) {
       console.log('no user');
     }
   }, []);
-
-  // console.log(mediaPreview.length);
 
   return (
     <>

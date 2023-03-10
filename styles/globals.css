@@ -6,31 +6,17 @@ body {
   font-family: "Nunito";
 }
 
-/* change blinking caret
-input {
-  caret-color: blue;
-} 
-*/
-
-/* change highlight color
-h1::selection {
-  background: blue;
-  color: white;
-} 
-*/
  
 /* Optimize Performance - Provides a rendering hint to the user agent, stating what kinds of changes the author expects to perform on the element. */
 .class-name {
   will-change: transform;
 }
 
-/* color for every anchor tag */
 a {
   color: #333;
-  text-decoration: none;                    /* remove underline from links */
+  text-decoration: none;
 }
 
-/* inside Layout.js <div className="content> */
 .content {
   max-width: 960px;
   margin: 0 auto;

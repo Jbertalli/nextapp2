@@ -6,7 +6,6 @@ import axios from 'axios';
 import { Header, Segment, Icon, Table, Divider, Button } from 'semantic-ui-react';
 
 function AccountProgress({ user, ctx }) {
-  // console.log(user.nane);
   const [BFData, setBFData] = useState('');
   const [BMIData, setBMIData] = useState('');
   const [CalorieData, setCalorieData] = useState('');
@@ -118,11 +117,6 @@ function AccountProgress({ user, ctx }) {
       console.log('no user');
     }
   }, [])
-
-  // console.log(String(BF).length);
-  // console.log(String(BMI).length);
-  // console.log(String(Calorie).length);
-  // console.log(String(Goal).length);
 
   return (
     <>
