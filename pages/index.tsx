@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import CalculatorList from '../components/CalculatorList';
 import { Container } from 'semantic-ui-react';
+import baseUrl from '../utils/baseUrl';
 
 export default function Home({ examples }) {
   return (
@@ -20,9 +21,10 @@ export default function Home({ examples }) {
   );
 }
 
-//server-side rendering
+// server-side rendering
 Home.getInitialProps = async () => {
-  const url = 'http://localhost:3000/api/hello';
+  // const url = 'http://localhost:3000/api/hello';
+  const url = `${baseUrl}/api/hello`;
   const response = await axios.get(url);
   return { examples: response.data };
 };

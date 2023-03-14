@@ -9,7 +9,7 @@ import { parseCookies } from 'nookies';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
- 
+
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
 const CalorieCalculator = ({ user, ctx }) => {
