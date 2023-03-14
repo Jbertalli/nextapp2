@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://nextapp2-five.vercel.app"
+    ? "https://www.healthstatcalculator.com"
     : "http://localhost:3000";
 
 export default baseUrl;
