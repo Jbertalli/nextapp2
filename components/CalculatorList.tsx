@@ -48,7 +48,7 @@ function CalculatorList({ examples }) {
       <Card.Group
         stackable={isLandscapePhone ? false : true}
         centered
-        as={isPortrait ? "h4" : "h2"}
+        as={(isPortrait || isLandscapePhone) ? "h4" : "h2"}
         style={{ textAlign: 'center' }}
         itemsPerRow={desktop ? '3' : '1'}
         items={mapCalculatorsToItems(examples)}
