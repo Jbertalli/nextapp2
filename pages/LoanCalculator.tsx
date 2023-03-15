@@ -49,9 +49,9 @@ const LoanCalculator = () => {
                 required
                 autoFocus
                 value={principal}
+                style={{ marginBottom: '42px' }}
                 onChange={(e) => setPrincipal(e.target.value)}
               />
-              <div>&nbsp;</div>
               <Form.Input
                 fluid
                 icon="percent"
@@ -65,9 +65,9 @@ const LoanCalculator = () => {
                 max="100"
                 required
                 value={interestRate}
+                style={{ marginBottom: '42px' }}
                 onChange={(e) => setInterestRate(e.target.value)}
               />
-              <div>&nbsp;</div>
               <Form.Input
                 fluid
                 icon="balance scale"

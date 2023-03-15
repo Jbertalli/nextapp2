@@ -97,8 +97,13 @@ export default function Goal(values) {
                   handleGoalClick(), handleUnclick();
                 }}
               />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
-              <div>{goal.name}</div>
+              <div
+                style={{
+                  marginLeft: '24.5px'
+                }}
+              >
+                {goal.name}
+              </div>
             </Label>
           </Grid.Column>
           <Grid.Column />

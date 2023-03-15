@@ -49,9 +49,9 @@ const CompoundInterestCalculator = () => {
                 required
                 autoFocus
                 value={initialInvestment}
+                style={{ marginBottom: '42px' }}
                 onChange={(e) => setInitialInvestment(e.target.value)}
               />
-              <div>&nbsp;</div>
               <Form.Input
                 fluid
                 icon="percent"
@@ -65,9 +65,9 @@ const CompoundInterestCalculator = () => {
                 max="100"
                 required
                 value={interestRate}
+                style={{ marginBottom: '42px' }}
                 onChange={(e) => setInterestRate(e.target.value)}
               />
-              <div>&nbsp;</div>
               <Form.Input
                 fluid
                 icon="balance scale"
@@ -81,6 +81,7 @@ const CompoundInterestCalculator = () => {
                 max="100"
                 required
                 value={years}
+                style={{ marginBottom: '42px' }}
                 onChange={(e) => setYears(e.target.value)}
               />
               <Segment

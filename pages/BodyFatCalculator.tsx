@@ -255,7 +255,7 @@ const BodyFatPercent = ({ user, ctx }) => {
               />
               {imperial ? (
                 <>
-                  <Grid>
+                  <Grid style={{ marginBottom: '9px' }}>
                     <Grid.Row>
                       <Grid.Column width={8}>
                         <Form.Input
@@ -297,7 +297,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                  <div>&nbsp;</div>
                   <Form.Input
                     fluid
                     icon="balance scale"
@@ -318,7 +317,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 </>
               ) : (
                 <>
-                  <Grid>
+                  <Grid style={{ marginBottom: '9px' }}>
                     <Grid.Row>
                       <Grid.Column>
                         <Form.Input
@@ -341,7 +340,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                  <div>&nbsp;</div>
                   <Form.Input
                     fluid
                     icon="balance scale"

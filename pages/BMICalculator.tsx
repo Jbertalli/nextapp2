@@ -213,7 +213,7 @@ const BMICalculator = ({ user, ctx }) => {
             <Segment size="huge" textAlign="left">
               {imperial ? (
                 <>
-                  <Grid>
+                  <Grid style={{ marginBottom: '9px' }}>
                     <Grid.Row>
                       <Grid.Column width={8}>
                         <Form.Input
@@ -256,7 +256,6 @@ const BMICalculator = ({ user, ctx }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                  <div>&nbsp;</div>
                   <Form.Input
                     fluid
                     icon="balance scale"
@@ -277,7 +276,7 @@ const BMICalculator = ({ user, ctx }) => {
                 </>
               ) : (
                 <>
-                  <Grid>
+                  <Grid style={{ marginBottom: '9px' }}>
                     <Grid.Row>
                       <Grid.Column>
                         <Form.Input
@@ -301,7 +300,6 @@ const BMICalculator = ({ user, ctx }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                  <div>&nbsp;</div>
                   <Form.Input
                     fluid
                     icon="balance scale"
