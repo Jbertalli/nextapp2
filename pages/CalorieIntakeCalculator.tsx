@@ -481,7 +481,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       >
                         <span
                           style={{
-                            marginRight: desktop ? null : '8px'
+                            marginRight: '8px'
                           }}
                         >
                           1
@@ -506,7 +506,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       >
                         <span
                           style={{
-                            marginRight: desktop ? null : '8px'
+                            marginRight: '8px'
                           }}
                         >
                           2
@@ -531,7 +531,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       >
                         <span
                           style={{
-                            marginRight: desktop ? null : '8px'
+                            marginRight: '8px'
                           }}
                         >
                           3
@@ -556,7 +556,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       >
                         <span
                           style={{
-                            marginRight: desktop ? null : '8px'
+                            marginRight: '8px'
                           }}
                         >
                           4
@@ -577,7 +577,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       <span>
                       <span
                           style={{
-                            marginRight: desktop ? null : '8px'
+                            marginRight: '8px'
                           }}
                         >
                           5
@@ -601,7 +601,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                           <>
                             <div style={{ color: 'grey', fontSize: '15px' }}>
                               &nbsp;1 = Low Activity{' '}
-                              <div style={{ transform: 'translate(482px, -23px)' }}>
+                              <div style={{ transform: 'translate(513.5px, -23px)' }}>
                                 5 = High Activity
                               </div>
                             </div>
