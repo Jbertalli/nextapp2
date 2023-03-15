@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'semantic-ui-react';
+import { useMediaQuery } from 'react-responsive';
 
 function CalculatorList({ examples }) {
   function mapCalculatorsToItems(examples) {
@@ -36,12 +37,14 @@ function CalculatorList({ examples }) {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+
   return (
     <>
       <Card.Group
         stackable
         centered
-        as="h2"
+        as={isPortrait ? "h4" : "h2"}
         style={{ textAlign: 'center' }}
         itemsPerRow={desktop ? '3' : '1'}
         items={mapCalculatorsToItems(examples)}
