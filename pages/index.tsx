@@ -7,6 +7,25 @@ import baseUrl from '../utils/baseUrl';
 
 export default function Home({ examples }) {
   const [percent, setPercent] = useState<number>(null);
+  const [desktop, setDesktop] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', function () {
@@ -25,17 +44,21 @@ export default function Home({ examples }) {
         <title>HealthStat | Home</title>
         <meta name="description" content="healthstat, calorie calculator" />
       </Head>
-      <div
-        style={{
-          width: `${percent}vw`,
-          height: '6px',
-          background: '#0066CC',
-          opacity: '0.9',
-          position: 'fixed',
-          top: '0px',
-          zIndex: '10000'
-        }}
-      />
+      {!desktop ? (
+      <>
+        <div
+          style={{
+            width: `${percent}vw`,
+            height: '6px',
+            background: '#0066CC',
+            opacity: '0.9',
+            position: 'fixed',
+            top: '0px',
+            zIndex: '10000'
+          }}
+        />
+      </>
+      ): null}
       <Container style={{ margin: '3em 0 3em' }}>
         <div style={{ transform: 'translateY(20px)' }}>
           <CalculatorList examples={examples} />
