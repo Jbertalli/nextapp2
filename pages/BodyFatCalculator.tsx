@@ -383,7 +383,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   >
                     <span
                       style={{
-                        marginRight: desktop ? null : '8px'
+                        marginRight: '8px'
                       }}
                     >
                       Male
@@ -404,7 +404,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   <span>
                     <span
                       style={{
-                        marginRight: desktop ? null : '8px'
+                        marginRight: '8px'
                       }}
                     >
                       Female

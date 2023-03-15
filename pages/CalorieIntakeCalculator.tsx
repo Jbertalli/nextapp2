@@ -417,7 +417,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   >
                     <span
                       style={{
-                        marginRight: desktop ? null : '8px'
+                        marginRight: '8px'
                       }}
                     >
                       Male
@@ -438,7 +438,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   <span>
                     <span
                       style={{
-                        marginRight: desktop ? null : '8px'
+                        marginRight: '8px'
                       }}
                     >
                       Female
@@ -599,9 +599,15 @@ const CalorieCalculator = ({ user, ctx }) => {
                       <>
                         {desktop ? (
                           <>
-                            <div style={{ color: 'grey', fontSize: '15px' }}>
-                              &nbsp;1 = Low Activity{' '}
-                              <div style={{ transform: 'translate(513.5px, -23px)' }}>
+                            <div 
+                              style={{ 
+                                color: 'grey', 
+                                fontSize: '15px', 
+                                transform: 'translate(108.5px)' 
+                              }}
+                            >
+                              1 = Low Activity{' '}
+                              <div style={{ transform: 'translate(405px, -23px)' }}>
                                 5 = High Activity
                               </div>
                             </div>
