@@ -410,7 +410,13 @@ const CalorieCalculator = ({ user, ctx }) => {
                       marginRight: desktop ? '30px' : null
                     }}
                   >
-                    Male
+                    <span
+                      style={{
+                        marginRight: desktop ? null : '8px'
+                      }}
+                    >
+                      Male
+                    </span>
                     <input
                       type="radio"
                       name="rad"
@@ -425,7 +431,13 @@ const CalorieCalculator = ({ user, ctx }) => {
                     />
                   </span>
                   <span>
-                    Female
+                    <span
+                      style={{
+                        marginRight: desktop ? null : '8px'
+                      }}
+                    >
+                      Female
+                    </span>
                     <input
                       type="radio"
                       name="rad"
