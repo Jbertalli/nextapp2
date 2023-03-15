@@ -37,12 +37,16 @@ function CalculatorList({ examples }) {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
+  const isLandscapePhone = useMediaQuery(
+    { minHeight: 200, maxHeight: 470 }
+  );
+
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
 
   return (
     <>
       <Card.Group
-        stackable
+        stackable={isLandscapePhone ? false : true}
         centered
         as={isPortrait ? "h4" : "h2"}
         style={{ textAlign: 'center' }}
