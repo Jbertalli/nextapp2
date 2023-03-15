@@ -190,7 +190,7 @@ const Navbar = ({ user }): any => {
                       height: '6px',
                       background: '#0066CC',
                       opacity: '0.9',
-                      position: 'fixed',
+                      position: 'fixed'
                     }}
                   />
                 </>
@@ -224,7 +224,7 @@ const Navbar = ({ user }): any => {
                   <div
                     style={{
                       transform: 'scaleX(1.8) translate(0.3px, -11px)',
-                      color: '#F5F5F7',
+                      color: '#F5F5F7'
                     }}
                   >
                     _
@@ -232,7 +232,7 @@ const Navbar = ({ user }): any => {
                   <div
                     style={{
                       transform: 'scaleX(1.8) translate(-4.7px, -4px)',
-                      color: '#F5F5F7',
+                      color: '#F5F5F7'
                     }}
                   >
                     _
@@ -240,7 +240,7 @@ const Navbar = ({ user }): any => {
                   <div
                     style={{
                       transform: 'scaleX(1.8) translate(-9.1px, 3px)',
-                      color: '#F5F5F7',
+                      color: '#F5F5F7'
                     }}
                   >
                     _
@@ -257,7 +257,7 @@ const Navbar = ({ user }): any => {
                   background: 'black',
                   width: '100%',
                   height: '100%',
-                  transform: 'translateY(-14px)',
+                  transform: 'translateY(-14px)'
                 }}
               >
                 <div
@@ -272,7 +272,7 @@ const Navbar = ({ user }): any => {
                       transform: 'translate(18px, 10px) scaleX(1.3)',
                       position: 'absolute',
                       zIndex: '100',
-                      opacity: '0.6',
+                      opacity: '0.6'
                     }}
                   >
                     x
@@ -288,7 +288,7 @@ const Navbar = ({ user }): any => {
                       width: '584px',
                       cursor: 'pointer',
                       padding: '0px 23px 0px 23px',
-                      transform: 'translateY(40px)',
+                      transform: 'translateY(40px)'
                     }}
                   >
                     <Link href="/" passHref>
@@ -384,7 +384,7 @@ const Navbar = ({ user }): any => {
                     height: '6px',
                     background: '#0066CC',
                     opacity: '0.9',
-                    position: 'fixed',
+                    position: 'fixed'
                   }}
                 />
               </>

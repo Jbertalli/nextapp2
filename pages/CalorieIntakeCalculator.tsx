@@ -391,112 +391,178 @@ const CalorieCalculator = ({ user, ctx }) => {
               <div
                 onClick={() => setData([])}
               >
-                &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
-                <input
-                  type="radio"
-                  name="rad"
-                  value="male"
-                  checked={sex === 'male' && checkedMale}
-                  onChange={handleChange}
-                  required
-                  style={{ width: '30px', cursor: 'pointer' }}
-                  onMouseUp={() => {
-                    setMale(true), handleMaleUnclick();
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: desktop ? 'flex-start' : 'space-between',
+                    marginBottom: '17px'
                   }}
-                />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
-                <input
-                  type="radio"
-                  name="rad"
-                  value="female"
-                  checked={sex === 'female' && checkedMale}
-                  onChange={handleChange}
-                  required
-                  style={{ width: '30px', cursor: 'pointer' }}
-                  onMouseUp={() => {
-                    setMale(false), handleMaleUnclick();
+                >
+                  <span
+                    style={{
+                      marginRight: desktop ? '40px' : null
+                    }}
+                  >
+                    Sex
+                  </span>
+                  <span
+                    style={{
+                      marginRight: desktop ? '30px' : null
+                    }}
+                  >
+                    Male
+                    <input
+                      type="radio"
+                      name="rad"
+                      value="male"
+                      checked={sex === 'male' && checkedMale}
+                      onChange={handleChange}
+                      required
+                      style={{ width: '30px', cursor: 'pointer' }}
+                      onMouseUp={() => {
+                        setMale(true), handleMaleUnclick();
+                      }}
+                    />
+                  </span>
+                  <span>
+                    Female
+                    <input
+                      type="radio"
+                      name="rad"
+                      value="female"
+                      checked={sex === 'female' && checkedMale}
+                      onChange={handleChange}
+                      required
+                      style={{ width: '30px', cursor: 'pointer' }}
+                      onMouseUp={() => {
+                        setMale(false), handleMaleUnclick();
+                      }}
+                    />
+                  </span>
+                </div>
+                
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: desktop ? 'flex-start' : null,
+                    marginBottom: desktop ? null : '17px'
                   }}
-                />
-                <div>&nbsp;</div>
-                <span>
-                  <div>
-                    &nbsp;Lifestyle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
-                    <input
-                      type="radio"
-                      name="lifestyle"
-                      required
-                      style={{ width: '30px', cursor: 'pointer' }}
-                      value={lifestyle}
-                      checked={radio === '1' && checked}
-                      onChange={handleLifeChange}
-                      onMouseUp={() => {
-                        setLifestyle(1), handleUnclick();
-                      }}
-                    />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
-                    <input
-                      type="radio"
-                      name="lifestyle"
-                      required
-                      style={{ width: '30px', cursor: 'pointer' }}
-                      value={lifestyle}
-                      checked={radio === '2' && checked}
-                      onChange={handleLifeChange}
-                      onMouseUp={() => {
-                        setLifestyle(2), handleUnclick();
-                      }}
-                    />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3
-                    <input
-                      type="radio"
-                      name="lifestyle"
-                      required
-                      style={{ width: '30px', cursor: 'pointer' }}
-                      value={lifestyle}
-                      checked={radio === '3' && checked}
-                      onChange={handleLifeChange}
-                      onMouseUp={() => {
-                        setLifestyle(3), handleUnclick();
-                      }}
-                    />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
-                    <input
-                      type="radio"
-                      name="lifestyle"
-                      required
-                      style={{ width: '30px', cursor: 'pointer' }}
-                      value={lifestyle}
-                      checked={radio === '4' && checked}
-                      onChange={handleLifeChange}
-                      onMouseUp={() => {
-                        setLifestyle(4), handleUnclick();
-                      }}
-                    />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
-                    <input
-                      type="radio"
-                      name="lifestyle"
-                      required
-                      style={{ width: '30px', cursor: 'pointer' }}
-                      value={lifestyle}
-                      checked={radio === '5' && checked}
-                      onChange={handleLifeChange}
-                      onMouseUp={() => {
-                        setLifestyle(5), handleUnclick();
-                      }}
-                    />
-                    {desktop ? (
-                      <>
-                        <div style={{ color: 'grey', fontSize: '15px' }}>
-                          &nbsp;1 = Low Activity{' '}
-                          <div style={{ transform: 'translate(28.2vw, -23px)' }}>
-                            5 = High Activity
+                >
+                  <span>
+                    <div>
+                      <span
+                        style={{
+                          marginRight: desktop ? '29px' : null,
+                          display: desktop ? null : 'block'
+                        }}
+                      >
+                        Lifestyle
+                      </span>
+                      <span
+                        style={{
+                          marginRight: desktop ? '51.9px' : '22px'
+                        }}
+                      >
+                        1
+                        <input
+                          type="radio"
+                          name="lifestyle"
+                          required
+                          style={{ width: '30px', cursor: 'pointer' }}
+                          value={lifestyle}
+                          checked={radio === '1' && checked}
+                          onChange={handleLifeChange}
+                          onMouseUp={() => {
+                            setLifestyle(1), handleUnclick();
+                          }}
+                        />
+                      </span>
+                      <span
+                        style={{
+                          marginRight: desktop ? '51.9px' : '22px'
+                        }}
+                      >
+                        2
+                        <input
+                          type="radio"
+                          name="lifestyle"
+                          required
+                          style={{ width: '30px', cursor: 'pointer' }}
+                          value={lifestyle}
+                          checked={radio === '2' && checked}
+                          onChange={handleLifeChange}
+                          onMouseUp={() => {
+                            setLifestyle(2), handleUnclick();
+                          }}
+                        />
+                      </span>
+                      <span
+                        style={{
+                          marginRight: desktop ? '51.9px' : '22px'
+                        }}
+                      >
+                        3
+                        <input
+                          type="radio"
+                          name="lifestyle"
+                          required
+                          style={{ width: '30px', cursor: 'pointer' }}
+                          value={lifestyle}
+                          checked={radio === '3' && checked}
+                          onChange={handleLifeChange}
+                          onMouseUp={() => {
+                            setLifestyle(3), handleUnclick();
+                          }}
+                        />
+                      </span>
+                      <span
+                        style={{
+                          marginRight: desktop ? '51.9px' : '22px'
+                        }}
+                      >
+                        4
+                        <input
+                          type="radio"
+                          name="lifestyle"
+                          required
+                          style={{ width: '30px', cursor: 'pointer' }}
+                          value={lifestyle}
+                          checked={radio === '4' && checked}
+                          onChange={handleLifeChange}
+                          onMouseUp={() => {
+                            setLifestyle(4), handleUnclick();
+                          }}
+                        />
+                      </span>
+                      <span>
+                        5
+                        <input
+                          type="radio"
+                          name="lifestyle"
+                          required
+                          style={{ width: '30px', cursor: 'pointer' }}
+                          value={lifestyle}
+                          checked={radio === '5' && checked}
+                          onChange={handleLifeChange}
+                          onMouseUp={() => {
+                            setLifestyle(5), handleUnclick();
+                          }}
+                        />
+                      </span>
+                      {desktop ? (
+                        <>
+                          <div style={{ color: 'grey', fontSize: '15px' }}>
+                            &nbsp;1 = Low Activity{' '}
+                            <div style={{ transform: 'translate(482px, -23px)' }}>
+                              5 = High Activity
+                            </div>
                           </div>
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
-                </span>
+                        </>
+                      ) : null}
+                    </div>
+                  </span>
+                </div>
+
               </div>
               <Segment color="blue" textAlign="center" size="massive">
                 {imperial ? (
@@ -591,15 +657,14 @@ const CalorieCalculator = ({ user, ctx }) => {
                   onClick={() => {postData(), getData(), counter()}}
                   onMouseMove={() => setData([])}
                   style={{
-                    border: '3px solid #125CA1',
+                    border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
-                    lineHeight: desktop ? null : '10px',
                     height: desktop ? null : '40px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
                 >
-                  Update Calorie History
+                  {desktop ? 'Update Calorie History': 'Update'}
                 </Button>
                 <Button
                   size={desktop ? "big" : "small"}
@@ -610,7 +675,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                     setAverage(''), setData([]);
                   }}
                   style={{
-                    border: '3px solid #125CA1',
+                    border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
                     height: desktop ? null : '40px',
@@ -634,7 +699,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                     setData([]);
                   }}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     height: desktop ? null : '40px',
@@ -658,7 +723,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                     setData([]);
                   }}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     height: desktop ? null : '40px',
@@ -688,11 +753,14 @@ const CalorieCalculator = ({ user, ctx }) => {
               as="h3"
               style={{
                 margin: '3em',
-                display: counting.length ? 'block' : 'none',
+                display: counting.length ? 'block' : 'none'
               }}
               onMouseEnter={() => setData([])}
             >
-              <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+              <Container 
+                textAlign="center" 
+                as={desktop ? "h3" : "h4"} 
+                style={{ margin: '3em' }}>
                 <Message
                   attached
                   compact
@@ -779,7 +847,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                 <div className={styles.chart} style={{ padding: '3rem' }}>
                   <ResponsiveContainer
                     width="100%"
-                    height={500}
+                    height={desktop ? 500 : 200}
                     key={`rc_${data.length}`}
                   >
                     <AreaChart data={data} key={`ac_${data.length}`}>
