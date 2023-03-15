@@ -460,10 +460,16 @@ const CalorieCalculator = ({ user, ctx }) => {
                       </span>
                       <span
                         style={{
-                          marginRight: desktop ? '51.9px' : '22px'
+                          marginRight: desktop ? '51.9px' : '12px'
                         }}
                       >
-                        1
+                        <span
+                          style={{
+                            marginRight: desktop ? null : '8px'
+                          }}
+                        >
+                          1
+                        </span>
                         <input
                           type="radio"
                           name="lifestyle"
@@ -479,10 +485,16 @@ const CalorieCalculator = ({ user, ctx }) => {
                       </span>
                       <span
                         style={{
-                          marginRight: desktop ? '51.9px' : '22px'
+                          marginRight: desktop ? '51.9px' : '12px'
                         }}
                       >
-                        2
+                        <span
+                          style={{
+                            marginRight: desktop ? null : '8px'
+                          }}
+                        >
+                          2
+                        </span>
                         <input
                           type="radio"
                           name="lifestyle"
@@ -498,10 +510,16 @@ const CalorieCalculator = ({ user, ctx }) => {
                       </span>
                       <span
                         style={{
-                          marginRight: desktop ? '51.9px' : '22px'
+                          marginRight: desktop ? '51.9px' : '12px'
                         }}
                       >
-                        3
+                        <span
+                          style={{
+                            marginRight: desktop ? null : '8px'
+                          }}
+                        >
+                          3
+                        </span>
                         <input
                           type="radio"
                           name="lifestyle"
@@ -517,12 +535,12 @@ const CalorieCalculator = ({ user, ctx }) => {
                       </span>
                       <span
                         style={{
-                          marginRight: desktop ? '51.9px' : '22px'
+                          marginRight: desktop ? '51.9px' : '12px'
                         }}
                       >
                         <span
                           style={{
-                            marginRight: '10px'
+                            marginRight: desktop ? null : '8px'
                           }}
                         >
                           4
@@ -541,7 +559,13 @@ const CalorieCalculator = ({ user, ctx }) => {
                         />
                       </span>
                       <span>
-                        5
+                      <span
+                          style={{
+                            marginRight: desktop ? null : '8px'
+                          }}
+                        >
+                          5
+                        </span>
                         <input
                           type="radio"
                           name="lifestyle"
