@@ -2,7 +2,7 @@
   background: linear-gradient(to top, violet, #3978f5);
   transform: translateY(-1vh);
 }
-  
+   
 .notfound h1 {
   background: -webkit-linear-gradient(#3978f5, violet);
   -webkit-background-clip: text;
