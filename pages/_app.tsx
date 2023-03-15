@@ -87,7 +87,7 @@ class MyApp extends App {
         </Head>
         <NextNProgress
           height={4}
-          color="white"
+          color="#0066CC"
           startPosition={0.3}
           stopDelayMs={200}
         />
