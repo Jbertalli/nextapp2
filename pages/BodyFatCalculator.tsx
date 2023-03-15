@@ -9,7 +9,7 @@ import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
 import { parseCookies } from 'nookies';
-
+ 
 const LOCAL_STORAGE_KEY = 'BF%_progress';
 
 const BodyFatPercent = ({ user, ctx }) => {
