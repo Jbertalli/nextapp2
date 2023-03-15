@@ -70,24 +70,6 @@ nav .logo {
   color: black;
 }
 
-.file {
-  color: transparent;
-  transform: translateX(13%);
-}
-
-.file::-webkit-file-upload-button{
-  background: #2185D0;
-  color: #FFF;
-  cursor: pointer;
-  padding: 0.78571429em 1.5em;
-  display: inline-block;
-  font-weight: 700;
-  font-size: 14px;
-  border-radius: 6px;
-  position: relative;
-  z-index: 1;
-}
-
 .dropdown {
   animation-name: dropdown;
   animation-duration: .8s;

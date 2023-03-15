@@ -9,6 +9,7 @@ import { parseCookies } from 'nookies';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
+import { useMediaQuery } from 'react-responsive';
 
 const LOCAL_STORAGE_KEY = 'Calorie_progress';
 
@@ -194,6 +195,12 @@ const CalorieCalculator = ({ user, ctx }) => {
     Calories.current?.innerText == null; 
   }
 
+  const isLandscapePhone = useMediaQuery(
+    { minHeight: 200, maxHeight: 470 }
+  );
+
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+
   return (
     <>
       <Head>
@@ -207,7 +214,7 @@ const CalorieCalculator = ({ user, ctx }) => {
         <Container 
           textAlign="center" 
           as="h3" 
-          style={{ margin: '3em' }} 
+          style={{ margin: desktop ? '3em' : '2em' }} 
           onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
@@ -588,20 +595,23 @@ const CalorieCalculator = ({ user, ctx }) => {
                           }}
                         />
                       </span>
-                      {desktop ? (
-                        <>
-                          <div style={{ color: 'grey', fontSize: '15px' }}>
-                            &nbsp;1 = Low Activity{' '}
-                            <div style={{ transform: 'translate(482px, -23px)' }}>
-                              5 = High Activity
+                      {(isPortrait || isLandscapePhone) ? null : (
+                      <>
+                        {desktop ? (
+                          <>
+                            <div style={{ color: 'grey', fontSize: '15px' }}>
+                              &nbsp;1 = Low Activity{' '}
+                              <div style={{ transform: 'translate(482px, -23px)' }}>
+                                5 = High Activity
+                              </div>
                             </div>
-                          </div>
-                        </>
-                      ) : null}
+                          </>
+                        ) : null}
+                      </>
+                      )}
                     </div>
                   </span>
                 </div>
-
               </div>
               <Segment color="blue" textAlign="center" size="massive">
                 {imperial ? (

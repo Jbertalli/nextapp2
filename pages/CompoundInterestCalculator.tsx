@@ -1,14 +1,33 @@
 import Head from 'next/head';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Divider, Form, Message, Segment } from 'semantic-ui-react';
 import FocusLock from 'react-focus-lock';
 
 const CompoundInterestCalculator = () => {
+  const [desktop, setDesktop] = useState<boolean>(true);
   const [initialInvestment, setInitialInvestment] = useState<any>('');
   const [interestRate, setInterestRate] = useState<any>('');
   const [years, setYears] = useState<any>('');
   const CompoundInterest = useRef<any>();
   // console.log(CompoundInterest.current?.innerText);
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   const handleInput = () => {
     console.log('Compound Interest', { initialInvestment, interestRate, years, CompoundInterest });
@@ -23,7 +42,11 @@ const CompoundInterestCalculator = () => {
           content="compound, interest, calculator, rate"
         />
       </Head>
-      <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+      <Container 
+        textAlign="center" 
+        as="h3" 
+        style={{ margin: desktop ? '3em' : '2em' }} 
+      >
         <Message
           attached
           compact

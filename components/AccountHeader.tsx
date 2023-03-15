@@ -130,14 +130,34 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
             <input
               name="media"
               type="file"
+              id='actual-btn'
+              hidden
               accept="image/*"
               style={{
-                width: '150px',
                 margin: resize ? '0.5em 0em 0.2em 0em' : '1em 0em 1em 0em'
               }}
-              className={styles.file}
               onChange={(e) => {uploadImage(e)}}
             />
+            <label 
+              htmlFor="actual-btn" 
+              style={{ 
+                background: '#2185D0',
+                color: '#FFF',
+                border: '1px solid black',
+                cursor: 'pointer',
+                paddingTop: '2px',
+                paddingBottom: '2px',
+                width: '113px',
+                display: 'inline-block',
+                fontWeight: '700',
+                fontSize: '14px',
+                borderRadius: '4px',
+                position: 'relative',
+                marginRight: '3.5px'
+              }}
+            >
+              Choose File
+            </label>
             {(mediaPreview.length > 0) ? (
             <>
               <Button

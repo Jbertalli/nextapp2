@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Menu, Dropdown, Icon, Container, Grid, Modal, Divider } from 'semantic-ui-react';
 import styles from '../styles/Footer.module.css';
 import { handleLogout } from '../utils/auth';
+import { useMediaQuery } from 'react-responsive';
 import Icons from './Icons';
 
 const Navbar = ({ user }): any => {
@@ -45,20 +46,52 @@ const Navbar = ({ user }): any => {
     });
   }, []);
 
+  const isLaptop = useMediaQuery(
+    { minWidth: 1290, maxWidth: 1450 }
+  );
+
+  const isTablet = useMediaQuery(
+    { minWidth: 100, maxWidth: 1290 }
+  );
+
+  const isLandscapePhone = useMediaQuery(
+    { minHeight: 200, maxHeight: 470 }
+  );
+
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+
   return (
     <>
       {desktop ? (
         <>
           <div style={{ padding: '2.5vh' }}>
-            <Menu fixed="top" inverted style={{ background: 'black' }}>
+            <Menu 
+              fixed="top" 
+              inverted 
+              style={{ 
+                background: 'black'
+              }}
+            >
               <div
-                style={{ position: 'absolute', transform: 'translate(50px)' }}
+                style={{
+                  position: 'absolute',
+                  transform: 'translate(50px)'
+                }}
               >
                 <Grid>
-                  <Icons />
+                  {(isLaptop || isTablet || isPortrait || isLandscapePhone) ? null :
+                    <Icons />
+                  }
                 </Grid>
               </div>
-              <Container>
+              <Container 
+                style={{ 
+                  width: '100%', 
+                  display: 'flex', 
+                  justifyContent: 'center',
+                  transform: isPortrait ? 'scale(0.7)' : (isLandscapePhone ? 'scale(0.6)' : null)
+                }}
+              >
                 <Link href="/" passHref>
                   <Menu.Item
                     className={styles.hover}

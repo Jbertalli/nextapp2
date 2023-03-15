@@ -180,7 +180,7 @@ const BodyFatPercent = ({ user, ctx }) => {
         <Container 
           textAlign="center" 
           as="h3" 
-          style={{ margin: '3em' }} 
+          style={{ margin: desktop ? '3em' : '2em' }} 
           onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}

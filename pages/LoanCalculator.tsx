@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Divider, Form, Message, Segment } from 'semantic-ui-react';
 import FocusLock from 'react-focus-lock';
 
 const LoanCalculator = () => {
+  const [desktop, setDesktop] = useState<boolean>(true);
   const [principal, setPrincipal] = useState<any>('');
   const [interestRate, setInterestRate] = useState<any>('');
   const [years, setYears] = useState<any>('');
@@ -12,6 +13,24 @@ const LoanCalculator = () => {
   const rate: number = interestRate / 100 / 12;
   
   // console.log(LoanAmount.current?.innerText);
+
+  useEffect(() => {
+    if (window.innerWidth > 440) {
+      setDesktop(true);
+    } else {
+      setDesktop(false);
+    }
+
+    const updateMedia = () => {
+      if (window.innerWidth > 440) {
+        setDesktop(true);
+      } else {
+        setDesktop(false);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   const handleInput = () => {
     console.log('Loan Amount', { principal, interestRate, years, LoanAmount });
@@ -23,7 +42,11 @@ const LoanCalculator = () => {
         <title>HealthStat | Loan Calculator</title>
         <meta name="description" content="loan, calculator" />
       </Head>
-      <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+      <Container 
+        textAlign="center" 
+        as="h3"
+        style={{ margin: desktop ? '3em' : '2em' }} 
+      >
         <Message
           attached
           compact

@@ -162,7 +162,11 @@ function Goals({ user, ctx }) {
         <title>HealthStat | Goals</title>
         <meta name="description" content="goals" />
       </Head>
-      <Container textAlign="center" as="h3" style={{ margin: desktop ? '3em' : '2em' }}>
+      <Container 
+        textAlign="center" 
+        as="h3" 
+        style={{ margin: desktop ? '3em' : '1em' }}
+      >
         <Message
           attached
           compact
