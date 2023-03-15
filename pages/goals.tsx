@@ -260,7 +260,7 @@ function Goals({ user, ctx }) {
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {postData(), getData(), handleAddGoal()}}
                   style={{
-                    border: '3px solid #125CA1',
+                    border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
                     height: desktop ? null : '45px',
@@ -274,7 +274,7 @@ function Goals({ user, ctx }) {
                   size={desktop ? 'big' : 'small'}
                   onClick={() =>{deleteData(), handleClear()}}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     lineHeight: desktop ? null : '11px',
@@ -292,7 +292,7 @@ function Goals({ user, ctx }) {
                     clearAll()
                   }}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     height: desktop ? null : '45px',

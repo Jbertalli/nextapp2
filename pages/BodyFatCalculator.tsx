@@ -364,32 +364,67 @@ const BodyFatPercent = ({ user, ctx }) => {
               <div
                 onClick={() => setData([])}
               >
-                &nbsp;Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Male
-                <input
-                  type="radio"
-                  name="rad"
-                  value="male"
-                  checked={sex === 'male' && checked}
-                  onChange={handleChange}
-                  required
-                  style={{ width: '30px', cursor: 'pointer' }}
-                  onMouseUp={() => {
-                    setMale(true), handleUnclick();
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: desktop ? 'flex-start' : 'space-between',
+                    marginBottom: '17px'
                   }}
-                />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female
-                <input
-                  type="radio"
-                  name="rad"
-                  value="female"
-                  checked={sex === 'female' && checked}
-                  onChange={handleChange}
-                  required
-                  style={{ width: '30px', cursor: 'pointer' }}
-                  onMouseUp={() => {
-                    setMale(false), handleUnclick();
-                  }}
-                />
+                >
+                  <span
+                    style={{
+                      marginRight: desktop ? '40px' : null
+                    }}
+                  >
+                    Sex
+                  </span>
+                  <span
+                    style={{
+                      marginRight: desktop ? '30px' : null
+                    }}
+                  >
+                    <span
+                      style={{
+                        marginRight: desktop ? null : '8px'
+                      }}
+                    >
+                      Male
+                    </span>
+                    <input
+                      type="radio"
+                      name="rad"
+                      value="male"
+                      checked={sex === 'male' && checked}
+                      onChange={handleChange}
+                      required
+                      style={{ width: '30px', cursor: 'pointer' }}
+                      onMouseUp={() => {
+                        setMale(true), handleUnclick();
+                      }}
+                    />
+                  </span>
+                  <span>
+                    <span
+                      style={{
+                        marginRight: desktop ? null : '8px'
+                      }}
+                    >
+                      Female
+                    </span>
+                    <input
+                      type="radio"
+                      name="rad"
+                      value="female"
+                      checked={sex === 'female' && checked}
+                      onChange={handleChange}
+                      required
+                      style={{ width: '30px', cursor: 'pointer' }}
+                      onMouseUp={() => {
+                        setMale(false), handleUnclick();
+                      }}
+                    />
+                  </span>
+                </div>
               </div>
               {user ? (
               <>
@@ -410,7 +445,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                     style={{
                       width: desktop ? '35%' : '100%',
                       fontSize: '23px',
-                      margin: '0em 0em 1em 0em',
+                      margin: '0em 0em 1em 0em'
                     }}
                     onChange={(e) => {
                       setLined(e.target.value), setData([]);
@@ -520,7 +555,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   onClick={() => {postData(), getData(), counter()}}
                   onMouseMove={() => setData([])}
                   style={{
-                    border: '3px solid #125CA1',
+                    border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
                     color: '#125CA1',
                     height: desktop ? null : '40px',
@@ -544,7 +579,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                     setData([]);
                   }}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     height: desktop ? null : '40px',
@@ -568,7 +603,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                     setData([]);
                   }}
                   style={{
-                    border: '3px solid red',
+                    border: desktop ? '3px solid red' : '2px solid red',
                     background: 'transparent',
                     color: 'red',
                     height: desktop ? null : '40px',
@@ -598,11 +633,15 @@ const BodyFatPercent = ({ user, ctx }) => {
               as="h3"
               style={{
                 margin: '3em',
-                display: counting.length ? 'block' : 'none',
+                display: counting.length ? 'block' : 'none'
               }}
               onMouseEnter={() => setData([])}
             >
-              <Container textAlign="center" as="h3" style={{ margin: '3em' }}>
+              <Container 
+                textAlign="center" 
+                as={desktop ? "h3" : "h4"} 
+                style={{ margin: '3em' }}
+              >
                 <Message
                   attached
                   compact
@@ -617,7 +656,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   style={{
                     background: '#313e4c',
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: 'flex-end'
                   }}
                 >
                   <Button
@@ -627,7 +666,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       padding: '0',
                       margin: '1.2em',
                       background: '#313e4c',
-                      color: 'white',
+                      color: 'white'
                     }}
                     onClick={() => {
                       setData([]), setNumb(1);
@@ -640,7 +679,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       padding: '0',
                       margin: '1.2em',
                       background: '#313e4c',
-                      color: 'white',
+                      color: 'white'
                     }}
                     onClick={() => {
                       setData([]), setNumb(7);
@@ -653,7 +692,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       padding: '0',
                       margin: '1.2em',
                       background: '#313e4c',
-                      color: 'white',
+                      color: 'white'
                     }}
                     onClick={() => {
                       setData([]), setNumb(30);
@@ -666,7 +705,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       padding: '0',
                       margin: '1.2em',
                       background: '#313e4c',
-                      color: 'white',
+                      color: 'white'
                     }}
                     onClick={() => {
                       setData([]), setNumb(182);
@@ -679,7 +718,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       padding: '0',
                       margin: '0em 2.5em 0em 1.2em',
                       background: '#313e4c',
-                      color: 'white',
+                      color: 'white'
                     }}
                     onClick={() => {
                       setData([]), setNumb(365);
@@ -689,7 +728,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 <div className={styles.chart} style={{ padding: '3rem' }}>
                   <ResponsiveContainer
                     width="100%"
-                    height={500}
+                    height={desktop ? 500 : 200}
                     key={`rc_${data.length}`}
                   >
                     <AreaChart data={data} key={`ac_${data.length}`}>
@@ -770,7 +809,7 @@ function CustomTooltip({
           background: '#26313c',
           borderRadius: '.25rem',
           textAlign: 'center',
-          padding: '1em 1.5em 1em 1.5em',
+          padding: '1em 1.5em 1em 1.5em'
         }}
       >
         <h3>{format(parseISO(label), 'eeee, MMM d, yyy')}</h3>
@@ -785,7 +824,7 @@ function CustomTooltip({
             display:
               payload[0]?.payload?.value && payload[0]?.payload?.line
                 ? 'block'
-                : 'none',
+                : 'none'
           }}
         >
           Difference:&nbsp;&nbsp;

@@ -452,7 +452,6 @@ const CalorieCalculator = ({ user, ctx }) => {
                     />
                   </span>
                 </div>
-                
                 <div
                   style={{
                     display: 'flex',
