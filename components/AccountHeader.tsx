@@ -125,62 +125,69 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
               </div>
             </>
           )}
-
-          <div style={{ transform: 'translate(-10px)' }}>
-            <input
-              name="media"
-              type="file"
-              id='actual-btn'
-              hidden
-              accept="image/*"
-              style={{
-                margin: resize ? '0.5em 0em 0.2em 0em' : '1em 0em 1em 0em'
-              }}
-              onChange={(e) => {uploadImage(e)}}
-            />
-            <label 
-              htmlFor="actual-btn" 
-              style={{ 
-                background: '#2185D0',
-                color: '#FFF',
-                border: '1px solid black',
-                cursor: 'pointer',
-                paddingTop: '2px',
-                paddingBottom: '2px',
-                width: '113px',
-                display: 'inline-block',
-                fontWeight: '700',
-                fontSize: '14px',
-                borderRadius: '4px',
-                position: 'relative',
-                marginRight: '3.5px'
-              }}
-            >
-              Choose File
-            </label>
+          <div 
+            style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              transform: (mediaPreview.length > 0) ? 'translate(5px, 10px)' : null
+            }}
+          >
+            <div>
+              <input
+                name="media"
+                type="file"
+                id='actual-btn'
+                hidden
+                accept="image/*"
+                onChange={(e) => {uploadImage(e)}}
+              />
+              <label 
+                htmlFor="actual-btn" 
+                style={{ 
+                  background: '#2185D0',
+                  color: '#FFF',
+                  border: '1px solid black',
+                  cursor: 'pointer',
+                  paddingTop: '2px',
+                  paddingBottom: '2px',
+                  width: resize || mediaPreview.length === 0 ? '113px' : '86px',
+                  display: 'inline-block',
+                  fontWeight: '700',
+                  fontSize: '14px',
+                  borderRadius: '4px',
+                  position: 'relative',
+                  marginRight: '3.5px'
+                }}
+              >
+                {resize || mediaPreview.length === 0 ? 'Choose File' : 'Select'}
+              </label>
+            </div>
             {(mediaPreview.length > 0) ? (
             <>
-              <Button
-                color='blue'
-                onClick={postImage}
-                style={{
-                  border: '1px solid black',
-                  height: '42px'
-                }}
-              >
-                Save Image
-              </Button>
-              <Button
-                color='blue'
-                onClick={() => {deleteImage(), setMediaPreview('')}}
-                style={{
-                  border: '1px solid black',
-                  height: '42px',
-                  transform: resize ? null : 'translate(12px, -8px)'
-                }}
-              >
-                Delete Image
-              </Button>
+              <div>
+                <Button
+                  color='blue'
+                  onClick={postImage}
+                  style={{
+                    border: '1px solid black',
+                    height: '42px'
+                  }}
+                >
+                  {resize ? 'Save Image' : 'Save'}
+                </Button>
+              </div>
+              <div>
+                <Button
+                  color='blue'
+                  onClick={() => {deleteImage(), setMediaPreview('')}}
+                  style={{
+                    border: '1px solid black',
+                    height: '42px'
+                  }}
+                >
+                  {resize ? 'Delete Image' : 'Delete'}
+                </Button>
+              </div>
             </>
             ): null}
           </div>
