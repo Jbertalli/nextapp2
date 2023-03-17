@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item, Divider } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps, Label } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
@@ -66,11 +66,11 @@ const BodyFatPercent = ({ user, ctx }) => {
     setChecked((c) => !c);
   }
 
-  if (goals.length > 0) {
-    for (let i = 0; i < goals.length; i++) {}
-  } else {
-    console.log('%c no body fat % calculations', 'color: red');
-  }
+  // if (goals.length > 0) {
+  //   for (let i = 0; i < goals.length; i++) {}
+  // } else {
+  //   console.log('%c no body fat % calculations', 'color: red');
+  // }
 
   let counting: any = [];
 
@@ -186,7 +186,7 @@ const BodyFatPercent = ({ user, ctx }) => {
           onMouseLeave={() => setData([])}
         >
           <Message
-            attached
+            attached={'top'}
             compact
             icon="calculator"
             header="Body Fat Percent Calculator"
@@ -196,39 +196,39 @@ const BodyFatPercent = ({ user, ctx }) => {
           {imperial ? (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
                 onClick={() => {
-                    setImperial(false),
-                    setAge(''),
-                    setFeet(''),
-                    setInches(''),
-                    setWeight(''),
-                    handleRadio(),
-                    setLined(''),
-                    setData([])
+                  setImperial(false),
+                  setAge(''),
+                  setFeet(''),
+                  setInches(''),
+                  setWeight(''),
+                  handleRadio(),
+                  setLined(''),
+                  setData([])
                 }}
               />
             </>
           ) : (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Imperial"
                 color="grey"
                 onClick={() => {
-                    setImperial(true),
-                    setAge(''),
-                    setCentimeters(''),
-                    setKilograms(''),
-                    handleRadio(),
-                    setLined(''),
-                    setData([])
+                  setImperial(true),
+                  setAge(''),
+                  setCentimeters(''),
+                  setKilograms(''),
+                  handleRadio(),
+                  setLined(''),
+                  setData([])
                 }}
               />
             </>
@@ -628,7 +628,6 @@ const BodyFatPercent = ({ user, ctx }) => {
           <>
             <Container
               textAlign="center"
-              as="h3"
               style={{
                 margin: '3em',
                 display: counting.length ? 'block' : 'none'
@@ -641,7 +640,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 style={{ margin: '3em' }}
               >
                 <Message
-                  attached
+                  attached={'top'}
                   compact
                   icon="chart line"
                   header="Track Progress"
@@ -650,7 +649,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   style={{ background: '#26313c' }}
                 />
                 <Item
-                  attached
+                  attached={'top'}
                   style={{
                     background: '#313e4c',
                     display: 'flex',
@@ -658,7 +657,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                   }}
                 >
                   <Button
-                    content="1D"
+                    content="10"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -667,11 +666,11 @@ const BodyFatPercent = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(1);
+                      setData([]), setNumb(10);
                     }}
                   />
                   <Button
-                    content="7D"
+                    content="50"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -680,11 +679,11 @@ const BodyFatPercent = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(7);
+                      setData([]), setNumb(50);
                     }}
                   />
                   <Button
-                    content="1M"
+                    content="100"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -693,7 +692,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(30);
+                      setData([]), setNumb(100);
                     }}
                   />
                   <Button
@@ -710,7 +709,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                     }}
                   />
                   <Button
-                    content="1Y"
+                    content="500"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -719,7 +718,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(365);
+                      setData([]), setNumb(500);
                     }}
                   />
                 </Item>
@@ -729,7 +728,11 @@ const BodyFatPercent = ({ user, ctx }) => {
                     height={desktop ? 500 : 200}
                     key={`rc_${data.length}`}
                   >
-                    <AreaChart data={data} key={`ac_${data.length}`}>
+                    <AreaChart 
+                      data={data} 
+                      key={`ac_${data.length}`}
+                      margin={{ bottom: 25, left: 25 }}
+                    >
                       <defs>
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
@@ -759,17 +762,16 @@ const BodyFatPercent = ({ user, ctx }) => {
                         key={`ac_${data.length}`}
                       />{' '}
                       <XAxis
-                        dataKey="date"
-                        axisLine={false}
-                        tickLine={false}
-                        tickFormatter={(str) => {
-                          const date = parseISO(str);
-                          if (date.getDate() % 7 === 0) {
-                            return format(date, 'MMM, d');
-                          }
-                          return '';
-                        }}
+                       tick={true}
+                       minTickGap={20}
+                       interval={"preserveStartEnd"}
                       >
+                        <Label 
+                          value="Entry Number" 
+                          offset={-20} 
+                          position="insideBottom" 
+                          fill="rgb(102, 102, 102)"
+                        />
                       </XAxis>
                       <YAxis
                         dataKey="value"
@@ -777,6 +779,13 @@ const BodyFatPercent = ({ user, ctx }) => {
                         tickLine={false}
                         tickCount={8}
                         tickFormatter={(number) => `${number}`}
+                        label={{ 
+                          value: 'Body Fat %', 
+                          angle: -90, 
+                          position: 'insideLeft',
+                          offset: '-15',
+                          fill: "rgb(102, 102, 102)"
+                        }}
                       >
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
@@ -807,10 +816,9 @@ function CustomTooltip({
           background: '#26313c',
           borderRadius: '.25rem',
           textAlign: 'center',
-          padding: '1em 1.5em 1em 1.5em'
+          padding: '1em 1.5em 0.1em 1.5em'
         }}
       >
-        <h3>{format(parseISO(label), 'eeee, MMM d, yyy')}</h3>
         <p style={{ display: payload[0]?.payload?.value ? 'block' : 'none' }}>
           Body Fat %:&nbsp;&nbsp;{payload[0]?.payload?.value}
         </p>
@@ -819,6 +827,7 @@ function CustomTooltip({
         </p>
         <p
           style={{
+            marginBottom: '1em',
             display:
               payload[0]?.payload?.value && payload[0]?.payload?.line
                 ? 'block'

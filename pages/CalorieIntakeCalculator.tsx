@@ -218,7 +218,7 @@ const CalorieCalculator = ({ user, ctx }) => {
           onMouseLeave={() => setData([])}
         >
           <Message
-            attached
+            attached={'top'}
             compact
             icon="calculator"
             header="Calorie Calculator"
@@ -228,7 +228,7 @@ const CalorieCalculator = ({ user, ctx }) => {
           {imperial ? (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Metric"
@@ -248,7 +248,7 @@ const CalorieCalculator = ({ user, ctx }) => {
           ) : (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Imperial"
@@ -803,7 +803,6 @@ const CalorieCalculator = ({ user, ctx }) => {
           <>
             <Container
               textAlign="center"
-              as="h3"
               style={{
                 margin: '3em',
                 display: counting.length ? 'block' : 'none'
@@ -815,7 +814,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                 as={desktop ? "h3" : "h4"} 
                 style={{ margin: '3em' }}>
                 <Message
-                  attached
+                  attached={'top'}
                   compact
                   icon="chart line"
                   header="Track Progress"
@@ -824,7 +823,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   style={{ background: '#26313c' }}
                 />
                 <Item
-                  attached
+                  attached={'top'}
                   style={{
                     background: '#313e4c',
                     display: 'flex',
@@ -952,7 +951,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                         dataKey="value"
                         axisLine={false}
                         tickLine={false}
-                        tickCount={10}
+                        tickCount={8}
                         tickFormatter={(number) => `${number}`}
                         label={{ 
                           value: 'Calories', 

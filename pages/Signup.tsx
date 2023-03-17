@@ -53,7 +53,7 @@ const Signup = () => {
       </Head>
       <Container textAlign="left" as="h3" style={{ margin: '2em' }}>
         <Message
-          attached
+          attached={'top'}
           icon="settings"
           header="Signup"
           content="Create a new account"

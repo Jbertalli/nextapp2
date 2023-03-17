@@ -2,13 +2,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item, Divider } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, Label, TooltipProps } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps, Label } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import styles from '../styles/Footer.module.css';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
 import { parseCookies } from 'nookies';
+import { transform } from 'typescript';
 
 const LOCAL_STORAGE_KEY = 'BMI_progress';
 
@@ -46,11 +47,11 @@ const BMICalculator = ({ user, ctx }) => {
     }
   };
 
-  if (goals.length > 0) {
-    for (let i = 0; i < goals.length; i++) {}
-  } else {
-    console.log('%c no BMI calculations', 'color: red');
-  }
+  // if (goals.length > 0) {
+  //   for (let i = 0; i < goals.length; i++) {}
+  // } else {
+  //   console.log('%c no BMI calculations', 'color: red');
+  // }
 
   let counting: any = [];
 
@@ -158,15 +159,15 @@ const BMICalculator = ({ user, ctx }) => {
       </Head>
       <FocusLock>
         <Container 
-          textAlign="center" 
-          as="h3" 
+          textAlign="center"
+          as={desktop ? "h3" : "h4"} 
           style={{ margin: desktop ? '3em' : '2em' }} 
           onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
         >
           <Message
-            attached
+            attached={'top'}
             compact
             icon="calculator"
             header="BMI Calculator"
@@ -176,25 +177,25 @@ const BMICalculator = ({ user, ctx }) => {
           {imperial ? (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Metric"
                 color="grey"
                 onClick={() => {
-                    setImperial(false),
-                    setFeet(''),
-                    setInches(''),
-                    setWeight(''),
-                    setLined(''),
-                    setData([]);
+                  setImperial(false),
+                  setFeet(''),
+                  setInches(''),
+                  setWeight(''),
+                  setLined(''),
+                  setData([]);
                 }}
               />
             </>
           ) : (
             <>
               <Button
-                attached
+                attached={'top'}
                 compact
                 icon="globe"
                 content="Switch to Imperial"
@@ -469,7 +470,6 @@ const BMICalculator = ({ user, ctx }) => {
           <>
             <Container
               textAlign="center"
-              as="h3"
               style={{
                 margin: '3em',
                 display: counting.length ? 'block' : 'none'
@@ -482,7 +482,7 @@ const BMICalculator = ({ user, ctx }) => {
                 style={{ margin: '3em' }}
               >
                 <Message
-                  attached
+                  attached={'top'}
                   compact
                   icon="chart line"
                   header="Track Progress"
@@ -491,7 +491,7 @@ const BMICalculator = ({ user, ctx }) => {
                   style={{ background: '#26313c' }}
                 />
                 <Item
-                  attached
+                  attached={'top'}
                   style={{
                     background: '#313e4c',
                     display: 'flex',
@@ -499,7 +499,7 @@ const BMICalculator = ({ user, ctx }) => {
                   }}
                 >
                   <Button
-                    content="1D"
+                    content="10"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -508,11 +508,11 @@ const BMICalculator = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(1);
+                      setData([]), setNumb(10);
                     }}
                   />
                   <Button
-                    content="7D"
+                    content="25"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -521,11 +521,11 @@ const BMICalculator = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(7);
+                      setData([]), setNumb(25);
                     }}
                   />
                   <Button
-                    content="1M"
+                    content="50"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -534,11 +534,11 @@ const BMICalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(30);
+                      setData([]), setNumb(50);
                     }}
                   />
                   <Button
-                    content="6M"
+                    content="100"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -547,11 +547,11 @@ const BMICalculator = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(182);
+                      setData([]), setNumb(100);
                     }}
                   />
                   <Button
-                    content="1Y"
+                    content="500"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -560,7 +560,7 @@ const BMICalculator = ({ user, ctx }) => {
                       color: 'white'
                     }}
                     onClick={() => {
-                      setData([]), setNumb(365);
+                      setData([]), setNumb(500);
                     }}
                   />
                 </Item>
@@ -570,7 +570,11 @@ const BMICalculator = ({ user, ctx }) => {
                     height={desktop ? 500 : 200}
                     key={`rc_${data.length}`}
                   >
-                    <AreaChart data={data} key={`ac_${data.length}`}>
+                    <AreaChart 
+                      data={data} 
+                      key={`ac_${data.length}`}
+                      margin={{ bottom: 25, left: 25 }}
+                    >
                       <defs>
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
@@ -600,17 +604,16 @@ const BMICalculator = ({ user, ctx }) => {
                         key={`ac_${data.length}`}
                       />{' '}
                       <XAxis
-                        dataKey="date"
-                        axisLine={false}
-                        tickLine={false}
-                        tickFormatter={(str) => {
-                          const date = parseISO(str);
-                          if (date.getDate() % 7 === 0) {
-                            return format(date, 'MMM, d');
-                          }
-                          return '';
-                        }}
+                        tick={true}
+                        minTickGap={20}
+                        interval={"preserveStartEnd"}
                       >
+                        <Label 
+                          value="Entry Number" 
+                          offset={-20} 
+                          position="insideBottom" 
+                          fill="rgb(102, 102, 102)"
+                        />
                       </XAxis>
                       <YAxis
                         dataKey="value"
@@ -618,6 +621,13 @@ const BMICalculator = ({ user, ctx }) => {
                         tickLine={false}
                         tickCount={8}
                         tickFormatter={(number) => `${number}`}
+                        label={{ 
+                          value: 'BMI', 
+                          angle: -90, 
+                          position: 'insideLeft',
+                          offset: '-15',
+                          fill: 'rgb(102, 102, 102)'
+                        }}
                       >
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
@@ -648,10 +658,9 @@ function CustomTooltip({
           background: '#26313c',
           borderRadius: '.25rem',
           textAlign: 'center',
-          padding: '1em 1.5em 1em 1.5em'
+          padding: '1em 1.5em 0.1em 1.5em'
         }}
       >
-        <h3>{format(parseISO(label), 'eeee, MMM d, yyy')}</h3>
         <p style={{ display: payload[0]?.payload?.value ? 'block' : 'none' }}>
           BMI:&nbsp;&nbsp;{payload[0]?.payload?.value}
         </p>
@@ -660,6 +669,7 @@ function CustomTooltip({
         </p>
         <p
           style={{
+            marginBottom: '1em',
             display:
               payload[0]?.payload?.value && payload[0]?.payload?.line
                 ? 'block'

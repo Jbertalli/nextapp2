@@ -48,7 +48,7 @@ const LoanCalculator = () => {
         style={{ margin: desktop ? '3em' : '2em' }} 
       >
         <Message
-          attached
+          attached={'top'}
           compact
           icon="calculator"
           header="Loan Calculator"

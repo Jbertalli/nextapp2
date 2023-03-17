@@ -52,7 +52,7 @@ const Login = () => {
       </Head>
       <Container textAlign="left" as="h3" style={{ margin: '2em' }}>
         <Message
-          attached
+          attached={'top'}
           icon="privacy"
           header="Login"
           content="Log into your account"
