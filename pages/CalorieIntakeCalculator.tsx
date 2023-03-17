@@ -7,7 +7,7 @@ import axios from 'axios';
 import FocusLock from 'react-focus-lock';
 import { parseCookies } from 'nookies';
 import { Container, Button, Form, Icon, Message, Segment, Grid, Item } from 'semantic-ui-react';
-import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
+import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, TooltipProps, Label } from 'recharts';
 import { format, parseISO, subDays } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
 
@@ -82,11 +82,11 @@ const CalorieCalculator = ({ user, ctx }) => {
     setCheckedMale((c) => !c);
   }
 
-  if (goals.length > 0) {
-    for (let i = 0; i < goals.length; i++) {}
-  } else {
-    console.log('%c caloric intake calculations', 'color: red');
-  }
+  // if (goals.length > 0) {
+  //   for (let i = 0; i < goals.length; i++) {}
+  // } else {
+  //   console.log('%c caloric intake calculations', 'color: red');
+  // }
 
   let counting: any = [];
   let avg: any = [];
@@ -96,14 +96,12 @@ const CalorieCalculator = ({ user, ctx }) => {
     const flattened: any = counting.flat();
     const reduced: any = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
     avg = (reduced / goals.length).toFixed(0);
-    console.log('%c average calories:', 'color: blue', avg);
+    // console.log('%c average calories:', 'color: blue', avg);
   }
 
-  console.log(avg);
+  // console.log(avg);
 
   let newCal = counting.flat().pop();
-
-  const caloric_intake: any = counting.flat();
 
   useEffect(() => {
     if (window.innerWidth > 440) {
@@ -236,14 +234,14 @@ const CalorieCalculator = ({ user, ctx }) => {
                 content="Switch to Metric"
                 color="grey"
                 onClick={() => {
-                    setImperial(false),
-                    setAge(''),
-                    setFeet(''),
-                    setInches(''),
-                    setWeight(''),
-                    handleRadio(),
-                    handleLife(),
-                    setData([]);
+                  setImperial(false),
+                  setAge(''),
+                  setFeet(''),
+                  setInches(''),
+                  setWeight(''),
+                  handleRadio(),
+                  handleLife(),
+                  setData([]);
                 }}
               />
             </>
@@ -834,7 +832,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                   }}
                 >
                   <Button
-                    content="1D"
+                    content="10"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -843,11 +841,11 @@ const CalorieCalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(1);
+                      setData([]), setNumb(10);
                     }}
                   />
                   <Button
-                    content="7D"
+                    content="25"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -856,11 +854,11 @@ const CalorieCalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(7);
+                      setData([]), setNumb(25);
                     }}
                   />
                   <Button
-                    content="1M"
+                    content="50"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -869,11 +867,11 @@ const CalorieCalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(30);
+                      setData([]), setNumb(50);
                     }}
                   />
                   <Button
-                    content="6M"
+                    content="100"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -882,11 +880,11 @@ const CalorieCalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(182);
+                      setData([]), setNumb(100);
                     }}
                   />
                   <Button
-                    content="1Y"
+                    content="500"
                     className={styles.underline}
                     style={{
                       padding: '0',
@@ -895,7 +893,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                       color: 'white',
                     }}
                     onClick={() => {
-                      setData([]), setNumb(365);
+                      setData([]), setNumb(500);
                     }}
                   />
                 </Item>
@@ -905,7 +903,11 @@ const CalorieCalculator = ({ user, ctx }) => {
                     height={desktop ? 500 : 200}
                     key={`rc_${data.length}`}
                   >
-                    <AreaChart data={data} key={`ac_${data.length}`}>
+                    <AreaChart 
+                      data={data} 
+                      key={`ac_${data.length}`} 
+                      margin={{ bottom: 25, left: 25 }}
+                    >
                       <defs>
                         <linearGradient id="color" x1="0" y1="0" x2="0">
                           <stop
@@ -935,24 +937,30 @@ const CalorieCalculator = ({ user, ctx }) => {
                         key={`avg_${data.length}`}
                       />{' '}
                       <XAxis
-                        dataKey="date"
-                        axisLine={false}
-                        tickLine={false}
-                        tickFormatter={(str) => {
-                          const date = parseISO(str);
-                          if (date.getDate() % 7 === 0) {
-                            return format(date, 'MMM, d');
-                          }
-                          return '';
-                        }}
+                        tick={true}
+                        minTickGap={20}
+                        interval={"preserveStartEnd"}
                       >
+                        <Label 
+                          value="Entry Number" 
+                          offset={-20} 
+                          position="insideBottom" 
+                          fill="rgb(102, 102, 102)"
+                        />
                       </XAxis>
                       <YAxis
                         dataKey="value"
                         axisLine={false}
                         tickLine={false}
-                        tickCount={8}
+                        tickCount={10}
                         tickFormatter={(number) => `${number}`}
+                        label={{ 
+                          value: 'Calories', 
+                          angle: -90, 
+                          position: 'insideLeft',
+                          offset: '-15',
+                          fill: "rgb(102, 102, 102)"
+                        }}
                       >
                       </YAxis>
                       <Tooltip content={<CustomTooltip />} />
@@ -983,14 +991,13 @@ function CustomTooltip({
           background: '#26313c',
           borderRadius: '.25rem',
           textAlign: 'center',
-          padding: '1em 1.5em 1em 1.5em',
+          padding: '1em 1.5em 0.1em 1.5em'
         }}
       >
-        <h3>{format(parseISO(label), 'eeee, MMM d, yyy')}</h3>
         <p style={{ display: payload[0]?.payload?.value ? 'block' : 'none' }}>
           Calories:&nbsp;&nbsp;{payload[0]?.payload?.value}
         </p>
-        <p style={{ display: payload[0]?.payload?.average ? 'block' : 'none' }}>
+        <p style={{ display: payload[0]?.payload?.average ? 'block' : 'none', marginBottom: '1em' }}>
           Average:&nbsp;&nbsp;{payload[0]?.payload?.average}
         </p>
       </div>
