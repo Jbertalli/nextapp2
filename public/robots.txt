@@ -26,4 +26,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://localhost:3000/api/my-sitemap
+Sitemap: https://www.healthstatcalculator.com/api/my-sitemap

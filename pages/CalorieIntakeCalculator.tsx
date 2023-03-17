@@ -213,7 +213,7 @@ const CalorieCalculator = ({ user, ctx }) => {
           textAlign="center" 
           as="h3" 
           style={{ margin: desktop ? '3em' : '2em' }} 
-          onKeyUp={() => setData([])} 
+          // onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
         >
@@ -254,13 +254,13 @@ const CalorieCalculator = ({ user, ctx }) => {
                 content="Switch to Imperial"
                 color="grey"
                 onClick={() => {
-                    setImperial(true),
-                    setAge(''),
-                    setCentimeters(''),
-                    setKilograms(''),
-                    handleRadio(),
-                    handleLife(),
-                    setData([]);
+                  setImperial(true),
+                  setAge(''),
+                  setCentimeters(''),
+                  setKilograms(''),
+                  handleRadio(),
+                  handleLife(),
+                  setData([]);
                 }}
               />
             </>
@@ -707,8 +707,10 @@ const CalorieCalculator = ({ user, ctx }) => {
               >
                 <Button
                   size={desktop ? 'big' : 'small'}
-                  onClick={() => {postData(), getData(), counter()}}
+                  onClick={() => {postData(), getData(), counter(), setNumb(50)}}
                   onMouseMove={() => setData([])}
+                  onMouseLeave={() => setData([])}
+                  disabled={!(age && ((feet && inches) || centimeters) && (weight || kilograms) && (lifestyle) && checkedMale && checked)}
                   style={{
                     border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
@@ -807,7 +809,7 @@ const CalorieCalculator = ({ user, ctx }) => {
                 margin: '3em',
                 display: counting.length ? 'block' : 'none'
               }}
-              onMouseEnter={() => setData([])}
+              // onMouseEnter={() => setData([])}
             >
               <Container 
                 textAlign="center" 
