@@ -156,7 +156,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
                   fontSize: '14px',
                   borderRadius: '4px',
                   position: 'relative',
-                  marginRight: '3.5px'
+                  marginRight: (resize && mediaPreview.length > 0) ? '50px' : '3.5px'
                 }}
               >
                 {resize || mediaPreview.length === 0 ? 'Choose File' : 'Select'}
@@ -170,7 +170,8 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
                   onClick={postImage}
                   style={{
                     border: '1px solid black',
-                    height: '42px'
+                    height: '42px',
+                    marginRight: (resize && mediaPreview.length > 0) ? '50px' : '3.5px'
                   }}
                 >
                   {resize ? 'Save Image' : 'Save'}

@@ -184,8 +184,6 @@ const BodyFatPercent = ({ user, ctx }) => {
           // onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
-          onTouchMove={() => setData([])}
-          onScroll={() => setData([])}
         >
           <Message
             attached={'top'}
