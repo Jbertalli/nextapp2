@@ -550,7 +550,7 @@ const BodyFatPercent = ({ user, ctx }) => {
               >
                 <Button
                   size={desktop ? 'big' : 'small'}
-                  onClick={() => {postData(), getData(), counter(), setNumb(50)}}
+                  onClick={() => {postData(), getData(), counter(), setData([]), setNumb(50)}}
                   onMouseMove={() => setData([])}
                   onMouseLeave={() => setData([])}
                   disabled={!(age && ((feet && inches) || centimeters) && (weight || kilograms) && checked)}
