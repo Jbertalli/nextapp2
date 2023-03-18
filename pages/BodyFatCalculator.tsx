@@ -181,7 +181,7 @@ const BodyFatPercent = ({ user, ctx }) => {
           textAlign="center" 
           as="h3" 
           style={{ margin: desktop ? '3em' : '2em' }} 
-          onKeyUp={() => setData([])} 
+          // onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
         >
@@ -550,8 +550,10 @@ const BodyFatPercent = ({ user, ctx }) => {
               >
                 <Button
                   size={desktop ? 'big' : 'small'}
-                  onClick={() => {postData(), getData(), counter()}}
+                  onClick={() => {postData(), getData(), counter(), setNumb(50)}}
                   onMouseMove={() => setData([])}
+                  onMouseLeave={() => setData([])}
+                  disabled={!(age && ((feet && inches) || centimeters) && (weight || kilograms) && checked)}
                   style={{
                     border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
@@ -633,6 +635,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                 display: counting.length ? 'block' : 'none'
               }}
               onMouseEnter={() => setData([])}
+              onMouseLeave={() => setData([])}
             >
               <Container 
                 textAlign="center" 
@@ -670,6 +673,19 @@ const BodyFatPercent = ({ user, ctx }) => {
                     }}
                   />
                   <Button
+                    content="25"
+                    className={styles.underline}
+                    style={{
+                      padding: '0',
+                      margin: '1.2em',
+                      background: '#313e4c',
+                      color: 'white'
+                    }}
+                    onClick={() => {
+                      setData([]), setNumb(25);
+                    }}
+                  />
+                  <Button
                     content="50"
                     className={styles.underline}
                     style={{
@@ -693,19 +709,6 @@ const BodyFatPercent = ({ user, ctx }) => {
                     }}
                     onClick={() => {
                       setData([]), setNumb(100);
-                    }}
-                  />
-                  <Button
-                    content="6M"
-                    className={styles.underline}
-                    style={{
-                      padding: '0',
-                      margin: '1.2em',
-                      background: '#313e4c',
-                      color: 'white'
-                    }}
-                    onClick={() => {
-                      setData([]), setNumb(182);
                     }}
                   />
                   <Button

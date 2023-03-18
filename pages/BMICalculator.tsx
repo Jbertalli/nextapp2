@@ -162,7 +162,7 @@ const BMICalculator = ({ user, ctx }) => {
           textAlign="center"
           as={desktop ? "h3" : "h4"} 
           style={{ margin: desktop ? '3em' : '2em' }} 
-          onKeyUp={() => setData([])} 
+          // onKeyUp={() => setData([])} 
           onMouseEnter={() => setData([])} 
           onMouseLeave={() => setData([])}
         >
@@ -201,11 +201,11 @@ const BMICalculator = ({ user, ctx }) => {
                 content="Switch to Imperial"
                 color="grey"
                 onClick={() => {
-                    setImperial(true),
-                    setCentimeters(''),
-                    setKilograms(''),
-                    setLined(''),
-                    setData([]);
+                  setImperial(true),
+                  setCentimeters(''),
+                  setKilograms(''),
+                  setLined(''),
+                  setData([]);
                 }}
               />
             </>
@@ -396,8 +396,10 @@ const BMICalculator = ({ user, ctx }) => {
               >
                 <Button
                   size={desktop ? 'big' : 'small'}
-                  onClick={() => {postData(), getData(), counter()}}
+                  onClick={() => {postData(), getData(), counter(), setNumb(50)}}
                   onMouseMove={() => setData([])}
+                  onMouseLeave={() => setData([])}
+                  disabled={!(((feet && inches) || centimeters) && (weight || kilograms))}
                   style={{
                     border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
                     background: 'transparent',
@@ -475,6 +477,7 @@ const BMICalculator = ({ user, ctx }) => {
                 display: counting.length ? 'block' : 'none'
               }}
               onMouseEnter={() => setData([])}
+              onMouseLeave={() => setData([])}
             >
               <Container 
                 textAlign="center"
