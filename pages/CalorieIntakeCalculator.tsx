@@ -811,6 +811,7 @@ const CalorieCalculator = ({ user, ctx }) => {
               }}
               onMouseEnter={() => setData([])}
               onMouseLeave={() => setData([])}
+              onMouseOver={() => setData([])}
             >
               <Container 
                 textAlign="center" 
