@@ -4,6 +4,14 @@ import jwt from 'jsonwebtoken';
 
 connectDb();
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '8mb'
+        }
+    }
+}
+
 export default async (req, res) => {
     switch(req.method) {
         case "POST":
