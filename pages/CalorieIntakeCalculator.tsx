@@ -37,7 +37,7 @@ const CalorieCalculator = ({ user, ctx }) => {
   const Calories = useRef<any>();
 
   useEffect(() => {
-    const storedCalories = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)); //parse to turn into array
+    const storedCalories = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedCalories) setGoals(storedCalories);
     setData([]);
   }, []);
@@ -82,12 +82,6 @@ const CalorieCalculator = ({ user, ctx }) => {
     setCheckedMale((c) => !c);
   }
 
-  // if (goals.length > 0) {
-  //   for (let i = 0; i < goals.length; i++) {}
-  // } else {
-  //   console.log('%c caloric intake calculations', 'color: red');
-  // }
-
   let counting: any = [];
   let avg: any = [];
 
@@ -96,7 +90,6 @@ const CalorieCalculator = ({ user, ctx }) => {
     const flattened: any = counting.flat();
     const reduced: any = flattened.reduce((total, current) => parseFloat(total) + parseFloat(current));
     avg = (reduced / goals.length).toFixed(0);
-    // console.log('%c average calories:', 'color: blue', avg);
   }
 
   // console.log(avg);
@@ -142,7 +135,7 @@ const CalorieCalculator = ({ user, ctx }) => {
     const url = `${baseUrl}/api/calAPI`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    console.log(response.data);
   }
 
   async function deleteAll() {
@@ -150,7 +143,7 @@ const CalorieCalculator = ({ user, ctx }) => {
     const url = `${baseUrl}/api/newCalorie`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    // console.log(response.data);
   }
 
   useEffect(() => {
@@ -163,6 +156,7 @@ const CalorieCalculator = ({ user, ctx }) => {
 
   let CalArray = Object(Object(newData).newCalorie);
   // console.log(typeof CalArray);
+  // console.log(CalArray.length > 0);
 
   let app = []
 
@@ -801,7 +795,7 @@ const CalorieCalculator = ({ user, ctx }) => {
             </>
           )}
         </Container>
-        {user ? (
+        {user && CalArray.length > 0 ? (
           <>
             <Container
               textAlign="center"

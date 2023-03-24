@@ -9,7 +9,6 @@ import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 import FocusLock from 'react-focus-lock';
 import { parseCookies } from 'nookies';
-import { transform } from 'typescript';
 
 const LOCAL_STORAGE_KEY = 'BMI_progress';
 
@@ -30,7 +29,7 @@ const BMICalculator = ({ user, ctx }) => {
   const BMI = useRef<any>();
 
   useEffect(() => {
-    const storedBMI = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)); //parse to turn into array
+    const storedBMI = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedBMI) setGoals(storedBMI);
     setData([]);
   }, []);
@@ -46,12 +45,6 @@ const BMICalculator = ({ user, ctx }) => {
       console.log('metric', { centimeters, kilograms, BMI });
     }
   };
-
-  // if (goals.length > 0) {
-  //   for (let i = 0; i < goals.length; i++) {}
-  // } else {
-  //   console.log('%c no BMI calculations', 'color: red');
-  // }
 
   let counting: any = [];
 
@@ -121,6 +114,7 @@ const BMICalculator = ({ user, ctx }) => {
   
   let BMIArray = Object(Object(newData).newBMI1);
   // console.log(typeof BMIArray);
+  // console.log(BMIArray.length > 0);
 
   let app = []
 
@@ -468,7 +462,7 @@ const BMICalculator = ({ user, ctx }) => {
             </>
           )}
         </Container>
-        {user ? (
+        {user && BMIArray.length > 0 ? (
           <>
             <Container
               textAlign="center"
