@@ -109,7 +109,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
   }, []);
 
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   return (
