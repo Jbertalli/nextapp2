@@ -103,6 +103,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
   useEffect(() => {
     if (user) {
       getImage();
+      setClicked(true);
     } else {
       console.log('no user');
     }
