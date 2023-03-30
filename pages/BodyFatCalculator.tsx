@@ -33,7 +33,7 @@ const BodyFatPercent = ({ user, ctx }) => {
   const BF = useRef<any>();
 
   useEffect(() => {
-    const storedBF = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)); //parse to turn into array
+    const storedBF = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedBF) setGoals(storedBF);
     setData([]);
   }, []);
@@ -42,13 +42,13 @@ const BodyFatPercent = ({ user, ctx }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(goals));
   }, [goals]);
 
-  const handleInput = () => {
-    if (imperial) {
-      console.log('imperial', { age, feet, inches, weight, male, BF });
-    } else {
-      console.log('metric', { age, centimeters, kilograms, male, BF });
-    }
-  };
+  // const handleInput = () => {
+  //   if (imperial) {
+  //     console.log('imperial', { age, feet, inches, weight, male, BF });
+  //   } else {
+  //     console.log('metric', { age, centimeters, kilograms, male, BF });
+  //   }
+  // };
 
   useEffect(() => {
     setSex('');
@@ -65,12 +65,6 @@ const BodyFatPercent = ({ user, ctx }) => {
   function handleUnclick() {
     setChecked((c) => !c);
   }
-
-  // if (goals.length > 0) {
-  //   for (let i = 0; i < goals.length; i++) {}
-  // } else {
-  //   console.log('%c no body fat % calculations', 'color: red');
-  // }
 
   let counting: any = [];
 
@@ -96,7 +90,9 @@ const BodyFatPercent = ({ user, ctx }) => {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
-  let newBF = counting.flat().pop();
+  // let newBF = counting.flat().pop();
+  let newBF = counting.flat().reverse().shift();
+  // console.log(counting.flat().reverse().shift());
 
   async function postData() {
     const url = `${baseUrl}/api/bfAPI`;
@@ -127,19 +123,12 @@ const BodyFatPercent = ({ user, ctx }) => {
     const url = `${baseUrl}/api/newBF`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    console.log(response.data);
   }
-
-  useEffect(() => {
-    if (user) {
-      getData();
-    } else {
-      console.log('no user');
-    }
-  }, []);
 
   let BFArray = Object(Object(newData).newBF);
   // console.log(typeof BFArray);
+  // console.log(BFArray.length > 0);
 
   let app = []
 
@@ -147,11 +136,11 @@ const BodyFatPercent = ({ user, ctx }) => {
     app.push(BFArray[i].newBF);
   }
 
-  // console.log(app);
+  console.log(app);
 
   for (let num = numb; num >= 0; num--) {
     data.push({
-      date: subDays(new Date(), num).toISOString().substr(0, 10),
+      // date: subDays(new Date(), num).toISOString().substr(0, 10),
       value: app.shift(),
       line: lined,
     });
@@ -170,6 +159,14 @@ const BodyFatPercent = ({ user, ctx }) => {
     BF.current?.innerText == null; 
   }
 
+  useEffect(() => {
+    if (user) {
+      getData();
+    } else {
+      console.log('no user');
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -182,8 +179,8 @@ const BodyFatPercent = ({ user, ctx }) => {
           as="h3" 
           style={{ margin: desktop ? '3em' : '2em' }} 
           // onKeyUp={() => setData([])} 
-          onMouseEnter={() => setData([])} 
-          onMouseLeave={() => setData([])}
+          // onMouseEnter={() => setData([])} 
+          // onMouseLeave={() => setData([])}
         >
           <Message
             attached={'top'}
@@ -233,7 +230,8 @@ const BodyFatPercent = ({ user, ctx }) => {
               />
             </>
           )}
-          <Form onClick={() => handleInput()}>
+          {/* <Form onClick={() => handleInput()}> */}
+          <Form>
             <Segment size="huge" textAlign="left">
               <Form.Input
                 fluid
@@ -551,8 +549,8 @@ const BodyFatPercent = ({ user, ctx }) => {
                 <Button
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {postData(), getData(), counter(), setData([]), setNumb(50)}}
-                  onMouseMove={() => setData([])}
-                  onMouseLeave={() => setData([])}
+                  // onMouseMove={() => setData([])}
+                  // onMouseLeave={() => setData([])}
                   disabled={!(age && ((feet && inches) || centimeters) && (weight || kilograms) && checked)}
                   style={{
                     border: desktop ? '3px solid #125CA1' : '2px solid #125CA1',
@@ -561,6 +559,7 @@ const BodyFatPercent = ({ user, ctx }) => {
                     height: desktop ? null : '40px',
                     padding: desktop ? null : '0px 10px 0px 10px'
                   }}
+                  type='submit'
                 >
                   Update Body Fat %
                 </Button>
@@ -626,7 +625,7 @@ const BodyFatPercent = ({ user, ctx }) => {
             </>
           )}
         </Container>
-        {user ? (
+        {user && BFArray.length > 0 ? (
           <>
             <Container
               textAlign="center"
@@ -634,9 +633,9 @@ const BodyFatPercent = ({ user, ctx }) => {
                 margin: '3em',
                 display: counting.length ? 'block' : 'none'
               }}
-              onMouseEnter={() => setData([])}
-              onMouseLeave={() => setData([])}
-              onMouseOver={() => setData([])}
+              // onMouseEnter={() => setData([])}
+              // onMouseLeave={() => setData([])}
+              // onMouseOver={() => setData([])}
             >
               <Container 
                 textAlign="center" 

@@ -45,9 +45,9 @@ async function handlePostRequest(req, res) {
 }
 
 async function handleGetRequest(req, res) {
-    const { mediaPreview } = req.body;
+    const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);    
     try {
-        const image = await Image.find({ _id: { $ne: mediaPreview }})
+        const image = await Image.findOne({ user: userId })
         .sort({ createdAt: 'desc' });
         res.status(200).json(image);
     } catch(error) {

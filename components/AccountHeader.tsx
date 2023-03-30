@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/Footer.module.css';
 import Avatar from 'react-avatar';
 import { parseCookies } from 'nookies';
 import { Header, Icon, Segment, Label, Button } from 'semantic-ui-react';
@@ -7,18 +6,19 @@ import formatDate from '../utils/formatDate';
 import baseUrl from '../utils/baseUrl';
 import axios from 'axios';
 
-const LOCAL_STORAGE_KEY = 'profile_pic';
+// const LOCAL_STORAGE_KEY = 'profile_pic';
+const LOCAL_STORAGE_KEY_CLICKED = 'clicked';
 
 function AccountHeader({ role, email, name, createdAt, user, ctx }) {
   const [mediaPreview, setMediaPreview] = useState<string>('');
   const [resize, setResize] = useState<boolean>(false);
-  const [newData, setNewData] = useState<string>('');
+  const [newData, setNewData] = useState<any>('');
 
   // convert image to base-64
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64: any = await convertBase64(file);
-    console.log(base64)
+    console.log(base64);
     setMediaPreview(base64);
   }
 
@@ -55,14 +55,14 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
-  useEffect(() => {
-    const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (profilePic) setMediaPreview(profilePic);
-  }, []);
+  // useEffect(() => {
+  //   const profilePic = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  //   if (profilePic) setMediaPreview(profilePic);
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(mediaPreview));
-  }, [mediaPreview]);
+  // useEffect(() => {
+  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(mediaPreview));
+  // }, [mediaPreview]);
 
   async function postImage() {
     const url = `${baseUrl}/api/image`;
@@ -85,8 +85,19 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
     const url = `${baseUrl}/api/image`;
     const payload = { headers: { Authorization: token } };
     const response = await axios.delete(url, payload);
-    console.log(response.data)
+    console.log(response.data);
   }
+
+  const [clicked, setClicked] = useState<boolean>(false);
+
+  useEffect(() => {
+    const click = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_CLICKED));
+    if (click) setClicked(click);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_CLICKED, JSON.stringify(clicked));
+  }, [clicked]);
 
   // get data only if user
   useEffect(() => {
@@ -96,6 +107,10 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
       console.log('no user');
     }
   }, []);
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <>
@@ -109,18 +124,22 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
           content={role}
         />
         <Header inverted textAlign="center" as="h1" icon>
-          {!mediaPreview ? (
+          {!clicked ? (
             <>
               <Icon name="user" />
             </>
           ) : (
             <>
-              <div>
+              <div
+                style={{
+                  marginBottom: resize ? '40px' : '10px'
+                }}
+              >
                 <Avatar
                   name="profile_pic"
                   size="190"
                   round={true}
-                  src={mediaPreview}
+                  src={newData.mediaPreview}
                 />
               </div>
             </>
@@ -129,7 +148,8 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
             style={{ 
               display: 'flex', 
               justifyContent: 'center', 
-              transform: (mediaPreview.length > 0) ? 'translate(5px, 10px)' : null
+              transform: (mediaPreview.length > 0) ? 'translate(5px, 10px)' : null,
+              marginBottom: resize ? '30px' : '10px'
             }}
           >
             <div>
@@ -139,7 +159,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
                 id='actual-btn'
                 hidden
                 accept="image/*"
-                onChange={(e) => {uploadImage(e)}}
+                onChange={(e) => {uploadImage(e), setClicked(true)}}
               />
               <label 
                 htmlFor="actual-btn" 
@@ -167,7 +187,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
               <div>
                 <Button
                   color='blue'
-                  onClick={postImage}
+                  onClick={() => {postImage(), setClicked(true), refreshPage()}}
                   style={{
                     border: '1px solid black',
                     height: '42px',
@@ -180,7 +200,7 @@ function AccountHeader({ role, email, name, createdAt, user, ctx }) {
               <div>
                 <Button
                   color='blue'
-                  onClick={() => {deleteImage(), setMediaPreview('')}}
+                  onClick={() => {deleteImage(), setMediaPreview(''), setClicked(false)}}
                   style={{
                     border: '1px solid black',
                     height: '42px'
