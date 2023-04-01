@@ -5,71 +5,71 @@ import { parseCookies } from 'nookies';
 import React, { useState, useEffect } from 'react';
 import { Label, Divider, Grid } from 'semantic-ui-react';
 
-const config: any = {
-  year: 'numeric',
-  month: 'short',
-  day: '2-digit',
-};
+// const config: any = {
+//   year: 'numeric',
+//   month: 'short',
+//   day: '2-digit',
+// };
 
 export default function Goal(values) {
 
   const { 
     goal,
     toggleGoal,
-    user,
-    goals,
-    ctx
+    ctx,
+    newGoals1
   } = values;
   
-  const [newData, setNewData] = useState<any>([]);
+  // const [newData, setNewData] = useState<any>([]);
   const [checked, setChecked] = useState<boolean>(false);
-  const [desktop, setDesktop] = useState<boolean>(true);
+  // const [desktop, setDesktop] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (window.innerWidth > 440) {
-      setDesktop(true);
-    } else {
-      setDesktop(false);
-    }
+  // useEffect(() => {
+  //   if (window.innerWidth > 440) {
+  //     setDesktop(true);
+  //   } else {
+  //     setDesktop(false);
+  //   }
 
-    const updateMedia = () => {
-      if (window.innerWidth > 440) {
-        setDesktop(true);
-      } else {
-        setDesktop(false);
-      }
-    };
-    window.addEventListener('resize', updateMedia);
-    return () => window.removeEventListener('resize', updateMedia);
-  }, []);
+  //   const updateMedia = () => {
+  //     if (window.innerWidth > 440) {
+  //       setDesktop(true);
+  //     } else {
+  //       setDesktop(false);
+  //     }
+  //   };
+  //   window.addEventListener('resize', updateMedia);
+  //   return () => window.removeEventListener('resize', updateMedia);
+  // }, []);
 
   function handleGoalClick() {
     toggleGoal(goal.id);
+    toggleGoal(newGoals1.id);
   }
 
   function handleUnclick() {
     setChecked((c) => !c);
   }
 
-  const date = new Date();
-  const year = date.getFullYear();
+  // const date = new Date();
+  // const year = date.getFullYear();
 
-  async function getData() {
-    const { token } = parseCookies(ctx);
-    const url = `${baseUrl}/api/newGoals1`;
-    const payload = { headers: { Authorization: token } };
-    const response = await axios.get(url, payload);
-    console.log(response.data);
-    setNewData(response.data);
-  }
+  // async function getData() {
+  //   const { token } = parseCookies(ctx);
+  //   const url = `${baseUrl}/api/newGoals1`;
+  //   const payload = { headers: { Authorization: token } };
+  //   const response = await axios.get(url, payload);
+  //   console.log(response.data);
+  //   setNewData(response.data);
+  // }
 
-  useEffect(() => {
-    if (user) {
-      getData();
-    } else {
-      console.log('no user');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     getData();
+  //   } else {
+  //     console.log('no user');
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -107,7 +107,7 @@ export default function Goal(values) {
             </Label>
           </Grid.Column>
           <Grid.Column />
-          <Grid.Column
+          {/* <Grid.Column
             style={{ 
               fontSize: '1em', 
               margin: '14px 0% 0% 0%', 
@@ -122,7 +122,7 @@ export default function Goal(values) {
               {(goal.date).slice(5, 10)}-{year}
             </>
             ): null}
-          </Grid.Column>
+          </Grid.Column> */}
         </Grid.Row>
       </Grid>
       <Divider />

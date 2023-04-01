@@ -37,9 +37,9 @@ async function handlePostRequest(req, res) {
 }
 
 async function handleGetRequest(req, res) {
-    const { newGoal } = req.body;
+    const { userId } = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
     try {
-        const goal = await Goal.find({ _id: { $ne: newGoal }})
+        const goal = await Goal.find({ user: userId })
         .sort({ createdAt: 'desc' });
         res.status(200).json(goal);
     } catch(error) {
