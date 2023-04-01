@@ -5,18 +5,14 @@ import GoalList from '../components/GoalList';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../styles/Footer.module.css';
 import { Button, Container, Message, Segment, Icon } from 'semantic-ui-react';
-// import axios from 'axios';
-// import baseUrl from '../utils/baseUrl';
-// import { parseCookies } from 'nookies';
 
 const LOCAL_STORAGE_KEY = 'goals';
 
-function Goals({ user, ctx, newGoals1 }) {
+function Goals({ user }) {
   const [goals, setGoals] = useState<any>([]);
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
   const [desktop, setDesktop] = useState<boolean>(true);
-  // const [newData, setNewData] = useState<string>('');
   const goalNameRef = useRef<any>();
 
   useEffect(() => {
@@ -41,8 +37,6 @@ function Goals({ user, ctx, newGoals1 }) {
     counting.push([goals[i].name]);
   }
 
-  // let newGoal = counting.flat().pop();
-
   function toggleGoal(id) {
     const newGoals = [...goals];
     const goal: any = newGoals.find((goal) => goal.id === id);
@@ -51,18 +45,9 @@ function Goals({ user, ctx, newGoals1 }) {
     setData([]);
   }
 
-  // let GoalArray = Object(Object(newData).newGoals1);
-
-  // let app = []
-
-  // for (let i = 0; i < GoalArray.length; i++) {
-  //   app.push(GoalArray[i].createdAt);
-  // }
-
   async function handleAddGoal() {
     const name: any = goalNameRef.current.value;
     const userId = user._id;
-    // const date = app.pop();
     if (name === '') return;
     setGoals((prevGoals) => {
       return [...prevGoals, { id: uuidv4(), userId: userId, name: name, complete: false }];
@@ -106,52 +91,6 @@ function Goals({ user, ctx, newGoals1 }) {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
-  // async function postData() {
-  //   const url = `${baseUrl}/api/goalAPI`;
-  //   const payload = { user, newGoal };
-  //   const response = await axios.post(url, payload);
-  //   console.log(response.data);
-  // }
-
-  // async function getData() {
-  //   const { token } = parseCookies(ctx);
-  //   const url = `${baseUrl}/api/newGoals1`;
-  //   const payload = { headers: { Authorization: token } };
-  //   const response = await axios.get(url, payload);
-  //   console.log(response.data);
-  //   setNewData(response.data);
-  // }
-
-  // async function deleteData() {
-  //   const { token } = parseCookies(ctx);
-  //   const url = `${baseUrl}/api/goalAPI`;
-  //   const payload = { headers: { Authorization: token } };
-  //   const response = await axios.delete(url, payload);
-  //   console.log(response.data);
-  // }
-
-  // async function deleteAll() {
-  //   const { token } = parseCookies(ctx);
-  //   const url = `${baseUrl}/api/newGoals1`;
-  //   const payload = { headers: { Authorization: token } };
-  //   const response = await axios.delete(url, payload);
-  //   console.log(response.data);
-  // }
-
-  // useEffect(() => {
-  //   if (user) {
-  //     getData();
-  //   } else {
-  //     console.log('no user');
-  //   }
-  // }, []);
-
-  // console.log(newData);
-  // console.log(newGoals1);
-  // console.log(data);
-  // console.log(goals);
-  // console.log(newGoal);
-
   return (
     <>
       <Head>
@@ -185,7 +124,7 @@ function Goals({ user, ctx, newGoals1 }) {
                       height: '30vh',
                       display: 'flex',
                       justifyContent: 'center',
-                      marginBottom: '10px',
+                      marginBottom: '10px'
                     }}
                   >
                     <div style={{ transform: 'translateY(50%)' }}>
@@ -273,7 +212,6 @@ function Goals({ user, ctx, newGoals1 }) {
                 <Button
                   fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
-                  // onClick={() => {deleteData(), handleClear()}}
                   onClick={() => handleClear()}
                   style={{
                     border: desktop ? '3px solid red' : '2px solid red',
@@ -290,7 +228,6 @@ function Goals({ user, ctx, newGoals1 }) {
                   fluid={desktop ? false : true}
                   size={desktop ? 'big' : 'small'}
                   onClick={() => {
-                    // deleteAll(),
                     clearAll()
                   }}
                   style={{
@@ -316,7 +253,7 @@ function Goals({ user, ctx, newGoals1 }) {
                 height: '40vh',
                 display: 'flex',
                 justifyContent: 'center',
-                marginBottom: '10px',
+                marginBottom: '10px'
               }}
             >
               <div style={{ transform: 'translateY(50%)' }}>
@@ -339,14 +276,3 @@ function Goals({ user, ctx, newGoals1 }) {
 }
 
 export default Goals;
-
-// Goals.getInitialProps = async ctx => {
-//   const { token } = parseCookies(ctx);
-//   if (!token) {
-//     return { newGoals1: [] }
-//   }  
-//   const payload = { headers: { Authorization: token } };
-//   const url = `${baseUrl}/api/newGoals1`;
-//   const response = await axios.get(url, payload);
-//   return response.data;
-// }
