@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import GoalList from '../components/GoalList';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../styles/Footer.module.css';
-import baseUrl from '../utils/baseUrl';
-import { parseCookies } from 'nookies';
 import { Button, Container, Message, Segment, Icon } from 'semantic-ui-react';
+// import axios from 'axios';
+// import baseUrl from '../utils/baseUrl';
+// import { parseCookies } from 'nookies';
 
 const LOCAL_STORAGE_KEY = 'goals';
 
@@ -16,7 +16,7 @@ function Goals({ user, ctx, newGoals1 }) {
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState<any>([]);
   const [desktop, setDesktop] = useState<boolean>(true);
-  const [newData, setNewData] = useState<string>('');
+  // const [newData, setNewData] = useState<string>('');
   const goalNameRef = useRef<any>();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function Goals({ user, ctx, newGoals1 }) {
     counting.push([goals[i].name]);
   }
 
-  let newGoal = counting.flat().pop();
+  // let newGoal = counting.flat().pop();
 
   function toggleGoal(id) {
     const newGoals = [...goals];
@@ -51,21 +51,21 @@ function Goals({ user, ctx, newGoals1 }) {
     setData([]);
   }
 
-  let GoalArray = Object(Object(newData).newGoals1);
+  // let GoalArray = Object(Object(newData).newGoals1);
 
-  let app = []
+  // let app = []
 
-  for (let i = 0; i < GoalArray.length; i++) {
-    app.push(GoalArray[i].createdAt);
-  }
+  // for (let i = 0; i < GoalArray.length; i++) {
+  //   app.push(GoalArray[i].createdAt);
+  // }
 
   async function handleAddGoal() {
     const name: any = goalNameRef.current.value;
     const userId = user._id;
-    const date = app.pop();
+    // const date = app.pop();
     if (name === '') return;
     setGoals((prevGoals) => {
-      return [...prevGoals, { id: uuidv4(), userId: userId, name: name, date: date, complete: false }];
+      return [...prevGoals, { id: uuidv4(), userId: userId, name: name, complete: false }];
     });
 
     setCount(count + 1);
@@ -197,10 +197,9 @@ function Goals({ user, ctx, newGoals1 }) {
               ) : (
                 <>
                   <GoalList
-                    newGoals1={newGoals1}
                     goals={goals}
                     toggleGoal={toggleGoal}
-                    user={user}
+                    count={count}
                   />{' '}
                 </>
               )}
@@ -208,7 +207,7 @@ function Goals({ user, ctx, newGoals1 }) {
                 style={{
                   display: 'flex',
                   justifyContent: 'flex-start',
-                  margin: '.5em',
+                  margin: '.5em'
                 }}
               >
                 <h2>
@@ -222,7 +221,7 @@ function Goals({ user, ctx, newGoals1 }) {
                     style={{
                       textAlign: 'left',
                       padding: '0em 1em 1em 1em',
-                      fontSize: '19px',
+                      fontSize: '19px'
                     }}
                   >
                     Add Goal to List
@@ -341,13 +340,13 @@ function Goals({ user, ctx, newGoals1 }) {
 
 export default Goals;
 
-Goals.getInitialProps = async ctx => {
-  const { token } = parseCookies(ctx);
-  if (!token) {
-    return { newGoals1: [] }
-  }  
-  const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newGoals1`;
-  const response = await axios.get(url, payload);
-  return response.data;
-}
+// Goals.getInitialProps = async ctx => {
+//   const { token } = parseCookies(ctx);
+//   if (!token) {
+//     return { newGoals1: [] }
+//   }  
+//   const payload = { headers: { Authorization: token } };
+//   const url = `${baseUrl}/api/newGoals1`;
+//   const response = await axios.get(url, payload);
+//   return response.data;
+// }

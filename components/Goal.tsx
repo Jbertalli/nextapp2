@@ -1,9 +1,9 @@
-//map over current array and return element of goals
-import axios from 'axios';
-import baseUrl from '../utils/baseUrl';
-import { parseCookies } from 'nookies';
+// map over current array and return element of goals
 import React, { useState, useEffect } from 'react';
 import { Label, Divider, Grid } from 'semantic-ui-react';
+// import axios from 'axios';
+// import baseUrl from '../utils/baseUrl';
+// import { parseCookies } from 'nookies';
 
 // const config: any = {
 //   year: 'numeric',
@@ -16,8 +16,8 @@ export default function Goal(values) {
   const { 
     goal,
     toggleGoal,
-    ctx,
-    newGoals1
+    // ctx,
+    // newGoals1
   } = values;
   
   // const [newData, setNewData] = useState<any>([]);
@@ -44,7 +44,7 @@ export default function Goal(values) {
 
   function handleGoalClick() {
     toggleGoal(goal.id);
-    toggleGoal(newGoals1.id);
+    // toggleGoal(newGoals1.id);
   }
 
   function handleUnclick() {
@@ -90,6 +90,7 @@ export default function Goal(values) {
               <input
                 type="radio"
                 checked={goal.complete}
+                readOnly
                 style={{
                   transform: 'translateY(2px)'
                 }}
@@ -130,13 +131,13 @@ export default function Goal(values) {
   );
 }
 
-Goal.getInitialProps = async ctx => {
-  const { token } = parseCookies(ctx);
-  if (!token) {
-    return { newGoals1: [] }
-  }  
-  const payload = { headers: { Authorization: token } };
-  const url = `${baseUrl}/api/newGoals1`;
-  const response = await axios.get(url, payload);
-  return response.data;
-}
+// Goal.getInitialProps = async ctx => {
+//   const { token } = parseCookies(ctx);
+//   if (!token) {
+//     return { newGoals1: [] }
+//   }  
+//   const payload = { headers: { Authorization: token } };
+//   const url = `${baseUrl}/api/newGoals1`;
+//   const response = await axios.get(url, payload);
+//   return response.data;
+// }
